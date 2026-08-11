@@ -1,0 +1,493 @@
+/* =========================================
+   LUXORA — PROJECT PAGE
+   WA CREATIVE SOLUTIONS
+========================================= */
+
+.luxora-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #080908;
+  color: #f4f6ef;
+  overflow: hidden;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.luxora-hero {
+  width: 100%;
+  padding: 32px 6vw 100px;
+}
+
+.luxora-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 28px;
+
+  border-bottom: 1px solid rgba(244, 246, 239, 0.14);
+}
+
+.luxora-back {
+  color: #b9c0b7;
+  text-decoration: none;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.luxora-back:hover {
+  color: #c8ff3d;
+  transform: translateX(-4px);
+}
+
+.luxora-number {
+  color: #777e76;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.luxora-content {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.luxora-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 30px;
+}
+
+.luxora-meta span {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 12px;
+
+  border: 1px solid rgba(244, 246, 239, 0.16);
+
+  color: #9da59b;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+
+.luxora-meta span:first-child {
+  border-color: rgba(200, 255, 61, 0.35);
+  color: #c8ff3d;
+}
+
+.luxora-content h1 {
+  margin: 0;
+
+  font-size: clamp(90px, 18vw, 260px);
+  line-height: 0.78;
+
+  font-weight: 500;
+  letter-spacing: -0.085em;
+
+  color: #f4f6ef;
+}
+
+.luxora-intro {
+  max-width: 620px;
+
+  margin: 55px 0 80px auto;
+
+  color: #aeb5ac;
+
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.7;
+
+  letter-spacing: -0.015em;
+}
+
+
+/* =========================================
+   PROJECT IMAGE
+========================================= */
+
+.luxora-image {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: #111411;
+
+  border: 1px solid rgba(244, 246, 239, 0.12);
+}
+
+.luxora-image::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05),
+      transparent 55%,
+      rgba(0, 0, 0, 0.3)
+    );
+
+  pointer-events: none;
+}
+
+.luxora-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: saturate(0.85);
+
+  transition:
+    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.6s ease;
+}
+
+.luxora-image:hover img {
+  transform: scale(1.035);
+  filter: saturate(1);
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.luxora-details {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 1px;
+
+  margin: 0 6vw;
+
+  border-top: 1px solid rgba(244, 246, 239, 0.14);
+  border-bottom: 1px solid rgba(244, 246, 239, 0.14);
+
+  background: rgba(244, 246, 239, 0.14);
+}
+
+.luxora-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  min-height: 150px;
+
+  padding: 30px 25px;
+
+  background: #080908;
+}
+
+.luxora-detail-item span {
+  color: #737a72;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.luxora-detail-item strong {
+  color: #f4f6ef;
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+
+/* =========================================
+   STATEMENT
+========================================= */
+
+.luxora-statement {
+  display: grid;
+
+  grid-template-columns: 0.7fr 1.3fr 0.8fr;
+
+  gap: 50px;
+
+  align-items: start;
+
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 170px 6vw 180px;
+}
+
+.luxora-statement > span {
+  color: #c8ff3d;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+.luxora-statement h2 {
+  margin: 0;
+
+  color: #f4f6ef;
+
+  font-size: clamp(55px, 7vw, 105px);
+
+  line-height: 0.86;
+
+  font-weight: 500;
+
+  letter-spacing: -0.065em;
+}
+
+.luxora-statement h2 em {
+  color: transparent;
+
+  font-style: normal;
+
+  -webkit-text-stroke: 1px #f4f6ef;
+}
+
+.luxora-statement p {
+  max-width: 360px;
+
+  margin: 8px 0 0;
+
+  color: #858c84;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1600px) {
+  .luxora-hero {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .luxora-details {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .luxora-hero {
+    padding: 28px 5vw 80px;
+  }
+
+  .luxora-content {
+    padding-top: 80px;
+  }
+
+  .luxora-content h1 {
+    font-size: clamp(80px, 17vw, 170px);
+  }
+
+  .luxora-intro {
+    margin-top: 45px;
+    margin-bottom: 60px;
+  }
+
+  .luxora-details {
+    margin-left: 5vw;
+    margin-right: 5vw;
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .luxora-statement {
+    grid-template-columns: 0.5fr 1.5fr;
+
+    padding: 130px 5vw;
+  }
+
+  .luxora-statement p {
+    grid-column: 2;
+    margin-top: 20px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .luxora-hero {
+    padding: 22px 20px 60px;
+  }
+
+  .luxora-top {
+    padding-bottom: 22px;
+  }
+
+  .luxora-content {
+    padding-top: 65px;
+  }
+
+  .luxora-meta {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 25px;
+  }
+
+  .luxora-meta span {
+    padding: 7px 9px;
+
+    font-size: 8px;
+  }
+
+  .luxora-content h1 {
+    font-size: clamp(68px, 22vw, 120px);
+    letter-spacing: -0.075em;
+  }
+
+  .luxora-intro {
+    max-width: 100%;
+
+    margin: 35px 0 45px;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .luxora-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .luxora-details {
+    grid-template-columns: 1fr;
+
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .luxora-detail-item {
+    min-height: auto;
+
+    padding: 23px 20px;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+  }
+
+  .luxora-detail-item strong {
+    text-align: right;
+  }
+
+  .luxora-statement {
+    display: block;
+
+    padding: 100px 20px 110px;
+  }
+
+  .luxora-statement > span {
+    display: block;
+
+    margin-bottom: 35px;
+  }
+
+  .luxora-statement h2 {
+    font-size: clamp(58px, 17vw, 90px);
+  }
+
+  .luxora-statement p {
+    max-width: 100%;
+
+    margin-top: 35px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+  .luxora-hero {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .luxora-content h1 {
+    font-size: 68px;
+  }
+
+  .luxora-intro {
+    font-size: 13px;
+  }
+
+  .luxora-details {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .luxora-statement {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .luxora-statement h2 {
+    font-size: 55px;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .luxora-back,
+  .luxora-image img {
+    transition: none;
+  }
+}
