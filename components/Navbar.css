@@ -1,0 +1,616 @@
+/* =========================================
+   WA CREATIVE SOLUTIONS
+   PREMIUM NAVBAR
+========================================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+
+  width: 100%;
+  height: 94px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 5vw;
+
+  background: rgba(8, 9, 8, 0.88);
+
+  border-bottom: 1px solid rgba(
+    244,
+    246,
+    239,
+    0.1
+  );
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color: #f4f6ef;
+
+  text-decoration: none;
+
+  flex-shrink: 0;
+}
+
+
+/* WA BOX */
+
+.navbar-brand-wa {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #c8ff3d;
+
+  color: #080908;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: -0.06em;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.navbar-brand:hover .navbar-brand-wa {
+  transform: rotate(-7deg);
+
+  background: #f4f6ef;
+}
+
+
+/* BRAND NAME */
+
+.navbar-brand-name {
+  color: #f4f6ef;
+
+  font-size: 11px;
+
+  font-weight: 650;
+
+  letter-spacing: 0.13em;
+
+  white-space: nowrap;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   DESKTOP NAVIGATION
+========================================= */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
+
+  margin-left: auto;
+  margin-right: 34px;
+}
+
+
+/* NAV LINK */
+
+.navbar-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #c8cec5;
+
+  text-decoration: none;
+
+  font-size: 9px;
+
+  font-weight: 650;
+
+  letter-spacing: 0.13em;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.3s ease;
+}
+
+
+/* NUMBER */
+
+.navbar-link-number {
+  color: #7f887e;
+
+  font-size: 7px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.05em;
+
+  transition:
+    color 0.3s ease;
+}
+
+
+/* UNDERLINE */
+
+.navbar-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -9px;
+
+  width: 0;
+  height: 1px;
+
+  background: #c8ff3d;
+
+  transition:
+    width 0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/* HOVER */
+
+.navbar-link:hover {
+  color: #f4f6ef;
+}
+
+.navbar-link:hover .navbar-link-number {
+  color: #c8ff3d;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================
+   CTA BUTTON
+========================================= */
+
+.navbar-cta {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px 8px 8px 16px;
+
+  background: #111411;
+
+  border: 1px solid rgba(
+    244,
+    246,
+    239,
+    0.16
+  );
+
+  color: #f4f6ef;
+
+  text-decoration: none;
+
+  font-size: 9px;
+
+  font-weight: 650;
+
+  letter-spacing: 0.11em;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* CTA ARROW */
+
+.navbar-cta-arrow {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #c8ff3d;
+
+  color: #080908;
+
+  border-radius: 50%;
+
+  font-size: 14px;
+
+  transition:
+    transform 0.35s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* CTA HOVER */
+
+.navbar-cta:hover {
+  background: #c8ff3d;
+
+  border-color: #c8ff3d;
+
+  color: #080908;
+}
+
+.navbar-cta:hover .navbar-cta-arrow {
+  transform: rotate(45deg);
+
+  background: #080908;
+
+  color: #c8ff3d;
+}
+
+
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
+
+.navbar-menu {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  margin-left: auto;
+
+  padding: 0;
+
+  background: transparent;
+
+  border: 1px solid rgba(
+    244,
+    246,
+    239,
+    0.16
+  );
+
+  cursor: pointer;
+}
+
+
+/* HAMBURGER LINES */
+
+.navbar-menu span {
+  display: block;
+
+  width: 17px;
+  height: 1px;
+
+  margin: 4px auto;
+
+  background: #f4f6ef;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+/* ACTIVE */
+
+.navbar-menu.active span:first-child {
+  transform:
+    translateY(2.5px)
+    rotate(45deg);
+}
+
+.navbar-menu.active span:last-child {
+  transform:
+    translateY(-2.5px)
+    rotate(-45deg);
+}
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+.mobile-menu {
+  position: fixed;
+
+  top: 94px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 35px 7vw;
+
+  background: #080908;
+
+  border-top: 1px solid rgba(
+    244,
+    246,
+    239,
+    0.1
+  );
+}
+
+
+/* =========================================
+   MOBILE MENU TOP
+========================================= */
+
+.mobile-menu-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color: #7f887e;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
+}
+
+.mobile-menu-top span:first-child {
+  color: #c8ff3d;
+}
+
+
+/* =========================================
+   MOBILE NAV
+========================================= */
+
+.mobile-nav {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-top: 50px;
+}
+
+
+/* MOBILE LINK */
+
+.mobile-nav-link {
+  display: grid;
+
+  grid-template-columns:
+    40px
+    1fr
+    35px;
+
+  align-items: center;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid rgba(
+    244,
+    246,
+    239,
+    0.1
+  );
+
+  color: #e4e9e1;
+
+  text-decoration: none;
+
+  font-size: clamp(
+    28px,
+    7vw,
+    50px
+  );
+
+  font-weight: 650;
+
+  letter-spacing: -0.04em;
+
+  transition:
+    color 0.3s ease,
+    padding-left 0.35s ease;
+}
+
+
+/* MOBILE HOVER */
+
+.mobile-nav-link:hover {
+  color: #c8ff3d;
+
+  padding-left: 10px;
+}
+
+
+/* MOBILE NUMBER */
+
+.mobile-nav-number {
+  color: #7f887e;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+}
+
+
+/* MOBILE ARROW */
+
+.mobile-nav-arrow {
+  color: #c8ff3d;
+
+  font-size: 22px;
+
+  text-align: right;
+}
+
+
+/* =========================================
+   MOBILE MENU BOTTOM
+========================================= */
+
+.mobile-menu-bottom {
+  margin-top: auto;
+
+  padding-top: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: #7f887e;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.mobile-menu-bottom a {
+  color: #c8ff3d;
+
+  text-decoration: none;
+
+  font-weight: 650;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .navbar-links {
+    gap: 18px;
+
+    margin-right: 22px;
+  }
+
+  .navbar-link {
+    font-size: 8px;
+  }
+
+  .navbar-brand-name {
+    font-size: 10px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 850px) {
+
+  .navbar {
+    height: 86px;
+
+    padding: 0 22px;
+  }
+
+  .navbar-links,
+  .navbar-cta {
+    display: none;
+  }
+
+  .navbar-menu {
+    display: block;
+  }
+
+  .mobile-menu {
+    top: 86px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+  .navbar-brand {
+    gap: 9px;
+  }
+
+  .navbar-brand-wa {
+    width: 32px;
+    height: 32px;
+
+    font-size: 10px;
+  }
+
+  .navbar-brand-name {
+    font-size: 8px;
+
+    letter-spacing: 0.1em;
+  }
+
+  .navbar-menu {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobile-menu {
+    padding: 28px 22px;
+  }
+
+  .mobile-nav {
+    margin-top: 35px;
+  }
+
+  .mobile-nav-link {
+    padding: 15px 0;
+
+    font-size: 28px;
+  }
+
+}

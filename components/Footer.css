@@ -1,0 +1,562 @@
+/* =========================================
+   WA CREATIVE SOLUTIONS
+   FOOTER
+========================================= */
+
+.footer {
+  position: relative;
+  width: 100%;
+
+  background: #080908;
+  color: #f4f6ef;
+
+  border-top: 1px solid rgba(244, 246, 239, 0.12);
+
+  overflow: hidden;
+}
+
+.footer__container {
+  width: min(1500px, calc(100% - 100px));
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.footer__cta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  padding: 95px 0 80px;
+
+  border-bottom: 1px solid rgba(244, 246, 239, 0.12);
+}
+
+.footer__cta-label {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  color: #aeb5ac;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+.footer__dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  background: #c8ff3d;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 12px rgba(200, 255, 61, 0.45);
+}
+
+.footer__cta-link {
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  color: #f4f6ef;
+  text-decoration: none;
+
+  font-size: clamp(50px, 6vw, 92px);
+  font-weight: 500;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.065em;
+
+  transition: color 0.35s ease;
+}
+
+.footer__cta-link:hover {
+  color: #c8ff3d;
+}
+
+.footer__cta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  border: 1px solid rgba(244, 246, 239, 0.2);
+
+  border-radius: 50%;
+
+  color: #f4f6ef;
+
+  font-size: 24px;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.footer__cta-link:hover .footer__cta-arrow {
+  background: #c8ff3d;
+  border-color: #c8ff3d;
+
+  color: #080908;
+
+  transform: translate(4px, -4px);
+}
+
+
+/* =========================================
+   MAIN FOOTER
+========================================= */
+
+.footer__main {
+  display: grid;
+
+  grid-template-columns:
+    1.6fr
+    0.8fr
+    0.8fr
+    1.2fr;
+
+  gap: 70px;
+
+  padding: 85px 0;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.footer__brand {
+  max-width: 400px;
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  color: #f4f6ef;
+  text-decoration: none;
+}
+
+.footer__logo-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  border: 1px solid #c8ff3d;
+
+  color: #c8ff3d;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: -0.04em;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.footer__logo:hover .footer__logo-wa {
+  background: #c8ff3d;
+  color: #080908;
+}
+
+.footer__logo-name {
+  font-size: 13px;
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+}
+
+.footer__brand p {
+  max-width: 350px;
+
+  margin: 28px 0 0;
+
+  color: #929990;
+
+  font-size: 13px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   COLUMNS
+========================================= */
+
+.footer__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__column-title {
+  margin-bottom: 25px;
+
+  color: #70776f;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 14px;
+}
+
+.footer__links a {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #cbd1c8;
+
+  text-decoration: none;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer__links a span:last-child {
+  color: #606760;
+
+  font-size: 13px;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer__links a:hover {
+  color: #c8ff3d;
+
+  transform: translateX(5px);
+}
+
+.footer__links a:hover span:last-child {
+  color: #c8ff3d;
+
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.footer__email {
+  max-width: 280px;
+
+  color: #f4f6ef;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  transition: color 0.3s ease;
+}
+
+.footer__email:hover {
+  color: #c8ff3d;
+}
+
+.footer__location {
+  margin-top: 14px;
+
+  color: #70776f;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================================
+   GIANT WORDMARK
+========================================= */
+
+.footer__wordmark {
+  position: relative;
+
+  margin-top: 10px;
+
+  border-top: 1px solid rgba(244, 246, 239, 0.12);
+
+  overflow: hidden;
+}
+
+.footer__wordmark span {
+  display: block;
+
+  margin-top: -2vw;
+
+  color: transparent;
+
+  font-size: clamp(180px, 27vw, 440px);
+
+  font-weight: 600;
+
+  line-height: 0.8;
+
+  letter-spacing: -0.09em;
+
+  -webkit-text-stroke: 1px rgba(244, 246, 239, 0.13);
+
+  user-select: none;
+
+  transition:
+    color 0.5s ease,
+    -webkit-text-stroke-color 0.5s ease;
+}
+
+.footer__wordmark:hover span {
+  color: rgba(200, 255, 61, 0.035);
+
+  -webkit-text-stroke-color:
+    rgba(200, 255, 61, 0.4);
+}
+
+
+/* =========================================
+   BOTTOM BAR
+========================================= */
+
+.footer__bottom {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding: 24px 0 30px;
+
+  border-top: 1px solid rgba(244, 246, 239, 0.12);
+
+  color: #626960;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+}
+
+.footer__bottom > span:last-child {
+  text-align: right;
+}
+
+.footer__status {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #8b9289;
+}
+
+.footer__status i {
+  width: 6px;
+  height: 6px;
+
+  background: #c8ff3d;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px rgba(200, 255, 61, 0.4);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+
+  .footer__container {
+    width: min(100% - 60px, 1000px);
+  }
+
+  .footer__main {
+    grid-template-columns:
+      1.5fr
+      1fr
+      1fr;
+
+    gap: 50px;
+  }
+
+  .footer__contact {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .footer__container {
+    width: calc(100% - 32px);
+  }
+
+  .footer__cta {
+    display: block;
+
+    padding: 70px 0 60px;
+  }
+
+  .footer__cta-label {
+    margin-bottom: 35px;
+  }
+
+  .footer__cta-link {
+    justify-content: space-between;
+
+    font-size: clamp(46px, 14vw, 76px);
+  }
+
+  .footer__cta-arrow {
+    width: 46px;
+    height: 46px;
+
+    font-size: 19px;
+  }
+
+  .footer__main {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 55px 30px;
+
+    padding: 65px 0;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+
+    max-width: 100%;
+  }
+
+  .footer__brand p {
+    max-width: 430px;
+  }
+
+  .footer__contact {
+    grid-column: auto;
+  }
+
+  .footer__wordmark span {
+    font-size: 48vw;
+  }
+
+  .footer__bottom {
+    grid-template-columns: 1fr;
+
+    gap: 13px;
+
+    padding: 22px 0 28px;
+
+    line-height: 1.5;
+  }
+
+  .footer__bottom > span:last-child {
+    text-align: left;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+  .footer__container {
+    width: calc(100% - 24px);
+  }
+
+  .footer__main {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__contact {
+    grid-column: auto;
+  }
+
+  .footer__cta-link {
+    font-size: 44px;
+  }
+
+  .footer__cta-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer__wordmark span {
+    font-size: 50vw;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .footer__cta-link,
+  .footer__cta-arrow,
+  .footer__logo-wa,
+  .footer__links a,
+  .footer__links a span:last-child,
+  .footer__email,
+  .footer__wordmark span {
+    transition: none;
+  }
+}

@@ -1,0 +1,817 @@
+/* =========================================
+   WA CREATIVE SOLUTIONS
+   CONTACT
+========================================= */
+
+.contact {
+  position: relative;
+  width: 100%;
+  padding: 155px 0 105px;
+  background: #080908;
+  color: #f4f6ef;
+  overflow: hidden;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.contact__grid-bg {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.2;
+
+  background-image:
+    linear-gradient(
+      rgba(244, 246, 239, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(244, 246, 239, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 110px 110px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.contact__container {
+  position: relative;
+  z-index: 2;
+
+  width: min(1500px, calc(100% - 100px));
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   EYEBROW
+========================================= */
+
+.contact__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 55px;
+
+  color: #c5cbc3;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+}
+
+.contact__eyebrow-line {
+  width: 34px;
+  height: 1px;
+
+  background: #c8ff3d;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.contact__hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(250px, 0.55fr);
+
+  gap: 80px;
+
+  align-items: end;
+}
+
+.contact__hero h2 {
+  margin: 0;
+
+  color: #f4f6ef;
+
+  font-size: clamp(
+    70px,
+    9.5vw,
+    150px
+  );
+
+  font-weight: 500;
+
+  line-height: 0.81;
+
+  letter-spacing: -0.075em;
+}
+
+.contact__hero h2 span {
+  color: transparent;
+
+  -webkit-text-stroke: 1.5px #f4f6ef;
+
+  transition:
+    color 0.4s ease,
+    -webkit-text-stroke-color 0.4s ease;
+}
+
+.contact__hero h2 span:hover {
+  color: #c8ff3d;
+
+  -webkit-text-stroke-color: #c8ff3d;
+}
+
+
+/* =========================================
+   HERO SIDE
+========================================= */
+
+.contact__hero-side {
+  padding-bottom: 7px;
+}
+
+.contact__hero-side > span {
+  display: block;
+
+  margin-bottom: 20px;
+
+  color: #c8ff3d;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+.contact__hero-side p {
+  max-width: 360px;
+
+  margin: 0;
+
+  color: #c3c9c1;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+.contact__hero-line {
+  width: 100%;
+  height: 1px;
+
+  margin-top: 28px;
+
+  background:
+    rgba(244, 246, 239, 0.18);
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.contact__divider {
+  width: 100%;
+  height: 1px;
+
+  margin-top: 90px;
+
+  background:
+    rgba(244, 246, 239, 0.17);
+
+  transform-origin: left;
+}
+
+
+/* =========================================
+   MAIN GRID
+========================================= */
+
+.contact__grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 0.75fr)
+    minmax(450px, 1.25fr);
+
+  gap: 80px;
+
+  padding-top: 70px;
+}
+
+
+/* =========================================
+   INFO
+========================================= */
+
+.contact__info {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+}
+
+.contact__info-label {
+  display: block;
+
+  margin-bottom: 24px;
+
+  color: #c8ff3d;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+}
+
+.contact__info-description {
+  max-width: 390px;
+
+  margin: 0;
+
+  color: #c0c7bf;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.contact__details {
+  margin-top: 65px;
+
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.14);
+}
+
+.contact__detail {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    75px
+    1fr
+    30px;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 75px;
+
+  border-bottom:
+    1px solid
+    rgba(244, 246, 239, 0.14);
+
+  color: inherit;
+
+  text-decoration: none;
+
+  transition:
+    padding 0.35s ease,
+    background 0.35s ease;
+}
+
+.contact__detail:hover {
+  padding-left: 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(200, 255, 61, 0.06),
+      transparent
+    );
+}
+
+.contact__detail-label {
+  color: #929a91;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+}
+
+.contact__detail-value {
+  color: #f4f6ef;
+
+  font-size: 14px;
+
+  transition: color 0.3s ease;
+}
+
+.contact__detail:hover .contact__detail-value {
+  color: #c8ff3d;
+}
+
+.contact__detail-arrow {
+  justify-self: end;
+
+  color: #747b73;
+
+  font-size: 18px;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.contact__detail:hover .contact__detail-arrow {
+  color: #c8ff3d;
+
+  transform:
+    translate(3px, -3px);
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.contact__cta {
+  position: relative;
+
+  padding: 42px;
+
+  border:
+    1px solid
+    rgba(244, 246, 239, 0.16);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 246, 239, 0.035),
+      rgba(244, 246, 239, 0.01)
+    );
+
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.contact__cta:hover {
+  border-color:
+    rgba(200, 255, 61, 0.35);
+
+  transform: translateY(-4px);
+}
+
+
+/* =========================================
+   CTA TOP
+========================================= */
+
+.contact__cta-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 70px;
+
+  color: #aab1a8;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+}
+
+.contact__cta-top span:first-child {
+  color: #c8ff3d;
+}
+
+.contact__cta-number {
+  color: #656c64;
+}
+
+
+/* =========================================
+   CTA HEADING
+========================================= */
+
+.contact__cta h3 {
+  margin: 0;
+
+  color: #f4f6ef;
+
+  font-size: clamp(
+    55px,
+    6vw,
+    90px
+  );
+
+  font-weight: 500;
+
+  line-height: 0.87;
+
+  letter-spacing: -0.065em;
+}
+
+.contact__cta h3 span {
+  color: transparent;
+
+  -webkit-text-stroke: 1px #f4f6ef;
+
+  transition:
+    color 0.35s ease,
+    -webkit-text-stroke-color 0.35s ease;
+}
+
+.contact__cta:hover h3 span {
+  color: #c8ff3d;
+
+  -webkit-text-stroke-color: #c8ff3d;
+}
+
+
+/* =========================================
+   CTA DESCRIPTION
+========================================= */
+
+.contact__cta > p {
+  max-width: 470px;
+
+  margin: 35px 0 45px;
+
+  color: #b6bdb5;
+
+  font-size: 13px;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================
+   SERVICES
+========================================= */
+
+.contact__services {
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.13);
+}
+
+.contact__services-label {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: #858d84;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+}
+
+.contact__services-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.contact__services-list span {
+  padding: 8px 10px;
+
+  border:
+    1px solid
+    rgba(244, 246, 239, 0.16);
+
+  color: #aeb5ac;
+
+  font-size: 7px;
+  font-weight: 600;
+
+  letter-spacing: 0.09em;
+
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.contact__services-list span:hover {
+  border-color: #c8ff3d;
+
+  color: #c8ff3d;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.contact__button {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-top: 40px;
+
+  padding: 18px 20px;
+
+  border: 1px solid #c8ff3d;
+
+  background: #c8ff3d;
+
+  color: #080908;
+
+  text-decoration: none;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.contact__button-arrow {
+  font-size: 18px;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.contact__button:hover {
+  background: transparent;
+
+  color: #c8ff3d;
+}
+
+.contact__button:hover
+.contact__button-arrow {
+  transform:
+    translate(4px, -4px);
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.contact__bottom {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    auto;
+
+  align-items: center;
+
+  gap: 30px;
+
+  margin-top: 70px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.13);
+
+  color: #858d84;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+}
+
+.contact__bottom span:nth-child(2) {
+  text-align: center;
+}
+
+.contact__accent {
+  color: #c8ff3d;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+
+  .contact {
+    padding: 120px 0 90px;
+  }
+
+  .contact__container {
+    width: min(
+      100% - 60px,
+      1000px
+    );
+  }
+
+  .contact__hero {
+    grid-template-columns: 1fr 0.55fr;
+
+    gap: 45px;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+  }
+
+  .contact__info {
+    display: block;
+  }
+
+  .contact__details {
+    max-width: 650px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .contact {
+    padding: 90px 0 70px;
+  }
+
+  .contact__container {
+    width: calc(100% - 32px);
+  }
+
+  .contact__eyebrow {
+    margin-bottom: 38px;
+  }
+
+  .contact__hero {
+    display: block;
+  }
+
+  .contact__hero h2 {
+    font-size:
+      clamp(58px, 17vw, 90px);
+  }
+
+  .contact__hero-side {
+    margin-top: 35px;
+  }
+
+  .contact__hero-side p {
+    font-size: 13px;
+  }
+
+  .contact__divider {
+    margin-top: 60px;
+  }
+
+  .contact__grid {
+    padding-top: 50px;
+
+    gap: 55px;
+  }
+
+  .contact__info-description {
+    font-size: 14px;
+  }
+
+  .contact__details {
+    margin-top: 45px;
+  }
+
+  .contact__detail {
+    grid-template-columns:
+      60px
+      1fr
+      25px;
+
+    min-height: 70px;
+  }
+
+  .contact__detail-value {
+    font-size: 13px;
+  }
+
+  .contact__cta {
+    padding: 28px 22px;
+  }
+
+  .contact__cta-top {
+    margin-bottom: 55px;
+  }
+
+  .contact__cta h3 {
+    font-size:
+      clamp(52px, 15vw, 75px);
+  }
+
+  .contact__cta > p {
+    font-size: 12px;
+
+    margin-top: 28px;
+  }
+
+  .contact__bottom {
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+
+    line-height: 1.5;
+  }
+
+  .contact__bottom span:nth-child(2) {
+    text-align: left;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .contact__container {
+    width: calc(100% - 24px);
+  }
+
+  .contact__hero h2 {
+    font-size: 54px;
+  }
+
+  .contact__detail {
+    grid-template-columns:
+      55px
+      1fr
+      22px;
+  }
+
+  .contact__detail-value {
+    font-size: 12px;
+  }
+
+  .contact__cta {
+    padding: 24px 18px;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact__hero h2 span,
+  .contact__cta,
+  .contact__cta h3 span,
+  .contact__detail,
+  .contact__detail-arrow,
+  .contact__button,
+  .contact__button-arrow,
+  .contact__services-list span {
+    transition: none;
+  }
+}
