@@ -38,16 +38,6 @@ const projects = [
   },
   {
     number: "04",
-    title: "FRAME",
-    category: "Video Editing",
-    description:
-      "A cinematic visual identity brought to life through motion, editing, transitions and dynamic storytelling.",
-    tags: ["Video", "Motion", "Editing"],
-    route: "/work/frame",
-    image: "/work/frame.jpg",
-  },
-  {
-    number: "05",
     title: "NEXUS",
     category: "AI Automation",
     description:
@@ -57,7 +47,7 @@ const projects = [
     image: "/portfolio/project-05/cover.png",
   },
   {
-    number: "06",
+    number: "05",
     title: "VANTA",
     category: "Digital Marketing",
     description:
@@ -67,7 +57,7 @@ const projects = [
     image: "/portfolio/project-06/cover.png",
   },
   {
-    number: "07",
+    number: "06",
     title: "NOORAH",
     category: "Brand Identity",
     description:
@@ -109,7 +99,6 @@ export default function Work() {
           </div>
         </motion.div>
 
-
         {/* =========================================
             INTRO
         ========================================= */}
@@ -141,7 +130,6 @@ export default function Work() {
           </div>
         </motion.div>
 
-
         {/* =========================================
             MAIN WORK AREA
         ========================================= */}
@@ -154,7 +142,7 @@ export default function Work() {
 
             <div className="work-projects-header">
               <span>PROJECT</span>
-              <span>07</span>
+              <span>06</span>
             </div>
 
             <div className="work-projects-list">
@@ -219,9 +207,7 @@ export default function Work() {
               })}
 
             </div>
-
           </div>
-
 
           {/* =========================================
               PREVIEW
@@ -267,6 +253,7 @@ export default function Work() {
                     <div className="work-image-overlay" />
 
                     <div className="work-image-top">
+
                       <span>
                         PROJECT / {activeProject.number}
                       </span>
@@ -274,17 +261,20 @@ export default function Work() {
                       <span>
                         {activeProject.category}
                       </span>
+
                     </div>
 
                     <div className="work-image-view">
+
                       <span>VIEW PROJECT</span>
+
                       <span>↗</span>
+
                     </div>
 
                   </div>
 
                 </Link>
-
 
                 {/* PROJECT DETAILS */}
 
@@ -310,31 +300,27 @@ export default function Work() {
 
                   </div>
 
-
                   <p className="work-description">
                     {activeProject.description}
                   </p>
-
 
                   <div className="work-details-bottom">
 
                     <div className="work-tags">
 
-                      {activeProject.tags.map(
-                        (tag) => (
-                          <span key={tag}>
-                            {tag}
-                          </span>
-                        )
-                      )}
+                      {activeProject.tags.map((tag) => (
+                        <span key={tag}>
+                          {tag}
+                        </span>
+                      ))}
 
                     </div>
-
 
                     <Link
                       href={activeProject.route}
                       className="work-cta"
                     >
+
                       <span>
                         VIEW PROJECT
                       </span>
@@ -342,6 +328,7 @@ export default function Work() {
                       <span>
                         ↗
                       </span>
+
                     </Link>
 
                   </div>
@@ -356,7 +343,6 @@ export default function Work() {
 
         </div>
 
-
         {/* =========================================
             BOTTOM
         ========================================= */}
@@ -370,7 +356,7 @@ export default function Work() {
         >
 
           <span>
-            07 PROJECTS
+            06 PROJECTS
           </span>
 
           <span>
