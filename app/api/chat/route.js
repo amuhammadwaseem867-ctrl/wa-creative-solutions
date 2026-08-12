@@ -6,12 +6,13 @@ const openai = new OpenAI({
 
 export async function POST(request) {
   try {
-    const { messages } = await request.json();
+    const body = await request.json();
+    const messages = body?.messages;
 
-    if (!Array.isArray(messages)) {
+    if (!Array.isArray(messages) || messages.length === 0) {
       return Response.json(
         {
-          message: "Invalid messages.",
+          message: "Please enter a message.",
         },
         {
           status: 400,
@@ -27,7 +28,7 @@ You are the AI customer support assistant for WA Creative Solutions.
 
 WA Creative Solutions is a creative design and web development studio.
 
-Services:
+Services offered:
 - Branding
 - Logo Design
 - Graphic Design
@@ -38,26 +39,34 @@ Services:
 - Responsive Websites
 - Digital Experiences
 
-Be professional, friendly, concise and helpful.
+Your role is to help website visitors understand our services
+and guide potential clients toward starting a project.
 
-If a visitor asks about pricing, explain that pricing depends on their project requirements and recommend contacting WA Creative Solutions for a quote.
+Be professional, friendly, helpful, and concise.
 
-If a visitor wants to start a project, ask for:
+If someone asks about pricing:
+Explain that pricing depends on the project requirements.
+Do not invent a fixed price.
+Encourage the visitor to request a custom quote.
+
+If someone wants to start a project, ask for:
 - Name
 - Email
 - Company or business name
 - Required service
 - Project requirements
 
-Never invent prices, clients, awards or statistics.
+Never invent clients, awards, statistics, testimonials,
+or services that are not listed above.
 
 Do not claim to be human.
 
-You are the AI support assistant for WA Creative Solutions.
+You are the AI customer support assistant for
+WA Creative Solutions.
       `,
 
       input: messages.map((message) => ({
-        role: message.role,
+        role: message.role === "user" ? "user" : "assistant",
         content: message.content,
       })),
     });
@@ -66,12 +75,15 @@ You are the AI support assistant for WA Creative Solutions.
       message: response.output_text,
     });
   } catch (error) {
-    console.error("OPENAI ERROR:", error);
+    console.error("========== OPENAI ERROR ==========");
+    console.error(error);
+    console.error("==================================");
 
     return Response.json(
       {
         message:
-          "Sorry, I'm having trouble connecting right now. Please try again.",
+          error?.message ||
+          "The AI service is temporarily unavailable. Please try again.",
       },
       {
         status: 500,
