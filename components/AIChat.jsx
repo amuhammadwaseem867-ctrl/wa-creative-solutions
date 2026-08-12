@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./AIChat.css";
 
@@ -12,7 +12,7 @@ const suggestions = [
 
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
-  const [input, setInput] = useState("");
+
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -20,9 +20,20 @@ export default function AIChat() {
         "Hi! 👋 I'm the WA Creative Solutions AI assistant. How can I help you today?",
     },
   ]);
+
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function sendMessage(text) {
+  // Automatically scroll to latest message
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages, loading]);
+
+  const sendMessage = async (text) => {
     const message = text.trim();
 
     if (!message || loading) return;
@@ -49,21 +60,41 @@ export default function AIChat() {
         }),
       });
 
+      const contentType =
+        response.headers.get("content-type") || "";
+
+      if (!contentType.includes("application/json")) {
+        const textResponse = await response.text();
+
+        console.error(
+          "API returned non-JSON response:",
+          textResponse
+        );
+
+        throw new Error(
+          "The AI service returned an invalid response."
+        );
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
+        throw new Error(
+          data?.message || "AI service request failed."
+        );
       }
 
       setMessages([
         ...updatedMessages,
         {
           role: "assistant",
-          content: data.message,
+          content:
+            data?.message ||
+            "Sorry, I couldn't generate a response.",
         },
       ]);
     } catch (error) {
-      console.error("CHAT ERROR:", error);
+      console.error("AI CHAT ERROR:", error);
 
       setMessages([
         ...updatedMessages,
@@ -76,31 +107,48 @@ export default function AIChat() {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     sendMessage(input);
-  }
+  };
 
   return (
     <>
+      {/* AI CHAT WINDOW */}
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
             className="ai-chat"
-            initial={{ opacity: 0, y: 25, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 25, scale: 0.96 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+              scale: 0.96,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: 25,
+              scale: 0.96,
+            }}
             transition={{
-              duration: 0.35,
+              duration: 0.3,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
             {/* HEADER */}
+
             <div className="ai-chat__header">
               <div className="ai-chat__identity">
-                <div className="ai-chat__logo">WA</div>
+                <div className="ai-chat__logo">
+                  WA
+                </div>
 
                 <div>
                   <span className="ai-chat__eyebrow">
@@ -115,16 +163,18 @@ export default function AIChat() {
                 className="ai-chat__close"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close AI chat"
+                type="button"
               >
                 ×
               </button>
             </div>
 
-            {/* MESSAGES */}
+            {/* CHAT CONTENT */}
+
             <div className="ai-chat__content">
               {messages.map((message, index) => (
                 <div
-                  key={index}
+                  key={`${message.role}-${index}`}
                   className={`ai-message ${
                     message.role === "user"
                       ? "ai-message--user"
@@ -136,22 +186,31 @@ export default function AIChat() {
               ))}
 
               {/* TYPING INDICATOR */}
+
               {loading && (
                 <div className="ai-message ai-message--assistant ai-typing">
-                  <span />
-                  <span />
-                  <span />
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
               )}
 
+              {/* AUTO SCROLL TARGET */}
+
+              <div ref={messagesEndRef} />
+
               {/* SUGGESTIONS */}
+
               {messages.length === 1 && !loading && (
                 <div className="ai-chat__suggestions">
-                  {suggestions.map((suggestion, index) => (
+                  {suggestions.map((suggestion) => (
                     <button
-                      key={index}
+                      key={suggestion}
                       className="ai-chat__suggestion"
-                      onClick={() => sendMessage(suggestion)}
+                      onClick={() =>
+                        sendMessage(suggestion)
+                      }
+                      type="button"
                     >
                       <span>{suggestion}</span>
                       <span>↗</span>
@@ -162,6 +221,7 @@ export default function AIChat() {
             </div>
 
             {/* INPUT */}
+
             <div className="ai-chat__bottom">
               <form
                 className="ai-chat__input"
@@ -175,11 +235,15 @@ export default function AIChat() {
                   }
                   placeholder="Ask us anything..."
                   disabled={loading}
+                  autoComplete="off"
+                  aria-label="Ask WA Assistant"
                 />
 
                 <button
                   type="submit"
-                  disabled={loading || !input.trim()}
+                  disabled={
+                    loading || !input.trim()
+                  }
                   aria-label="Send message"
                 >
                   ↗
@@ -194,21 +258,29 @@ export default function AIChat() {
         )}
       </AnimatePresence>
 
-      {/* LAUNCHER */}
+      {/* CHAT LAUNCHER */}
+
       <motion.button
         className="ai-chat__launcher"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((value) => !value)}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.95 }}
-        aria-label="Open AI support"
+        aria-label={
+          isOpen
+            ? "Close AI support"
+            : "Open AI support"
+        }
+        type="button"
       >
-        <span className="ai-chat__launcher-status" />
+        <span className="ai-chat__launcher-status"></span>
 
         <span>
           {isOpen ? "CLOSE" : "AI SUPPORT"}
         </span>
 
-        <strong>{isOpen ? "×" : "↗"}</strong>
+        <strong>
+          {isOpen ? "×" : "↗"}
+        </strong>
       </motion.button>
     </>
   );
