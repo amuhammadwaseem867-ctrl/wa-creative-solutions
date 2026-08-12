@@ -696,3 +696,237 @@ AI RESPONSE FORMATTING
 .ai-message--user strong {
   color: #0b1013;
 }
+/* =================================
+PROJECT REQUEST FORM
+================================= */
+
+.ai-project-form {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+
+  background: #0f181c;
+
+  border: 1px solid rgba(237, 250, 255, 0.1);
+  border-radius: 15px;
+}
+
+.ai-project-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 2px;
+}
+
+.ai-project-form__header span {
+  color: #edfaff;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.ai-project-form__header small {
+  color: rgba(237, 250, 255, 0.35);
+
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.ai-project-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ai-project-form__field label {
+  color: rgba(237, 250, 255, 0.4);
+
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.ai-project-form__field input {
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding: 11px 12px;
+
+  border: 1px solid rgba(237, 250, 255, 0.1);
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #0b1013;
+  color: #edfaff;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ai-project-form__field input::placeholder {
+  color: rgba(237, 250, 255, 0.25);
+}
+
+.ai-project-form__field input:focus {
+  border-color: rgba(237, 250, 255, 0.28);
+
+  box-shadow:
+    0 0 0 3px rgba(237, 250, 255, 0.03);
+}
+
+.ai-project-form__field input:disabled {
+  opacity: 0.5;
+}
+
+.ai-project-form__submit {
+  width: 100%;
+
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 2px;
+
+  padding: 0 13px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #edfaff;
+  color: #0b1013;
+
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.ai-project-form__submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ai-project-form__submit:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ai-project-form__submit span {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ai-project-form__note {
+  margin: 0;
+
+  color: rgba(237, 250, 255, 0.25);
+
+  font-size: 8px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* =================================
+PROJECT SUCCESS
+================================= */
+
+.ai-project-success {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding: 13px;
+
+  background: rgba(237, 250, 255, 0.035);
+
+  border: 1px solid rgba(237, 250, 255, 0.1);
+  border-radius: 14px;
+}
+
+.ai-project-success__icon {
+  width: 25px;
+  height: 25px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edfaff;
+  color: #0b1013;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ai-project-success strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #edfaff;
+
+  font-size: 11px;
+}
+
+.ai-project-success p {
+  margin: 0;
+
+  color: rgba(237, 250, 255, 0.55);
+
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+
+/* =================================
+PROJECT FORM — MOBILE
+================================= */
+
+@media (max-width: 600px) {
+  .ai-project-form {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .ai-project-form__field input {
+    padding: 10px 11px;
+    font-size: 12px;
+  }
+
+  .ai-project-form__submit {
+    min-height: 43px;
+    font-size: 7.5px;
+  }
+}
