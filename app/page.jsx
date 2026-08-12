@@ -5,6 +5,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import TechStack from "@/components/TechStack";
 import Work from "@/components/Work";
 import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
@@ -23,6 +24,8 @@ export default function Home() {
       <About />
 
       <Services />
+
+      <TechStack />
 
       <Work />
 

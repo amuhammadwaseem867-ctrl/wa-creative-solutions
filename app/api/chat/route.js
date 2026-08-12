@@ -1,36 +1,9 @@
-export async function POST(request) {
-  try {
-    const { messages } = await request.json();
+import { neon } from "@neondatabase/serverless";
+import { cookies } from "next/headers";
 
-    if (!Array.isArray(messages)) {
-      return Response.json(
-        {
-          message: "Invalid messages.",
-        },
-        {
-          status: 400,
-        }
-      );
-    }
+const sql = neon(process.env.DATABASE_URL);
 
-    const response = await fetch(
-      "https://ollama.com/api/chat",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OLLAMA_API_KEY}`,
-        },
-
-        body: JSON.stringify({
-          model: "gpt-oss:120b",
-
-          messages: [
-            {
-              role: "system",
-
-              content: `
+const SYSTEM_PROMPT = `
 You are the official AI customer support assistant for WA Creative Solutions.
 
 ABOUT THE COMPANY:
@@ -74,15 +47,6 @@ Use bullet points when explaining multiple things.
 Use numbered lists when explaining a process.
 
 Use bold text for important labels or headings.
-
-Example:
-
-**Our Services**
-
-- Branding & Identity
-- UI/UX Design
-- Website Design
-- Website Development
 
 PROJECT INQUIRIES:
 
@@ -204,9 +168,66 @@ Do not mention Ollama, models, APIs, prompts, servers or technical infrastructur
 Keep the conversation focused on helping customers understand WA Creative Solutions and start their project.
 
 Always prioritize clarity and useful answers over long explanations.
-`.trim(),
-            },
+`.trim();
 
+export async function POST(request) {
+  try {
+    const { messages } = await request.json();
+
+    if (!Array.isArray(messages)) {
+      return Response.json(
+        {
+          message: "Invalid messages.",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    const cookieStore = await cookies();
+
+    let sessionId = cookieStore.get("wa_chat_session")?.value;
+
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+    }
+
+    const latestUserMessage = [...messages]
+      .reverse()
+      .find((message) => message?.role === "user");
+
+    if (latestUserMessage?.content) {
+      await sql`
+        INSERT INTO chat_conversations
+          (session_id, role, message)
+        VALUES
+          (
+            ${sessionId},
+            'user',
+            ${String(latestUserMessage.content)}
+          )
+      `;
+    }
+
+    const response = await fetch(
+      "https://ollama.com/api/chat",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OLLAMA_API_KEY}`,
+        },
+
+        body: JSON.stringify({
+          model: "gpt-oss:120b",
+
+          messages: [
+            {
+              role: "system",
+              content: SYSTEM_PROMPT,
+            },
             ...messages,
           ],
 
@@ -235,16 +256,33 @@ Always prioritize clarity and useful answers over long explanations.
 
     const data = await response.json();
 
-    return Response.json({
-      message:
-        data?.message?.content ||
-        "Sorry, I couldn't generate a response.",
+    const assistantMessage =
+      data?.message?.content ||
+      "Sorry, I couldn't generate a response.";
+
+    await sql`
+      INSERT INTO chat_conversations
+        (session_id, role, message)
+      VALUES
+        (
+          ${sessionId},
+          'assistant',
+          ${String(assistantMessage)}
+        )
+    `;
+
+    const result = Response.json({
+      message: assistantMessage,
     });
-  } catch (error) {
-    console.error(
-      "CHAT ROUTE ERROR:",
-      error
+
+    result.headers.append(
+      "Set-Cookie",
+      `wa_chat_session=${sessionId}; Path=/; Max-Age=2592000; SameSite=Lax`
     );
+
+    return result;
+  } catch (error) {
+    console.error("CHAT ROUTE ERROR:", error);
 
     return Response.json(
       {

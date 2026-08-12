@@ -6,61 +6,79 @@ import "./Services.css";
 const services = [
   {
     number: "01",
-    title: "BRAND IDENTITY",
+    title: "BRANDING & IDENTITY",
     description:
-      "STRATEGY, POSITIONING, VISUAL SYSTEMS AND DISTINCTIVE IDENTITIES THAT MAKE BRANDS RECOGNIZABLE.",
-    tag: "IDENTITY",
+      "STRATEGIC BRAND SYSTEMS, VISUAL IDENTITIES AND CREATIVE DIRECTIONS THAT MAKE BUSINESSES RECOGNIZABLE.",
+    tag: "BRANDING",
   },
   {
     number: "02",
-    title: "WEB DESIGN",
+    title: "LOGO DESIGN",
     description:
-      "PREMIUM DIGITAL INTERFACES BUILT AROUND CLARITY, CONVERSION AND STRONG VISUAL DIRECTION.",
-    tag: "DIGITAL",
+      "DISTINCTIVE AND MEMORABLE LOGOS DESIGNED TO GIVE YOUR BRAND A STRONG AND PROFESSIONAL VISUAL PRESENCE.",
+    tag: "IDENTITY",
   },
   {
     number: "03",
-    title: "WEB DEVELOPMENT",
+    title: "GRAPHIC DESIGN",
     description:
-      "FAST, RESPONSIVE AND SCALABLE DIGITAL EXPERIENCES BUILT WITH MODERN TECHNOLOGY.",
-    tag: "TECHNOLOGY",
+      "CREATIVE VISUALS, MARKETING MATERIALS AND DIGITAL ASSETS DESIGNED TO COMMUNICATE YOUR BRAND CLEARLY.",
+    tag: "DESIGN",
   },
   {
     number: "04",
-    title: "UI / UX DESIGN",
+    title: "UI/UX DESIGN",
     description:
-      "INTUITIVE PRODUCT EXPERIENCES THAT CONNECT BUSINESS GOALS WITH HUMAN BEHAVIOR.",
+      "INTUITIVE AND MODERN INTERFACES DESIGNED AROUND USER NEEDS, BUSINESS GOALS AND SEAMLESS EXPERIENCES.",
     tag: "EXPERIENCE",
   },
   {
     number: "05",
-    title: "MOTION DESIGN",
+    title: "WEBSITE DESIGN",
     description:
-      "MOTION SYSTEMS, MICRO-INTERACTIONS AND ANIMATIONS THAT GIVE DIGITAL EXPERIENCES ENERGY.",
-    tag: "MOTION",
+      "PREMIUM WEBSITE INTERFACES THAT COMBINE STRONG VISUAL DIRECTION, CLARITY, USABILITY AND CONVERSION.",
+    tag: "WEB DESIGN",
   },
   {
     number: "06",
-    title: "CREATIVE DIRECTION",
+    title: "WEBSITE DEVELOPMENT",
     description:
-      "A CLEAR CREATIVE VISION THAT BRINGS BRAND, DESIGN, CONTENT AND DIGITAL TOGETHER.",
-    tag: "DIRECTION",
+      "FAST, RESPONSIVE AND SCALABLE WEBSITES BUILT WITH MODERN TECHNOLOGY FOR RELIABLE DIGITAL EXPERIENCES.",
+    tag: "DEVELOPMENT",
   },
   {
     number: "07",
+    title: "NEXT.JS DEVELOPMENT",
+    description:
+      "HIGH-PERFORMANCE NEXT.JS WEBSITES BUILT FOR SPEED, SCALABILITY, SEO AND MODERN DIGITAL PRODUCTS.",
+    tag: "NEXT.JS",
+  },
+  {
+    number: "08",
+    title: "RESPONSIVE WEBSITES",
+    description:
+      "WEBSITES THAT ADAPT BEAUTIFULLY ACROSS DESKTOP, TABLET AND MOBILE DEVICES FOR A CONSISTENT USER EXPERIENCE.",
+    tag: "RESPONSIVE",
+  },
+  {
+    number: "09",
+    title: "VIDEO EDITING",
+    description:
+      "ENGAGING VIDEO CONTENT EDITED WITH STRONG PACING, VISUAL STORYTELLING, MOTION AND PROFESSIONAL FINISHING.",
+    tag: "VIDEO",
+  },
+  {
+    number: "10",
     title: "DIGITAL EXPERIENCES",
     description:
-      "IMMERSIVE DIGITAL WORLDS DESIGNED TO CREATE MEMORABLE CONNECTIONS BETWEEN PEOPLE AND BRANDS.",
-    tag: "EXPERIENCE",
+      "IMMERSIVE DIGITAL EXPERIENCES THAT CONNECT DESIGN, TECHNOLOGY AND INTERACTION TO CREATE MEMORABLE BRANDS.",
+    tag: "DIGITAL",
   },
 ];
 
 export default function Services() {
   return (
-    <section
-      className="services"
-      id="services"
-    >
+    <section className="services" id="services">
 
       {/* BACKGROUND */}
       <div className="services-grid"></div>
@@ -85,32 +103,24 @@ export default function Services() {
             duration: 0.7,
           }}
         >
-
           <div className="services-index">
-
             <span className="services-dot"></span>
 
             <span>
               02 / SERVICES
             </span>
-
           </div>
 
-
           <div className="services-header-info">
-
             <span>
               WHAT WE DO
             </span>
 
             <span>
-              07 SERVICES
+              10 SERVICES
             </span>
-
           </div>
-
         </motion.div>
-
 
         {/* INTRO */}
         <motion.div
@@ -130,7 +140,6 @@ export default function Services() {
             duration: 0.8,
           }}
         >
-
           <h2>
             WE BUILD
             <span>WHAT</span>
@@ -139,22 +148,19 @@ export default function Services() {
             </span>
           </h2>
 
-
           <p>
-            FROM BRAND STRATEGY TO DIGITAL
-            EXPERIENCES, WE CONNECT DESIGN,
-            TECHNOLOGY AND MOTION TO CREATE
-            WORK THAT PEOPLE REMEMBER.
+            FROM BRANDING AND VISUAL DESIGN TO
+            HIGH-PERFORMANCE WEBSITES AND DIGITAL
+            EXPERIENCES, WE CONNECT CREATIVITY,
+            TECHNOLOGY AND STRATEGY TO BUILD WORK
+            THAT MATTERS.
           </p>
-
         </motion.div>
-
 
         {/* SERVICES LIST */}
         <div className="services-list">
 
           {services.map((service, index) => (
-
             <motion.a
               href="#contact"
               className="service-item"
@@ -181,7 +187,6 @@ export default function Services() {
                 {service.number}
               </div>
 
-
               {/* MAIN TITLE */}
               <div className="service-main">
 
@@ -195,28 +200,23 @@ export default function Services() {
 
               </div>
 
-
               {/* TAG */}
               <div className="service-tag">
                 {service.tag}
               </div>
-
 
               {/* ARROW */}
               <div className="service-arrow">
                 ↗
               </div>
 
-
               {/* HOVER LINE */}
               <div className="service-hover-line"></div>
 
             </motion.a>
-
           ))}
 
         </div>
-
 
         {/* FOOTER */}
         <motion.div
@@ -234,23 +234,20 @@ export default function Services() {
             duration: 0.7,
           }}
         >
-
           <span>
-            STRATEGY / DESIGN / TECHNOLOGY
+            BRANDING / DESIGN / DEVELOPMENT
           </span>
 
           <span>
-            LET'S CREATE SOMETHING DIFFERENT
+            LET&apos;S CREATE SOMETHING DIFFERENT
           </span>
 
           <a href="#contact">
             START A PROJECT ↗
           </a>
-
         </motion.div>
 
       </div>
-
     </section>
   );
 }

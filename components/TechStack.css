@@ -1,9 +1,9 @@
 /* =========================================
    WA CREATIVE SOLUTIONS
-   SERVICES
+   TECH STACK
 ========================================= */
 
-.services {
+.techstack {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
@@ -12,7 +12,11 @@
   color: #edfaFF;
 }
 
-.services-grid {
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.techstack-grid {
   position: absolute;
   inset: 0;
 
@@ -35,16 +39,16 @@
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    black 20%,
-    black 80%,
+    black 18%,
+    black 82%,
     transparent 100%
   );
 
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    black 20%,
-    black 80%,
+    black 18%,
+    black 82%,
     transparent 100%
   );
 }
@@ -53,7 +57,7 @@
    CONTAINER
 ========================================= */
 
-.services-container {
+.techstack-container {
   position: relative;
   z-index: 2;
 
@@ -69,7 +73,7 @@
    HEADER
 ========================================= */
 
-.services-header {
+.techstack-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,7 +84,7 @@
     rgba(237, 250, 255, 0.1);
 }
 
-.services-index {
+.techstack-index {
   display: flex;
   align-items: center;
 
@@ -96,7 +100,7 @@
   text-transform: uppercase;
 }
 
-.services-dot {
+.techstack-dot {
   width: 6px;
   height: 6px;
 
@@ -111,7 +115,7 @@
     rgba(199, 255, 61, 0.07);
 }
 
-.services-header-info {
+.techstack-header-info {
   display: flex;
   align-items: center;
 
@@ -131,7 +135,7 @@
    INTRO
 ========================================= */
 
-.services-intro {
+.techstack-intro {
   display: grid;
 
   grid-template-columns:
@@ -145,7 +149,11 @@
   padding: 105px 0 95px;
 }
 
-.services-intro h2 {
+/* =========================================
+   TITLE
+========================================= */
+
+.techstack-intro h2 {
   display: block;
 
   margin: 0;
@@ -168,7 +176,7 @@
   text-transform: uppercase;
 }
 
-.services-intro h2 span {
+.techstack-intro h2 span {
   display: block;
 
   width: fit-content;
@@ -181,7 +189,11 @@
   letter-spacing: -0.065em;
 }
 
-.services-outline {
+/* =========================================
+   OUTLINE
+========================================= */
+
+.techstack-outline {
   width: fit-content;
 
   color: transparent;
@@ -194,14 +206,18 @@
     -webkit-text-stroke-color 0.4s ease;
 }
 
-.services-outline:hover {
+.techstack-outline:hover {
   color: #c7ff3d;
 
   -webkit-text-stroke-color:
     #c7ff3d;
 }
 
-.services-intro p {
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.techstack-intro p {
   max-width: 440px;
 
   margin: 0 0 8px;
@@ -220,50 +236,110 @@
 }
 
 /* =========================================
-   SERVICES LIST
+   GROUPS
 ========================================= */
 
-.services-list {
+.techstack-groups {
   position: relative;
-
-  border-top: 1px solid
-    rgba(237, 250, 255, 0.12);
 }
 
 /* =========================================
-   SERVICE ITEM
+   GROUP
 ========================================= */
 
-.service-item {
+.techstack-group {
+  display: grid;
+
+  grid-template-columns:
+    260px
+    minmax(0, 1fr);
+
+  gap: 50px;
+
+  padding: 55px 0;
+
+  border-top: 1px solid
+    rgba(237, 250, 255, 0.1);
+}
+
+.techstack-group:last-child {
+  border-bottom: 1px solid
+    rgba(237, 250, 255, 0.1);
+}
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.techstack-category {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+
+  padding-top: 8px;
+}
+
+.techstack-category span {
+  color: #72848a;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.techstack-category h3 {
+  margin: 0;
+
+  color: #edfaFF;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================
+   ITEMS
+========================================= */
+
+.techstack-items {
+  border-top: 1px solid
+    rgba(237, 250, 255, 0.07);
+}
+
+.techstack-item {
   position: relative;
 
-  min-height: 125px;
+  min-height: 78px;
 
   display: grid;
 
   grid-template-columns:
-    80px
+    45px
     minmax(0, 1fr)
-    150px
-    65px;
+    45px;
 
   align-items: center;
 
-  column-gap: 35px;
+  column-gap: 20px;
 
-  padding: 25px 0;
+  padding: 18px 0;
 
   border-bottom: 1px solid
-    rgba(237, 250, 255, 0.1);
-
-  color: #edfaFF;
-
-  text-decoration: none;
+    rgba(237, 250, 255, 0.07);
 
   overflow: hidden;
 
   transition:
-    padding-left 0.45s
+    padding-left 0.4s
     cubic-bezier(
       0.22,
       1,
@@ -272,64 +348,53 @@
     );
 }
 
+.techstack-item:last-child {
+  border-bottom: none;
+}
+
 /* =========================================
-   NUMBER
+   ITEM NUMBER
 ========================================= */
 
-.service-number {
+.techstack-item-number {
   position: relative;
   z-index: 2;
 
-  align-self: start;
+  color: #62737a;
 
-  padding-top: 5px;
-
-  color: #72848a;
-
-  font-size: 10px;
+  font-size: 9px;
 
   font-weight: 600;
 
   letter-spacing: 0.08em;
-
-  transition:
-    color 0.3s ease;
 }
 
 /* =========================================
-   MAIN
+   ITEM MAIN
 ========================================= */
 
-.service-main {
+.techstack-item-main {
   position: relative;
   z-index: 2;
 
   min-width: 0;
-
-  padding-right: 30px;
 }
 
-.service-main h3 {
+.techstack-item-main h4 {
   margin: 0;
 
   color: #edfaFF;
 
-  font-size: clamp(
-    24px,
-    2.7vw,
-    43px
-  );
+  font-size: 22px;
 
   font-weight: 600;
 
-  line-height: 1.05;
+  line-height: 1.1;
 
-  letter-spacing: -0.035em;
-
-  white-space: normal;
+  letter-spacing: -0.025em;
 
   transition:
-    color 0.35s ease,
+    color 0.3s ease,
     transform 0.4s
     cubic-bezier(
       0.22,
@@ -339,77 +404,35 @@
     );
 }
 
-.service-main p {
-  max-width: 650px;
+.techstack-item-main p {
+  margin: 6px 0 0;
 
-  margin: 14px 0 0;
+  color: #829399;
 
-  color: #91a1a6;
-
-  font-size: 10px;
+  font-size: 9px;
 
   font-weight: 500;
 
-  line-height: 1.75;
+  line-height: 1.5;
 
-  letter-spacing: 0.045em;
-
-  text-transform: uppercase;
-
-  opacity: 0;
-
-  transform: translateY(8px);
-
-  transition:
-    opacity 0.35s ease,
-    transform 0.4s ease;
-}
-
-/* =========================================
-   TAG
-========================================= */
-
-.service-tag {
-  position: relative;
-  z-index: 2;
-
-  justify-self: start;
-
-  margin-left: 5px;
-
-  padding: 7px 11px;
-
-  border: 1px solid
-    rgba(237, 250, 255, 0.14);
-
-  color: #89999e;
-
-  font-size: 8px;
-
-  font-weight: 600;
-
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
 
   text-transform: uppercase;
 
-  white-space: nowrap;
-
   transition:
-    color 0.3s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
+    color 0.3s ease;
 }
 
 /* =========================================
    ARROW
 ========================================= */
 
-.service-arrow {
+.techstack-arrow {
   position: relative;
   z-index: 2;
 
-  width: 43px;
-  height: 43px;
+  width: 38px;
+  height: 38px;
 
   display: flex;
   align-items: center;
@@ -417,16 +440,14 @@
 
   justify-self: end;
 
-  margin-right: 5px;
-
   border: 1px solid
-    rgba(237, 250, 255, 0.15);
+    rgba(237, 250, 255, 0.13);
 
   border-radius: 50%;
 
   color: #c7ff3d;
 
-  font-size: 17px;
+  font-size: 15px;
 
   transition:
     transform 0.45s
@@ -445,7 +466,7 @@
    HOVER LINE
 ========================================= */
 
-.service-hover-line {
+.techstack-hover-line {
   position: absolute;
 
   left: 0;
@@ -457,7 +478,7 @@
   background: #c7ff3d;
 
   transition:
-    width 0.55s
+    width 0.5s
     cubic-bezier(
       0.22,
       1,
@@ -467,45 +488,32 @@
 }
 
 /* =========================================
-   HOVER
+   ITEM HOVER
 ========================================= */
 
-.service-item:hover {
-  padding-left: 15px;
+.techstack-item:hover {
+  padding-left: 12px;
 }
 
-.service-item:hover
-.service-number {
+.techstack-item:hover
+.techstack-item-number {
   color: #c7ff3d;
 }
 
-.service-item:hover
-.service-main h3 {
+.techstack-item:hover
+.techstack-item-main h4 {
   color: #c7ff3d;
 
-  transform: translateX(8px);
+  transform: translateX(6px);
 }
 
-.service-item:hover
-.service-main p {
-  opacity: 1;
-
-  transform: translateY(0);
+.techstack-item:hover
+.techstack-item-main p {
+  color: #aebdc1;
 }
 
-.service-item:hover
-.service-tag {
-  color: #c7ff3d;
-
-  border-color:
-    rgba(199, 255, 61, 0.4);
-
-  background:
-    rgba(199, 255, 61, 0.04);
-}
-
-.service-item:hover
-.service-arrow {
+.techstack-item:hover
+.techstack-arrow {
   transform:
     rotate(45deg)
     scale(1.08);
@@ -517,8 +525,8 @@
   color: #080908;
 }
 
-.service-item:hover
-.service-hover-line {
+.techstack-item:hover
+.techstack-hover-line {
   width: 100%;
 }
 
@@ -526,7 +534,7 @@
    FOOTER
 ========================================= */
 
-.services-footer {
+.techstack-footer {
   display: grid;
 
   grid-template-columns:
@@ -551,11 +559,11 @@
   text-transform: uppercase;
 }
 
-.services-footer span:nth-child(2) {
+.techstack-footer span:nth-child(2) {
   text-align: center;
 }
 
-.services-footer a {
+.techstack-footer a {
   color: #c7ff3d;
 
   text-decoration: none;
@@ -564,7 +572,7 @@
     color 0.3s ease;
 }
 
-.services-footer a:hover {
+.techstack-footer a:hover {
   color: #edfaFF;
 }
 
@@ -572,31 +580,31 @@
    DECORATIVE FRAME
 ========================================= */
 
-.services::after {
+.techstack::after {
   content: "";
 
   position: absolute;
 
-  width: 500px;
-  height: 500px;
+  width: 480px;
+  height: 480px;
 
-  right: -350px;
-  top: 35%;
+  right: -330px;
+  top: 38%;
 
   border: 1px solid
-    rgba(199, 255, 61, 0.07);
+    rgba(199, 255, 61, 0.06);
 
   transform: rotate(45deg);
 
   pointer-events: none;
 
   animation:
-    serviceFrame 10s
+    techFrame 11s
     ease-in-out
     infinite alternate;
 }
 
-@keyframes serviceFrame {
+@keyframes techFrame {
   from {
     transform:
       rotate(45deg)
@@ -615,7 +623,7 @@
 ========================================= */
 
 @media (max-width: 1100px) {
-  .services-intro {
+  .techstack-intro {
     grid-template-columns:
       1fr
       0.7fr;
@@ -623,36 +631,26 @@
     gap: 60px;
   }
 
-  .service-item {
+  .techstack-group {
     grid-template-columns:
-      60px
-      minmax(0, 1fr)
-      110px
-      55px;
+      210px
+      minmax(0, 1fr);
 
-    column-gap: 22px;
-  }
-
-  .service-main h3 {
-    font-size: clamp(
-      23px,
-      3vw,
-      38px
-    );
+    gap: 35px;
   }
 }
 
 /* =========================================
-   TABLET / SMALL LAPTOP
+   SMALL LAPTOP / TABLET
 ========================================= */
 
 @media (max-width: 950px) {
-  .services-container {
+  .techstack-container {
     padding:
       100px 5vw 80px;
   }
 
-  .services-intro {
+  .techstack-intro {
     grid-template-columns: 1fr;
 
     gap: 40px;
@@ -661,26 +659,20 @@
       75px 0 70px;
   }
 
-  .services-intro p {
+  .techstack-intro p {
     max-width: 500px;
   }
 
-  .service-item {
-    min-height: 115px;
+  .techstack-group {
+    grid-template-columns: 180px 1fr;
 
-    grid-template-columns:
-      55px
-      minmax(0, 1fr)
-      100px
-      50px;
+    gap: 30px;
 
-    column-gap: 20px;
+    padding: 45px 0;
   }
 
-  .service-main p {
-    opacity: 1;
-
-    transform: none;
+  .techstack-item-main h4 {
+    font-size: 20px;
   }
 }
 
@@ -689,20 +681,22 @@
 ========================================= */
 
 @media (max-width: 650px) {
-  .services-container {
+  .techstack-container {
     padding:
       85px 22px 65px;
   }
 
-  .services-header {
+  .techstack-header {
     padding-bottom: 20px;
   }
 
-  .services-header-info {
+  .techstack-header-info {
     display: none;
   }
 
-  .services-intro {
+  /* INTRO */
+
+  .techstack-intro {
     grid-template-columns: 1fr;
 
     gap: 32px;
@@ -711,7 +705,7 @@
       65px 0 60px;
   }
 
-  .services-intro h2 {
+  .techstack-intro h2 {
     font-size: clamp(
       52px,
       14vw,
@@ -723,13 +717,13 @@
     letter-spacing: -0.055em;
   }
 
-  .services-intro h2 span {
+  .techstack-intro h2 span {
     line-height: 0.87;
 
     letter-spacing: -0.055em;
   }
 
-  .services-intro p {
+  .techstack-intro p {
     max-width: 100%;
 
     font-size: 9px;
@@ -737,72 +731,69 @@
     line-height: 1.8;
   }
 
-  /* SERVICE ROW */
+  /* GROUP */
 
-  .service-item {
-    min-height: 100px;
+  .techstack-group {
+    display: block;
+
+    padding: 38px 0;
+  }
+
+  .techstack-category {
+    padding: 0 0 22px;
+  }
+
+  .techstack-category h3 {
+    font-size: 10px;
+  }
+
+  /* ITEMS */
+
+  .techstack-item {
+    min-height: 72px;
 
     grid-template-columns:
-      30px
+      28px
       minmax(0, 1fr)
-      38px;
+      35px;
 
     column-gap: 12px;
 
-    padding:
-      22px 0;
+    padding: 17px 0;
   }
 
-  .service-item:hover {
+  .techstack-item:hover {
     padding-left: 5px;
   }
 
-  .service-number {
-    padding-top: 3px;
-
+  .techstack-item-number {
     font-size: 8px;
   }
 
-  .service-main {
-    min-width: 0;
-
-    padding-right: 0;
-  }
-
-  .service-main h3 {
-    font-size: clamp(
-      19px,
-      6vw,
-      27px
-    );
+  .techstack-item-main h4 {
+    font-size: 19px;
 
     line-height: 1.1;
-
-    letter-spacing: -0.025em;
-
-    white-space: normal;
-
-    overflow-wrap: break-word;
   }
 
-  .service-main p {
-    display: none;
+  .techstack-item-main p {
+    margin-top: 5px;
+
+    font-size: 8px;
+
+    line-height: 1.5;
   }
 
-  .service-tag {
-    display: none;
+  .techstack-arrow {
+    width: 33px;
+    height: 33px;
+
+    font-size: 13px;
   }
 
-  .service-arrow {
-    width: 35px;
-    height: 35px;
+  /* FOOTER */
 
-    margin-right: 0;
-
-    font-size: 14px;
-  }
-
-  .services-footer {
+  .techstack-footer {
     grid-template-columns: 1fr;
 
     gap: 16px;
@@ -810,7 +801,7 @@
     padding-top: 28px;
   }
 
-  .services-footer span:nth-child(2) {
+  .techstack-footer span:nth-child(2) {
     text-align: left;
   }
 }
@@ -820,37 +811,39 @@
 ========================================= */
 
 @media (max-width: 400px) {
-  .services-container {
+  .techstack-container {
     padding-left: 18px;
     padding-right: 18px;
   }
 
-  .services-intro h2 {
+  .techstack-intro h2 {
     font-size: 50px;
   }
 
-  .services-intro h2 span {
+  .techstack-intro h2 span {
     letter-spacing: -0.05em;
   }
 
-  .service-main h3 {
-    font-size: 18px;
-
-    letter-spacing: -0.02em;
-  }
-
-  .service-item {
+  .techstack-item {
     grid-template-columns:
-      27px
+      25px
       minmax(0, 1fr)
-      34px;
+      32px;
 
     column-gap: 10px;
   }
 
-  .service-arrow {
-    width: 32px;
-    height: 32px;
+  .techstack-item-main h4 {
+    font-size: 17px;
+  }
+
+  .techstack-item-main p {
+    font-size: 7px;
+  }
+
+  .techstack-arrow {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -859,29 +852,33 @@
 ========================================= */
 
 @media (max-width: 340px) {
-  .services-container {
+  .techstack-container {
     padding-left: 15px;
     padding-right: 15px;
   }
 
-  .service-main h3 {
+  .techstack-item-main h4 {
     font-size: 16px;
   }
 
-  .service-item {
+  .techstack-item-main p {
+    font-size: 7px;
+  }
+
+  .techstack-item {
     grid-template-columns:
-      24px
+      22px
       minmax(0, 1fr)
-      31px;
+      29px;
 
     column-gap: 8px;
   }
 
-  .service-arrow {
-    width: 29px;
-    height: 29px;
+  .techstack-arrow {
+    width: 28px;
+    height: 28px;
 
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
@@ -890,13 +887,13 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .services::after {
+  .techstack::after {
     animation: none;
   }
 
-  .service-item,
-  .service-main h3,
-  .service-arrow {
+  .techstack-item,
+  .techstack-item-main h4,
+  .techstack-arrow {
     transition: none;
   }
 }
