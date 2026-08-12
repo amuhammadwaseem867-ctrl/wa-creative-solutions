@@ -8,8 +8,8 @@
   min-height: 100vh;
   overflow: hidden;
 
-  background: #0b1013;
-  color: #edfaFF;
+  background: #080908;
+  color: #f4f6ef;
 }
 
 /* =========================================
@@ -21,16 +21,16 @@
   inset: 0;
 
   pointer-events: none;
-  opacity: 0.1;
+  opacity: 0.13;
 
   background-image:
     linear-gradient(
-      rgba(237, 250, 255, 0.045) 1px,
+      rgba(244, 246, 239, 0.04) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(237, 250, 255, 0.045) 1px,
+      rgba(244, 246, 239, 0.04) 1px,
       transparent 1px
     );
 
@@ -39,16 +39,16 @@
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    black 18%,
-    black 82%,
+    black 20%,
+    black 78%,
     transparent 100%
   );
 
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    black 18%,
-    black 82%,
+    black 20%,
+    black 78%,
     transparent 100%
   );
 }
@@ -59,7 +59,7 @@
 
 .techstack-container {
   position: relative;
-  z-index: 2;
+  z-index: 5;
 
   width: 100%;
   max-width: 1700px;
@@ -78,24 +78,23 @@
   align-items: center;
   justify-content: space-between;
 
-  padding-bottom: 28px;
+  padding-bottom: 22px;
 
-  border-bottom: 1px solid
-    rgba(237, 250, 255, 0.1);
+  border-bottom: 1px solid rgba(244, 246, 239, 0.1);
 }
 
 .techstack-index {
   display: flex;
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  color: #b9c8cc;
+  color: #aeb6ac;
 
-  font-size: 10px;
-  font-weight: 650;
+  font-size: 9px;
+  font-weight: 600;
 
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
 
   text-transform: uppercase;
 }
@@ -106,13 +105,12 @@
 
   flex-shrink: 0;
 
-  background: #c7ff3d;
+  background: #c8ff3d;
 
   border-radius: 50%;
 
   box-shadow:
-    0 0 0 5px
-    rgba(199, 255, 61, 0.07);
+    0 0 0 5px rgba(200, 255, 61, 0.07);
 }
 
 .techstack-header-info {
@@ -121,12 +119,12 @@
 
   gap: 45px;
 
-  color: #87979d;
+  color: #697169;
 
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 8px;
+  font-weight: 500;
 
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
 
   text-transform: uppercase;
 }
@@ -139,14 +137,14 @@
   display: grid;
 
   grid-template-columns:
-    1.15fr
-    0.65fr;
+    minmax(0, 1fr)
+    minmax(300px, 0.65fr);
 
   align-items: end;
 
-  gap: 100px;
+  gap: 8vw;
 
-  padding: 105px 0 95px;
+  padding: 100px 0 95px;
 }
 
 /* =========================================
@@ -154,24 +152,17 @@
 ========================================= */
 
 .techstack-intro h2 {
-  display: block;
-
   margin: 0;
-  padding: 0;
 
-  color: #edfaFF;
+  color: #f4f6ef;
 
-  font-size: clamp(
-    65px,
-    8.5vw,
-    135px
-  );
+  font-size: clamp(65px, 8vw, 130px);
 
   font-weight: 650;
 
-  line-height: 0.84;
+  line-height: 0.82;
 
-  letter-spacing: -0.065em;
+  letter-spacing: -0.08em;
 
   text-transform: uppercase;
 }
@@ -179,18 +170,15 @@
 .techstack-intro h2 span {
   display: block;
 
-  width: fit-content;
-
   margin: 0;
-  padding: 0;
 
-  line-height: 0.84;
+  line-height: 0.82;
 
-  letter-spacing: -0.065em;
+  letter-spacing: -0.08em;
 }
 
 /* =========================================
-   OUTLINE
+   OUTLINE TITLE
 ========================================= */
 
 .techstack-outline {
@@ -198,8 +186,7 @@
 
   color: transparent;
 
-  -webkit-text-stroke:
-    1.5px #edfaFF;
+  -webkit-text-stroke: 1.5px #f4f6ef;
 
   transition:
     color 0.4s ease,
@@ -207,10 +194,9 @@
 }
 
 .techstack-outline:hover {
-  color: #c7ff3d;
+  color: #c8ff3d;
 
-  -webkit-text-stroke-color:
-    #c7ff3d;
+  -webkit-text-stroke-color: #c8ff3d;
 }
 
 /* =========================================
@@ -218,19 +204,19 @@
 ========================================= */
 
 .techstack-intro p {
-  max-width: 440px;
+  max-width: 500px;
 
   margin: 0 0 8px;
 
-  color: #aebdc1;
+  color: #aeb6ac;
 
-  font-size: 11px;
+  font-size: 10px;
 
   font-weight: 500;
 
   line-height: 1.9;
 
-  letter-spacing: 0.045em;
+  letter-spacing: 0.06em;
 
   text-transform: uppercase;
 }
@@ -258,13 +244,11 @@
 
   padding: 55px 0;
 
-  border-top: 1px solid
-    rgba(237, 250, 255, 0.1);
+  border-top: 1px solid rgba(244, 246, 239, 0.1);
 }
 
 .techstack-group:last-child {
-  border-bottom: 1px solid
-    rgba(237, 250, 255, 0.1);
+  border-bottom: 1px solid rgba(244, 246, 239, 0.1);
 }
 
 /* =========================================
@@ -281,27 +265,27 @@
 }
 
 .techstack-category span {
-  color: #72848a;
+  color: #687067;
 
-  font-size: 9px;
+  font-size: 8px;
 
   font-weight: 600;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 }
 
 .techstack-category h3 {
   margin: 0;
 
-  color: #edfaFF;
+  color: #f4f6ef;
 
-  font-size: 12px;
+  font-size: 11px;
 
   font-weight: 600;
 
   line-height: 1.2;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 
   text-transform: uppercase;
 }
@@ -311,14 +295,13 @@
 ========================================= */
 
 .techstack-items {
-  border-top: 1px solid
-    rgba(237, 250, 255, 0.07);
+  border-top: 1px solid rgba(244, 246, 239, 0.07);
 }
 
 .techstack-item {
   position: relative;
 
-  min-height: 78px;
+  min-height: 82px;
 
   display: grid;
 
@@ -333,19 +316,13 @@
 
   padding: 18px 0;
 
-  border-bottom: 1px solid
-    rgba(237, 250, 255, 0.07);
+  border-bottom: 1px solid rgba(244, 246, 239, 0.07);
 
   overflow: hidden;
 
   transition:
-    padding-left 0.4s
-    cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    );
+    padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s ease;
 }
 
 .techstack-item:last-child {
@@ -353,24 +330,26 @@
 }
 
 /* =========================================
-   ITEM NUMBER
+   NUMBER
 ========================================= */
 
 .techstack-item-number {
   position: relative;
   z-index: 2;
 
-  color: #62737a;
+  color: #687067;
 
-  font-size: 9px;
+  font-size: 8px;
 
   font-weight: 600;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+
+  transition: color 0.3s ease;
 }
 
 /* =========================================
-   ITEM MAIN
+   MAIN
 ========================================= */
 
 .techstack-item-main {
@@ -383,9 +362,9 @@
 .techstack-item-main h4 {
   margin: 0;
 
-  color: #edfaFF;
+  color: #f4f6ef;
 
-  font-size: 22px;
+  font-size: 21px;
 
   font-weight: 600;
 
@@ -395,32 +374,25 @@
 
   transition:
     color 0.3s ease,
-    transform 0.4s
-    cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    );
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .techstack-item-main p {
-  margin: 6px 0 0;
+  margin: 7px 0 0;
 
-  color: #829399;
+  color: #858d83;
 
-  font-size: 9px;
+  font-size: 8px;
 
   font-weight: 500;
 
   line-height: 1.5;
 
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
 
   text-transform: uppercase;
 
-  transition:
-    color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 /* =========================================
@@ -440,23 +412,16 @@
 
   justify-self: end;
 
-  border: 1px solid
-    rgba(237, 250, 255, 0.13);
+  border: 1px solid rgba(244, 246, 239, 0.13);
 
   border-radius: 50%;
 
-  color: #c7ff3d;
+  color: #c8ff3d;
 
   font-size: 15px;
 
   transition:
-    transform 0.45s
-    cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    ),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     background 0.3s ease,
     border-color 0.3s ease,
     color 0.3s ease;
@@ -475,16 +440,10 @@
   width: 0;
   height: 2px;
 
-  background: #c7ff3d;
+  background: #c8ff3d;
 
   transition:
-    width 0.5s
-    cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    );
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================================
@@ -493,40 +452,37 @@
 
 .techstack-item:hover {
   padding-left: 12px;
+
+  background: rgba(200, 255, 61, 0.018);
 }
 
-.techstack-item:hover
-.techstack-item-number {
-  color: #c7ff3d;
+.techstack-item:hover .techstack-item-number {
+  color: #c8ff3d;
 }
 
-.techstack-item:hover
-.techstack-item-main h4 {
-  color: #c7ff3d;
+.techstack-item:hover .techstack-item-main h4 {
+  color: #c8ff3d;
 
   transform: translateX(6px);
 }
 
-.techstack-item:hover
-.techstack-item-main p {
-  color: #aebdc1;
+.techstack-item:hover .techstack-item-main p {
+  color: #aeb6ac;
 }
 
-.techstack-item:hover
-.techstack-arrow {
+.techstack-item:hover .techstack-arrow {
   transform:
     rotate(45deg)
     scale(1.08);
 
-  background: #c7ff3d;
+  background: #c8ff3d;
 
-  border-color: #c7ff3d;
+  border-color: #c8ff3d;
 
   color: #080908;
 }
 
-.techstack-item:hover
-.techstack-hover-line {
+.techstack-item:hover .techstack-hover-line {
   width: 100%;
 }
 
@@ -548,13 +504,13 @@
 
   padding-top: 38px;
 
-  color: #829399;
+  color: #858d83;
 
-  font-size: 8px;
+  font-size: 7px;
 
   font-weight: 600;
 
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
 
   text-transform: uppercase;
 }
@@ -564,20 +520,19 @@
 }
 
 .techstack-footer a {
-  color: #c7ff3d;
+  color: #c8ff3d;
 
   text-decoration: none;
 
-  transition:
-    color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .techstack-footer a:hover {
-  color: #edfaFF;
+  color: #f4f6ef;
 }
 
 /* =========================================
-   DECORATIVE FRAME
+   DECORATIVE ORBIT
 ========================================= */
 
 .techstack::after {
@@ -585,36 +540,35 @@
 
   position: absolute;
 
-  width: 480px;
-  height: 480px;
+  width: 520px;
+  height: 520px;
 
-  right: -330px;
-  top: 38%;
+  right: -370px;
+  top: 32%;
 
-  border: 1px solid
-    rgba(199, 255, 61, 0.06);
+  border: 1px solid rgba(200, 255, 61, 0.06);
 
-  transform: rotate(45deg);
+  border-radius: 50%;
 
   pointer-events: none;
 
   animation:
-    techFrame 11s
+    techOrbit 12s
     ease-in-out
     infinite alternate;
 }
 
-@keyframes techFrame {
+@keyframes techOrbit {
   from {
     transform:
-      rotate(45deg)
-      translate(0, 0);
+      translateY(0)
+      rotate(0deg);
   }
 
   to {
     transform:
-      rotate(52deg)
-      translate(-25px, 20px);
+      translateY(-25px)
+      rotate(8deg);
   }
 }
 
@@ -646,8 +600,7 @@
 
 @media (max-width: 950px) {
   .techstack-container {
-    padding:
-      100px 5vw 80px;
+    padding: 100px 5vw 80px;
   }
 
   .techstack-intro {
@@ -655,16 +608,17 @@
 
     gap: 40px;
 
-    padding:
-      75px 0 70px;
+    padding: 75px 0 70px;
   }
 
   .techstack-intro p {
-    max-width: 500px;
+    max-width: 520px;
   }
 
   .techstack-group {
-    grid-template-columns: 180px 1fr;
+    grid-template-columns:
+      180px
+      minmax(0, 1fr);
 
     gap: 30px;
 
@@ -682,12 +636,11 @@
 
 @media (max-width: 650px) {
   .techstack-container {
-    padding:
-      85px 22px 65px;
+    padding: 85px 22px 65px;
   }
 
   .techstack-header {
-    padding-bottom: 20px;
+    padding-bottom: 18px;
   }
 
   .techstack-header-info {
@@ -701,34 +654,29 @@
 
     gap: 32px;
 
-    padding:
-      65px 0 60px;
+    padding: 65px 0 60px;
   }
 
   .techstack-intro h2 {
-    font-size: clamp(
-      52px,
-      14vw,
-      82px
-    );
+    font-size: clamp(52px, 15vw, 82px);
 
     line-height: 0.87;
 
-    letter-spacing: -0.055em;
+    letter-spacing: -0.06em;
   }
 
   .techstack-intro h2 span {
     line-height: 0.87;
 
-    letter-spacing: -0.055em;
+    letter-spacing: -0.06em;
   }
 
   .techstack-intro p {
     max-width: 100%;
 
-    font-size: 9px;
+    font-size: 8px;
 
-    line-height: 1.8;
+    line-height: 1.85;
   }
 
   /* GROUP */
@@ -767,11 +715,11 @@
   }
 
   .techstack-item-number {
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .techstack-item-main h4 {
-    font-size: 19px;
+    font-size: 18px;
 
     line-height: 1.1;
   }
@@ -779,7 +727,7 @@
   .techstack-item-main p {
     margin-top: 5px;
 
-    font-size: 8px;
+    font-size: 7px;
 
     line-height: 1.5;
   }
@@ -820,10 +768,6 @@
     font-size: 50px;
   }
 
-  .techstack-intro h2 span {
-    letter-spacing: -0.05em;
-  }
-
   .techstack-item {
     grid-template-columns:
       25px
@@ -857,14 +801,6 @@
     padding-right: 15px;
   }
 
-  .techstack-item-main h4 {
-    font-size: 16px;
-  }
-
-  .techstack-item-main p {
-    font-size: 7px;
-  }
-
   .techstack-item {
     grid-template-columns:
       22px
@@ -872,6 +808,14 @@
       29px;
 
     column-gap: 8px;
+  }
+
+  .techstack-item-main h4 {
+    font-size: 16px;
+  }
+
+  .techstack-item-main p {
+    font-size: 7px;
   }
 
   .techstack-arrow {
@@ -887,13 +831,11 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .techstack::after {
-    animation: none;
-  }
-
+  .techstack::after,
   .techstack-item,
   .techstack-item-main h4,
   .techstack-arrow {
+    animation: none;
     transition: none;
   }
 }

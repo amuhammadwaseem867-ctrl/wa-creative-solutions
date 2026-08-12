@@ -1,313 +1,246 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import ReactMarkdown from "react-markdown";
-import "./AIChat.css";
+import { motion } from "framer-motion";
+import "./About.css";
 
-const suggestions = [
-  "What services do you offer?",
-  "How much does a website cost?",
-  "I want to start a project",
+const stats = [
+  {
+    number: "04+",
+    label: "YEARS EXPERIENCE",
+  },
+  {
+    number: "40+",
+    label: "PROJECTS DELIVERED",
+  },
+  {
+    number: "12+",
+    label: "BRANDS BUILT",
+  },
 ];
 
-export default function AIChat() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content:
-        "Hi! 👋 I'm the WA Creative Solutions AI assistant. How can I help you today?",
-    },
-  ]);
-
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const messagesEndRef = useRef(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [messages, loading]);
-
-  const sendMessage = async (text) => {
-    const message = text.trim();
-
-    if (!message || loading) return;
-
-    const userMessage = {
-      role: "user",
-      content: message,
-    };
-
-    const updatedMessages = [...messages, userMessage];
-
-    setMessages(updatedMessages);
-    setInput("");
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: updatedMessages,
-        }),
-      });
-
-      const contentType =
-        response.headers.get("content-type") || "";
-
-      if (!contentType.includes("application/json")) {
-        const textResponse = await response.text();
-
-        console.error(
-          "API returned non-JSON response:",
-          textResponse
-        );
-
-        throw new Error(
-          "The AI service returned an invalid response."
-        );
-      }
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data?.message || "AI service request failed."
-        );
-      }
-
-      setMessages([
-        ...updatedMessages,
-        {
-          role: "assistant",
-          content:
-            data?.message ||
-            "Sorry, I couldn't generate a response.",
-        },
-      ]);
-    } catch (error) {
-      console.error("AI CHAT ERROR:", error);
-
-      setMessages([
-        ...updatedMessages,
-        {
-          role: "assistant",
-          content:
-            "Sorry, I'm having trouble connecting right now. Please try again.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    sendMessage(input);
-  };
-
+export default function About() {
   return (
-    <>
-      <AnimatePresence>
-        {isOpen && (
+    <section className="about" id="about">
+
+      {/* BACKGROUND */}
+      <div className="about-grid"></div>
+
+      <div className="about-orbit about-orbit-one"></div>
+      <div className="about-orbit about-orbit-two"></div>
+
+
+      <div className="about-container">
+
+        {/* TOP HEADER */}
+        <motion.div
+          className="about-header"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="about-index">
+            <span className="about-dot"></span>
+            <span>01 / ABOUT</span>
+          </div>
+
+          <span className="about-header-right">
+            WA CREATIVE SOLUTIONS
+          </span>
+        </motion.div>
+
+
+        {/* MAIN AREA */}
+        <div className="about-main">
+
+          {/* LEFT CONTENT */}
           <motion.div
-            className="ai-chat"
-            initial={{
-              opacity: 0,
-              y: 25,
-              scale: 0.96,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              y: 25,
-              scale: 0.96,
-            }}
+            className="about-content"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{
-              duration: 0.3,
+              duration: 0.8,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {/* HEADER */}
 
-            <div className="ai-chat__header">
-              <div className="ai-chat__identity">
-                <div className="ai-chat__logo">
+            <span className="about-kicker">
+              WHO WE ARE
+            </span>
+
+
+            <h2 className="about-title">
+              WE MAKE
+              <br />
+
+              <span className="about-stroke">
+                IDEAS
+              </span>
+
+              <br />
+
+              <span className="about-lime">
+                MATTER.
+              </span>
+            </h2>
+
+
+            <div className="about-copy">
+
+              <p>
+                WA CREATIVE SOLUTIONS IS A CREATIVE
+                TECHNOLOGY STUDIO BUILDING DISTINCTIVE
+                BRANDS, DIGITAL PRODUCTS AND EXPERIENCES
+                FOR BUSINESSES READY TO MOVE FORWARD.
+              </p>
+
+              <p>
+                WE BRING STRATEGY, DESIGN AND TECHNOLOGY
+                TOGETHER TO TURN COMPLEX IDEAS INTO
+                SIMPLE, MEMORABLE EXPERIENCES.
+              </p>
+
+            </div>
+
+
+            <a
+              href="#contact"
+              className="about-link"
+            >
+              <span>LET'S BUILD SOMETHING</span>
+
+              <span className="about-link-arrow">
+                ↗
+              </span>
+            </a>
+
+          </motion.div>
+
+
+          {/* 3D VISUAL */}
+          <motion.div
+            className="about-visual"
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+
+            <div className="about-visual-frame">
+
+              <div className="about-visual-label">
+                <span>CREATIVE ENGINE</span>
+                <span>03D / 01</span>
+              </div>
+
+
+              {/* 3D OBJECT PLACEHOLDER */}
+              <div className="about-3d">
+
+                <div className="about-3d-ring ring-one"></div>
+                <div className="about-3d-ring ring-two"></div>
+                <div className="about-3d-ring ring-three"></div>
+
+                <div className="about-3d-core">
                   WA
                 </div>
 
-                <div>
-                  <span className="ai-chat__eyebrow">
-                    AI SUPPORT
-                  </span>
-
-                  <h3>WA Assistant</h3>
+                <div className="about-3d-cross cross-one">
+                  +
                 </div>
+
+                <div className="about-3d-cross cross-two">
+                  +
+                </div>
+
               </div>
 
-              <button
-                className="ai-chat__close"
-                onClick={() => setIsOpen(false)}
-                aria-label="Close AI chat"
-                type="button"
-              >
-                ×
-              </button>
+
+              <div className="about-visual-bottom">
+
+                <span>
+                  DESIGN / MOTION / CODE
+                </span>
+
+                <span>
+                  2026
+                </span>
+
+              </div>
+
             </div>
 
-            {/* CHAT CONTENT */}
-
-            <div className="ai-chat__content">
-              {messages.map((message, index) => (
-                <div
-                  key={`${message.role}-${index}`}
-                  className={`ai-message ${
-                    message.role === "user"
-                      ? "ai-message--user"
-                      : "ai-message--assistant"
-                  }`}
-                >
-                  {message.role === "assistant" ? (
-                    <ReactMarkdown
-                      components={{
-                        p: ({ children }) => (
-                          <p>{children}</p>
-                        ),
-
-                        strong: ({ children }) => (
-                          <strong>{children}</strong>
-                        ),
-
-                        ul: ({ children }) => (
-                          <ul>{children}</ul>
-                        ),
-
-                        ol: ({ children }) => (
-                          <ol>{children}</ol>
-                        ),
-
-                        li: ({ children }) => (
-                          <li>{children}</li>
-                        ),
-                      }}
-                    >
-                      {message.content}
-                    </ReactMarkdown>
-                  ) : (
-                    message.content
-                  )}
-                </div>
-              ))}
-
-              {/* TYPING INDICATOR */}
-
-              {loading && (
-                <div className="ai-message ai-message--assistant ai-typing">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              )}
-
-              <div ref={messagesEndRef} />
-
-              {/* SUGGESTIONS */}
-
-              {messages.length === 1 && !loading && (
-                <div className="ai-chat__suggestions">
-                  {suggestions.map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      className="ai-chat__suggestion"
-                      onClick={() =>
-                        sendMessage(suggestion)
-                      }
-                      type="button"
-                    >
-                      <span>{suggestion}</span>
-                      <span>↗</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* INPUT */}
-
-            <div className="ai-chat__bottom">
-              <form
-                className="ai-chat__input"
-                onSubmit={handleSubmit}
-              >
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(event) =>
-                    setInput(event.target.value)
-                  }
-                  placeholder="Ask us anything..."
-                  disabled={loading}
-                  autoComplete="off"
-                  aria-label="Ask WA Assistant"
-                />
-
-                <button
-                  type="submit"
-                  disabled={
-                    loading || !input.trim()
-                  }
-                  aria-label="Send message"
-                >
-                  ↗
-                </button>
-              </form>
-
-              <span className="ai-chat__powered">
-                WA CREATIVE SOLUTIONS • AI SUPPORT
-              </span>
-            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* CHAT LAUNCHER */}
+        </div>
 
-      <motion.button
-        className="ai-chat__launcher"
-        onClick={() =>
-          setIsOpen((value) => !value)
-        }
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={
-          isOpen
-            ? "Close AI support"
-            : "Open AI support"
-        }
-        type="button"
-      >
-        <span className="ai-chat__launcher-status"></span>
 
-        <span>
-          {isOpen ? "CLOSE" : "AI SUPPORT"}
-        </span>
+        {/* STATS */}
+        <motion.div
+          className="about-stats"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.7,
+            delay: 0.15,
+          }}
+        >
 
-        <strong>
-          {isOpen ? "×" : "↗"}
-        </strong>
-      </motion.button>
-    </>
+          {stats.map((stat, index) => (
+
+            <div
+              className="about-stat"
+              key={stat.label}
+            >
+
+              <span className="about-stat-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <strong>
+                {stat.number}
+              </strong>
+
+              <span>
+                {stat.label}
+              </span>
+
+            </div>
+
+          ))}
+
+
+          <div className="about-stat about-location">
+
+            <span className="about-stat-index">
+              04
+            </span>
+
+            <strong>
+              GLOBAL
+            </strong>
+
+            <span>
+              WORKING WORLDWIDE
+            </span>
+
+          </div>
+
+        </motion.div>
+
+      </div>
+
+    </section>
   );
 }

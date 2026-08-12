@@ -7,6 +7,8 @@ import "./Navbar.css";
 const navLinks = [
   { name: "ABOUT", href: "#about" },
   { name: "SERVICES", href: "#services" },
+  { name: "TECHNOLOGY", href: "#technology" },
+  { name: "PRICING", href: "#pricing" },
   { name: "WORK", href: "#work" },
   { name: "PROCESS", href: "#process" },
   { name: "TESTIMONIALS", href: "#testimonials" },
@@ -29,13 +31,14 @@ export default function Navbar() {
         className="navbar-brand"
         onClick={closeMenu}
       >
-        <span className="navbar-brand-wa">WA</span>
+        <span className="navbar-brand-wa">
+          WA
+        </span>
 
         <span className="navbar-brand-name">
           CREATIVE SOLUTIONS
         </span>
       </a>
-
 
       {/* DESKTOP NAV */}
       <nav className="navbar-links">
@@ -58,19 +61,19 @@ export default function Navbar() {
 
       </nav>
 
-
       {/* DESKTOP CTA */}
       <a
         href="#contact"
         className="navbar-cta"
       >
-        <span>START A PROJECT</span>
+        <span>
+          START A PROJECT
+        </span>
 
         <span className="navbar-cta-arrow">
           ↗
         </span>
       </a>
-
 
       {/* MOBILE MENU BUTTON */}
       <button
@@ -84,7 +87,6 @@ export default function Navbar() {
         <span></span>
         <span></span>
       </button>
-
 
       {/* MOBILE MENU */}
       <AnimatePresence>
@@ -112,11 +114,14 @@ export default function Navbar() {
           >
 
             <div className="mobile-menu-top">
-              <span>WA CREATIVE SOLUTIONS</span>
+              <span>
+                WA CREATIVE SOLUTIONS
+              </span>
 
-              <span>MENU / 00</span>
+              <span>
+                MENU / 00
+              </span>
             </div>
-
 
             <nav className="mobile-nav">
 
@@ -157,7 +162,6 @@ export default function Navbar() {
               ))}
 
             </nav>
-
 
             <div className="mobile-menu-bottom">
 

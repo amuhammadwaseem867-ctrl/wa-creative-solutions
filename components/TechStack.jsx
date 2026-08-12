@@ -35,7 +35,7 @@ const technologies = [
   },
 
   {
-    category: "DESIGN",
+    category: "DESIGN SOFTWARE",
     items: [
       {
         name: "Figma",
@@ -76,139 +76,98 @@ const technologies = [
 ];
 
 export default function TechStack() {
+  const totalTools = technologies.reduce(
+    (total, group) => total + group.items.length,
+    0
+  );
+
   return (
     <section className="techstack" id="technology">
-
       {/* BACKGROUND */}
-      <div className="techstack-grid"></div>
+      <div className="techstack-grid" />
 
       <div className="techstack-container">
-
         {/* HEADER */}
         <motion.div
           className="techstack-header"
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
         >
           <div className="techstack-index">
-            <span className="techstack-dot"></span>
+            <span className="techstack-dot" />
 
-            <span>
-              03 / TECHNOLOGY
-            </span>
+            <span>03 / TECHNOLOGY</span>
           </div>
 
           <div className="techstack-header-info">
-            <span>
-              OUR STACK
-            </span>
+            <span>OUR STACK</span>
 
-            <span>
-              13 TOOLS
-            </span>
+            <span>{totalTools} TOOLS</span>
           </div>
         </motion.div>
 
         {/* INTRO */}
         <motion.div
           className="techstack-intro"
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.8,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
           <h2>
             BUILT
             <span>WITH</span>
+
             <span className="techstack-outline">
               PURPOSE.
             </span>
           </h2>
 
           <p>
-            FROM CODE TO CREATIVE TOOLS,
-            WE USE MODERN TECHNOLOGIES AND
-            INDUSTRY-STANDARD SOFTWARE TO
-            BUILD FAST, REFINED AND MEMORABLE
-            DIGITAL EXPERIENCES.
+            FROM CODE TO CREATIVE TOOLS, WE USE MODERN
+            TECHNOLOGIES AND INDUSTRY-STANDARD SOFTWARE
+            TO BUILD FAST, REFINED AND MEMORABLE DIGITAL
+            EXPERIENCES.
           </p>
         </motion.div>
 
         {/* TECHNOLOGY GROUPS */}
         <div className="techstack-groups">
-
           {technologies.map((group, groupIndex) => (
             <motion.div
               className="techstack-group"
               key={group.category}
-              initial={{
-                opacity: 0,
-                y: 35,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{
                 duration: 0.6,
                 delay: groupIndex * 0.1,
               }}
             >
-
               {/* CATEGORY */}
               <div className="techstack-category">
                 <span>
                   {String(groupIndex + 1).padStart(2, "0")}
                 </span>
 
-                <h3>
-                  {group.category}
-                </h3>
+                <h3>{group.category}</h3>
               </div>
 
               {/* ITEMS */}
               <div className="techstack-items">
-
                 {group.items.map((item, index) => (
                   <motion.div
                     className="techstack-item"
                     key={item.name}
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                    }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{
                       opacity: 1,
                       y: 0,
                     }}
-                    viewport={{
-                      once: true,
-                    }}
+                    viewport={{ once: true }}
                     transition={{
                       duration: 0.45,
                       delay:
@@ -216,52 +175,39 @@ export default function TechStack() {
                         index * 0.05,
                     }}
                   >
-
+                    {/* NUMBER */}
                     <div className="techstack-item-number">
                       {String(index + 1).padStart(2, "0")}
                     </div>
 
+                    {/* CONTENT */}
                     <div className="techstack-item-main">
-                      <h4>
-                        {item.name}
-                      </h4>
+                      <h4>{item.name}</h4>
 
-                      <p>
-                        {item.description}
-                      </p>
+                      <p>{item.description}</p>
                     </div>
 
+                    {/* ARROW */}
                     <div className="techstack-arrow">
                       ↗
                     </div>
 
-                    <div className="techstack-hover-line"></div>
-
+                    {/* HOVER LINE */}
+                    <div className="techstack-hover-line" />
                   </motion.div>
                 ))}
-
               </div>
-
             </motion.div>
           ))}
-
         </div>
 
         {/* FOOTER */}
         <motion.div
           className="techstack-footer"
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
         >
           <span>
             CODE / DESIGN / MOTION
@@ -275,7 +221,6 @@ export default function TechStack() {
             START A PROJECT ↗
           </a>
         </motion.div>
-
       </div>
     </section>
   );

@@ -5,12 +5,14 @@ import Link from "next/link";
 import "./Footer.css";
 
 const footerLinks = [
-  { label: "ABOUT", href: "#about" },
-  { label: "SERVICES", href: "#services" },
-  { label: "WORK", href: "#work" },
-  { label: "PROCESS", href: "#process" },
-  { label: "TESTIMONIALS", href: "#testimonials" },
-  { label: "CONTACT", href: "#contact" },
+  { number: "01", label: "ABOUT", href: "#about" },
+  { number: "02", label: "SERVICES", href: "#services" },
+  { number: "03", label: "TECHNOLOGY", href: "#technology" },
+  { number: "04", label: "PRICING", href: "#pricing" },
+  { number: "05", label: "WORK", href: "#work" },
+  { number: "06", label: "PROCESS", href: "#process" },
+  { number: "07", label: "TESTIMONIALS", href: "#testimonials" },
+  { number: "08", label: "CONTACT", href: "#contact" },
 ];
 
 const socialLinks = [
@@ -57,7 +59,7 @@ export default function Footer() {
 
         <div className="footer__main">
 
-          {/* Brand */}
+          {/* BRAND */}
 
           <motion.div
             className="footer__brand"
@@ -82,10 +84,10 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          {/* Navigation */}
+          {/* NAVIGATION */}
 
           <motion.div
-            className="footer__column"
+            className="footer__column footer__navigation"
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -104,14 +106,23 @@ export default function Footer() {
                   key={link.label}
                   href={link.href}
                 >
-                  <span>{link.label}</span>
-                  <span>↗</span>
+                  <span className="footer__link-number">
+                    {link.number}
+                  </span>
+
+                  <span className="footer__link-label">
+                    {link.label}
+                  </span>
+
+                  <span className="footer__link-arrow">
+                    ↗
+                  </span>
                 </Link>
               ))}
             </nav>
           </motion.div>
 
-          {/* Social */}
+          {/* SOCIAL */}
 
           <motion.div
             className="footer__column"
@@ -127,7 +138,7 @@ export default function Footer() {
               CONNECT
             </span>
 
-            <div className="footer__links">
+            <div className="footer__links footer__social">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
@@ -135,14 +146,19 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span>{link.label}</span>
-                  <span>↗</span>
+                  <span>
+                    {link.label}
+                  </span>
+
+                  <span>
+                    ↗
+                  </span>
                 </a>
               ))}
             </div>
           </motion.div>
 
-          {/* Contact */}
+          {/* CONTACT */}
 
           <motion.div
             className="footer__column footer__contact"
@@ -169,6 +185,7 @@ export default function Footer() {
               RAWALPINDI, PAKISTAN
             </span>
           </motion.div>
+
         </div>
 
         {/* =========================================
