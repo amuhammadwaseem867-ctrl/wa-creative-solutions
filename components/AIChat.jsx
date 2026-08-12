@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 import "./AIChat.css";
 
 const suggestions = [
@@ -9,6 +10,22 @@ const suggestions = [
   "How much does a website cost?",
   "I want to start a project",
 ];
+
+const cleanAIResponse = (text) => {
+  if (!text) return "";
+
+  return text
+    .replace(/\\\*/g, "*")
+    .replace(/\\_/g, "_")
+    .replace(/\\#/g, "#")
+    .replace(/\\`/g, "`")
+    .replace(/\\\[/g, "[")
+    .replace(/\\\]/g, "]")
+    .replace(/\\\(/g, "(")
+    .replace(/\\\)/g, ")")
+    .replace(/\\:/g, ":")
+    .trim();
+};
 
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +41,6 @@ export default function AIChat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Automatically scroll to latest message
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -116,8 +132,6 @@ export default function AIChat() {
 
   return (
     <>
-      {/* AI CHAT WINDOW */}
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -181,7 +195,49 @@ export default function AIChat() {
                       : "ai-message--assistant"
                   }`}
                 >
-                  {message.content}
+                  {message.role === "assistant" ? (
+                    <ReactMarkdown
+                      components={{
+                        p: ({ children }) => (
+                          <p>{children}</p>
+                        ),
+
+                        strong: ({ children }) => (
+                          <strong>{children}</strong>
+                        ),
+
+                        em: ({ children }) => (
+                          <em>{children}</em>
+                        ),
+
+                        ul: ({ children }) => (
+                          <ul>{children}</ul>
+                        ),
+
+                        ol: ({ children }) => (
+                          <ol>{children}</ol>
+                        ),
+
+                        li: ({ children }) => (
+                          <li>{children}</li>
+                        ),
+
+                        a: ({ href, children }) => (
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {children}
+                          </a>
+                        ),
+                      }}
+                    >
+                      {cleanAIResponse(message.content)}
+                    </ReactMarkdown>
+                  ) : (
+                    <p>{message.content}</p>
+                  )}
                 </div>
               ))}
 
@@ -194,8 +250,6 @@ export default function AIChat() {
                   <span></span>
                 </div>
               )}
-
-              {/* AUTO SCROLL TARGET */}
 
               <div ref={messagesEndRef} />
 
@@ -262,7 +316,9 @@ export default function AIChat() {
 
       <motion.button
         className="ai-chat__launcher"
-        onClick={() => setIsOpen((value) => !value)}
+        onClick={() =>
+          setIsOpen((value) => !value)
+        }
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.95 }}
         aria-label={

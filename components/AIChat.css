@@ -657,3 +657,42 @@
     margin-top: 5px;
   }
 }
+/* ================================
+AI RESPONSE FORMATTING
+================================ */
+
+.ai-message p {
+  margin: 0 0 10px;
+}
+
+.ai-message p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-message strong {
+  color: #edfbff;
+  font-weight: 700;
+}
+
+.ai-message ul,
+.ai-message ol {
+  margin: 9px 0;
+  padding-left: 20px;
+}
+
+.ai-message li {
+  margin: 5px 0;
+  padding-left: 2px;
+}
+
+.ai-message li::marker {
+  color: rgba(237, 251, 255, 0.5);
+}
+
+.ai-message--user p {
+  margin: 0;
+}
+
+.ai-message--user strong {
+  color: #0b1013;
+}
