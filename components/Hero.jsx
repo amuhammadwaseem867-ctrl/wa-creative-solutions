@@ -4,12 +4,15 @@ import { motion } from "framer-motion";
 import "./Hero.css";
 
 const services = [
-  "BRAND IDENTITY",
-  "WEB DESIGN",
-  "WEB DEVELOPMENT",
+  "BRANDING & IDENTITY",
+  "LOGO DESIGN",
+  "GRAPHIC DESIGN",
   "UI / UX DESIGN",
-  "CREATIVE DIRECTION",
-  "MOTION DESIGN",
+  "WEBSITE DESIGN",
+  "WEBSITE DEVELOPMENT",
+  "NEXT.JS DEVELOPMENT",
+  "RESPONSIVE WEBSITES",
+  "VIDEO EDITING",
   "DIGITAL EXPERIENCES",
 ];
 
@@ -28,7 +31,6 @@ export default function Hero() {
       <div className="hero-line hero-line-one"></div>
       <div className="hero-line hero-line-two"></div>
 
-
       {/* HERO CONTAINER */}
       <div className="hero-container">
 
@@ -41,11 +43,8 @@ export default function Hero() {
         >
           <span>WA CREATIVE SOLUTIONS</span>
 
-          <span>
-            CREATIVE TECHNOLOGY STUDIO
-          </span>
+          <span>CREATIVE TECHNOLOGY STUDIO</span>
         </motion.div>
-
 
         {/* HERO CONTENT */}
         <motion.div
@@ -58,16 +57,14 @@ export default function Hero() {
           }}
         >
 
+          {/* LABEL */}
           <div className="hero-label">
-
             <span className="hero-dot"></span>
 
             <span>
               BRAND / DIGITAL / EXPERIENCE
             </span>
-
           </div>
-
 
           {/* MAIN STATEMENT */}
           <h1 className="hero-title">
@@ -86,7 +83,6 @@ export default function Hero() {
 
           </h1>
 
-
           {/* BOTTOM CONTENT */}
           <div className="hero-bottom">
 
@@ -95,7 +91,6 @@ export default function Hero() {
               DIGITAL EXPERIENCES AND TECHNOLOGY
               THAT MOVE BUSINESSES FORWARD.
             </p>
-
 
             <div className="hero-actions">
 
@@ -123,7 +118,6 @@ export default function Hero() {
 
         </motion.div>
 
-
         {/* SCROLL */}
         <div className="hero-scroll">
 
@@ -137,10 +131,10 @@ export default function Hero() {
 
       </div>
 
-
       {/* SERVICES COLUMN RAIL */}
       <div className="hero-marquee">
 
+        {/* SERVICES LABEL */}
         <div className="marquee-label">
 
           <span className="marquee-label-dot"></span>
@@ -149,7 +143,7 @@ export default function Hero() {
 
         </div>
 
-
+        {/* MOVING WINDOW */}
         <div className="marquee-window">
 
           <div className="marquee-track">
@@ -180,8 +174,7 @@ export default function Hero() {
 
             </div>
 
-
-            {/* DUPLICATE SET */}
+            {/* DUPLICATE SET FOR INFINITE LOOP */}
             <div
               className="marquee-group"
               aria-hidden="true"
@@ -213,7 +206,6 @@ export default function Hero() {
           </div>
 
         </div>
-
 
         {/* RIGHT END */}
         <div className="marquee-end">
