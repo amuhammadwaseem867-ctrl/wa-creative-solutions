@@ -1,856 +1,889 @@
-.noorah-page {
-  --warm-white: #f6f1ea;
-  --beige: #dccfc0;
-  --soft-grey: #8f8982;
-  --pink: #d96c8a;
-  --deep-text: #252220;
-  --line: rgba(37, 34, 32, 0.14);
+/* =========================================================
+   NOORAH CASE STUDY
+   Warm / Playful / Premium Mascot Identity
+========================================================= */
 
-  width: 100%;
+.noorah-case {
+  --bg: #17130f;
+  --surface: #211b15;
+  --cream: #f2eadf;
+  --paper: #e8ded1;
+  --text: #f7f1e9;
+  --dark-text: #211a14;
+  --muted: #aa9d8d;
+  --line: rgba(247, 241, 233, 0.16);
+  --dark-line: rgba(33, 26, 20, 0.16);
+
   min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
 
-  background: var(--warm-white);
-  color: var(--deep-text);
+/* =========================================================
+   RESET
+========================================================= */
+
+.noorah-case *,
+.noorah-case *::before,
+.noorah-case *::after {
+  box-sizing: border-box;
+}
+
+.noorah-case img {
+  display: block;
+  max-width: 100%;
+}
+
+.noorah-case a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================================================
+   INTRO LOADER
+========================================================= */
+
+.noorah-intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #17130f;
 
   overflow: hidden;
 }
 
-.noorah-page *,
-.noorah-page *::before,
-.noorah-page *::after {
-  box-sizing: border-box;
+.noorah-intro-inner {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
 }
 
-.noorah-page img {
-  display: block;
+.noorah-intro-number {
+  margin-bottom: 20px;
 
-  width: 100%;
-  height: auto;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 
-  object-fit: contain;
+  color: rgba(247, 241, 233, 0.55);
 }
 
-.noorah-section__container,
-.noorah-hero__container,
-.noorah-final__container {
-  width: min(1380px, calc(100% - 100px));
+.noorah-intro-inner h2 {
+  margin: 0;
 
-  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(72px, 12vw, 180px);
+  font-weight: 700;
+  line-height: 0.85;
+
+  letter-spacing: -0.065em;
+
+  color: #f7f1e9;
 }
 
+.noorah-intro-line {
+  width: min(150px, 28vw);
+  height: 1px;
 
-/* =========================================
+  margin: 30px 0 20px;
+
+  background: rgba(247, 241, 233, 0.7);
+
+  transform-origin: center;
+}
+
+.noorah-intro-subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.55);
+}
+
+.noorah-intro-progress {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: 8%;
+
+  height: 1px;
+
+  background: rgba(247, 241, 233, 0.35);
+
+  transform-origin: left;
+}
+
+.noorah-intro-orbit {
+  position: absolute;
+
+  width: 42vw;
+  height: 42vw;
+  max-width: 620px;
+  max-height: 620px;
+
+  border: 1px solid rgba(247, 241, 233, 0.07);
+  border-radius: 50%;
+}
+
+.noorah-intro-orbit::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: -4px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #f7f1e9;
+
+  transform: translateY(-50%);
+}
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.noorah-back {
+  position: absolute;
+  top: 32px;
+  left: 42px;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.7);
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.noorah-back:hover {
+  color: #fff;
+  transform: translateX(-4px);
+}
+
+.noorah-back-arrow {
+  font-size: 17px;
+  line-height: 1;
+}
+
+/* =========================================================
    HERO
-========================================= */
+========================================================= */
 
 .noorah-hero {
   position: relative;
 
   min-height: 100vh;
 
+  padding: 120px 6vw 42px;
+
   display: flex;
   align-items: center;
 
-  padding: 100px 0 80px;
-
-  background: var(--warm-white);
+  background:
+    radial-gradient(
+      circle at 72% 40%,
+      rgba(181, 135, 91, 0.11),
+      transparent 30%
+    ),
+    var(--bg);
 }
 
-.noorah-hero__container {
-  display: grid;
-
-  grid-template-columns: minmax(0, 1fr) minmax(400px, 0.8fr);
-
-  gap: 100px;
-
-  align-items: center;
-}
-
-.noorah-hero__content {
-  min-width: 0;
-}
-
-.noorah-hero__eyebrow {
-  display: flex;
-  align-items: center;
-
-  gap: 18px;
-
-  margin-bottom: 45px;
-
-  color: var(--pink);
-
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: 0.16em;
-}
-
-.noorah-hero__eyebrow span:first-child {
-  display: flex;
-  align-items: center;
-
-  gap: 18px;
-}
-
-.noorah-hero__eyebrow span:first-child::after {
-  content: "";
-
-  width: 35px;
-  height: 1px;
-
-  background: var(--pink);
-}
-
-.noorah-hero h1 {
-  margin: 0;
-
-  font-size: clamp(90px, 13vw, 210px);
-
-  line-height: 0.78;
-
-  font-weight: 500;
-
-  letter-spacing: -0.085em;
-
-  white-space: nowrap;
-}
-
-.noorah-hero__content > p {
-  width: min(100%, 440px);
-
-  margin: 60px 0 0;
-
-  color: var(--soft-grey);
-
-  font-size: 15px;
-
-  line-height: 1.8;
-}
-
-.noorah-hero__meta {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 45px;
-
-  margin-top: 50px;
-
-  padding-top: 22px;
-
-  border-top: 1px solid var(--line);
-}
-
-.noorah-hero__meta div {
-  display: flex;
-  flex-direction: column;
-
-  gap: 8px;
-}
-
-.noorah-hero__meta span {
-  color: var(--soft-grey);
-
-  font-size: 8px;
-
-  letter-spacing: 0.15em;
-}
-
-.noorah-hero__meta strong {
-  font-size: 10px;
-
-  letter-spacing: 0.06em;
-}
-
-.noorah-hero__visual {
+.noorah-hero-content {
   width: 100%;
-
-  min-width: 0;
-
-  background: var(--beige);
-
-  overflow: hidden;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-.noorah-hero__visual img {
-  width: 100%;
-  height: auto;
-
-  object-fit: contain;
-}
-
-.noorah-scroll {
-  position: absolute;
-
-  bottom: 35px;
-  left: 50px;
-
+.noorah-hero-meta {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-
-  gap: 15px;
-
-  color: var(--soft-grey);
-
-  font-size: 8px;
-
-  letter-spacing: 0.15em;
-}
-
-.noorah-scroll__line {
-  width: 45px;
-  height: 1px;
-
-  background: var(--pink);
-}
-
-
-/* =========================================
-   SECTIONS
-========================================= */
-
-.noorah-section {
-  width: 100%;
-
-  padding: 150px 0;
-}
-
-.noorah-beige-section {
-  background: var(--beige);
-}
-
-.noorah-pink-section {
-  background: #e7a0b1;
-}
-
-
-/* =========================================
-   SECTION LABEL
-========================================= */
-
-.noorah-section-label {
-  display: flex;
-  align-items: center;
-
-  gap: 18px;
-
-  width: 100%;
 
   padding-bottom: 20px;
 
   border-bottom: 1px solid var(--line);
 
-  color: var(--soft-grey);
-
+  font-family: Arial, sans-serif;
   font-size: 9px;
   font-weight: 600;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
 
-  letter-spacing: 0.16em;
+  color: rgba(247, 241, 233, 0.55);
 }
 
-.noorah-section-label span:first-child {
-  color: var(--pink);
-}
-
-
-/* =========================================
-   GENERAL HEADINGS
-========================================= */
-
-.noorah-intro__grid,
-.noorah-content-intro,
-.noorah-youtube-heading,
-.noorah-social-intro,
-.noorah-merch-heading {
+.noorah-hero-grid {
   display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.65fr);
 
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.65fr);
+  gap: clamp(45px, 8vw, 130px);
 
-  gap: 80px;
+  align-items: center;
 
-  align-items: end;
-
-  margin-top: 80px;
+  padding: 65px 0 55px;
 }
 
-.noorah-intro__grid h2,
-.noorah-heading h2,
-.noorah-split__content h2,
-.noorah-large-heading h2,
-.noorah-content-intro h2,
-.noorah-youtube-heading h2,
-.noorah-social-intro h2,
-.noorah-merch-heading h2 {
-  max-width: 900px;
+.noorah-hero-copy {
+  max-width: 720px;
+}
 
+.noorah-eyebrow {
+  display: block;
+
+  margin-bottom: 25px;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: #b9a38b;
+}
+
+.noorah-hero-copy h1 {
   margin: 0;
 
-  font-size: clamp(52px, 6.5vw, 100px);
-
-  line-height: 0.92;
-
-  font-weight: 500;
-
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 8.5vw, 132px);
+  font-weight: 400;
+  line-height: 0.86;
   letter-spacing: -0.065em;
 }
 
-.noorah-intro__grid h2 span,
-.noorah-heading h2 span,
-.noorah-split__content h2 span,
-.noorah-large-heading h2 span,
-.noorah-content-intro h2 span,
-.noorah-youtube-heading h2 span,
-.noorah-social-intro h2 span,
-.noorah-merch-heading h2 span {
-  color: var(--soft-grey);
+.noorah-hero-copy h1 em {
+  display: block;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+
+  color: #c9b59f;
 }
 
+.noorah-hero-copy > p {
+  max-width: 480px;
 
-/* =========================================
-   PARAGRAPHS
-========================================= */
+  margin: 42px 0 0;
 
-.noorah-intro__copy,
-.noorah-content-intro p,
-.noorah-youtube-heading p,
-.noorah-social-intro p,
-.noorah-merch-heading p {
-  min-width: 0;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+
+  color: var(--muted);
 }
 
-.noorah-intro__copy p {
-  margin: 0 0 22px;
+.noorah-hero-details {
+  display: flex;
+  gap: 45px;
 
-  color: var(--soft-grey);
+  margin-top: 60px;
+}
 
+.noorah-hero-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.noorah-hero-details span {
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.4);
+}
+
+.noorah-hero-details strong {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+
+  color: #f4ede5;
+}
+
+.noorah-hero-cover {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  min-height: 560px;
+  max-height: 720px;
+
+  overflow: hidden;
+
+  background: #ddd1c3;
+}
+
+.noorah-hero-cover::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    transparent 70%,
+    rgba(23, 19, 15, 0.16)
+  );
+
+  pointer-events: none;
+}
+
+.noorah-hero-cover img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.noorah-hero-cover:hover img {
+  transform: scale(1.025);
+}
+
+.noorah-hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 20px;
+
+  border-top: 1px solid var(--line);
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.45);
+}
+
+.noorah-scroll {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.noorah-scroll i {
+  position: relative;
+
+  display: block;
+
+  width: 32px;
+  height: 1px;
+
+  background: rgba(247, 241, 233, 0.5);
+}
+
+.noorah-scroll i::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  top: -2px;
+
+  width: 5px;
+  height: 5px;
+
+  border-right: 1px solid rgba(247, 241, 233, 0.6);
+  border-bottom: 1px solid rgba(247, 241, 233, 0.6);
+
+  transform: rotate(-45deg);
+}
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.noorah-section {
+  padding: 145px 6vw;
+
+  background: var(--bg);
+}
+
+.noorah-section.noorah-cream {
+  background: var(--cream);
+  color: var(--dark-text);
+}
+
+.noorah-section-label {
+  max-width: 1500px;
+  margin: 0 auto 80px;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid var(--line);
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.45);
+}
+
+.noorah-cream .noorah-section-label {
+  border-color: var(--dark-line);
+  color: rgba(33, 26, 20, 0.45);
+}
+
+.noorah-split-heading {
+  max-width: 1500px;
+  margin: 0 auto 80px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+
+  gap: 70px;
+
+  align-items: start;
+}
+
+.noorah-split-heading h2,
+.noorah-heading h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(52px, 6vw, 94px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.noorah-split-heading h2 em,
+.noorah-heading h2 em {
+  display: block;
+
+  font-style: italic;
+
+  color: #c5ac91;
+}
+
+.noorah-cream .noorah-split-heading h2 em,
+.noorah-cream .noorah-heading h2 em {
+  color: #92745a;
+}
+
+.noorah-split-heading p {
+  max-width: 510px;
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
   font-size: 14px;
-
   line-height: 1.85;
+
+  color: var(--muted);
 }
 
-.noorah-intro__copy p:last-child {
-  margin-bottom: 0;
+.noorah-cream .noorah-split-heading p {
+  color: rgba(33, 26, 20, 0.58);
 }
 
+.noorah-split-heading p + p {
+  margin-top: 20px;
+}
 
-/* =========================================
-   IMAGE BLOCKS
-========================================= */
+.noorah-heading {
+  max-width: 1500px;
+  margin: 0 auto 80px;
+}
 
-.noorah-image {
+/* =========================================================
+   IMAGE SHOWCASE
+========================================================= */
+
+.noorah-showcase {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+}
+
+.noorah-image-frame {
   position: relative;
 
   width: 100%;
 
-  margin-top: 75px;
-
-  background: var(--beige);
-
   overflow: hidden;
+
+  background: #e2d7ca;
 }
 
-.noorah-image img {
+.noorah-image-frame img {
   width: 100%;
   height: auto;
 
-  object-fit: contain;
-}
-
-.noorah-image--wide {
-  min-height: 0;
-}
-
-
-/* =========================================
-   HEADING ONLY SECTION
-========================================= */
-
-.noorah-heading {
-  width: 100%;
-
-  margin-top: 80px;
-}
-
-
-/* =========================================
-   LOGO SYSTEM
-========================================= */
-
-.noorah-split {
-  display: grid;
-
-  grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
-
-  gap: 90px;
-
-  align-items: center;
-
-  margin-top: 80px;
-}
-
-.noorah-split__content {
-  min-width: 0;
-}
-
-.noorah-split__content p {
-  max-width: 380px;
-
-  margin: 35px 0 0;
-
-  color: var(--soft-grey);
-
-  font-size: 14px;
-
-  line-height: 1.85;
-}
-
-.noorah-split .noorah-image {
-  margin-top: 0;
-}
-
-
-/* =========================================
-   TYPOGRAPHY
-========================================= */
-
-.noorah-typography {
-  display: grid;
-
-  grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
-
-  gap: 90px;
-
-  align-items: center;
-
-  margin-top: 80px;
-}
-
-.noorah-typography__content {
-  min-width: 0;
-}
-
-.noorah-typography__content > span {
   display: block;
-
-  margin-bottom: 25px;
-
-  color: var(--pink);
-
-  font-size: 9px;
-  font-weight: 600;
-
-  letter-spacing: 0.16em;
-}
-
-.noorah-typography__content h2 {
-  margin: 0;
-
-  font-size: clamp(55px, 6vw, 90px);
-
-  line-height: 0.9;
-
-  font-weight: 500;
-
-  letter-spacing: -0.06em;
-}
-
-.noorah-typography__content h2 em {
-  color: var(--soft-grey);
-
-  font-style: normal;
-}
-
-.noorah-typography__content p {
-  max-width: 380px;
-
-  margin: 35px 0 0;
-
-  color: var(--soft-grey);
-
-  font-size: 14px;
-
-  line-height: 1.85;
-}
-
-.noorah-typography .noorah-image {
-  margin-top: 0;
-}
-
-
-/* =========================================
-   BRAND IN ACTION
-========================================= */
-
-.noorah-large-heading {
-  width: 100%;
-
-  margin-top: 80px;
-}
-
-
-/* =========================================
-   BRAND PHOTOGRAPHY
-========================================= */
-
-.noorah-photo-grid {
-  display: grid;
-
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-
-  gap: 90px;
-
-  align-items: center;
-
-  margin-top: 80px;
-}
-
-.noorah-photo-grid .noorah-image {
-  margin-top: 0;
-}
-
-.noorah-photo-copy {
-  min-width: 0;
-
-  max-width: 420px;
-}
-
-.noorah-photo-copy > span {
-  display: block;
-
-  margin-bottom: 25px;
-
-  color: var(--pink);
-
-  font-size: 9px;
-  font-weight: 600;
-
-  letter-spacing: 0.16em;
-}
-
-.noorah-photo-copy h2 {
-  margin: 0;
-
-  font-size: clamp(50px, 6vw, 85px);
-
-  line-height: 0.9;
-
-  font-weight: 500;
-
-  letter-spacing: -0.06em;
-}
-
-.noorah-photo-copy h2 em {
-  color: var(--pink);
-
-  font-style: normal;
-}
-
-.noorah-photo-copy p {
-  margin: 35px 0 0;
-
-  color: var(--soft-grey);
-
-  font-size: 14px;
-
-  line-height: 1.85;
-}
-
-
-/* =========================================
-   YOUTUBE
-========================================= */
-
-.noorah-youtube-heading p {
-  margin: 0;
-
-  color: rgba(37, 34, 32, 0.65);
-
-  line-height: 1.85;
-}
-
-.noorah-pink-section .noorah-section-label {
-  border-color: rgba(37, 34, 32, 0.18);
-
-  color: rgba(37, 34, 32, 0.55);
-}
-
-.noorah-pink-section .noorah-section-label span:first-child {
-  color: var(--deep-text);
-}
-
-.noorah-pink-section .noorah-image {
-  background: var(--warm-white);
-}
-
-
-/* =========================================
-   CREATOR QUOTE
-========================================= */
-
-.noorah-quote {
-  width: 100%;
-
-  padding: 140px 0;
-
-  background: var(--pink);
-}
-
-.noorah-quote__container {
-  width: min(1200px, calc(100% - 100px));
-
-  margin: 0 auto;
-}
-
-.noorah-quote__mark {
-  margin-bottom: -70px;
-
-  color: rgba(255, 255, 255, 0.28);
-
-  font-family: Georgia, serif;
-
-  font-size: 180px;
-
-  line-height: 1;
-}
-
-.noorah-quote__image {
-  margin-top: 0;
-
-  background: var(--warm-white);
-}
-
-
-/* =========================================
-   FINAL
-========================================= */
-
-.noorah-final {
-  width: 100%;
-
-  padding: 130px 0;
-
-  background: var(--beige);
-}
-
-.noorah-final__visual {
-  width: 100%;
-
-  background: var(--warm-white);
-
-  overflow: hidden;
-}
-
-.noorah-final__visual img {
-  width: 100%;
-  height: auto;
 
   object-fit: contain;
-}
-
-.noorah-final__content {
-  display: grid;
-
-  grid-template-columns: 0.5fr minmax(0, 1.2fr) 0.6fr;
-
-  gap: 40px;
-
-  align-items: end;
-
-  margin-top: 55px;
-
-  padding-top: 30px;
-
-  border-top: 1px solid var(--line);
-}
-
-.noorah-final__content > span {
-  color: var(--pink);
-
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: 0.15em;
-}
-
-.noorah-final__content h2 {
-  margin: 0;
-
-  font-size: clamp(50px, 6vw, 90px);
-
-  line-height: 0.9;
-
-  font-weight: 500;
-
-  letter-spacing: -0.06em;
-}
-
-.noorah-final__content p {
-  margin: 0;
-
-  color: var(--soft-grey);
-
-  font-size: 12px;
-
-  line-height: 1.7;
-}
-
-
-/* =========================================
-   NEXT PROJECT
-========================================= */
-
-.noorah-next {
-  width: 100%;
-
-  border-top: 1px solid var(--line);
-
-  background: var(--warm-white);
-}
-
-.noorah-next__link {
-  display: block;
-
-  padding: 100px 50px;
-
-  color: var(--deep-text);
-
-  text-decoration: none;
 
   transition:
-    background 0.4s ease,
-    color 0.4s ease;
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.noorah-next__link:hover {
-  background: var(--pink);
-
-  color: var(--warm-white);
+.noorah-showcase:hover .noorah-image-frame img {
+  transform: scale(1.012);
 }
 
-.noorah-next__label {
+.noorah-wide .noorah-image-frame {
+  max-height: none;
+}
+
+.noorah-wide .noorah-image-frame img {
+  width: 100%;
+}
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.noorah-story {
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(195, 155, 112, 0.08),
+      transparent 30%
+    ),
+    var(--bg);
+}
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.noorah-quote {
+  padding: 180px 6vw;
+
+  background: #cdb79f;
+  color: #201812;
+}
+
+.noorah-quote-inner {
+  width: min(1000px, 100%);
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.noorah-quote-inner > span {
   display: block;
 
   margin-bottom: 35px;
 
-  color: var(--soft-grey);
-
+  font-family: Arial, sans-serif;
   font-size: 9px;
   font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 
-  letter-spacing: 0.16em;
+  opacity: 0.5;
 }
 
-.noorah-next__title {
-  display: flex;
+.noorah-quote h2 {
+  margin: 0;
 
-  align-items: center;
-
-  gap: 30px;
-
-  font-size: clamp(70px, 12vw, 180px);
-
-  line-height: 0.8;
-
-  font-weight: 500;
-
-  letter-spacing: -0.08em;
-}
-
-.noorah-next__title span {
-  color: var(--pink);
-
-  font-size: 11px;
-
-  letter-spacing: 0;
-}
-
-.noorah-next__title strong {
-  margin-left: auto;
-
-  color: var(--pink);
-
-  font-size: clamp(50px, 7vw, 100px);
-
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(52px, 7vw, 100px);
   font-weight: 400;
-
-  transition: transform 0.4s ease;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
 }
 
-.noorah-next__link:hover .noorah-next__title strong {
-  color: var(--warm-white);
-
-  transform: translate(8px, -8px);
-}
-
-.noorah-next__category {
+.noorah-quote h2 em {
   display: block;
 
-  margin-top: 35px;
-  margin-left: 45px;
-
-  color: var(--soft-grey);
-
-  font-size: 9px;
-
-  letter-spacing: 0.16em;
+  font-style: italic;
 }
 
+.noorah-quote p {
+  max-width: 500px;
 
-/* =========================================
+  margin: 45px auto 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+
+  opacity: 0.6;
+}
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.noorah-final {
+  position: relative;
+
+  padding: 0;
+
+  background: #17130f;
+}
+
+.noorah-final-image {
+  position: relative;
+
+  min-height: 90vh;
+
+  overflow: hidden;
+}
+
+.noorah-final-image > img {
+  width: 100%;
+  height: 90vh;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 0.92;
+}
+
+.noorah-final-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(23, 19, 15, 0.05),
+      rgba(23, 19, 15, 0.78)
+    );
+}
+
+.noorah-final-content {
+  position: absolute;
+  left: 6vw;
+  right: 6vw;
+  bottom: 75px;
+
+  max-width: 900px;
+}
+
+.noorah-final-content > span {
+  display: block;
+
+  margin-bottom: 25px;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.6);
+}
+
+.noorah-final-content h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 9vw, 135px);
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.065em;
+}
+
+.noorah-final-content h2 em {
+  display: block;
+
+  font-style: italic;
+  color: #d0b99f;
+}
+
+.noorah-final-content p {
+  margin: 35px 0 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.5);
+}
+
+/* =========================================================
+   PROJECT INFO
+========================================================= */
+
+.noorah-project-info {
+  padding: 65px 6vw;
+
+  background: #211b15;
+
+  border-top: 1px solid var(--line);
+}
+
+.noorah-project-info-inner {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 30px;
+}
+
+.noorah-project-info-inner div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.noorah-project-info-inner span {
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.38);
+}
+
+.noorah-project-info-inner strong {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+
+  color: #f5eee6;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.noorah-footer {
+  padding: 35px 6vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #17130f;
+
+  border-top: 1px solid var(--line);
+}
+
+.noorah-footer > div {
+  display: flex;
+  gap: 35px;
+}
+
+.noorah-footer span,
+.noorah-footer a {
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: rgba(247, 241, 233, 0.42);
+}
+
+.noorah-footer a {
+  color: rgba(247, 241, 233, 0.75);
+
+  transition: color 0.3s ease;
+}
+
+.noorah-footer a:hover {
+  color: #fff;
+}
+
+/* =========================================================
    TABLET
-========================================= */
+========================================================= */
 
 @media (max-width: 1000px) {
-  .noorah-section__container,
-  .noorah-hero__container,
-  .noorah-final__container {
-    width: calc(100% - 60px);
-  }
 
-  .noorah-section {
-    padding: 110px 0;
-  }
+  .noorah-hero-grid {
+    grid-template-columns: 1fr 0.8fr;
 
-  .noorah-hero__container {
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
-
-    gap: 50px;
-  }
-
-  .noorah-hero h1 {
-    font-size: clamp(80px, 13vw, 140px);
-  }
-
-  .noorah-intro__grid,
-  .noorah-content-intro,
-  .noorah-youtube-heading,
-  .noorah-social-intro,
-  .noorah-merch-heading {
     gap: 45px;
   }
 
-  .noorah-split,
-  .noorah-typography,
-  .noorah-photo-grid {
-    gap: 50px;
+  .noorah-hero-cover {
+    min-height: 500px;
+  }
+
+  .noorah-split-heading {
+    grid-template-columns: 1fr 0.7fr;
+    gap: 45px;
+  }
+
+  .noorah-project-info-inner {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 35px;
   }
 }
 
-
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
-@media (max-width: 700px) {
-  .noorah-section__container,
-  .noorah-hero__container,
-  .noorah-final__container {
-    width: calc(100% - 32px);
+@media (max-width: 720px) {
+
+  .noorah-intro-inner h2 {
+    font-size: 70px;
   }
 
-  .noorah-section {
-    padding: 80px 0;
+  .noorah-intro-number {
+    font-size: 8px;
+  }
+
+  .noorah-intro-subtitle {
+    font-size: 8px;
+  }
+
+  .noorah-intro-orbit {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .noorah-back {
+    top: 22px;
+    left: 20px;
+
+    font-size: 8px;
   }
 
   /* HERO */
@@ -858,249 +891,209 @@
   .noorah-hero {
     min-height: auto;
 
-    padding: 110px 0 70px;
+    padding: 95px 20px 30px;
   }
 
-  .noorah-hero__container {
-    display: flex;
+  .noorah-hero-meta {
+    gap: 20px;
+    align-items: flex-start;
+  }
 
+  .noorah-hero-meta span:last-child {
+    text-align: right;
+  }
+
+  .noorah-hero-grid {
+    display: flex;
     flex-direction: column;
 
-    gap: 55px;
+    gap: 45px;
+
+    padding: 55px 0 45px;
   }
 
-  .noorah-hero h1 {
-    font-size: clamp(75px, 24vw, 130px);
+  .noorah-hero-copy h1 {
+    font-size: clamp(58px, 18vw, 92px);
   }
 
-  .noorah-hero__content > p {
-    margin-top: 45px;
+  .noorah-hero-copy > p {
+    margin-top: 30px;
+
+    font-size: 13px;
   }
 
-  .noorah-hero__meta {
-    gap: 25px;
+  .noorah-hero-details {
+    gap: 22px;
+    flex-wrap: wrap;
 
     margin-top: 40px;
   }
 
-  .noorah-hero__visual {
+  .noorah-hero-cover {
+    width: min(100%, 430px);
+    min-height: auto;
+    max-height: none;
+
+    align-self: center;
+  }
+
+  .noorah-hero-cover img {
     width: 100%;
-  }
-
-  .noorah-scroll {
-    display: none;
-  }
-
-
-  /* GENERAL HEADINGS */
-
-  .noorah-intro__grid,
-  .noorah-content-intro,
-  .noorah-youtube-heading,
-  .noorah-social-intro,
-  .noorah-merch-heading {
-    display: block;
-
-    margin-top: 55px;
-  }
-
-  .noorah-intro__grid h2,
-  .noorah-heading h2,
-  .noorah-split__content h2,
-  .noorah-large-heading h2,
-  .noorah-content-intro h2,
-  .noorah-youtube-heading h2,
-  .noorah-social-intro h2,
-  .noorah-merch-heading h2 {
-    max-width: 100%;
-
-    font-size: clamp(45px, 13vw, 70px);
-  }
-
-  .noorah-intro__copy,
-  .noorah-content-intro p,
-  .noorah-youtube-heading p,
-  .noorah-social-intro p,
-  .noorah-merch-heading p {
-    margin-top: 30px;
-  }
-
-
-  /* IMAGE */
-
-  .noorah-image {
-    margin-top: 45px;
-  }
-
-  .noorah-image img {
     height: auto;
 
     object-fit: contain;
   }
 
-
-  /* SPLIT */
-
-  .noorah-split {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 35px;
-
-    margin-top: 55px;
+  .noorah-hero-bottom {
+    align-items: flex-start;
+    gap: 25px;
   }
 
-  .noorah-split .noorah-image {
-    margin-top: 0;
+  .noorah-scroll {
+    text-align: right;
   }
 
+  /* SECTIONS */
 
-  /* TYPOGRAPHY */
-
-  .noorah-typography {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 35px;
-
-    margin-top: 55px;
+  .noorah-section {
+    padding: 95px 20px;
   }
 
-  .noorah-typography .noorah-image {
-    margin-top: 0;
+  .noorah-section-label {
+    margin-bottom: 55px;
+
+    font-size: 8px;
   }
 
+  .noorah-split-heading {
+    display: block;
 
-  /* PHOTOGRAPHY */
-
-  .noorah-photo-grid {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 40px;
-
-    margin-top: 55px;
+    margin-bottom: 55px;
   }
 
-  .noorah-photo-grid .noorah-image {
-    margin-top: 0;
+  .noorah-split-heading h2,
+  .noorah-heading h2 {
+    font-size: clamp(48px, 14vw, 70px);
   }
 
-  .noorah-photo-copy {
-    max-width: 100%;
+  .noorah-split-heading p {
+    margin-top: 35px;
+
+    font-size: 13px;
   }
 
-  .noorah-photo-copy h2 {
-    font-size: 55px;
+  .noorah-heading {
+    margin-bottom: 55px;
   }
-
 
   /* QUOTE */
 
   .noorah-quote {
-    padding: 80px 0;
+    padding: 120px 20px;
   }
 
-  .noorah-quote__container {
-    width: calc(100% - 32px);
+  .noorah-quote h2 {
+    font-size: clamp(48px, 14vw, 70px);
   }
-
-  .noorah-quote__mark {
-    margin-bottom: -40px;
-
-    font-size: 130px;
-  }
-
 
   /* FINAL */
 
-  .noorah-final {
-    padding: 80px 0;
+  .noorah-final-image {
+    min-height: 75vh;
   }
 
-  .noorah-final__content {
-    display: block;
-
-    margin-top: 35px;
+  .noorah-final-image > img {
+    height: 75vh;
   }
 
-  .noorah-final__content h2 {
-    margin-top: 25px;
-
-    font-size: 55px;
+  .noorah-final-content {
+    left: 20px;
+    right: 20px;
+    bottom: 45px;
   }
 
-  .noorah-final__content p {
-    margin-top: 25px;
+  .noorah-final-content h2 {
+    font-size: clamp(58px, 17vw, 90px);
   }
 
+  /* INFO */
 
-  /* NEXT */
-
-  .noorah-next__link {
-    padding: 70px 16px;
+  .noorah-project-info {
+    padding: 50px 20px;
   }
 
-  .noorah-next__title {
-    gap: 15px;
-
-    font-size: clamp(55px, 17vw, 100px);
-  }
-
-  .noorah-next__title strong {
-    font-size: 55px;
-  }
-
-  .noorah-next__category {
-    margin-left: 30px;
-  }
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 420px) {
-  .noorah-section__container,
-  .noorah-hero__container,
-  .noorah-final__container {
-    width: calc(100% - 24px);
-  }
-
-  .noorah-hero h1 {
-    font-size: 25vw;
-  }
-
-  .noorah-hero__meta {
-    display: grid;
-
+  .noorah-project-info-inner {
     grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
+    gap: 35px 20px;
   }
 
-  .noorah-next__title {
-    font-size: 18vw;
+  /* FOOTER */
+
+  .noorah-footer {
+    padding: 30px 20px;
+
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .noorah-footer > div {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .noorah-footer a {
+    white-space: nowrap;
   }
 }
 
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
-/* =========================================
-   ACCESSIBILITY
-========================================= */
+@media (max-width: 450px) {
+
+  .noorah-intro-inner h2 {
+    font-size: 58px;
+  }
+
+  .noorah-intro-line {
+    margin: 25px 0 17px;
+  }
+
+  .noorah-hero-copy h1 {
+    font-size: 58px;
+  }
+
+  .noorah-hero-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .noorah-hero-details div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .noorah-project-info-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .noorah-final-content h2 {
+    font-size: 58px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .noorah-page *,
-  .noorah-page *::before,
-  .noorah-page *::after {
-    animation-duration: 0.01ms !important;
 
-    animation-iteration-count: 1 !important;
-
+  .noorah-case *,
+  .noorah-case *::before,
+  .noorah-case *::after {
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

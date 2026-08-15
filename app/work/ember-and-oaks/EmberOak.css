@@ -1,20 +1,26 @@
 /* =========================================
-   NOVA CASE STUDY
+   EMBER & OAK CASE STUDY
    WA CREATIVE SOLUTIONS
 ========================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap");
 
-.nova-case {
-  --nova-bg: #06090d;
-  --nova-surface: #0b1118;
-  --nova-surface-2: #101923;
-  --nova-line: rgba(224, 239, 255, 0.12);
-  --nova-line-soft: rgba(224, 239, 255, 0.07);
-  --nova-text: #edf7ff;
-  --nova-muted: #8b9aa8;
-  --nova-blue: #49a8ff;
-  --nova-blue-soft: #83c7ff;
+.ember-case {
+  --ember-bg: #100b08;
+  --ember-bg-deep: #0b0705;
+
+  --ember-surface: #18110d;
+  --ember-surface-2: #211713;
+
+  --ember-line: rgba(245, 229, 207, 0.13);
+  --ember-line-soft: rgba(245, 229, 207, 0.07);
+
+  --ember-text: #f5eadc;
+  --ember-muted: #9c8979;
+  --ember-muted-2: #6f5e51;
+
+  --ember-accent: #c79561;
+  --ember-accent-soft: #dfb88d;
 
   position: relative;
 
@@ -23,23 +29,24 @@
 
   overflow: hidden;
 
-  background: var(--nova-bg);
-  color: var(--nova-text);
+  background: var(--ember-bg);
+  color: var(--ember-text);
 
   font-family: "Manrope", sans-serif;
 }
 
-.nova-case *,
-.nova-case *::before,
-.nova-case *::after {
+.ember-case *,
+.ember-case *::before,
+.ember-case *::after {
   box-sizing: border-box;
 }
 
-.nova-case img {
+.ember-case img {
+  display: block;
   max-width: 100%;
 }
 
-.nova-case a {
+.ember-case a {
   color: inherit;
 }
 
@@ -47,7 +54,7 @@
    OPENING INTRO
 ========================================= */
 
-.nova-intro-loader {
+.ember-intro-loader {
   position: fixed;
   inset: 0;
 
@@ -57,25 +64,25 @@
   align-items: center;
   justify-content: center;
 
+  overflow: hidden;
+
   background:
     radial-gradient(
       circle at center,
-      rgba(30, 105, 175, 0.08),
-      transparent 42%
+      rgba(170, 105, 52, 0.1),
+      transparent 43%
     ),
-    #05080c;
-
-  overflow: hidden;
+    var(--ember-bg-deep);
 
   pointer-events: auto;
 }
 
-.nova-intro-inner {
+.ember-intro-inner {
   position: relative;
 
   z-index: 3;
 
-  width: min(560px, calc(100% - 48px));
+  width: min(620px, calc(100% - 48px));
 
   display: flex;
   flex-direction: column;
@@ -84,12 +91,12 @@
   text-align: center;
 }
 
-.nova-intro-number {
+.ember-intro-number {
   display: block;
 
-  margin-bottom: 24px;
+  margin-bottom: 25px;
 
-  color: #6f8190;
+  color: #806f61;
 
   font-family: "DM Mono", monospace;
 
@@ -98,42 +105,42 @@
   letter-spacing: 0.22em;
 }
 
-.nova-intro-inner h2 {
+.ember-intro-inner h2 {
   margin: 0;
 
-  color: #edf7ff;
+  color: var(--ember-text);
 
   font-family: "Manrope", sans-serif;
 
-  font-size: clamp(80px, 12vw, 155px);
+  font-size: clamp(65px, 11vw, 145px);
 
   font-weight: 500;
 
-  line-height: 0.8;
+  line-height: 0.78;
 
-  letter-spacing: -0.065em;
+  letter-spacing: -0.075em;
 }
 
-.nova-intro-line {
+.ember-intro-line {
   width: min(280px, 65%);
 
   height: 1px;
 
-  margin: 32px auto 22px;
+  margin: 34px auto 22px;
 
-  background: var(--nova-blue);
+  background: var(--ember-accent);
 
   transform-origin: center;
 
   box-shadow:
-    0 0 12px rgba(73, 168, 255, 0.45),
-    0 0 30px rgba(73, 168, 255, 0.18);
+    0 0 12px rgba(199, 149, 97, 0.5),
+    0 0 35px rgba(199, 149, 97, 0.18);
 }
 
-.nova-intro-subtitle {
+.ember-intro-subtitle {
   display: block;
 
-  color: var(--nova-blue-soft);
+  color: var(--ember-accent-soft);
 
   font-family: "DM Mono", monospace;
 
@@ -148,7 +155,7 @@
    INTRO PROGRESS
 ========================================= */
 
-.nova-intro-progress {
+.ember-intro-progress {
   position: absolute;
 
   left: 0;
@@ -157,20 +164,20 @@
   width: 100%;
   height: 2px;
 
-  background: var(--nova-blue);
+  background: var(--ember-accent);
 
   transform-origin: left;
 
   box-shadow:
-    0 0 12px rgba(73, 168, 255, 0.6),
-    0 0 30px rgba(73, 168, 255, 0.25);
+    0 0 12px rgba(199, 149, 97, 0.6),
+    0 0 30px rgba(199, 149, 97, 0.22);
 }
 
 /* =========================================
    INTRO ORBIT
 ========================================= */
 
-.nova-intro-orbit {
+.ember-intro-orbit {
   position: absolute;
 
   top: 50%;
@@ -181,19 +188,19 @@
 
   transform: translate(-50%, -50%);
 
-  border: 1px solid rgba(73, 168, 255, 0.08);
+  border: 1px solid rgba(199, 149, 97, 0.08);
 
   border-radius: 50%;
 
   box-shadow:
-    0 0 80px rgba(73, 168, 255, 0.04),
-    inset 0 0 80px rgba(73, 168, 255, 0.025);
+    0 0 90px rgba(199, 149, 97, 0.035),
+    inset 0 0 90px rgba(199, 149, 97, 0.025);
 
   pointer-events: none;
 }
 
-.nova-intro-orbit::before,
-.nova-intro-orbit::after {
+.ember-intro-orbit::before,
+.ember-intro-orbit::after {
   content: "";
 
   position: absolute;
@@ -206,22 +213,22 @@
   transform: translate(-50%, -50%);
 }
 
-.nova-intro-orbit::before {
+.ember-intro-orbit::before {
   width: 72%;
   height: 72%;
 
-  border: 1px solid rgba(73, 168, 255, 0.05);
+  border: 1px solid rgba(199, 149, 97, 0.05);
 }
 
-.nova-intro-orbit::after {
+.ember-intro-orbit::after {
   width: 4px;
   height: 4px;
 
-  background: var(--nova-blue);
+  background: var(--ember-accent);
 
   box-shadow:
-    0 0 15px rgba(73, 168, 255, 0.8),
-    0 0 35px rgba(73, 168, 255, 0.35);
+    0 0 15px rgba(199, 149, 97, 0.8),
+    0 0 35px rgba(199, 149, 97, 0.3);
 
   transform:
     translate(-50%, -50%)
@@ -232,7 +239,7 @@
    BACK TO WORK
 ========================================= */
 
-.nova-back {
+.ember-back {
   position: fixed;
 
   top: 25px;
@@ -242,15 +249,16 @@
 
   display: inline-flex;
   align-items: center;
+
   gap: 10px;
 
   padding: 10px 14px;
 
-  border: 1px solid rgba(237, 247, 255, 0.13);
+  border: 1px solid rgba(245, 234, 220, 0.13);
 
-  background: rgba(6, 9, 13, 0.7);
+  background: rgba(16, 11, 8, 0.7);
 
-  color: rgba(237, 247, 255, 0.72);
+  color: rgba(245, 234, 220, 0.72);
 
   text-decoration: none;
 
@@ -268,21 +276,21 @@
     background 0.3s ease;
 }
 
-.nova-back:hover {
-  color: var(--nova-blue-soft);
+.ember-back:hover {
+  color: var(--ember-accent-soft);
 
-  border-color: rgba(73, 168, 255, 0.5);
+  border-color: rgba(199, 149, 97, 0.5);
 
-  background: rgba(10, 18, 27, 0.9);
+  background: rgba(24, 17, 13, 0.92);
 }
 
-.nova-back-arrow {
+.ember-back-arrow {
   font-size: 14px;
 
   transition: transform 0.3s ease;
 }
 
-.nova-back:hover .nova-back-arrow {
+.ember-back:hover .ember-back-arrow {
   transform: translateX(-3px);
 }
 
@@ -290,7 +298,7 @@
    HERO
 ========================================= */
 
-.nova-hero {
+.ember-hero {
   position: relative;
 
   min-height: 100vh;
@@ -300,37 +308,35 @@
 
   overflow: hidden;
 
-  background: #05080c;
+  background: var(--ember-bg-deep);
 }
 
-.nova-hero-glow {
+.ember-hero-glow {
   position: absolute;
 
-  top: -30%;
+  top: -25%;
   right: -10%;
 
-  width: 650px;
-  height: 650px;
+  width: 680px;
+  height: 680px;
 
   border-radius: 50%;
 
-  background: rgba(47, 144, 255, 0.12);
+  background: rgba(154, 91, 43, 0.13);
 
-  filter: blur(100px);
+  filter: blur(110px);
 
   pointer-events: none;
 }
 
-.nova-hero-image {
+.ember-hero-image {
   position: absolute;
   inset: 0;
 
   overflow: hidden;
 }
 
-.nova-hero-image img {
-  display: block;
-
+.ember-hero-image img {
   width: 100%;
   height: 100%;
 
@@ -338,23 +344,25 @@
 
   object-position: center;
 
-  filter: saturate(0.82) contrast(1.04);
+  filter:
+    saturate(0.82)
+    contrast(1.04);
 }
 
-.nova-hero-overlay {
+.ember-hero-overlay {
   position: absolute;
   inset: 0;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(3, 6, 10, 0.1),
-      rgba(3, 6, 10, 0.25) 35%,
-      rgba(3, 6, 10, 0.9) 100%
+      rgba(12, 7, 4, 0.08),
+      rgba(12, 7, 4, 0.25) 35%,
+      rgba(12, 7, 4, 0.92) 100%
     );
 }
 
-.nova-hero-content {
+.ember-hero-content {
   position: relative;
 
   z-index: 2;
@@ -366,16 +374,16 @@
   padding: 150px 0 42px;
 }
 
-.nova-hero-meta {
+.ember-hero-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding-bottom: 20px;
 
-  border-bottom: 1px solid rgba(237, 247, 255, 0.18);
+  border-bottom: 1px solid rgba(245, 234, 220, 0.18);
 
-  color: rgba(237, 247, 255, 0.7);
+  color: rgba(245, 234, 220, 0.68);
 
   font-family: "DM Mono", monospace;
 
@@ -384,18 +392,18 @@
   letter-spacing: 0.15em;
 }
 
-.nova-hero-meta span:last-child {
-  color: var(--nova-blue-soft);
+.ember-hero-meta span:last-child {
+  color: var(--ember-accent-soft);
 }
 
-.nova-hero-title {
+.ember-hero-title {
   padding: 85px 0 120px;
 }
 
-.nova-hero-title p {
+.ember-hero-title p {
   margin: 0 0 18px;
 
-  color: var(--nova-blue-soft);
+  color: var(--ember-accent-soft);
 
   font-family: "DM Mono", monospace;
 
@@ -404,12 +412,12 @@
   letter-spacing: 0.3em;
 }
 
-.nova-hero-title h1 {
+.ember-hero-title h1 {
   margin: 0;
 
-  max-width: 900px;
+  max-width: 1000px;
 
-  color: var(--nova-text);
+  color: var(--ember-text);
 
   font-size: clamp(80px, 13vw, 180px);
 
@@ -420,14 +428,14 @@
   letter-spacing: -0.085em;
 }
 
-.nova-hero-title h1 em {
+.ember-hero-title h1 em {
   display: block;
 
   margin-left: 0.7em;
 
   color: transparent;
 
-  -webkit-text-stroke: 1px var(--nova-text);
+  -webkit-text-stroke: 1px var(--ember-text);
 
   font-style: italic;
 
@@ -436,18 +444,18 @@
     -webkit-text-stroke-color 0.4s ease;
 }
 
-.nova-hero-title h1:hover em {
-  color: var(--nova-blue);
+.ember-hero-title h1:hover em {
+  color: var(--ember-accent);
 
-  -webkit-text-stroke-color: var(--nova-blue);
+  -webkit-text-stroke-color: var(--ember-accent);
 }
 
-.nova-hero-bottom {
+.ember-hero-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  color: rgba(237, 247, 255, 0.45);
+  color: rgba(245, 234, 220, 0.45);
 
   font-family: "DM Mono", monospace;
 
@@ -456,24 +464,25 @@
   letter-spacing: 0.16em;
 }
 
-.nova-scroll {
+.ember-scroll {
   display: inline-flex;
   align-items: center;
+
   gap: 15px;
 }
 
-.nova-scroll i {
+.ember-scroll i {
   display: block;
 
   width: 42px;
   height: 1px;
 
-  background: var(--nova-blue);
+  background: var(--ember-accent);
 
-  animation: novaLine 1.8s ease-in-out infinite;
+  animation: emberLine 1.8s ease-in-out infinite;
 }
 
-@keyframes novaLine {
+@keyframes emberLine {
   0%,
   100% {
     transform: scaleX(0.45);
@@ -492,7 +501,7 @@
    GENERAL SECTION
 ========================================= */
 
-.nova-section {
+.ember-section {
   position: relative;
 
   width: min(1400px, calc(100% - 100px));
@@ -502,7 +511,7 @@
   padding: 140px 0;
 }
 
-.nova-section::before {
+.ember-section::before {
   content: "";
 
   position: absolute;
@@ -513,17 +522,18 @@
   width: 100%;
   height: 1px;
 
-  background: var(--nova-line);
+  background: var(--ember-line);
 }
 
-.nova-section-label {
+.ember-section-label {
   display: flex;
   align-items: center;
+
   gap: 18px;
 
   margin-bottom: 70px;
 
-  color: #6f7f8d;
+  color: var(--ember-muted-2);
 
   font-family: "DM Mono", monospace;
 
@@ -532,17 +542,17 @@
   letter-spacing: 0.16em;
 }
 
-.nova-section-label span:first-child {
-  color: var(--nova-blue);
+.ember-section-label span:first-child {
+  color: var(--ember-accent);
 
   font-size: 9px;
 }
 
 /* =========================================
-   INTRO SECTION
+   INTRO
 ========================================= */
 
-.nova-intro-grid {
+.ember-intro-grid {
   display: grid;
 
   grid-template-columns: 1.15fr 0.85fr;
@@ -552,14 +562,13 @@
   align-items: start;
 }
 
-.nova-intro-heading h2,
-.nova-split-heading h2,
-.nova-product-intro h2,
-.nova-detail-grid h2,
-.nova-mobile-heading h2 {
+.ember-intro-heading h2,
+.ember-split-heading h2,
+.ember-origins-heading h2,
+.ember-digital-intro h2 {
   margin: 0;
 
-  color: var(--nova-text);
+  color: var(--ember-text);
 
   font-size: clamp(58px, 6.7vw, 100px);
 
@@ -570,34 +579,32 @@
   letter-spacing: -0.075em;
 }
 
-.nova-intro-heading h2 em,
-.nova-split-heading h2 em,
-.nova-product-intro h2 em,
-.nova-detail-grid h2 em,
-.nova-mobile-heading h2 em {
+.ember-intro-heading h2 em,
+.ember-split-heading h2 em,
+.ember-origins-heading h2 em,
+.ember-digital-intro h2 em {
   display: block;
 
   margin-left: 0.5em;
 
-  color: var(--nova-blue-soft);
+  color: var(--ember-accent-soft);
 
   font-style: italic;
 }
 
-.nova-intro-copy {
+.ember-intro-copy {
   max-width: 460px;
 
   padding-top: 8px;
 }
 
-.nova-intro-copy > p,
-.nova-split-heading > p,
-.nova-product-intro > p,
-.nova-detail-grid > div:last-child p,
-.nova-mobile-heading > p {
+.ember-intro-copy > p,
+.ember-split-heading > p,
+.ember-origins-heading > p,
+.ember-digital-intro > p {
   margin: 0 0 22px;
 
-  color: var(--nova-muted);
+  color: var(--ember-muted);
 
   font-size: 13px;
 
@@ -606,7 +613,7 @@
   letter-spacing: 0.01em;
 }
 
-.nova-intro-details {
+.ember-intro-details {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
@@ -617,10 +624,10 @@
 
   padding-top: 22px;
 
-  border-top: 1px solid var(--nova-line);
+  border-top: 1px solid var(--ember-line);
 }
 
-.nova-intro-details div {
+.ember-intro-details div {
   display: flex;
 
   flex-direction: column;
@@ -628,8 +635,8 @@
   gap: 8px;
 }
 
-.nova-intro-details span {
-  color: #61707c;
+.ember-intro-details span {
+  color: var(--ember-muted-2);
 
   font-family: "DM Mono", monospace;
 
@@ -638,8 +645,8 @@
   letter-spacing: 0.14em;
 }
 
-.nova-intro-details strong {
-  color: var(--nova-text);
+.ember-intro-details strong {
+  color: var(--ember-text);
 
   font-size: 9px;
 
@@ -649,10 +656,10 @@
 }
 
 /* =========================================
-   SPLIT HEADINGS
+   SPLIT HEADING
 ========================================= */
 
-.nova-split-heading {
+.ember-split-heading {
   display: grid;
 
   grid-template-columns: 1fr 0.55fr;
@@ -664,8 +671,8 @@
   margin-bottom: 65px;
 }
 
-.nova-split-heading > p {
-  max-width: 400px;
+.ember-split-heading > p {
+  max-width: 410px;
 
   margin: 0;
 }
@@ -674,67 +681,68 @@
    SHOWCASE
 ========================================= */
 
-.nova-showcase {
+.ember-showcase {
   width: 100%;
 
   margin: 0 auto;
 }
 
-.nova-showcase img {
-  display: block;
+.ember-showcase-image {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid var(--ember-line);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34, 24, 18, 0.96),
+      rgba(12, 8, 6, 0.98)
+    );
+}
+
+.ember-showcase-image::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  border: 1px solid rgba(245, 229, 207, 0.035);
+}
+
+.ember-showcase-image img {
+  position: relative;
 
   width: 100%;
   height: auto;
 
   object-fit: contain;
 
-  background: var(--nova-surface);
+  transition:
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/*
-   DECENT IMAGE SIZING
-   Images won't become unnecessarily huge.
-*/
-
-.nova-showcase-identity {
-  width: min(1120px, 100%);
-
-  margin-left: auto;
-  margin-right: auto;
+.ember-showcase:hover .ember-showcase-image img {
+  transform: scale(1.008);
 }
 
-.nova-showcase-identity img {
-  max-height: 720px;
-
-  object-fit: contain;
-}
-
-.nova-showcase-interface {
-  width: min(1180px, 100%);
-
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.nova-showcase-interface img {
-  max-height: 760px;
-
-  object-fit: contain;
-}
-
-.nova-showcase figcaption {
+.ember-showcase figcaption {
   display: flex;
 
   align-items: center;
   justify-content: space-between;
 
-  width: min(1180px, 100%);
-
-  margin: 0 auto;
+  width: 100%;
 
   padding-top: 15px;
 
-  color: #657581;
+  color: var(--ember-muted-2);
 
   font-family: "DM Mono", monospace;
 
@@ -743,19 +751,125 @@
   letter-spacing: 0.14em;
 }
 
-.nova-showcase figcaption span:first-child {
-  color: var(--nova-blue);
+.ember-showcase figcaption span:first-child {
+  color: var(--ember-accent);
 }
 
 /* =========================================
-   PRODUCT
+   IDENTITY SIZING
 ========================================= */
 
-.nova-product {
-  padding-top: 140px;
+.ember-showcase-brand {
+  width: min(1180px, 100%);
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.nova-product-intro {
+.ember-showcase-identity {
+  width: min(1120px, 100%);
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ember-showcase-application {
+  width: min(1180px, 100%);
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ember-showcase-cafe {
+  width: min(1200px, 100%);
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   VISUAL SYSTEM
+========================================= */
+
+.ember-visual-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 55px;
+
+  align-items: start;
+}
+
+.ember-small-showcase {
+  width: 100%;
+}
+
+.ember-small-showcase .ember-showcase-image {
+  background: var(--ember-surface);
+}
+
+/* =========================================
+   ORIGINS
+========================================= */
+
+.ember-origins-heading {
+  display: grid;
+
+  grid-template-columns: 1fr 0.55fr;
+
+  gap: 90px;
+
+  align-items: end;
+
+  margin-bottom: 70px;
+}
+
+.ember-origins-heading > p {
+  max-width: 410px;
+
+  margin: 0;
+}
+
+.ember-origin-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.ember-origin-grid .ember-showcase-image {
+  aspect-ratio: 0.78;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(199, 149, 97, 0.08),
+      transparent 65%
+    );
+}
+
+.ember-origin-grid .ember-showcase-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+/* =========================================
+   DIGITAL EXPERIENCE
+========================================= */
+
+.ember-digital {
+  padding-top: 150px;
+}
+
+.ember-digital-intro {
   display: grid;
 
   grid-template-columns: 1fr 0.55fr;
@@ -767,46 +881,46 @@
   margin-bottom: 75px;
 }
 
-.nova-product-intro p {
-  max-width: 410px;
+.ember-digital-intro > p {
+  max-width: 420px;
 
   margin: 0;
 }
 
 /* =========================================
-   INTERFACE SCREENS
+   WEBSITE SCREENS
 ========================================= */
 
-.nova-screen {
+.ember-screen {
   width: min(1180px, 100%);
 
-  margin: 0 auto 90px;
+  margin: 0 auto 95px;
 }
 
-.nova-screen:last-child {
+.ember-screen:last-child {
   margin-bottom: 0;
 }
 
-.nova-screen-image {
+.ember-screen-image {
   position: relative;
 
   width: 100%;
 
   padding: 20px;
 
-  border: 1px solid var(--nova-line);
+  border: 1px solid var(--ember-line);
 
   background:
     linear-gradient(
       145deg,
-      rgba(16, 25, 35, 0.95),
-      rgba(7, 12, 18, 0.95)
+      rgba(30, 21, 16, 0.96),
+      rgba(9, 6, 4, 0.98)
     );
 
   overflow: hidden;
 }
 
-.nova-screen-image::before {
+.ember-screen-image::before {
   content: "";
 
   position: absolute;
@@ -814,44 +928,42 @@
   top: -120px;
   right: 5%;
 
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
 
   border-radius: 50%;
 
-  background: rgba(73, 168, 255, 0.08);
+  background: rgba(199, 149, 97, 0.08);
 
-  filter: blur(70px);
+  filter: blur(75px);
 
   pointer-events: none;
 }
 
-.nova-screen-image img {
+.ember-screen-image img {
   position: relative;
 
   z-index: 1;
-
-  display: block;
 
   width: 100%;
   height: auto;
 
   object-fit: contain;
 
-  border: 1px solid rgba(237, 247, 255, 0.08);
+  border: 1px solid rgba(245, 234, 220, 0.08);
 
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.35);
+    0 35px 90px rgba(0, 0, 0, 0.42);
 
   transition:
     transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.nova-screen:hover .nova-screen-image img {
+.ember-screen:hover .ember-screen-image img {
   transform: scale(1.008);
 }
 
-.nova-screen figcaption {
+.ember-screen figcaption {
   display: grid;
 
   grid-template-columns: 0.8fr 1fr;
@@ -861,7 +973,7 @@
   padding-top: 22px;
 }
 
-.nova-screen figcaption > div {
+.ember-screen figcaption > div {
   display: flex;
 
   align-items: center;
@@ -869,8 +981,8 @@
   gap: 15px;
 }
 
-.nova-screen figcaption span {
-  color: var(--nova-blue);
+.ember-screen figcaption span {
+  color: var(--ember-accent);
 
   font-family: "DM Mono", monospace;
 
@@ -879,8 +991,8 @@
   letter-spacing: 0.14em;
 }
 
-.nova-screen figcaption strong {
-  color: var(--nova-text);
+.ember-screen figcaption strong {
+  color: var(--ember-text);
 
   font-size: 11px;
 
@@ -889,12 +1001,12 @@
   letter-spacing: 0.1em;
 }
 
-.nova-screen figcaption p {
+.ember-screen figcaption p {
   max-width: 420px;
 
   margin: 0;
 
-  color: var(--nova-muted);
+  color: var(--ember-muted);
 
   font-size: 11px;
 
@@ -902,177 +1014,60 @@
 }
 
 /* =========================================
-   ANALYTICS
-========================================= */
-
-.nova-analytics {
-  padding-top: 140px;
-}
-
-/* =========================================
-   DETAIL
-========================================= */
-
-.nova-detail-grid {
-  display: grid;
-
-  grid-template-columns: 1fr 0.6fr;
-
-  gap: 90px;
-
-  align-items: end;
-
-  margin-bottom: 65px;
-}
-
-.nova-detail-grid > div:last-child {
-  max-width: 410px;
-}
-
-.nova-detail-grid > div:last-child p {
-  margin-bottom: 0;
-}
-
-/* =========================================
-   MOBILE EXPERIENCE
-========================================= */
-
-.nova-mobile-heading {
-  display: grid;
-
-  grid-template-columns: 1fr 0.55fr;
-
-  gap: 90px;
-
-  align-items: end;
-
-  margin-bottom: 65px;
-}
-
-.nova-mobile-heading > p {
-  max-width: 410px;
-
-  margin: 0;
-}
-
-.nova-mobile-showcase {
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  margin: 0 auto;
-}
-
-.nova-mobile-image {
-  position: relative;
-
-  width: min(620px, 100%);
-
-  padding: 24px;
-
-  border: 1px solid var(--nova-line);
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(73, 168, 255, 0.08),
-      transparent 60%
-    );
-
-  overflow: hidden;
-}
-
-.nova-mobile-image img {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  object-fit: contain;
-
-  filter: saturate(0.95);
-}
-
-.nova-mobile-showcase figcaption {
-  width: min(620px, 100%);
-
-  display: flex;
-
-  justify-content: space-between;
-
-  padding-top: 15px;
-
-  color: #647581;
-
-  font-family: "DM Mono", monospace;
-
-  font-size: 7px;
-
-  letter-spacing: 0.14em;
-}
-
-.nova-mobile-showcase figcaption span:first-child {
-  color: var(--nova-blue);
-}
-
-/* =========================================
    FINAL SHOWCASE
 ========================================= */
 
-.nova-final {
+.ember-final {
   position: relative;
 
   width: 100%;
 
   padding: 70px 0 0;
 
-  background: var(--nova-bg);
+  background: var(--ember-bg);
 
   overflow: hidden;
 }
 
-.nova-final-image {
+.ember-final-image {
   position: relative;
 
   width: 100%;
 
-  min-height: 680px;
+  min-height: 700px;
 
   overflow: hidden;
 }
 
-.nova-final-image img {
-  display: block;
-
+.ember-final-image img {
   width: 100%;
   height: 100%;
 
-  min-height: 680px;
+  min-height: 700px;
 
   object-fit: cover;
 
   object-position: center;
 
-  filter: saturate(0.85) contrast(1.04);
+  filter:
+    saturate(0.82)
+    contrast(1.04);
 }
 
-.nova-final-overlay {
+.ember-final-overlay {
   position: absolute;
-
   inset: 0;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(4, 8, 13, 0.05),
-      rgba(4, 8, 13, 0.15) 40%,
-      rgba(4, 8, 13, 0.9)
+      rgba(11, 7, 4, 0.04),
+      rgba(11, 7, 4, 0.18) 40%,
+      rgba(11, 7, 4, 0.93)
     );
 }
 
-.nova-final-content {
+.ember-final-content {
   position: absolute;
 
   left: 6%;
@@ -1082,12 +1077,12 @@
   z-index: 2;
 }
 
-.nova-final-content > span {
+.ember-final-content > span {
   display: block;
 
   margin-bottom: 20px;
 
-  color: var(--nova-blue-soft);
+  color: var(--ember-accent-soft);
 
   font-family: "DM Mono", monospace;
 
@@ -1096,12 +1091,12 @@
   letter-spacing: 0.2em;
 }
 
-.nova-final-content h2 {
-  max-width: 900px;
+.ember-final-content h2 {
+  max-width: 1050px;
 
   margin: 0;
 
-  color: var(--nova-text);
+  color: var(--ember-text);
 
   font-size: clamp(65px, 9vw, 140px);
 
@@ -1112,20 +1107,20 @@
   letter-spacing: -0.075em;
 }
 
-.nova-final-content h2 em {
+.ember-final-content h2 em {
   display: block;
 
   margin-left: 0.55em;
 
-  color: var(--nova-blue-soft);
+  color: var(--ember-accent-soft);
 
   font-style: italic;
 }
 
-.nova-final-content p {
+.ember-final-content p {
   margin: 32px 0 0;
 
-  color: rgba(237, 247, 255, 0.55);
+  color: rgba(245, 234, 220, 0.55);
 
   font-family: "DM Mono", monospace;
 
@@ -1138,17 +1133,17 @@
    PROJECT INFO
 ========================================= */
 
-.nova-project-info {
+.ember-project-info {
   width: 100%;
 
   padding: 55px 6%;
 
-  border-top: 1px solid var(--nova-line);
+  border-top: 1px solid var(--ember-line);
 
-  background: #05080c;
+  background: var(--ember-bg-deep);
 }
 
-.nova-project-info-inner {
+.ember-project-info-inner {
   width: min(1400px, 100%);
 
   margin: 0 auto;
@@ -1160,7 +1155,7 @@
   gap: 30px;
 }
 
-.nova-project-info-inner div {
+.ember-project-info-inner div {
   display: flex;
 
   flex-direction: column;
@@ -1168,8 +1163,8 @@
   gap: 10px;
 }
 
-.nova-project-info-inner span {
-  color: #566672;
+.ember-project-info-inner span {
+  color: var(--ember-muted-2);
 
   font-family: "DM Mono", monospace;
 
@@ -1178,8 +1173,8 @@
   letter-spacing: 0.15em;
 }
 
-.nova-project-info-inner strong {
-  color: var(--nova-text);
+.ember-project-info-inner strong {
+  color: var(--ember-text);
 
   font-size: 10px;
 
@@ -1192,7 +1187,7 @@
    FOOTER
 ========================================= */
 
-.nova-footer {
+.ember-footer {
   width: min(1400px, calc(100% - 100px));
 
   margin: 0 auto;
@@ -1202,12 +1197,11 @@
   display: flex;
 
   align-items: center;
-
   justify-content: space-between;
 
-  border-top: 1px solid var(--nova-line);
+  border-top: 1px solid var(--ember-line);
 
-  color: #64737f;
+  color: var(--ember-muted-2);
 
   font-family: "DM Mono", monospace;
 
@@ -1216,22 +1210,22 @@
   letter-spacing: 0.14em;
 }
 
-.nova-footer > div {
+.ember-footer > div {
   display: flex;
 
   gap: 35px;
 }
 
-.nova-footer a {
-  color: var(--nova-text);
+.ember-footer a {
+  color: var(--ember-text);
 
   text-decoration: none;
 
   transition: color 0.3s ease;
 }
 
-.nova-footer a:hover {
-  color: var(--nova-blue);
+.ember-footer a:hover {
+  color: var(--ember-accent);
 }
 
 /* =========================================
@@ -1239,38 +1233,32 @@
 ========================================= */
 
 @media (max-width: 1100px) {
-  .nova-hero-content,
-  .nova-section,
-  .nova-footer {
+  .ember-hero-content,
+  .ember-section,
+  .ember-footer {
     width: min(1000px, calc(100% - 60px));
   }
 
-  .nova-intro-grid,
-  .nova-split-heading,
-  .nova-product-intro,
-  .nova-detail-grid,
-  .nova-mobile-heading {
+  .ember-intro-grid,
+  .ember-split-heading,
+  .ember-origins-heading,
+  .ember-digital-intro {
     gap: 55px;
   }
 
-  .nova-hero-title {
+  .ember-hero-title {
     padding: 75px 0 100px;
   }
 
-  .nova-section {
+  .ember-section {
     padding: 115px 0;
   }
 
-  .nova-showcase-identity {
-    width: min(950px, 100%);
-  }
-
-  .nova-showcase-interface,
-  .nova-screen {
+  .ember-screen {
     width: min(1000px, 100%);
   }
 
-  .nova-screen {
+  .ember-screen {
     margin-bottom: 75px;
   }
 }
@@ -1280,22 +1268,22 @@
 ========================================= */
 
 @media (max-width: 800px) {
-  .nova-back {
+  .ember-back {
     top: 18px;
     left: 18px;
   }
 
-  .nova-hero {
+  .ember-hero {
     min-height: 800px;
   }
 
-  .nova-hero-content,
-  .nova-section,
-  .nova-footer {
+  .ember-hero-content,
+  .ember-section,
+  .ember-footer {
     width: calc(100% - 44px);
   }
 
-  .nova-hero-meta {
+  .ember-hero-meta {
     flex-direction: column;
 
     align-items: flex-start;
@@ -1303,60 +1291,72 @@
     gap: 10px;
   }
 
-  .nova-intro-grid,
-  .nova-split-heading,
-  .nova-product-intro,
-  .nova-detail-grid,
-  .nova-mobile-heading {
+  .ember-intro-grid,
+  .ember-split-heading,
+  .ember-origins-heading,
+  .ember-digital-intro {
     grid-template-columns: 1fr;
 
     gap: 35px;
   }
 
-  .nova-intro-copy,
-  .nova-split-heading > p,
-  .nova-product-intro p,
-  .nova-detail-grid > div:last-child,
-  .nova-mobile-heading > p {
+  .ember-intro-copy,
+  .ember-split-heading > p,
+  .ember-origins-heading > p,
+  .ember-digital-intro > p {
     max-width: 560px;
   }
 
-  .nova-section {
+  .ember-section {
     padding: 95px 0;
   }
 
-  .nova-section-label {
+  .ember-section-label {
     margin-bottom: 50px;
   }
 
-  .nova-product-intro {
+  .ember-visual-grid {
+    gap: 35px;
+  }
+
+  .ember-origin-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .ember-origin-grid .ember-showcase-image {
+    aspect-ratio: auto;
+  }
+
+  .ember-digital-intro {
     margin-bottom: 60px;
   }
 
-  .nova-screen-image {
+  .ember-screen-image {
     padding: 15px;
   }
 
-  .nova-screen figcaption {
+  .ember-screen figcaption {
     grid-template-columns: 1fr;
 
     gap: 15px;
   }
 
-  .nova-final-image,
-  .nova-final-image img {
+  .ember-final-image,
+  .ember-final-image img {
     min-height: 620px;
   }
 
-  .nova-project-info-inner {
+  .ember-project-info-inner {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .nova-intro-orbit {
+  .ember-intro-orbit {
     width: 500px;
   }
 
-  .nova-intro-orbit::after {
+  .ember-intro-orbit::after {
     transform:
       translate(-50%, -50%)
       translateX(250px);
@@ -1368,7 +1368,7 @@
 ========================================= */
 
 @media (max-width: 650px) {
-  .nova-back {
+  .ember-back {
     position: absolute;
 
     top: 15px;
@@ -1377,73 +1377,71 @@
     font-size: 7px;
   }
 
-  .nova-hero {
+  .ember-hero {
     min-height: 720px;
   }
 
-  .nova-hero-content,
-  .nova-section,
-  .nova-footer {
+  .ember-hero-content,
+  .ember-section,
+  .ember-footer {
     width: calc(100% - 32px);
   }
 
-  .nova-hero-content {
+  .ember-hero-content {
     padding: 100px 0 28px;
   }
 
-  .nova-hero-title {
+  .ember-hero-title {
     padding: 75px 0 85px;
   }
 
-  .nova-hero-title p {
+  .ember-hero-title p {
     font-size: 8px;
   }
 
-  .nova-hero-title h1 {
+  .ember-hero-title h1 {
     font-size: clamp(64px, 18vw, 100px);
   }
 
-  .nova-hero-title h1 em {
+  .ember-hero-title h1 em {
     margin-left: 0.35em;
   }
 
-  .nova-hero-bottom {
+  .ember-hero-bottom {
     font-size: 7px;
   }
 
-  .nova-scroll {
+  .ember-scroll {
     display: none;
   }
 
-  .nova-section {
+  .ember-section {
     padding: 80px 0;
   }
 
-  .nova-section-label {
+  .ember-section-label {
     margin-bottom: 42px;
 
     font-size: 7px;
   }
 
-  .nova-intro-heading h2,
-  .nova-split-heading h2,
-  .nova-product-intro h2,
-  .nova-detail-grid h2,
-  .nova-mobile-heading h2 {
+  .ember-intro-heading h2,
+  .ember-split-heading h2,
+  .ember-origins-heading h2,
+  .ember-digital-intro h2 {
     font-size: clamp(52px, 15vw, 78px);
   }
 
-  .nova-intro-copy > p,
-  .nova-split-heading > p,
-  .nova-product-intro > p,
-  .nova-detail-grid > div:last-child p,
-  .nova-mobile-heading > p {
+  .ember-intro-copy > p,
+  .ember-split-heading > p,
+  .ember-origins-heading > p,
+  .ember-digital-intro > p {
     font-size: 11px;
 
     line-height: 1.85;
   }
 
-  .nova-intro-details {
+  .ember-intro-details {
     grid-template-columns: 1fr;
 
     gap: 18px;
@@ -1451,82 +1449,83 @@
     margin-top: 40px;
   }
 
-  .nova-intro-details div {
+  .ember-intro-details div {
     flex-direction: row;
 
     align-items: center;
-
     justify-content: space-between;
 
     padding-bottom: 12px;
 
-    border-bottom: 1px solid var(--nova-line-soft);
+    border-bottom: 1px solid var(--ember-line-soft);
   }
 
-  /* Smaller showcase images on mobile */
+  /* Visual system */
 
-  .nova-showcase-identity,
-  .nova-showcase-interface,
-  .nova-screen {
-    width: 100%;
+  .ember-visual-grid {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
   }
 
-  .nova-showcase-identity img,
-  .nova-showcase-interface img {
-    max-height: none;
+  /* Showcase */
 
-    object-fit: contain;
-  }
-
-  .nova-showcase figcaption,
-  .nova-mobile-showcase figcaption {
+  .ember-showcase figcaption {
     font-size: 6px;
   }
 
-  .nova-screen {
+  /* Origin */
+
+  .ember-origin-grid {
+    gap: 55px;
+  }
+
+  /* Digital */
+
+  .ember-digital-intro {
+    margin-bottom: 55px;
+  }
+
+  .ember-screen {
     margin-bottom: 65px;
   }
 
-  .nova-screen-image {
+  .ember-screen-image {
     padding: 8px;
   }
 
-  .nova-screen figcaption strong {
+  .ember-screen figcaption strong {
     font-size: 9px;
   }
 
-  .nova-screen figcaption p {
+  .ember-screen figcaption p {
     font-size: 10px;
 
     line-height: 1.7;
   }
 
-  .nova-mobile-image {
-    width: min(500px, 100%);
+  /* Final */
 
-    padding: 15px;
-  }
-
-  .nova-final {
+  .ember-final {
     padding-top: 40px;
   }
 
-  .nova-final-image,
-  .nova-final-image img {
+  .ember-final-image,
+  .ember-final-image img {
     min-height: 590px;
   }
 
-  .nova-final-content {
+  .ember-final-content {
     left: 20px;
     right: 20px;
     bottom: 35px;
   }
 
-  .nova-final-content h2 {
+  .ember-final-content h2 {
     font-size: clamp(52px, 15vw, 78px);
   }
 
-  .nova-final-content p {
+  .ember-final-content p {
     margin-top: 25px;
 
     font-size: 6px;
@@ -1534,21 +1533,25 @@
     line-height: 1.8;
   }
 
-  .nova-project-info {
+  /* Project info */
+
+  .ember-project-info {
     padding: 45px 20px;
   }
 
-  .nova-project-info-inner {
+  .ember-project-info-inner {
     grid-template-columns: 1fr 1fr;
 
     gap: 28px 18px;
   }
 
-  .nova-project-info-inner strong {
+  .ember-project-info-inner strong {
     font-size: 8px;
   }
 
-  .nova-footer {
+  /* Footer */
+
+  .ember-footer {
     flex-direction: column;
 
     align-items: flex-start;
@@ -1558,19 +1561,19 @@
     padding: 28px 0 35px;
   }
 
-  .nova-footer > div {
+  .ember-footer > div {
     flex-direction: column;
 
     gap: 8px;
   }
 
-  /* Intro mobile */
+  /* Intro */
 
-  .nova-intro-inner {
+  .ember-intro-inner {
     width: calc(100% - 40px);
   }
 
-  .nova-intro-number {
+  .ember-intro-number {
     margin-bottom: 20px;
 
     font-size: 7px;
@@ -1578,33 +1581,33 @@
     letter-spacing: 0.17em;
   }
 
-  .nova-intro-inner h2 {
-    font-size: clamp(65px, 19vw, 105px);
+  .ember-intro-inner h2 {
+    font-size: clamp(58px, 18vw, 100px);
   }
 
-  .nova-intro-line {
+  .ember-intro-line {
     width: 180px;
 
     margin-top: 26px;
     margin-bottom: 19px;
   }
 
-  .nova-intro-subtitle {
+  .ember-intro-subtitle {
     font-size: 6px;
 
     letter-spacing: 0.13em;
   }
 
-  .nova-intro-orbit {
+  .ember-intro-orbit {
     width: 330px;
   }
 
-  .nova-intro-orbit::before {
+  .ember-intro-orbit::before {
     width: 72%;
     height: 72%;
   }
 
-  .nova-intro-orbit::after {
+  .ember-intro-orbit::after {
     transform:
       translate(-50%, -50%)
       translateX(165px);
@@ -1616,53 +1619,52 @@
 ========================================= */
 
 @media (max-width: 420px) {
-  .nova-hero-content,
-  .nova-section,
-  .nova-footer {
+  .ember-hero-content,
+  .ember-section,
+  .ember-footer {
     width: calc(100% - 24px);
   }
 
-  .nova-hero-title h1 {
+  .ember-hero-title h1 {
     font-size: 62px;
   }
 
-  .nova-intro-heading h2,
-  .nova-split-heading h2,
-  .nova-product-intro h2,
-  .nova-detail-grid h2,
-  .nova-mobile-heading h2 {
+  .ember-intro-heading h2,
+  .ember-split-heading h2,
+  .ember-origins-heading h2,
+  .ember-digital-intro h2 {
     font-size: 50px;
   }
 
-  .nova-project-info {
+  .ember-project-info {
     padding-left: 12px;
     padding-right: 12px;
   }
 
-  .nova-project-info-inner {
+  .ember-project-info-inner {
     grid-template-columns: 1fr;
   }
 
-  .nova-final-image,
-  .nova-final-image img {
+  .ember-final-image,
+  .ember-final-image img {
     min-height: 540px;
   }
 
-  .nova-intro-inner h2 {
-    font-size: 68px;
+  .ember-intro-inner h2 {
+    font-size: 64px;
   }
 
-  .nova-intro-subtitle {
+  .ember-intro-subtitle {
     font-size: 5px;
 
     letter-spacing: 0.1em;
   }
 
-  .nova-intro-orbit {
+  .ember-intro-orbit {
     width: 270px;
   }
 
-  .nova-intro-orbit::after {
+  .ember-intro-orbit::after {
     transform:
       translate(-50%, -50%)
       translateX(135px);
@@ -1674,9 +1676,9 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .nova-case *,
-  .nova-case *::before,
-  .nova-case *::after {
+  .ember-case *,
+  .ember-case *::before,
+  .ember-case *::after {
     scroll-behavior: auto !important;
 
     animation-duration: 0.01ms !important;
@@ -1686,7 +1688,7 @@
     transition-duration: 0.01ms !important;
   }
 
-  .nova-intro-loader {
+  .ember-intro-loader {
     display: none;
   }
 }

@@ -39,6 +39,71 @@
 
 
 /* =========================================================
+   INTRO
+========================================================= */
+
+.vanta-intro {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--bg);
+
+  pointer-events: none;
+}
+
+.vanta-intro-inner {
+  width: min(620px, calc(100% - 40px));
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.vanta-intro h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(70px, 11vw, 150px);
+  line-height: 0.8;
+
+  font-weight: 500;
+
+  letter-spacing: -0.09em;
+}
+
+.vanta-intro-line {
+  width: 100%;
+  height: 1px;
+
+  margin: 30px 0 22px;
+
+  background: var(--accent);
+
+  transform-origin: center;
+}
+
+.vanta-intro p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+}
+
+
+/* =========================================================
    CONTAINER
 ========================================================= */
 
@@ -81,9 +146,6 @@
   letter-spacing: 0.17em;
 }
 
-
-/* HERO SPLIT */
-
 .vanta-hero-grid {
   display: grid;
 
@@ -97,9 +159,6 @@
 
   padding-top: 65px;
 }
-
-
-/* LEFT */
 
 .vanta-hero-content {
   max-width: 620px;
@@ -158,9 +217,6 @@
   line-height: 1.9;
 }
 
-
-/* HERO DETAILS */
-
 .vanta-hero-details {
   display: flex;
 
@@ -197,9 +253,6 @@
 
   font-weight: 400;
 }
-
-
-/* HERO COVER */
 
 .vanta-hero-cover {
   width: min(100%, 470px);
@@ -552,7 +605,7 @@
 
 
 /* =========================================================
-   DIGITAL MOBILE IMAGE
+   DIGITAL
 ========================================================= */
 
 .vanta-mobile-image {
@@ -813,7 +866,6 @@
   .vanta-web-copy {
     gap: 55px;
   }
-
 }
 
 
@@ -826,6 +878,30 @@
   .vanta-container {
     width: calc(100% - 30px);
   }
+
+
+  /* INTRO */
+
+  .vanta-intro-inner {
+    width: calc(100% - 50px);
+  }
+
+  .vanta-intro h2 {
+    font-size: 23vw;
+  }
+
+  .vanta-intro-line {
+    margin: 24px 0 18px;
+  }
+
+  .vanta-intro p {
+    font-size: 8px;
+
+    letter-spacing: 0.16em;
+  }
+
+
+  /* HERO */
 
   .vanta-hero {
     min-height: auto;
@@ -1021,7 +1097,6 @@
   .vanta-next-link h2 b {
     font-size: 45px;
   }
-
 }
 
 
@@ -1035,10 +1110,6 @@
     width: calc(100% - 22px);
   }
 
-  .vanta-title {
-    font-size: 26vw;
-  }
-
   .vanta-hero-content h1 {
     font-size: 26vw;
   }
@@ -1050,7 +1121,6 @@
   .vanta-final-copy h2 {
     font-size: 50px;
   }
-
 }
 
 
@@ -1069,5 +1139,4 @@
 
     transition-duration: 0.01ms !important;
   }
-
 }

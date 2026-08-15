@@ -2,109 +2,305 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import "./ember-and-oak.css";
+import "./EmberOak.css";
 
-const websiteScreens = [
-  {
-    number: "01",
-    title: "Hero / First Impression",
-    image: "/portfolio/project-01/01-navbar-hero.PNG",
-  },
-  {
-    number: "02",
-    title: "Brand Story",
-    image: "/portfolio/project-01/02-navbar-story.PNG",
-  },
-  {
-    number: "03",
-    title: "Packaging Experience",
-    image: "/portfolio/project-01/03-navbar-packaging.PNG",
-  },
-  {
-    number: "04",
-    title: "The Craft",
-    image: "/portfolio/project-01/04-navbar-craft.png",
-  },
-  {
-    number: "05",
-    title: "Signature Coffee",
-    image: "/portfolio/project-01/05-navbar-signature.PNG",
-  },
-  {
-    number: "06",
-    title: "Newsletter / Footer",
-    image: "/portfolio/project-01/07-navbar-newsletter-footer.png",
-  },
-];
+const images = {
+  cover: "/portfolio/project-01/cover.png",
 
-const packaging = [
-  {
-    number: "01",
-    origin: "ETHIOPIA",
-    image: "/portfolio/project-01/ethiopia.png",
-  },
-  {
-    number: "02",
-    origin: "COLOMBIA",
-    image: "/portfolio/project-01/colombia.png",
-  },
-  {
-    number: "03",
-    origin: "BRAZIL",
-    image: "/portfolio/project-01/brazil.png",
-  },
-];
+  brandIdentity: "/portfolio/project-01/brand identity.png",
+  logoVariation: "/portfolio/project-01/logo variation.png",
+  colorPalette: "/portfolio/project-01/color pallete.png",
+  typography: "/portfolio/project-01/typography.png",
+  brandApplication: "/portfolio/project-01/brand application.png",
 
-export default function EmberAndOak() {
+  brazil: "/portfolio/project-01/brazil.png",
+  colombia: "/portfolio/project-01/colombia.png",
+  ethiopia: "/portfolio/project-01/ethiopia.png",
+
+  cafe: "/portfolio/project-01/cafe experience 1.PNG",
+
+  hero: "/portfolio/project-01/01-navbar-hero.PNG",
+  story: "/portfolio/project-01/02-navbar-story.PNG",
+  packaging: "/portfolio/project-01/03-navbar-packaging.PNG",
+  craft: "/portfolio/project-01/04-navbar-craft.png",
+  signature: "/portfolio/project-01/05-navbar-signature.PNG",
+  newsletter: "/portfolio/project-01/07-navbar-newsletter-footer.png",
+
+  final: "/portfolio/project-01/ember and oak-01.png",
+};
+
+/* =========================================
+   OPENING INTRO
+========================================= */
+
+function EmberIntro() {
   return (
-    <main className="ember-case-study">
+    <motion.div
+      className="ember-intro-loader"
+      initial={{ opacity: 1 }}
+      animate={{
+        opacity: 0,
+        pointerEvents: "none",
+      }}
+      transition={{
+        duration: 0.7,
+        delay: 2.25,
+        ease: [0.76, 0, 0.24, 1],
+      }}
+    >
+      <motion.div
+        className="ember-intro-inner"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0, y: -20 }}
+        transition={{
+          duration: 0.45,
+          delay: 1.95,
+          ease: "easeOut",
+        }}
+      >
+        <motion.span
+          className="ember-intro-number"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          01 / SELECTED WORK
+        </motion.span>
+
+        <motion.h2
+          initial={{
+            opacity: 0,
+            y: 40,
+            scale: 0.96,
+            letterSpacing: "0.08em",
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            letterSpacing: "-0.065em",
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.25,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          EMBER
+          <br />
+          & OAK
+        </motion.h2>
+
+        <motion.div
+          className="ember-intro-line"
+          initial={{
+            scaleX: 0,
+            opacity: 0,
+          }}
+          animate={{
+            scaleX: 1,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.7,
+            delay: 0.65,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        />
+
+        <motion.span
+          className="ember-intro-subtitle"
+          initial={{
+            opacity: 0,
+            y: 12,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 0.85,
+          }}
+        >
+          BRAND IDENTITY / DIGITAL EXPERIENCE
+        </motion.span>
+      </motion.div>
+
+      <motion.div
+        className="ember-intro-progress"
+        initial={{
+          scaleX: 0,
+        }}
+        animate={{
+          scaleX: 1,
+        }}
+        transition={{
+          duration: 1.9,
+          delay: 0.15,
+          ease: [0.65, 0, 0.35, 1],
+        }}
+      />
+
+      <motion.div
+        className="ember-intro-orbit"
+        initial={{
+          opacity: 0,
+          scale: 0.6,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          rotate: 180,
+        }}
+        transition={{
+          duration: 2,
+          delay: 0.1,
+          ease: "easeOut",
+        }}
+      />
+    </motion.div>
+  );
+}
+
+/* =========================================
+   IMAGE SHOWCASE COMPONENT
+========================================= */
+
+function EmberShowcase({
+  image,
+  alt,
+  number,
+  label,
+  className = "",
+}) {
+  return (
+    <motion.figure
+      className={`ember-showcase ${className}`}
+      initial={{
+        opacity: 0,
+        y: 45,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.08,
+      }}
+      transition={{
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <div className="ember-showcase-image">
+        <img src={image} alt={alt} />
+      </div>
+
+      <figcaption>
+        <span>{number}</span>
+        <span>{label}</span>
+      </figcaption>
+    </motion.figure>
+  );
+}
+
+/* =========================================
+   CASE STUDY
+========================================= */
+
+export default function EmberOakCaseStudy() {
+  return (
+    <main className="ember-case">
+
+      {/* =========================================
+          INTRO LOADER
+      ========================================= */}
+
+      <EmberIntro />
 
       {/* =========================================
           BACK TO WORK
       ========================================= */}
 
       <Link href="/#work" className="ember-back">
-        <span>←</span>
+        <span className="ember-back-arrow">←</span>
         <span>BACK TO SELECTED WORK</span>
       </Link>
 
       {/* =========================================
-          COVER
+          HERO
       ========================================= */}
 
-      <section className="ember-cover">
+      <section className="ember-hero">
+
+        <div className="ember-hero-glow" />
 
         <motion.div
-          className="ember-cover-image"
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1 }}
+          className="ember-hero-image"
+          initial={{
+            opacity: 0,
+            scale: 1.04,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            duration: 1.2,
+            delay: 2.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
           <img
-            src="/portfolio/project-01/cover.png"
-            alt="EMBER & OAK luxury coffee brand"
+            src={images.cover}
+            alt="Ember & Oak brand cover"
           />
 
-          <div className="ember-cover-overlay" />
+          <div className="ember-hero-overlay" />
         </motion.div>
 
-        <div className="ember-cover-content">
+        <div className="ember-hero-content">
 
           <motion.div
-            className="ember-cover-meta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            className="ember-hero-meta"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 2.35,
+            }}
           >
             <span>01 / SELECTED WORK</span>
-            <span>BRAND IDENTITY · PACKAGING · DIGITAL</span>
+            <span>BRANDING · PACKAGING · DIGITAL</span>
           </motion.div>
 
           <motion.div
-            className="ember-cover-title"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3 }}
+            className="ember-hero-title"
+            initial={{
+              opacity: 0,
+              y: 45,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.9,
+              delay: 2.45,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <p>EMBER & OAK</p>
 
@@ -115,10 +311,17 @@ export default function EmberAndOak() {
           </motion.div>
 
           <motion.div
-            className="ember-cover-bottom"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            className="ember-hero-bottom"
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 2.8,
+            }}
           >
             <span>CASE STUDY / 2026</span>
 
@@ -132,57 +335,83 @@ export default function EmberAndOak() {
       </section>
 
       {/* =========================================
-          BRAND STORY / CONCEPT
+          INTRO
       ========================================= */}
 
-      <section className="ember-intro">
+      <section className="ember-intro ember-section">
 
         <div className="ember-section-label">
           <span>01</span>
-          <span>BRAND STORY / CONCEPT</span>
+          <span>PROJECT / CONCEPT</span>
         </div>
 
         <div className="ember-intro-grid">
 
-          <motion.h2
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <motion.div
+            className="ember-intro-heading"
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
           >
-            A coffee brand
-            <em>rooted in patience.</em>
-          </motion.h2>
+            <h2>
+              Coffee
+              <em>worth remembering.</em>
+            </h2>
+          </motion.div>
 
           <motion.div
             className="ember-intro-copy"
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+            }}
           >
             <p>
-              EMBER & OAK was created as a premium coffee experience
-              built around craft, origin and the quiet ritual of
-              exceptional coffee.
+              Ember & Oak is a premium coffee brand concept built
+              around the beauty of slow craft, carefully sourced beans
+              and the rituals that make coffee memorable.
             </p>
 
             <p>
-              The visual direction combines warm natural tones,
-              refined typography and editorial composition to create
-              an identity that feels timeless rather than trendy.
+              The identity combines warm natural tones, refined
+              typography and an editorial visual language to create
+              a brand that feels timeless, tactile and quietly premium.
             </p>
 
             <div className="ember-intro-details">
 
               <div>
-                <span>CLIENT</span>
+                <span>PROJECT</span>
                 <strong>EMBER & OAK</strong>
               </div>
 
               <div>
                 <span>DISCIPLINE</span>
-                <strong>BRAND / DIGITAL</strong>
+                <strong>BRAND IDENTITY</strong>
               </div>
 
               <div>
@@ -197,35 +426,38 @@ export default function EmberAndOak() {
       </section>
 
       {/* =========================================
-          VISUAL IDENTITY
+          BRAND IDENTITY
       ========================================= */}
 
-      <section className="ember-identity">
+      <section className="ember-identity ember-section">
 
         <div className="ember-section-label">
           <span>02</span>
-          <span>VISUAL IDENTITY</span>
+          <span>BRAND IDENTITY</span>
         </div>
 
-        <div className="ember-identity-heading">
+        <div className="ember-split-heading">
+
           <h2>
-            Built around
+            A mark with
             <em>character.</em>
           </h2>
+
+          <p>
+            The visual identity was developed to balance heritage
+            and contemporary refinement, giving Ember & Oak a
+            distinctive presence across every touchpoint.
+          </p>
+
         </div>
 
-        <motion.div
-          className="ember-full-image"
-          initial={{ opacity: 0, y: 45 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/portfolio/project-01/brand identity.png"
-            alt="EMBER & OAK brand identity"
-          />
-        </motion.div>
+        <EmberShowcase
+          image={images.brandIdentity}
+          alt="Ember & Oak brand identity"
+          number="01 / 10"
+          label="BRAND IDENTITY"
+          className="ember-showcase-brand"
+        />
 
       </section>
 
@@ -233,7 +465,7 @@ export default function EmberAndOak() {
           LOGO SYSTEM
       ========================================= */}
 
-      <section className="ember-logo-section">
+      <section className="ember-logo ember-section">
 
         <div className="ember-section-label">
           <span>03</span>
@@ -242,113 +474,59 @@ export default function EmberAndOak() {
 
         <div className="ember-split-heading">
 
-          <div>
-            <h2>
-              One mark.
-              <em>Many expressions.</em>
-            </h2>
-          </div>
+          <h2>
+            Simple form.
+            <em>Strong memory.</em>
+          </h2>
 
           <p>
-            A refined logo system designed to remain distinctive
-            across packaging, digital interfaces and physical
-            brand applications.
+            The logo system establishes a flexible signature that
+            remains recognizable across packaging, digital interfaces
+            and physical brand applications.
           </p>
 
         </div>
 
-        <motion.div
-          className="ember-full-image ember-logo-image"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/portfolio/project-01/logo variation.png"
-            alt="EMBER & OAK logo variations"
-          />
-        </motion.div>
+        <EmberShowcase
+          image={images.logoVariation}
+          alt="Ember & Oak logo variations"
+          number="02 / 10"
+          label="LOGO VARIATIONS"
+          className="ember-showcase-identity"
+        />
 
       </section>
 
       {/* =========================================
-          COLOR PALETTE
+          VISUAL SYSTEM
       ========================================= */}
 
-      <section className="ember-palette-section">
+      <section className="ember-visual ember-section">
 
         <div className="ember-section-label">
           <span>04</span>
-          <span>COLOR PALETTE</span>
+          <span>VISUAL LANGUAGE</span>
         </div>
 
-        <div className="ember-section-heading">
+        <div className="ember-visual-grid">
 
-          <h2>
-            Warm tones.
-            <em>Quiet confidence.</em>
-          </h2>
-
-        </div>
-
-        <motion.div
-          className="ember-full-image"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/portfolio/project-01/color pallete.png"
-            alt="EMBER & OAK color palette"
+          <EmberShowcase
+            image={images.colorPalette}
+            alt="Ember & Oak color palette"
+            number="03 / 10"
+            label="COLOR PALETTE"
+            className="ember-small-showcase"
           />
-        </motion.div>
 
-      </section>
-
-      {/* =========================================
-          TYPOGRAPHY
-      ========================================= */}
-
-      <section className="ember-type-section">
-
-        <div className="ember-section-label">
-          <span>05</span>
-          <span>TYPOGRAPHY</span>
-        </div>
-
-        <div className="ember-type-grid">
-
-          <div>
-            <h2>
-              Type with
-              <em>presence.</em>
-            </h2>
-          </div>
-
-          <div>
-            <p>
-              Editorial serif forms create the premium character,
-              while restrained supporting typography keeps the
-              experience contemporary and highly readable.
-            </p>
-          </div>
-
-        </div>
-
-        <motion.div
-          className="ember-full-image"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/portfolio/project-01/typography.png"
-            alt="EMBER & OAK typography system"
+          <EmberShowcase
+            image={images.typography}
+            alt="Ember & Oak typography"
+            number="04 / 10"
+            label="TYPOGRAPHY"
+            className="ember-small-showcase"
           />
-        </motion.div>
+
+        </div>
 
       </section>
 
@@ -356,10 +534,10 @@ export default function EmberAndOak() {
           BRAND APPLICATION
       ========================================= */}
 
-      <section className="ember-application-section">
+      <section className="ember-application ember-section">
 
         <div className="ember-section-label">
-          <span>06</span>
+          <span>05</span>
           <span>BRAND APPLICATION</span>
         </div>
 
@@ -367,29 +545,77 @@ export default function EmberAndOak() {
 
           <h2>
             Identity
-            <em>in context.</em>
+            <em>in the real world.</em>
           </h2>
 
           <p>
-            The identity extends beyond the logo into a complete
-            visual language designed to feel consistent across
-            every customer touchpoint.
+            The identity extends beyond the logo into tangible brand
+            moments, creating a cohesive experience wherever the
+            customer encounters Ember & Oak.
           </p>
 
         </div>
 
-        <motion.div
-          className="ember-full-image"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/portfolio/project-01/brand application.png"
-            alt="EMBER & OAK brand applications"
+        <EmberShowcase
+          image={images.brandApplication}
+          alt="Ember & Oak brand applications"
+          number="05 / 10"
+          label="BRAND APPLICATION"
+          className="ember-showcase-application"
+        />
+
+      </section>
+
+      {/* =========================================
+          COFFEE ORIGINS
+      ========================================= */}
+
+      <section className="ember-origins ember-section">
+
+        <div className="ember-section-label">
+          <span>06</span>
+          <span>COFFEE / ORIGIN</span>
+        </div>
+
+        <div className="ember-origins-heading">
+
+          <h2>
+            From
+            <em>where it begins.</em>
+          </h2>
+
+          <p>
+            Ember & Oak celebrates the journey behind every cup.
+            Origin becomes part of the story, giving each coffee
+            its own character and sense of place.
+          </p>
+
+        </div>
+
+        <div className="ember-origin-grid">
+
+          <EmberShowcase
+            image={images.brazil}
+            alt="Ember & Oak Brazil coffee origin"
+            number="06A"
+            label="BRAZIL"
           />
-        </motion.div>
+
+          <EmberShowcase
+            image={images.colombia}
+            alt="Ember & Oak Colombia coffee origin"
+            number="06B"
+            label="COLOMBIA"
+          />
+
+          <EmberShowcase
+            image={images.ethiopia}
+            alt="Ember & Oak Ethiopia coffee origin"
+            number="06C"
+            label="ETHIOPIA"
+          />
+
+        </div>
 
       </section>
 
@@ -397,141 +623,50 @@ export default function EmberAndOak() {
           CAFE EXPERIENCE
       ========================================= */}
 
-      <section className="ember-cafe-section">
+      <section className="ember-cafe ember-section">
 
         <div className="ember-section-label">
           <span>07</span>
-          <span>CAFÉ EXPERIENCE</span>
+          <span>CAFE EXPERIENCE</span>
         </div>
 
-        <div className="ember-cafe-grid">
-
-          <div>
-            <h2>
-              From the
-              <em>cup to the space.</em>
-            </h2>
-          </div>
-
-          <div>
-            <p>
-              EMBER & OAK was envisioned as more than a coffee
-              product. The identity creates a complete atmosphere
-              where packaging, environment and experience belong
-              to the same world.
-            </p>
-          </div>
-
-        </div>
-
-        <motion.div
-          className="ember-full-image"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/portfolio/project-01/cafe experience 1.PNG"
-            alt="EMBER & OAK café experience"
-          />
-        </motion.div>
-
-      </section>
-
-      {/* =========================================
-          PACKAGING / COFFEE ORIGINS
-      ========================================= */}
-
-      <section className="ember-packaging-section">
-
-        <div className="ember-section-label">
-          <span>08</span>
-          <span>PACKAGING / COFFEE ORIGINS</span>
-        </div>
-
-        <div className="ember-packaging-heading">
+        <div className="ember-split-heading">
 
           <h2>
-            Every origin
-            <em>has a story.</em>
+            A place to
+            <em>slow down.</em>
           </h2>
 
           <p>
-            Three distinct coffee origins are presented through a
-            unified packaging system while retaining their own
-            individual character.
+            The physical experience follows the same visual philosophy:
+            warm, considered and inviting, turning coffee into a
+            complete sensory experience.
           </p>
 
         </div>
 
-        <div className="ember-packaging-grid">
-
-          {packaging.map((coffee, index) => (
-            <motion.article
-              className="ember-packaging-card"
-              key={coffee.origin}
-              initial={{
-                opacity: 0,
-                y: 45,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.15,
-              }}
-              transition={{
-                duration: 0.75,
-                delay: index * 0.1,
-              }}
-            >
-
-              <div className="ember-packaging-image">
-
-                <img
-                  src={coffee.image}
-                  alt={`${coffee.origin} EMBER & OAK coffee packaging`}
-                />
-
-                <span>
-                  {coffee.number}
-                </span>
-
-              </div>
-
-              <div className="ember-packaging-info">
-
-                <span>COFFEE ORIGIN</span>
-
-                <h3>
-                  {coffee.origin}
-                </h3>
-
-              </div>
-
-            </motion.article>
-          ))}
-
-        </div>
+        <EmberShowcase
+          image={images.cafe}
+          alt="Ember & Oak cafe experience"
+          number="07 / 10"
+          label="CAFE EXPERIENCE"
+          className="ember-showcase-cafe"
+        />
 
       </section>
 
       {/* =========================================
           DIGITAL EXPERIENCE
-          ALL 6 WEBSITE SCREENSHOTS
       ========================================= */}
 
-      <section className="ember-digital-section">
+      <section className="ember-digital ember-section">
 
         <div className="ember-section-label">
-          <span>09</span>
+          <span>08</span>
           <span>DIGITAL EXPERIENCE</span>
         </div>
 
-        <div className="ember-digital-heading">
+        <div className="ember-digital-intro">
 
           <h2>
             The brand
@@ -539,92 +674,253 @@ export default function EmberAndOak() {
           </h2>
 
           <p>
-            The EMBER & OAK identity was translated into an
-            editorial e-commerce experience designed to make
-            discovery feel as considered as the coffee itself.
+            The digital experience translates the physical identity
+            into an immersive editorial website designed around
+            storytelling, product discovery and brand atmosphere.
           </p>
 
         </div>
 
-        <div className="ember-website-stack">
+        {/* HERO */}
 
-          {websiteScreens.map((screen, index) => (
-            <motion.figure
-              className="ember-website-screen"
-              key={screen.number}
-              initial={{
-                opacity: 0,
-                y: 45,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.12,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.05,
-              }}
-            >
-
-              <div className="ember-screen-image">
-
-                <img
-                  src={screen.image}
-                  alt={`EMBER & OAK ${screen.title}`}
-                />
-
-              </div>
-
-              <figcaption>
-                <span>{screen.number}</span>
-                <span>{screen.title}</span>
-              </figcaption>
-
-            </motion.figure>
-          ))}
-
-        </div>
-
-      </section>
-
-      {/* =========================================
-          MOBILE EXPERIENCE
-      ========================================= */}
-
-      <section className="ember-mobile-section">
-
-        <div className="ember-section-label">
-          <span>10</span>
-          <span>MOBILE EXPERIENCE</span>
-        </div>
-
-        <div className="ember-mobile-heading">
-
-          <h2>
-            Designed for
-            <em>every screen.</em>
-          </h2>
-
-          <p>
-            A responsive mobile experience keeps the same editorial
-            character, product hierarchy and refined visual rhythm
-            across smaller screens.
-          </p>
-
-        </div>
-
-        <div className="ember-mobile-placeholder">
-
-          <div>
-            <span>MOBILE EXPERIENCE</span>
-            <strong>COMING TO CASE STUDY</strong>
+        <motion.figure
+          className="ember-screen"
+          initial={{
+            opacity: 0,
+            y: 55,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          transition={{
+            duration: 0.85,
+          }}
+        >
+          <div className="ember-screen-image">
+            <img
+              src={images.hero}
+              alt="Ember & Oak website hero"
+            />
           </div>
 
-        </div>
+          <figcaption>
+            <div>
+              <span>08A</span>
+              <strong>WEBSITE HERO</strong>
+            </div>
+
+            <p>
+              A cinematic opening experience introduces the brand
+              through atmosphere, typography and product storytelling.
+            </p>
+          </figcaption>
+        </motion.figure>
+
+        {/* STORY */}
+
+        <motion.figure
+          className="ember-screen"
+          initial={{
+            opacity: 0,
+            y: 55,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          transition={{
+            duration: 0.85,
+          }}
+        >
+          <div className="ember-screen-image">
+            <img
+              src={images.story}
+              alt="Ember & Oak website story section"
+            />
+          </div>
+
+          <figcaption>
+            <div>
+              <span>08B</span>
+              <strong>BRAND STORY</strong>
+            </div>
+
+            <p>
+              The story section turns the origin and philosophy of
+              Ember & Oak into an editorial digital narrative.
+            </p>
+          </figcaption>
+        </motion.figure>
+
+        {/* PACKAGING */}
+
+        <motion.figure
+          className="ember-screen"
+          initial={{
+            opacity: 0,
+            y: 55,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          transition={{
+            duration: 0.85,
+          }}
+        >
+          <div className="ember-screen-image">
+            <img
+              src={images.packaging}
+              alt="Ember & Oak packaging website section"
+            />
+          </div>
+
+          <figcaption>
+            <div>
+              <span>08C</span>
+              <strong>PACKAGING</strong>
+            </div>
+
+            <p>
+              Packaging becomes part of the digital story, connecting
+              product, identity and craftsmanship.
+            </p>
+          </figcaption>
+        </motion.figure>
+
+        {/* CRAFT */}
+
+        <motion.figure
+          className="ember-screen"
+          initial={{
+            opacity: 0,
+            y: 55,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          transition={{
+            duration: 0.85,
+          }}
+        >
+          <div className="ember-screen-image">
+            <img
+              src={images.craft}
+              alt="Ember & Oak craft website section"
+            />
+          </div>
+
+          <figcaption>
+            <div>
+              <span>08D</span>
+              <strong>THE CRAFT</strong>
+            </div>
+
+            <p>
+              Craftsmanship is presented as a core part of the brand,
+              reinforcing the slow and intentional character of the
+              coffee experience.
+            </p>
+          </figcaption>
+        </motion.figure>
+
+        {/* SIGNATURE */}
+
+        <motion.figure
+          className="ember-screen"
+          initial={{
+            opacity: 0,
+            y: 55,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          transition={{
+            duration: 0.85,
+          }}
+        >
+          <div className="ember-screen-image">
+            <img
+              src={images.signature}
+              alt="Ember & Oak signature website section"
+            />
+          </div>
+
+          <figcaption>
+            <div>
+              <span>08E</span>
+              <strong>SIGNATURE EXPERIENCE</strong>
+            </div>
+
+            <p>
+              A refined product moment reinforces the premium character
+              of the Ember & Oak experience.
+            </p>
+          </figcaption>
+        </motion.figure>
+
+        {/* NEWSLETTER / FOOTER */}
+
+        <motion.figure
+          className="ember-screen"
+          initial={{
+            opacity: 0,
+            y: 55,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          transition={{
+            duration: 0.85,
+          }}
+        >
+          <div className="ember-screen-image">
+            <img
+              src={images.newsletter}
+              alt="Ember & Oak newsletter and footer"
+            />
+          </div>
+
+          <figcaption>
+            <div>
+              <span>08F</span>
+              <strong>NEWSLETTER / FOOTER</strong>
+            </div>
+
+            <p>
+              The final interaction keeps the brand experience
+              consistent through a restrained editorial footer.
+            </p>
+          </figcaption>
+        </motion.figure>
 
       </section>
 
@@ -632,41 +928,71 @@ export default function EmberAndOak() {
           FINAL SHOWCASE
       ========================================= */}
 
-      <section className="ember-final-section">
+      <section className="ember-final">
 
         <div className="ember-final-image">
 
           <img
-            src="/portfolio/project-01/cover.png"
-            alt="EMBER & OAK final brand showcase"
+            src={images.final}
+            alt="Ember & Oak final brand showcase"
           />
 
           <div className="ember-final-overlay" />
 
           <div className="ember-final-content">
 
-            <span>EMBER & OAK</span>
+            <span>EMBER & OAK / BRAND EXPERIENCE</span>
 
             <h2>
-              Crafted Slowly.
-              <em>Remembered Always.</em>
+              Crafted slowly.
+              <em>Remembered always.</em>
             </h2>
 
             <p>
-              Brand identity · Packaging · Digital experience
+              Brand Identity · Packaging · Digital Experience
             </p>
 
           </div>
 
         </div>
+      </section>
 
+      {/* =========================================
+          PROJECT INFO
+      ========================================= */}
+
+      <section className="ember-project-info">
+
+        <div className="ember-project-info-inner">
+
+          <div>
+            <span>PROJECT</span>
+            <strong>EMBER & OAK</strong>
+          </div>
+
+          <div>
+            <span>DISCIPLINE</span>
+            <strong>BRAND IDENTITY</strong>
+          </div>
+
+          <div>
+            <span>YEAR</span>
+            <strong>2026</strong>
+          </div>
+
+          <div>
+            <span>TOOLS</span>
+            <strong>ILLUSTRATOR · PHOTOSHOP · FIGMA</strong>
+          </div>
+
+        </div>
       </section>
 
       {/* =========================================
           FOOTER
       ========================================= */}
 
-      <footer className="ember-case-footer">
+      <footer className="ember-footer">
 
         <div>
           <span>WA CREATIVE SOLUTIONS</span>

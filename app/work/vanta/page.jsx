@@ -6,6 +6,10 @@ import "./Vanta.css";
 
 const base = "/portfolio/project-06";
 
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
 const fadeUp = {
   hidden: {
     opacity: 0,
@@ -36,13 +40,20 @@ const imageReveal = {
   },
 };
 
+/* =========================================================
+   IMAGE COMPONENT
+========================================================= */
+
 function ProjectImage({ src, alt, className = "" }) {
   return (
     <motion.div
       className={`vanta-image ${className}`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
       variants={imageReveal}
     >
       <img src={`${base}/${src}`} alt={alt} />
@@ -50,15 +61,93 @@ function ProjectImage({ src, alt, className = "" }) {
   );
 }
 
+/* =========================================================
+   VANTA
+========================================================= */
+
 export default function Vanta() {
   return (
     <main className="vanta-page">
+
+      {/* =====================================================
+          INTRO REVEAL
+      ===================================================== */}
+
+      <motion.div
+        className="vanta-intro"
+        initial={{ opacity: 1 }}
+        animate={{
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+        transition={{
+          delay: 2.15,
+          duration: 0.8,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        <div className="vanta-intro-inner">
+
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 24,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            VANTA
+          </motion.h2>
+
+          <motion.div
+            className="vanta-intro-line"
+            initial={{
+              scaleX: 0,
+            }}
+            animate={{
+              scaleX: 1,
+            }}
+            transition={{
+              delay: 0.35,
+              duration: 0.75,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
+
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 12,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.8,
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            CASE STUDY / DIGITAL EXPERIENCE
+          </motion.p>
+
+        </div>
+      </motion.div>
+
 
       {/* =====================================================
           HERO
       ===================================================== */}
 
       <section className="vanta-hero">
+
         <div className="vanta-container">
 
           <motion.div
@@ -71,15 +160,18 @@ export default function Vanta() {
             <span>DIGITAL EXPERIENCE / VANTA</span>
           </motion.div>
 
+
           <div className="vanta-hero-grid">
 
             {/* LEFT */}
+
             <motion.div
               className="vanta-hero-content"
               initial="hidden"
               animate="visible"
               variants={fadeUp}
             >
+
               <span className="vanta-label">
                 LUXURY DIGITAL EXPERIENCE
               </span>
@@ -98,6 +190,7 @@ export default function Vanta() {
               </p>
 
               <div className="vanta-hero-details">
+
                 <div>
                   <span>DISCIPLINE</span>
                   <strong>Digital Experience</strong>
@@ -112,11 +205,14 @@ export default function Vanta() {
                   <span>YEAR</span>
                   <strong>2026</strong>
                 </div>
+
               </div>
+
             </motion.div>
 
 
             {/* RIGHT */}
+
             <motion.div
               className="vanta-hero-cover"
               initial={{
@@ -133,15 +229,18 @@ export default function Vanta() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
+
               <img
                 src={`${base}/cover.png`}
                 alt="VANTA luxury fashion brand"
               />
+
             </motion.div>
 
           </div>
 
         </div>
+
       </section>
 
 
@@ -150,6 +249,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -164,6 +264,7 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               MINIMALISM
               <br />
@@ -175,6 +276,7 @@ export default function Vanta() {
               Typography, spacing, photography and subtle
               details create a sophisticated visual world.
             </p>
+
           </motion.div>
 
           <ProjectImage
@@ -184,6 +286,7 @@ export default function Vanta() {
           />
 
         </div>
+
       </section>
 
 
@@ -192,6 +295,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section vanta-surface">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -206,11 +310,13 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               A SYSTEM
               <br />
               <span>BUILT FOR RESTRAINT.</span>
             </h2>
+
           </motion.div>
 
           <div className="vanta-two-grid">
@@ -234,6 +340,7 @@ export default function Vanta() {
           />
 
         </div>
+
       </section>
 
 
@@ -242,6 +349,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -275,6 +383,7 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <span className="vanta-label">
               CRAFTED DETAILS
             </span>
@@ -283,9 +392,11 @@ export default function Vanta() {
               Every visual element follows the same principle:
               controlled, intentional and quietly luxurious.
             </p>
+
           </motion.div>
 
         </div>
+
       </section>
 
 
@@ -294,6 +405,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section vanta-light">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -308,11 +420,13 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               DARKNESS
               <br />
               <span>MADE ICONIC.</span>
             </h2>
+
           </motion.div>
 
           <ProjectImage
@@ -328,6 +442,7 @@ export default function Vanta() {
           />
 
         </div>
+
       </section>
 
 
@@ -336,6 +451,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section vanta-surface">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -350,6 +466,7 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               BEYOND
               <br />
@@ -360,6 +477,7 @@ export default function Vanta() {
               The identity extends into physical spaces,
               membership systems and digital experiences.
             </p>
+
           </motion.div>
 
           <ProjectImage
@@ -388,6 +506,7 @@ export default function Vanta() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -396,6 +515,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -410,6 +530,7 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               ACCESS
               <br />
@@ -421,6 +542,7 @@ export default function Vanta() {
               exclusivity feel effortless across physical and
               digital touchpoints.
             </p>
+
           </motion.div>
 
           <ProjectImage
@@ -444,6 +566,7 @@ export default function Vanta() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -452,6 +575,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section vanta-surface">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -466,11 +590,13 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               THE WORLD
               <br />
               <span>IN YOUR HANDS.</span>
             </h2>
+
           </motion.div>
 
           <ProjectImage
@@ -494,6 +620,7 @@ export default function Vanta() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -502,6 +629,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section vanta-light">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -516,6 +644,7 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               EDITORIAL
               <br />
@@ -527,6 +656,7 @@ export default function Vanta() {
               environment where typography, content and imagery
               work together.
             </p>
+
           </motion.div>
 
           <ProjectImage
@@ -550,6 +680,7 @@ export default function Vanta() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -558,6 +689,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-section">
+
         <div className="vanta-container">
 
           <div className="vanta-section-head">
@@ -572,11 +704,13 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <h2>
               STORIES
               <br />
               <span>WITH WEIGHT.</span>
             </h2>
+
           </motion.div>
 
           <ProjectImage
@@ -592,6 +726,7 @@ export default function Vanta() {
           />
 
         </div>
+
       </section>
 
 
@@ -600,6 +735,7 @@ export default function Vanta() {
       ===================================================== */}
 
       <section className="vanta-final">
+
         <div className="vanta-container">
 
           <motion.div
@@ -609,6 +745,7 @@ export default function Vanta() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
+
             <span>VANTA</span>
 
             <h2>
@@ -623,9 +760,11 @@ export default function Vanta() {
               A luxury digital identity built around restraint,
               atmosphere and quiet confidence.
             </p>
+
           </motion.div>
 
         </div>
+
       </section>
 
 
@@ -639,6 +778,7 @@ export default function Vanta() {
           href="/work/project-07"
           className="vanta-next-link"
         >
+
           <span>NEXT PROJECT</span>
 
           <h2>
@@ -648,6 +788,7 @@ export default function Vanta() {
           </h2>
 
           <p>BRAND IDENTITY</p>
+
         </Link>
 
       </section>

@@ -24,7 +24,7 @@ const projects = [
       "A futuristic productivity platform focused on clean interfaces, intelligent workflows and seamless user experiences.",
     tags: ["UI/UX", "Figma", "Product Design"],
     route: "/work/nova",
-    image: "/portfolio/project-02/cover1.png",
+    image: "/portfolio/project-02/cover.png",
   },
   {
     number: "03",

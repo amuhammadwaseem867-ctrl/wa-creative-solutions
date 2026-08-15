@@ -4,57 +4,170 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import "./Noorah.css";
 
-const images = {
-  cover: "/portfolio/project-07/cover.png",
-  brandStory: "/portfolio/project-07/brand%20story.jpg",
-  brandInAction: "/portfolio/project-07/brandinaction.jpg",
-  brandPhotography: "/portfolio/project-07/brandphotography.jpg",
-  contentIdentity: "/portfolio/project-07/contentidentity.jpg",
-  creatorQuote: "/portfolio/project-07/creatorquote.jpg",
-  logoShowcase: "/portfolio/project-07/logoshowcase.jpg",
-  merchandise: "/portfolio/project-07/merchandisecollection.jpg",
-  moodboard: "/portfolio/project-07/moodboard.jpg",
-  socialMedia: "/portfolio/project-07/socialmediakit.jpg",
-  thumbnailSystem: "/portfolio/project-07/thumbnailsystem.jpg",
-  typography: "/portfolio/project-07/typography.jpg",
-  youtubeBranding: "/portfolio/project-07/youtubebranding.jpg",
-};
+const base = "/portfolio/project-07";
 
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
+const ease = [0.22, 1, 0.36, 1];
 
-function SectionLabel({ number, children }) {
+/* =========================================
+   OPENING INTRO
+========================================= */
+
+function NoorahIntro() {
   return (
-    <div className="noorah-section-label">
-      <span>{number}</span>
-      <span>{children}</span>
-    </div>
+    <motion.div
+      className="noorah-intro-loader"
+      initial={{ opacity: 1 }}
+      animate={{
+        opacity: 0,
+        pointerEvents: "none",
+      }}
+      transition={{
+        duration: 0.7,
+        delay: 2.25,
+        ease: [0.76, 0, 0.24, 1],
+      }}
+    >
+      <motion.div
+        className="noorah-intro-inner"
+        initial={{ opacity: 1 }}
+        animate={{
+          opacity: 0,
+          y: -20,
+        }}
+        transition={{
+          duration: 0.45,
+          delay: 1.95,
+          ease: "easeOut",
+        }}
+      >
+        <motion.span
+          className="noorah-intro-number"
+          initial={{
+            opacity: 0,
+            y: 15,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 0.15,
+            ease,
+          }}
+        >
+          07 / SELECTED WORK
+        </motion.span>
+
+        <motion.h2
+          initial={{
+            opacity: 0,
+            y: 40,
+            scale: 0.96,
+            letterSpacing: "0.08em",
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            letterSpacing: "-0.065em",
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.25,
+            ease,
+          }}
+        >
+          NOORAH
+        </motion.h2>
+
+        <motion.div
+          className="noorah-intro-line"
+          initial={{
+            scaleX: 0,
+            opacity: 0,
+          }}
+          animate={{
+            scaleX: 1,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.7,
+            delay: 0.65,
+            ease,
+          }}
+        />
+
+        <motion.span
+          className="noorah-intro-subtitle"
+          initial={{
+            opacity: 0,
+            y: 12,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 0.85,
+          }}
+        >
+          MASCOT / BRAND IDENTITY
+        </motion.span>
+      </motion.div>
+
+      <motion.div
+        className="noorah-intro-progress"
+        initial={{
+          scaleX: 0,
+        }}
+        animate={{
+          scaleX: 1,
+        }}
+        transition={{
+          duration: 1.9,
+          delay: 0.15,
+          ease: [0.65, 0, 0.35, 1],
+        }}
+      />
+
+      <motion.div
+        className="noorah-intro-orbit"
+        initial={{
+          opacity: 0,
+          scale: 0.6,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          rotate: 180,
+        }}
+        transition={{
+          duration: 2,
+          delay: 0.1,
+          ease: "easeOut",
+        }}
+      />
+    </motion.div>
   );
 }
 
-function ProjectImage({
+/* =========================================
+   IMAGE COMPONENT
+========================================= */
+
+function NoorahImage({
   src,
   alt,
   className = "",
 }) {
   return (
-    <motion.div
-      className={`noorah-image ${className}`}
+    <motion.figure
+      className={`noorah-showcase ${className}`}
       initial={{
         opacity: 0,
-        y: 35,
+        y: 45,
       }}
       whileInView={{
         opacity: 1,
@@ -62,21 +175,53 @@ function ProjectImage({
       }}
       viewport={{
         once: true,
-        amount: 0.15,
+        amount: 0.08,
       }}
       transition={{
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.8,
+        ease,
       }}
     >
-      <img src={src} alt={alt} />
-    </motion.div>
+      <div className="noorah-image-frame">
+        <img
+          src={`${base}/${src}`}
+          alt={alt}
+        />
+      </div>
+    </motion.figure>
   );
 }
 
-export default function NoorahPage() {
+/* =========================================
+   CASE STUDY
+========================================= */
+
+export default function NoorahCaseStudy() {
   return (
-    <main className="noorah-page">
+    <main className="noorah-case">
+
+      {/* =========================================
+          INTRO
+      ========================================= */}
+
+      <NoorahIntro />
+
+      {/* =========================================
+          BACK
+      ========================================= */}
+
+      <Link
+        href="/#work"
+        className="noorah-back"
+      >
+        <span className="noorah-back-arrow">
+          ←
+        </span>
+
+        <span>
+          BACK TO SELECTED WORK
+        </span>
+      </Link>
 
       {/* =========================================
           HERO
@@ -84,338 +229,322 @@ export default function NoorahPage() {
 
       <section className="noorah-hero">
 
-        <div className="noorah-hero__container">
+        <div className="noorah-hero-content">
 
           <motion.div
-            className="noorah-hero__content"
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-          >
-
-            <div className="noorah-hero__eyebrow">
-              <span>07</span>
-              <span>CREATOR BRAND IDENTITY</span>
-            </div>
-
-            <h1>NOORAH</h1>
-
-            <p>
-              A warm and expressive creator identity
-              designed to connect personality,
-              storytelling and visual culture.
-            </p>
-
-            <div className="noorah-hero__meta">
-
-              <div>
-                <span>PROJECT</span>
-                <strong>NOORAH</strong>
-              </div>
-
-              <div>
-                <span>DISCIPLINE</span>
-                <strong>BRAND IDENTITY</strong>
-              </div>
-
-              <div>
-                <span>YEAR</span>
-                <strong>2026</strong>
-              </div>
-
-            </div>
-
-          </motion.div>
-
-
-          <motion.div
-            className="noorah-hero__visual"
+            className="noorah-hero-meta"
             initial={{
               opacity: 0,
-              y: 55,
+              y: 20,
             }}
             animate={{
               opacity: 1,
               y: 0,
             }}
             transition={{
-              duration: 0.9,
-              delay: 0.15,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 0.7,
+              delay: 2.35,
+              ease,
             }}
           >
+            <span>
+              07 / SELECTED WORK
+            </span>
 
-            <img
-              src={images.cover}
-              alt="NOORAH creator brand identity"
-            />
+            <span>
+              MASCOT · BRAND IDENTITY · CHARACTER
+            </span>
+          </motion.div>
 
+          <div className="noorah-hero-grid">
+
+            {/* TEXT */}
+
+            <motion.div
+              className="noorah-hero-copy"
+              initial={{
+                opacity: 0,
+                y: 45,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.9,
+                delay: 2.45,
+                ease,
+              }}
+            >
+              <span className="noorah-eyebrow">
+                NOORAH
+              </span>
+
+              <h1>
+                A character
+                <em>with a story.</em>
+              </h1>
+
+              <p>
+                NOORAH is a playful mascot identity
+                created to give a brand a recognizable
+                personality, visual voice and emotional
+                connection.
+              </p>
+
+              <div className="noorah-hero-details">
+
+                <div>
+                  <span>DISCIPLINE</span>
+                  <strong>
+                    BRAND IDENTITY
+                  </strong>
+                </div>
+
+                <div>
+                  <span>TYPE</span>
+                  <strong>
+                    MASCOT DESIGN
+                  </strong>
+                </div>
+
+                <div>
+                  <span>YEAR</span>
+                  <strong>
+                    2026
+                  </strong>
+                </div>
+
+              </div>
+            </motion.div>
+
+            {/* PORTRAIT COVER */}
+
+            <motion.div
+              className="noorah-hero-cover"
+              initial={{
+                opacity: 0,
+                y: 55,
+                scale: 1.025,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              transition={{
+                duration: 1.1,
+                delay: 2.25,
+                ease,
+              }}
+            >
+              <img
+                src={`${base}/cover.png`}
+                alt="NOORAH mascot brand identity cover"
+              />
+            </motion.div>
+
+          </div>
+
+          <motion.div
+            className="noorah-hero-bottom"
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 2.8,
+            }}
+          >
+            <span>
+              CASE STUDY / 2026
+            </span>
+
+            <span className="noorah-scroll">
+              SCROLL TO EXPLORE
+              <i />
+            </span>
           </motion.div>
 
         </div>
-
-
-        <div className="noorah-scroll">
-          <span>SCROLL TO EXPLORE</span>
-          <span className="noorah-scroll__line" />
-        </div>
-
       </section>
-
 
       {/* =========================================
           BRAND STORY
       ========================================= */}
 
-      <section className="noorah-section">
+      <section className="noorah-section noorah-story">
 
-        <div className="noorah-section__container">
+        <div className="noorah-section-label">
+          <span>01</span>
+          <span>BRAND STORY</span>
+        </div>
 
-          <SectionLabel number="01">
-            BRAND STORY
-          </SectionLabel>
+        <div className="noorah-split-heading">
 
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.8,
+              ease,
+            }}
+          >
+            More than
+            <em>a mascot.</em>
+          </motion.h2>
 
-          <div className="noorah-intro__grid">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+              ease,
+            }}
+          >
+            <p>
+              NOORAH was developed as a character
+              that could become the recognizable face
+              of a brand.
+            </p>
 
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              A brand built
-              <span> around a story.</span>
-            </motion.h2>
-
-
-            <motion.div
-              className="noorah-intro__copy"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-
-              <p>
-                NOORAH is a creator-led identity built
-                around personality, storytelling and
-                authentic visual expression.
-              </p>
-
-              <p>
-                The identity creates a recognizable
-                presence across content, social platforms,
-                video and physical brand experiences.
-              </p>
-
-            </motion.div>
-
-          </div>
-
-
-          <ProjectImage
-            src={images.brandStory}
-            alt="NOORAH brand story"
-            className="noorah-image--wide"
-          />
+            <p>
+              The identity combines expressive
+              illustration, personality and a flexible
+              visual system that can live across
+              different brand touchpoints.
+            </p>
+          </motion.div>
 
         </div>
 
-      </section>
-
-
-      {/* =========================================
-          MOODBOARD
-      ========================================= */}
-
-      <section className="noorah-section noorah-beige-section">
-
-        <div className="noorah-section__container">
-
-          <SectionLabel number="02">
-            CREATIVE DIRECTION
-          </SectionLabel>
-
-
-          <div className="noorah-heading">
-
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              Soft visual language.
-              <span> Strong personality.</span>
-            </motion.h2>
-
-          </div>
-
-
-          <ProjectImage
-            src={images.moodboard}
-            alt="NOORAH moodboard"
-            className="noorah-image--wide"
-          />
-
-        </div>
+        <NoorahImage
+          src="brand story.jpg"
+          alt="NOORAH brand story"
+          className="noorah-wide"
+        />
 
       </section>
-
 
       {/* =========================================
           LOGO
       ========================================= */}
 
-      <section className="noorah-section">
+      <section className="noorah-section noorah-cream">
 
-        <div className="noorah-section__container">
+        <div className="noorah-section-label">
+          <span>02</span>
+          <span>LOGO SHOWCASE</span>
+        </div>
 
-          <SectionLabel number="03">
-            LOGO SYSTEM
-          </SectionLabel>
+        <div className="noorah-split-heading">
 
+          <h2>
+            A mark with
+            <em>personality.</em>
+          </h2>
 
-          <div className="noorah-split">
-
-            <motion.div
-              className="noorah-split__content"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-
-              <h2>
-                A signature
-                <span> made to connect.</span>
-              </h2>
-
-              <p>
-                The NOORAH logo balances softness
-                with confidence, creating a visual mark
-                that feels personal and recognizable.
-              </p>
-
-            </motion.div>
-
-
-            <ProjectImage
-              src={images.logoShowcase}
-              alt="NOORAH logo showcase"
-            />
-
-          </div>
+          <p>
+            The NOORAH mark extends the character's
+            personality into a simple and memorable
+            brand signature.
+          </p>
 
         </div>
 
+        <NoorahImage
+          src="logoshowcase.jpg"
+          alt="NOORAH logo showcase"
+          className="noorah-wide"
+        />
+
       </section>
 
+      {/* =========================================
+          MOODBOARD
+      ========================================= */}
+
+      <section className="noorah-section">
+
+        <div className="noorah-section-label">
+          <span>03</span>
+          <span>DIRECTION</span>
+        </div>
+
+        <div className="noorah-split-heading">
+
+          <h2>
+            Finding the
+            <em>right mood.</em>
+          </h2>
+
+          <p>
+            A playful but refined visual direction
+            shaped the character, typography,
+            photography and overall brand atmosphere.
+          </p>
+
+        </div>
+
+        <NoorahImage
+          src="moodboard.jpg"
+          alt="NOORAH moodboard"
+          className="noorah-wide"
+        />
+
+      </section>
 
       {/* =========================================
           TYPOGRAPHY
       ========================================= */}
 
-      <section className="noorah-section">
+      <section className="noorah-section noorah-cream">
 
-        <div className="noorah-section__container">
+        <div className="noorah-section-label">
+          <span>04</span>
+          <span>TYPOGRAPHY</span>
+        </div>
 
-          <SectionLabel number="04">
-            TYPOGRAPHY
-          </SectionLabel>
+        <div className="noorah-heading">
 
-
-          <div className="noorah-typography">
-
-            <motion.div
-              className="noorah-typography__content"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-
-              <span>TYPE SYSTEM</span>
-
-              <h2>
-                Elegant
-                <br />
-                <em>expression.</em>
-              </h2>
-
-              <p>
-                Typography gives NOORAH a distinctive
-                voice while maintaining clarity across
-                content and communication.
-              </p>
-
-            </motion.div>
-
-
-            <ProjectImage
-              src={images.typography}
-              alt="NOORAH typography system"
-            />
-
-          </div>
+          <h2>
+            Type that feels
+            <em>alive.</em>
+          </h2>
 
         </div>
 
-      </section>
-
-
-      {/* =========================================
-          BRAND IN ACTION
-      ========================================= */}
-
-      <section className="noorah-section noorah-beige-section">
-
-        <div className="noorah-section__container">
-
-          <SectionLabel number="05">
-            BRAND IN ACTION
-          </SectionLabel>
-
-
-          <motion.div
-            className="noorah-large-heading"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-            }}
-          >
-
-            <h2>
-              Identity that
-              <span> feels alive.</span>
-            </h2>
-
-          </motion.div>
-
-
-          <ProjectImage
-            src={images.brandInAction}
-            alt="NOORAH brand in action"
-            className="noorah-image--wide"
-          />
-
-        </div>
+        <NoorahImage
+          src="typography.jpg"
+          alt="NOORAH typography system"
+          className="noorah-wide"
+        />
 
       </section>
-
 
       {/* =========================================
           BRAND PHOTOGRAPHY
@@ -423,56 +552,61 @@ export default function NoorahPage() {
 
       <section className="noorah-section">
 
-        <div className="noorah-section__container">
+        <div className="noorah-section-label">
+          <span>05</span>
+          <span>BRAND PHOTOGRAPHY</span>
+        </div>
 
-          <SectionLabel number="06">
-            BRAND PHOTOGRAPHY
-          </SectionLabel>
+        <div className="noorah-split-heading">
 
+          <h2>
+            Character meets
+            <em>the real world.</em>
+          </h2>
 
-          <div className="noorah-photo-grid">
-
-            <ProjectImage
-              src={images.brandPhotography}
-              alt="NOORAH brand photography"
-              className="noorah-photo-main"
-            />
-
-            <motion.div
-              className="noorah-photo-copy"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-
-              <span>VISUAL DIRECTION</span>
-
-              <h2>
-                Personal.
-                <br />
-                Natural.
-                <br />
-                <em>Expressive.</em>
-              </h2>
-
-              <p>
-                Photography brings the identity
-                into a more human and emotional space,
-                allowing the creator personality
-                to remain at the center.
-              </p>
-
-            </motion.div>
-
-          </div>
+          <p>
+            Photography gives NOORAH a physical
+            presence and creates a visual world
+            around the character.
+          </p>
 
         </div>
 
+        <NoorahImage
+          src="brandphotography.jpg"
+          alt="NOORAH brand photography"
+          className="noorah-wide"
+        />
+
       </section>
 
+      {/* =========================================
+          BRAND IN ACTION
+      ========================================= */}
+
+      <section className="noorah-section noorah-cream">
+
+        <div className="noorah-section-label">
+          <span>06</span>
+          <span>BRAND IN ACTION</span>
+        </div>
+
+        <div className="noorah-heading">
+
+          <h2>
+            Designed to
+            <em>move.</em>
+          </h2>
+
+        </div>
+
+        <NoorahImage
+          src="brandinaction.jpg"
+          alt="NOORAH brand in action"
+          className="noorah-wide"
+        />
+
+      </section>
 
       {/* =========================================
           CONTENT IDENTITY
@@ -480,198 +614,129 @@ export default function NoorahPage() {
 
       <section className="noorah-section">
 
-        <div className="noorah-section__container">
+        <div className="noorah-section-label">
+          <span>07</span>
+          <span>CONTENT IDENTITY</span>
+        </div>
 
-          <SectionLabel number="07">
-            CONTENT IDENTITY
-          </SectionLabel>
+        <div className="noorah-split-heading">
 
+          <h2>
+            One character.
+            <em>Many stories.</em>
+          </h2>
 
-          <div className="noorah-content-intro">
-
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              One visual language.
-              <br />
-              <span>Every piece of content.</span>
-            </motion.h2>
-
-
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              A flexible content system keeps every
-              communication recognizable while allowing
-              each piece to retain its own personality.
-            </motion.p>
-
-          </div>
-
-
-          <ProjectImage
-            src={images.contentIdentity}
-            alt="NOORAH content identity"
-            className="noorah-image--wide"
-          />
+          <p>
+            The identity is designed to remain
+            recognizable while adapting naturally
+            to different types of content.
+          </p>
 
         </div>
 
-      </section>
-
-
-      {/* =========================================
-          YOUTUBE
-      ========================================= */}
-
-      <section className="noorah-section noorah-pink-section">
-
-        <div className="noorah-section__container">
-
-          <SectionLabel number="08">
-            YOUTUBE BRANDING
-          </SectionLabel>
-
-
-          <motion.div
-            className="noorah-youtube-heading"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-            }}
-          >
-
-            <h2>
-              Built for
-              <span> the creator economy.</span>
-            </h2>
-
-            <p>
-              The identity expands naturally into
-              long-form video and YouTube content,
-              creating a recognizable branded environment.
-            </p>
-
-          </motion.div>
-
-
-          <ProjectImage
-            src={images.youtubeBranding}
-            alt="NOORAH YouTube branding"
-            className="noorah-image--wide"
-          />
-
-        </div>
+        <NoorahImage
+          src="contentidentity.jpg"
+          alt="NOORAH content identity"
+          className="noorah-wide"
+        />
 
       </section>
-
-
-      {/* =========================================
-          THUMBNAILS
-      ========================================= */}
-
-      <section className="noorah-section">
-
-        <div className="noorah-section__container">
-
-          <SectionLabel number="09">
-            THUMBNAIL SYSTEM
-          </SectionLabel>
-
-
-          <div className="noorah-heading">
-
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              Designed to
-              <span> get noticed.</span>
-            </motion.h2>
-
-          </div>
-
-
-          <ProjectImage
-            src={images.thumbnailSystem}
-            alt="NOORAH YouTube thumbnail system"
-            className="noorah-image--wide"
-          />
-
-        </div>
-
-      </section>
-
 
       {/* =========================================
           SOCIAL MEDIA
       ========================================= */}
 
-      <section className="noorah-section noorah-beige-section">
+      <section className="noorah-section noorah-cream">
 
-        <div className="noorah-section__container">
+        <div className="noorah-section-label">
+          <span>08</span>
+          <span>SOCIAL MEDIA</span>
+        </div>
 
-          <SectionLabel number="10">
-            SOCIAL MEDIA KIT
-          </SectionLabel>
+        <div className="noorah-split-heading">
 
+          <h2>
+            Built for
+            <em>attention.</em>
+          </h2>
 
-          <div className="noorah-social-intro">
-
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              Consistent
-              <span> everywhere.</span>
-            </motion.h2>
-
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-            >
-              A cohesive social system designed
-              to make the NOORAH identity instantly
-              recognizable across platforms.
-            </motion.p>
-
-          </div>
-
-
-          <ProjectImage
-            src={images.socialMedia}
-            alt="NOORAH social media kit"
-            className="noorah-image--wide"
-          />
+          <p>
+            Social templates create a consistent
+            visual rhythm while allowing the mascot
+            to remain the central personality.
+          </p>
 
         </div>
 
+        <NoorahImage
+          src="socialmediakit.jpg"
+          alt="NOORAH social media kit"
+          className="noorah-wide"
+        />
+
       </section>
 
+      {/* =========================================
+          THUMBNAIL SYSTEM
+      ========================================= */}
+
+      <section className="noorah-section">
+
+        <div className="noorah-section-label">
+          <span>09</span>
+          <span>THUMBNAIL SYSTEM</span>
+        </div>
+
+        <div className="noorah-heading">
+
+          <h2>
+            Recognizable
+            <em>at a glance.</em>
+          </h2>
+
+        </div>
+
+        <NoorahImage
+          src="thumbnailsystem.jpg"
+          alt="NOORAH thumbnail system"
+          className="noorah-wide"
+        />
+
+      </section>
+
+      {/* =========================================
+          MERCHANDISE
+      ========================================= */}
+
+      <section className="noorah-section noorah-cream">
+
+        <div className="noorah-section-label">
+          <span>10</span>
+          <span>MERCHANDISE</span>
+        </div>
+
+        <div className="noorah-split-heading">
+
+          <h2>
+            From screen
+            <em>to object.</em>
+          </h2>
+
+          <p>
+            The character becomes tangible through
+            merchandise, creating another layer of
+            brand recognition and emotional connection.
+          </p>
+
+        </div>
+
+        <NoorahImage
+          src="merchandisecollection.jpg"
+          alt="NOORAH merchandise collection"
+          className="noorah-wide"
+        />
+
+      </section>
 
       {/* =========================================
           CREATOR QUOTE
@@ -679,96 +744,77 @@ export default function NoorahPage() {
 
       <section className="noorah-quote">
 
-        <div className="noorah-quote__container">
+        <div className="noorah-quote-inner">
 
-          <motion.div
-            className="noorah-quote__mark"
-            initial={{
-              opacity: 0,
-              scale: 0.8,
-            }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-            }}
-            viewport={{
-              once: true,
-            }}
-          >
-            “
-          </motion.div>
+          <span>THE CHARACTER</span>
 
+          <h2>
+            “A memorable brand
+            <em>should feel human.</em>”
+          </h2>
 
-          <motion.div
-            className="noorah-quote__content"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-            }}
-          >
-
-            <ProjectImage
-              src={images.creatorQuote}
-              alt="NOORAH creator quote"
-              className="noorah-quote__image"
-            />
-
-          </motion.div>
+          <p>
+            NOORAH turns identity into personality —
+            creating something people can recognize,
+            remember and connect with.
+          </p>
 
         </div>
 
       </section>
 
-
       {/* =========================================
-          MERCHANDISE
+          CREATOR / FINAL BRAND
       ========================================= */}
 
       <section className="noorah-section">
 
-        <div className="noorah-section__container">
-
-          <SectionLabel number="11">
-            MERCHANDISE COLLECTION
-          </SectionLabel>
-
-
-          <motion.div
-            className="noorah-merch-heading"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-            }}
-          >
-
-            <h2>
-              A brand you can
-              <span> take with you.</span>
-            </h2>
-
-            <p>
-              The NOORAH identity extends into
-              merchandise, transforming the visual
-              language into physical objects.
-            </p>
-
-          </motion.div>
-
-
-          <ProjectImage
-            src={images.merchandise}
-            alt="NOORAH merchandise collection"
-            className="noorah-image--wide"
-          />
-
+        <div className="noorah-section-label">
+          <span>11</span>
+          <span>CREATOR VOICE</span>
         </div>
+
+        <NoorahImage
+          src="creatorquote.jpg"
+          alt="NOORAH creator quote"
+          className="noorah-wide"
+        />
 
       </section>
 
+      {/* =========================================
+          YOUTUBE BRANDING
+      ========================================= */}
+
+      <section className="noorah-section noorah-cream">
+
+        <div className="noorah-section-label">
+          <span>12</span>
+          <span>YOUTUBE BRANDING</span>
+        </div>
+
+        <div className="noorah-split-heading">
+
+          <h2>
+            A complete
+            <em>content world.</em>
+          </h2>
+
+          <p>
+            NOORAH extends naturally into digital
+            content, creating a recognizable ecosystem
+            across every platform.
+          </p>
+
+        </div>
+
+        <NoorahImage
+          src="youtubebranding.jpg"
+          alt="NOORAH YouTube branding"
+          className="noorah-wide"
+        />
+
+      </section>
 
       {/* =========================================
           FINAL SHOWCASE
@@ -776,98 +822,90 @@ export default function NoorahPage() {
 
       <section className="noorah-final">
 
-        <div className="noorah-final__container">
+        <div className="noorah-final-image">
 
-          <motion.div
-            className="noorah-final__visual"
-            initial={{
-              opacity: 0,
-              scale: 0.97,
-            }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-          >
+          <img
+            src={`${base}/cover.jpg`}
+            alt="NOORAH final brand showcase"
+          />
 
-            <img
-              src={images.cover}
-              alt="NOORAH final brand showcase"
-            />
+          <div className="noorah-final-overlay" />
 
-          </motion.div>
+          <div className="noorah-final-content">
 
-
-          <motion.div
-            className="noorah-final__content"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-            }}
-          >
-
-            <span>NOORAH</span>
+            <span>
+              NOORAH / MASCOT BRAND IDENTITY
+            </span>
 
             <h2>
-              A creator identity
-              <br />
-              with a human touch.
+              Playful
+              <em>by design.</em>
             </h2>
 
             <p>
-              Strategy. Identity. Content.
-              Digital Experience.
+              Mascot Design · Brand Identity ·
+              Content Direction
             </p>
 
-          </motion.div>
+          </div>
 
         </div>
 
       </section>
 
-
       {/* =========================================
-          NEXT PROJECT
+          PROJECT INFO
       ========================================= */}
 
-      <section className="noorah-next">
+      <section className="noorah-project-info">
 
-        <Link
-          href="/work/nexus"
-          className="noorah-next__link"
-        >
+        <div className="noorah-project-info-inner">
 
-          <span className="noorah-next__label">
-            NEXT PROJECT
-          </span>
-
-
-          <div className="noorah-next__title">
-
-            <span>05</span>
-
-            NEXUS
-
-            <strong>↗</strong>
-
+          <div>
+            <span>PROJECT</span>
+            <strong>NOORAH</strong>
           </div>
 
+          <div>
+            <span>DISCIPLINE</span>
+            <strong>MASCOT / BRAND IDENTITY</strong>
+          </div>
 
-          <span className="noorah-next__category">
-            AI AUTOMATION
-          </span>
+          <div>
+            <span>YEAR</span>
+            <strong>2026</strong>
+          </div>
 
-        </Link>
+          <div>
+            <span>TYPE</span>
+            <strong>CHARACTER DESIGN</strong>
+          </div>
+
+        </div>
 
       </section>
+
+      {/* =========================================
+          FOOTER
+      ========================================= */}
+
+      <footer className="noorah-footer">
+
+        <div>
+          <span>
+            WA CREATIVE SOLUTIONS
+          </span>
+
+          <span>
+            SELECTED WORK / 2026
+          </span>
+        </div>
+
+        <Link href="/#work">
+          VIEW ALL WORK ↗
+        </Link>
+
+      </footer>
 
     </main>
   );

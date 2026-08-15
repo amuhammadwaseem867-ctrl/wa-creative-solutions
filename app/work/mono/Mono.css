@@ -1,4 +1,56 @@
 /* =========================================
+   MONO INTRO LOADER
+========================================= */
+
+.mono-intro-loader {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #000;
+
+  color: #f3eee5;
+
+  overflow: hidden;
+}
+
+.mono-intro-loader__content {
+  font-size: clamp(80px, 13vw, 190px);
+
+  font-weight: 500;
+
+  line-height: 0.8;
+
+  letter-spacing: -0.06em;
+
+  color: #f3eee5;
+
+  user-select: none;
+}
+
+.mono-intro-loader__line {
+  width: clamp(80px, 10vw, 150px);
+
+  height: 1px;
+
+  margin-top: 40px;
+
+  background: #c92f2f;
+
+  transform-origin: center;
+}
+
+
+/* =========================================
    MONO CASE STUDY
 ========================================= */
 
@@ -14,6 +66,7 @@
   min-height: 100vh;
 
   background: var(--charcoal);
+
   color: var(--warm-white);
 
   overflow: hidden;
@@ -61,6 +114,7 @@
   min-height: 100vh;
 
   display: flex;
+
   align-items: center;
 
   padding: 90px 0 70px;
@@ -71,7 +125,9 @@
 .mono-hero__container {
   display: grid;
 
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(360px, 0.72fr);
 
   gap: 90px;
 
@@ -189,6 +245,7 @@
   height: min(76vh, 820px);
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -227,6 +284,7 @@
 
 .mono-scroll__line {
   width: 45px;
+
   height: 1px;
 
   background: var(--red);
@@ -498,6 +556,7 @@
 
 .mono-guidelines__intro p {
   max-width: 400px;
+
   margin: 0;
 }
 
@@ -792,6 +851,7 @@
 ========================================= */
 
 @media (max-width: 1000px) {
+
   .mono-section {
     padding: 110px 0;
   }
@@ -839,6 +899,7 @@
 ========================================= */
 
 @media (max-width: 700px) {
+
   .mono-section {
     padding: 85px 0;
   }
@@ -848,6 +909,20 @@
   .mono-final__container {
     width: calc(100% - 32px);
   }
+
+
+  /* INTRO */
+
+  .mono-intro-loader__content {
+    font-size: clamp(70px, 22vw, 120px);
+  }
+
+  .mono-intro-loader__line {
+    width: 75px;
+
+    margin-top: 30px;
+  }
+
 
   /* HERO */
 
@@ -1112,6 +1187,7 @@
 ========================================= */
 
 @media (max-width: 420px) {
+
   .mono-section__container,
   .mono-hero__container,
   .mono-final__container {
@@ -1145,12 +1221,19 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   .mono-page *,
   .mono-page *::before,
-  .mono-page *::after {
+  .mono-page *::after,
+  .mono-intro-loader *,
+  .mono-intro-loader *::before,
+  .mono-intro-loader *::after {
     scroll-behavior: auto !important;
+
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
+
     transition-duration: 0.01ms !important;
   }
 }
