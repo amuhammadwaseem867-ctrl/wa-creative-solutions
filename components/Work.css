@@ -226,7 +226,7 @@
   position: relative;
 
   display: grid;
-  grid-template-columns: 55px 1fr 35px;
+  grid-template-columns: 55px minmax(0, 1fr) 35px;
 
   align-items: center;
 
@@ -311,6 +311,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+
+  min-width: 0;
 }
 
 .work-project-title {
@@ -322,6 +324,8 @@
   line-height: 1;
 
   letter-spacing: -0.035em;
+
+  white-space: nowrap;
 
   transition: color 0.3s ease;
 }
@@ -480,6 +484,8 @@
   align-items: center;
   justify-content: space-between;
 
+  gap: 20px;
+
   color: #f4f6ef;
 
   font-size: 8px;
@@ -491,6 +497,8 @@
 
 .work-image-top span:last-child {
   color: #c8ff3d;
+
+  text-align: right;
 }
 
 /* =========================================
@@ -590,6 +598,8 @@
 }
 
 .work-details-number {
+  flex-shrink: 0;
+
   color: #818981;
 
   font-size: 10px;
@@ -818,6 +828,10 @@
   .work-project {
     min-height: 86px;
   }
+
+  .work-project-title {
+    font-size: 20px;
+  }
 }
 
 /* =========================================
@@ -835,6 +849,7 @@
 
   .work-header {
     align-items: flex-start;
+
     gap: 20px;
   }
 
@@ -862,17 +877,20 @@
 
   .work-intro-copy p {
     font-size: 12px;
+
     line-height: 1.75;
   }
 
-  /* Project List */
+  /* =========================================
+     PROJECT LIST
+  ========================================= */
 
   .work-projects-header {
     padding: 15px 12px;
   }
 
   .work-project {
-    grid-template-columns: 38px 1fr 34px;
+    grid-template-columns: 38px minmax(0, 1fr) 34px;
 
     min-height: 76px;
 
@@ -888,8 +906,14 @@
     font-size: 9px;
   }
 
+  .work-project-info {
+    min-width: 0;
+  }
+
   .work-project-title {
     font-size: 17px;
+
+    white-space: nowrap;
   }
 
   .work-project-category {
@@ -905,7 +929,9 @@
     font-size: 13px;
   }
 
-  /* Preview */
+  /* =========================================
+     PREVIEW
+  ========================================= */
 
   .work-content {
     gap: 38px;
@@ -937,7 +963,9 @@
     font-size: 14px;
   }
 
-  /* Details */
+  /* =========================================
+     DETAILS
+  ========================================= */
 
   .work-details {
     padding-top: 24px;
@@ -967,6 +995,7 @@
     margin-top: 20px;
 
     font-size: 13px;
+
     line-height: 1.7;
   }
 
@@ -992,7 +1021,9 @@
     padding: 14px 15px;
   }
 
-  /* Bottom */
+  /* =========================================
+     BOTTOM
+  ========================================= */
 
   .work-bottom {
     grid-template-columns: 1fr;
@@ -1032,6 +1063,8 @@
 
   .work-project-title {
     font-size: 15px;
+
+    white-space: nowrap;
   }
 
   .work-project-category {

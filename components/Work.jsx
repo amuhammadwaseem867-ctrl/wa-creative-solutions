@@ -8,13 +8,13 @@ import "./Work.css";
 const projects = [
   {
     number: "01",
-    title: "LUXORA",
-    category: "Web Development",
+    title: "EMBER & OAK",
+    category: "Brand Identity",
     description:
-      "A premium digital experience designed and developed for a modern luxury brand.",
-    tags: ["Next.js", "Development", "Responsive"],
-    route: "/work/luxora",
-    image: "/portfolio/project-01/cover1.png",
+      "A complete luxury coffee brand experience combining visual identity, premium packaging and an editorial e-commerce website.",
+    tags: ["Brand Identity", "Packaging", "Web Design"],
+    route: "/work/ember-and-oaks",
+    image: "/portfolio/project-01/cover.png",
   },
   {
     number: "02",
@@ -73,6 +73,7 @@ export default function Work() {
 
   return (
     <section className="work" id="work">
+
       <div className="work-grid" />
 
       <div className="work-container">
@@ -99,6 +100,7 @@ export default function Work() {
           </div>
         </motion.div>
 
+
         {/* =========================================
             INTRO
         ========================================= */}
@@ -110,14 +112,19 @@ export default function Work() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
+
           <div className="work-title">
+
             <h2>
               SELECTED
               <span>WORK.</span>
             </h2>
+
           </div>
 
+
           <div className="work-intro-copy">
+
             <span className="work-intro-label">
               OUR RECENT WORK
             </span>
@@ -127,8 +134,11 @@ export default function Work() {
               EXPERIENCES, IDENTITIES AND CREATIVE
               SYSTEMS BUILT WITH PURPOSE.
             </p>
+
           </div>
+
         </motion.div>
+
 
         {/* =========================================
             MAIN WORK AREA
@@ -136,22 +146,35 @@ export default function Work() {
 
         <div className="work-content">
 
-          {/* PROJECT LIST */}
+
+          {/* =========================================
+              PROJECT LIST
+          ========================================= */}
 
           <div className="work-projects">
 
             <div className="work-projects-header">
-              <span>PROJECT</span>
-              <span>06</span>
+
+              <span>
+                PROJECT
+              </span>
+
+              <span>
+                06
+              </span>
+
             </div>
+
 
             <div className="work-projects-list">
 
               {projects.map((project, index) => {
+
                 const isActive =
                   activeProject.number === project.number;
 
                 return (
+
                   <motion.button
                     key={project.number}
                     type="button"
@@ -184,6 +207,7 @@ export default function Work() {
                       {project.number}
                     </span>
 
+
                     <span className="work-project-info">
 
                       <span className="work-project-title">
@@ -196,18 +220,24 @@ export default function Work() {
 
                     </span>
 
+
                     <span className="work-project-arrow">
                       ↗
                     </span>
 
+
                     <span className="work-project-line" />
 
                   </motion.button>
+
                 );
+
               })}
 
             </div>
+
           </div>
+
 
           {/* =========================================
               PREVIEW
@@ -237,6 +267,11 @@ export default function Work() {
                 }}
               >
 
+
+                {/* =================================
+                    PROJECT IMAGE
+                ================================= */}
+
                 <Link
                   href={activeProject.route}
                   className="work-image-link"
@@ -250,7 +285,9 @@ export default function Work() {
                       alt={`${activeProject.title} project`}
                     />
 
+
                     <div className="work-image-overlay" />
+
 
                     <div className="work-image-top">
 
@@ -264,11 +301,16 @@ export default function Work() {
 
                     </div>
 
+
                     <div className="work-image-view">
 
-                      <span>VIEW PROJECT</span>
+                      <span>
+                        VIEW PROJECT
+                      </span>
 
-                      <span>↗</span>
+                      <span>
+                        ↗
+                      </span>
 
                     </div>
 
@@ -276,7 +318,10 @@ export default function Work() {
 
                 </Link>
 
-                {/* PROJECT DETAILS */}
+
+                {/* =================================
+                    PROJECT DETAILS
+                ================================= */}
 
                 <div className="work-details">
 
@@ -294,27 +339,33 @@ export default function Work() {
 
                     </div>
 
+
                     <span className="work-details-number">
                       {activeProject.number}
                     </span>
 
                   </div>
 
+
                   <p className="work-description">
                     {activeProject.description}
                   </p>
+
 
                   <div className="work-details-bottom">
 
                     <div className="work-tags">
 
                       {activeProject.tags.map((tag) => (
+
                         <span key={tag}>
                           {tag}
                         </span>
+
                       ))}
 
                     </div>
+
 
                     <Link
                       href={activeProject.route}
@@ -343,6 +394,7 @@ export default function Work() {
 
         </div>
 
+
         {/* =========================================
             BOTTOM
         ========================================= */}
@@ -370,6 +422,7 @@ export default function Work() {
         </motion.div>
 
       </div>
+
     </section>
   );
 }
