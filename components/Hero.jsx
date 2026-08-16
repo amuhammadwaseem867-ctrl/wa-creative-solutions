@@ -37,9 +37,17 @@ export default function Hero() {
         {/* TOP LINE */}
         <motion.div
           className="hero-topline"
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 1,
+            y: -15,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.7,
+          }}
         >
           <span>WA CREATIVE SOLUTIONS</span>
 
@@ -49,8 +57,14 @@ export default function Hero() {
         {/* HERO CONTENT */}
         <motion.div
           className="hero-content"
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 1,
+            y: 35,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
