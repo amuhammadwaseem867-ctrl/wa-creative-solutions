@@ -6,7 +6,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
-import Pricing from "@/components/Pricing";
 import Work from "@/components/Work";
 import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
@@ -27,8 +26,6 @@ export default function Home() {
       <Services />
 
       <TechStack />
-
-      <Pricing />
 
       <Work />
 
