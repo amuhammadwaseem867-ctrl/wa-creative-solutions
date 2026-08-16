@@ -8,17 +8,33 @@ const footerLinks = [
   { number: "01", label: "ABOUT", href: "#about" },
   { number: "02", label: "SERVICES", href: "#services" },
   { number: "03", label: "TECHNOLOGY", href: "#technology" },
-  { number: "04", label: "PRICING", href: "#pricing" },
-  { number: "05", label: "WORK", href: "#work" },
-  { number: "06", label: "PROCESS", href: "#process" },
-  { number: "07", label: "TESTIMONIALS", href: "#testimonials" },
-  { number: "08", label: "CONTACT", href: "#contact" },
+  { number: "04", label: "WORK", href: "#work" },
+  { number: "05", label: "PROCESS", href: "#process" },
+  { number: "06", label: "TESTIMONIALS", href: "#testimonials" },
+  { number: "07", label: "CONTACT", href: "#contact" },
 ];
 
 const socialLinks = [
-  { label: "BEHANCE", href: "#" },
-  { label: "INSTAGRAM", href: "#" },
-  { label: "LINKEDIN", href: "#" },
+  {
+    label: "BEHANCE",
+    href: "https://www.behance.net/",
+  },
+  {
+    label: "DRIBBBLE",
+    href: "#",
+  },
+  {
+    label: "INSTAGRAM",
+    href: "https://www.instagram.com/wacreativesstudio/",
+  },
+  {
+    label: "FACEBOOK",
+    href: "https://www.facebook.com/people/WA-Creative-Solutions/61593247537659/",
+  },
+  {
+    label: "LINKEDIN",
+    href: "https://www.linkedin.com/in/muhammad-waseem-akram-996015425/",
+  },
 ];
 
 export default function Footer() {
@@ -37,15 +53,26 @@ export default function Footer() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+          }}
         >
           <div className="footer__cta-label">
             <span className="footer__dot" />
-            <span>HAVE A PROJECT IN MIND?</span>
+
+            <span>
+              HAVE A PROJECT IN MIND?
+            </span>
           </div>
 
-          <Link href="#contact" className="footer__cta-link">
-            <span>LET&apos;S CREATE</span>
+          <Link
+            href="#contact"
+            className="footer__cta-link"
+          >
+            <span>
+              LET&apos;S CREATE
+            </span>
 
             <span className="footer__cta-arrow">
               ↗
@@ -63,12 +90,25 @@ export default function Footer() {
 
           <motion.div
             className="footer__brand"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
           >
-            <Link href="/" className="footer__logo">
+            <Link
+              href="/"
+              className="footer__logo"
+            >
               <span className="footer__logo-wa">
                 WA
               </span>
@@ -88,9 +128,17 @@ export default function Footer() {
 
           <motion.div
             className="footer__column footer__navigation"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.6,
               delay: 0.08,
@@ -126,9 +174,17 @@ export default function Footer() {
 
           <motion.div
             className="footer__column"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.6,
               delay: 0.16,
@@ -143,8 +199,17 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={
+                    link.href !== "#"
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    link.href !== "#"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  aria-label={`Visit ${link.label}`}
                 >
                   <span>
                     {link.label}
@@ -162,9 +227,17 @@ export default function Footer() {
 
           <motion.div
             className="footer__column footer__contact"
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.6,
               delay: 0.24,
@@ -181,6 +254,13 @@ export default function Footer() {
               wacreativestudio@gmail.com
             </a>
 
+            <a
+              href="tel:+923115962551"
+              className="footer__email"
+            >
+              +92 311 5962551
+            </a>
+
             <span className="footer__location">
               RAWALPINDI, PAKISTAN
             </span>
@@ -194,15 +274,25 @@ export default function Footer() {
 
         <motion.div
           className="footer__wordmark"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.8,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <span>WA</span>
+          <span>
+            WA
+          </span>
         </motion.div>
 
         {/* =========================================
@@ -211,10 +301,18 @@ export default function Footer() {
 
         <motion.div
           className="footer__bottom"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
         >
           <span>
             © {year} WA CREATIVE SOLUTIONS
