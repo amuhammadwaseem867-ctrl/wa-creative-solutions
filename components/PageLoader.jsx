@@ -5,37 +5,56 @@ import { useEffect, useState } from "react";
 import "./PageLoader.css";
 
 export default function PageLoader() {
-  const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(null);
 
   useEffect(() => {
+    const hasLoaded =
+      sessionStorage.getItem("wa-site-loaded");
+
+    if (hasLoaded) {
+      setShowLoader(false);
+      return;
+    }
+
+    setShowLoader(true);
+
+    sessionStorage.setItem(
+      "wa-site-loaded",
+      "true"
+    );
+
     const timer = setTimeout(() => {
-      setLoading(false);
+      setShowLoader(false);
     }, 2100);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
-  if (!loading) return null;
+  // Avoid flashing page before checking sessionStorage
+  if (showLoader === null || !showLoader) {
+    return null;
+  }
 
   return (
     <motion.div
       className="page-loader"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: 1 }}
+      initial={{
+        opacity: 1,
+      }}
+      animate={{
+        opacity: 1,
+      }}
       exit={{
         opacity: 0,
-        transition: {
-          duration: 0.65,
-          ease: [0.22, 1, 0.36, 1],
-        },
       }}
     >
       <div className="page-loader-brand">
 
-        {/* LOGO ROW */}
+        {/* LOGO */}
         <div className="page-loader-logo-row">
 
-          {/* WA */}
           <motion.div
             className="page-loader-mark"
             initial={{
@@ -56,8 +75,6 @@ export default function PageLoader() {
             WA
           </motion.div>
 
-
-          {/* CREATIVE SOLUTIONS */}
           <motion.div
             className="page-loader-name"
             initial={{
@@ -83,8 +100,7 @@ export default function PageLoader() {
 
         </div>
 
-
-        {/* LINE UNDER LOGO */}
+        {/* LINE */}
         <motion.div
           className="page-loader-line"
           initial={{
