@@ -76,21 +76,26 @@ const services = [
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1];
+
 export default function Services() {
   return (
     <section className="services" id="services">
-
       {/* BACKGROUND */}
-      <div className="services-grid"></div>
+      <div className="services-grid" />
+
+      <div className="services-glow services-glow-one" />
+      <div className="services-glow services-glow-two" />
+
+      <div className="services-orbit" />
 
       <div className="services-container">
-
         {/* HEADER */}
-        <motion.div
+        <motion.header
           className="services-header"
           initial={{
             opacity: 0,
-            y: 25,
+            y: 20,
           }}
           whileInView={{
             opacity: 1,
@@ -98,29 +103,24 @@ export default function Services() {
           }}
           viewport={{
             once: true,
+            amount: 0.35,
           }}
           transition={{
-            duration: 0.7,
+            duration: 0.75,
+            ease,
           }}
         >
           <div className="services-index">
-            <span className="services-dot"></span>
-
-            <span>
-              02 / SERVICES
-            </span>
+            <span className="services-dot" />
+            <span>02 / SERVICES</span>
           </div>
 
           <div className="services-header-info">
-            <span>
-              WHAT WE DO
-            </span>
-
-            <span>
-              10 SERVICES
-            </span>
+            <span>WHAT WE DO</span>
+            <i />
+            <span>10 SERVICES</span>
           </div>
-        </motion.div>
+        </motion.header>
 
         {/* INTRO */}
         <motion.div
@@ -135,20 +135,39 @@ export default function Services() {
           }}
           viewport={{
             once: true,
+            amount: 0.25,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.9,
+            ease,
           }}
         >
-          <h2>
-            WE BUILD
-            <span>WHAT</span>
-            <span className="services-outline">
-              MATTERS.
+          <div className="services-title-wrap">
+            <span className="services-kicker">
+              OUR CAPABILITIES
             </span>
-          </h2>
 
-          <p>
+            <h2 className="services-title">
+              <span>WE BUILD</span>
+
+              <span>WHAT</span>
+
+              <span className="services-outline">
+                MATTERS.
+              </span>
+            </h2>
+
+            <div
+              className="services-title-accent"
+              aria-hidden="true"
+            >
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <p className="services-intro-copy">
             FROM BRANDING AND VISUAL DESIGN TO
             HIGH-PERFORMANCE WEBSITES AND DIGITAL
             EXPERIENCES, WE CONNECT CREATIVITY,
@@ -157,9 +176,8 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* SERVICES LIST */}
+        {/* SERVICES */}
         <div className="services-list">
-
           {services.map((service, index) => (
             <motion.a
               href="#contact"
@@ -167,7 +185,7 @@ export default function Services() {
               key={service.number}
               initial={{
                 opacity: 0,
-                y: 25,
+                y: 24,
               }}
               whileInView={{
                 opacity: 1,
@@ -175,29 +193,33 @@ export default function Services() {
               }}
               viewport={{
                 once: true,
+                amount: 0.1,
               }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.06,
+                duration: 0.55,
+                delay: Math.min(index * 0.045, 0.4),
+                ease,
               }}
             >
-
               {/* NUMBER */}
               <div className="service-number">
                 {service.number}
               </div>
 
-              {/* MAIN TITLE */}
+              {/* MAIN */}
               <div className="service-main">
+                <div className="service-title-row">
+                  <h3>{service.title}</h3>
 
-                <h3>
-                  {service.title}
-                </h3>
+                  <span
+                    className="service-mobile-mark"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </div>
 
-                <p>
-                  {service.description}
-                </p>
-
+                <p>{service.description}</p>
               </div>
 
               {/* TAG */}
@@ -205,21 +227,25 @@ export default function Services() {
                 {service.tag}
               </div>
 
-              {/* ARROW */}
-              <div className="service-arrow">
-                ↗
+              {/* STATUS */}
+              <div
+                className="service-status"
+                aria-hidden="true"
+              >
+                <span />
               </div>
 
               {/* HOVER LINE */}
-              <div className="service-hover-line"></div>
-
+              <span
+                className="service-hover-line"
+                aria-hidden="true"
+              />
             </motion.a>
           ))}
-
         </div>
 
         {/* FOOTER */}
-        <motion.div
+        <motion.footer
           className="services-footer"
           initial={{
             opacity: 0,
@@ -232,6 +258,7 @@ export default function Services() {
           }}
           transition={{
             duration: 0.7,
+            delay: 0.1,
           }}
         >
           <span>
@@ -243,10 +270,10 @@ export default function Services() {
           </span>
 
           <a href="#contact">
-            START A PROJECT ↗
+            START A PROJECT
+            <span className="services-footer-line" />
           </a>
-        </motion.div>
-
+        </motion.footer>
       </div>
     </section>
   );

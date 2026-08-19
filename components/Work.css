@@ -1,28 +1,40 @@
-/* =========================================
+/* =========================================================
    WA CREATIVE SOLUTIONS
-   WORK / SELECTED WORK
-========================================= */
+   WORK — PREMIUM / READABLE / RESPONSIVE
+========================================================= */
 
 .work {
   position: relative;
+
   width: 100%;
-  padding: 150px 0 110px;
-  background: #080908;
-  color: #f4f6ef;
+  min-height: 100vh;
+
+  padding:
+    150px 0
+    110px;
+
   overflow: hidden;
+  isolation: isolate;
+
+  background: #080908;
+
+  color: #f4f6ef;
 }
 
-/* =========================================
+
+/* =========================================================
    BACKGROUND GRID
-========================================= */
+========================================================= */
 
 .work-grid {
   position: absolute;
   inset: 0;
 
+  z-index: -6;
+
   pointer-events: none;
 
-  opacity: 0.18;
+  opacity: 0.19;
 
   background-image:
     linear-gradient(
@@ -35,165 +47,490 @@
       transparent 1px
     );
 
-  background-size: 110px 110px;
+  background-size: 100px 100px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 18%,
+      black 80%,
+      transparent
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 18%,
+      black 80%,
+      transparent
+    );
 }
 
-/* =========================================
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+.work-glow {
+  position: absolute;
+
+  z-index: -5;
+
+  width: 460px;
+  height: 460px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(115px);
+
+  animation:
+    workGlow
+    11s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.work-glow-one {
+  right: -230px;
+  top: 16%;
+
+  background: #c8ff3d;
+
+  opacity: 0.045;
+}
+
+.work-glow-two {
+  left: -260px;
+  bottom: 7%;
+
+  width: 340px;
+  height: 340px;
+
+  background: #c8ff3d;
+
+  opacity: 0.02;
+
+  animation-delay: -4s;
+}
+
+@keyframes workGlow {
+  from {
+    transform:
+      translate3d(0, 0, 0)
+      scale(0.94);
+  }
+
+  to {
+    transform:
+      translate3d(-18px, 15px, 0)
+      scale(1.06);
+  }
+}
+
+
+/* =========================================================
+   ORBIT
+========================================================= */
+
+.work-orbit {
+  position: absolute;
+
+  z-index: -2;
+
+  width: 680px;
+  height: 680px;
+
+  right: -480px;
+  top: 31%;
+
+  border:
+    1px solid
+    rgba(200, 255, 61, 0.045);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  animation:
+    workOrbit
+    15s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+@keyframes workOrbit {
+  from {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate3d(-20px, -25px, 0)
+      rotate(8deg);
+  }
+}
+
+
+/* =========================================================
    CONTAINER
-========================================= */
+========================================================= */
 
 .work-container {
   position: relative;
-  z-index: 2;
+  z-index: 5;
 
-  width: min(1500px, calc(100% - 100px));
+  width:
+    min(
+      1500px,
+      calc(100% - 100px)
+    );
+
   margin: 0 auto;
 }
 
-/* =========================================
+
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
 
 .work-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding-bottom: 28px;
+  padding-bottom: 25px;
 
-  border-bottom: 1px solid rgba(244, 246, 239, 0.14);
+  border-bottom:
+    1px solid
+    rgba(244, 246, 239, 0.11);
 }
 
 .work-eyebrow {
   display: flex;
   align-items: center;
-  gap: 12px;
 
-  color: #dce1d9;
+  gap: 11px;
 
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  color: #9aa29a;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing:
+    0.17em;
+
+  text-transform: uppercase;
 }
 
 .work-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 
   flex-shrink: 0;
 
-  background: #c8ff3d;
   border-radius: 50%;
 
-  box-shadow: 0 0 16px rgba(200, 255, 61, 0.35);
+  background: #c8ff3d;
+
+  box-shadow:
+    0 0 0 5px
+      rgba(200, 255, 61, 0.045),
+    0 0 16px
+      rgba(200, 255, 61, 0.28);
+
+  animation:
+    workDotPulse
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes workDotPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .work-header-meta {
   display: flex;
   align-items: center;
-  gap: 30px;
 
-  color: #a2aaa0;
+  gap: 14px;
 
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  color: #666e67;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform: uppercase;
+}
+
+.work-header-meta i {
+  width: 32px;
+  height: 1px;
+
+  background: #303530;
 }
 
 .work-header-meta span:last-child {
   color: #c8ff3d;
 }
 
-/* =========================================
+
+/* =========================================================
    INTRO
-========================================= */
+========================================================= */
 
 .work-intro {
   display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 100px;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(300px, 0.65fr);
+
+  gap: 8vw;
+
   align-items: end;
 
-  padding: 95px 0 105px;
+  padding:
+    100px 0
+    105px;
 }
 
-.work-title h2 {
+
+/* =========================================================
+   TITLE WRAP
+========================================================= */
+
+.work-title-wrap {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   KICKER
+========================================================= */
+
+.work-kicker {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 28px;
+
+  color: #c8ff3d;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing:
+    0.19em;
+
+  text-transform: uppercase;
+}
+
+.work-kicker::before {
+  content: "";
+
+  width: 22px;
+  height: 1px;
+
+  background: #c8ff3d;
+
+  box-shadow:
+    0 0 10px
+      rgba(200, 255, 61, 0.4);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.work-title {
+  display: flex;
+  flex-direction: column;
+
   margin: 0;
 
   color: #f4f6ef;
 
-  font-size: clamp(72px, 10vw, 150px);
-  font-weight: 500;
-  line-height: 0.8;
+  font-size:
+    clamp(
+      68px,
+      8.8vw,
+      142px
+    );
 
-  letter-spacing: -0.075em;
+  font-weight: 700;
+
+  line-height: 0.88;
+
+  letter-spacing:
+    -0.065em;
+
+  text-transform: uppercase;
 }
 
-.work-title h2 span {
+.work-title > span {
   display: block;
 
+  width: fit-content;
+
+  white-space: nowrap;
+}
+
+.work-title > span + span {
+  margin-top: 0.045em;
+}
+
+.work-title-outline {
   color: transparent;
 
-  -webkit-text-stroke: 1.5px #f4f6ef;
+  -webkit-text-stroke:
+    1.5px
+    rgba(244, 246, 239, 0.92);
 
   transition:
     color 0.45s ease,
-    -webkit-text-stroke-color 0.45s ease;
+    -webkit-text-stroke-color 0.45s ease,
+    transform 0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
-.work-title h2:hover span {
+.work-title-outline:hover {
   color: #c8ff3d;
-  -webkit-text-stroke-color: #c8ff3d;
+
+  -webkit-text-stroke-color:
+    #c8ff3d;
+
+  transform:
+    translateX(10px);
 }
+
+
+/* =========================================================
+   TITLE ACCENT
+========================================================= */
+
+.work-title-accent {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 29px;
+}
+
+.work-title-accent span {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #3d443d;
+}
+
+.work-title-accent span:first-child {
+  width: 48px;
+  height: 1px;
+
+  border-radius: 0;
+
+  background: #c8ff3d;
+}
+
+
+/* =========================================================
+   INTRO COPY
+========================================================= */
 
 .work-intro-copy {
-  max-width: 390px;
+  max-width: 410px;
 
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .work-intro-label {
   display: block;
 
-  margin-bottom: 20px;
+  margin-bottom: 17px;
 
   color: #c8ff3d;
 
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+
+  letter-spacing:
+    0.17em;
+
+  text-transform: uppercase;
 }
 
 .work-intro-copy p {
   margin: 0;
 
-  color: #b5bcb3;
+  color: #aeb6ac;
 
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.8;
+  font-size: 12px;
+  font-weight: 550;
 
-  letter-spacing: 0.035em;
+  line-height: 1.9;
+
+  letter-spacing:
+    0.035em;
+
+  text-transform: uppercase;
 }
 
-/* =========================================
+
+/* =========================================================
    MAIN CONTENT
-========================================= */
+========================================================= */
 
 .work-content {
   display: grid;
-  grid-template-columns: minmax(350px, 0.72fr) minmax(520px, 1.28fr);
+
+  grid-template-columns:
+    minmax(340px, 0.72fr)
+    minmax(500px, 1.28fr);
+
   gap: 35px;
 
   align-items: start;
 }
 
-/* =========================================
+
+/* =========================================================
    PROJECT LIST
-========================================= */
+========================================================= */
 
 .work-projects {
-  border-top: 1px solid rgba(244, 246, 239, 0.15);
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.12);
 }
 
 .work-projects-header {
@@ -201,13 +538,19 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 17px 18px;
+  padding:
+    16px
+    17px;
 
-  color: #9aa198;
+  color: #737c73;
 
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform: uppercase;
 }
 
 .work-projects-header span:last-child {
@@ -215,30 +558,44 @@
 }
 
 .work-projects-list {
-  border-top: 1px solid rgba(244, 246, 239, 0.08);
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.075);
 }
 
-/* =========================================
+
+/* =========================================================
    PROJECT ITEM
-========================================= */
+========================================================= */
 
 .work-project {
   position: relative;
 
   display: grid;
-  grid-template-columns: 55px minmax(0, 1fr) 35px;
+
+  grid-template-columns:
+    48px
+    minmax(0, 1fr)
+    10px;
 
   align-items: center;
 
   width: 100%;
   min-height: 94px;
 
-  padding: 0 18px;
+  padding:
+    0 17px;
 
   border: 0;
-  border-bottom: 1px solid rgba(244, 246, 239, 0.11);
+
+  border-bottom:
+    1px solid
+    rgba(244, 246, 239, 0.09);
+
+  outline: none;
 
   background: transparent;
+
   color: #f4f6ef;
 
   text-align: left;
@@ -247,9 +604,17 @@
 
   overflow: hidden;
 
+  box-sizing: border-box;
+
   transition:
     background 0.35s ease,
-    padding 0.35s ease;
+    padding-left 0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
 .work-project-line {
@@ -259,139 +624,229 @@
   top: 0;
 
   width: 2px;
-  height: 0;
+  height: 100%;
 
   background: #c8ff3d;
 
-  transition: height 0.4s ease;
+  transform:
+    scaleY(0);
+
+  transform-origin:
+    bottom center;
+
+  transition:
+    transform 0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
 .work-project:hover,
 .work-project-active {
-  padding-left: 26px;
+  padding-left: 25px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(200, 255, 61, 0.06),
-      transparent 70%
+      rgba(200, 255, 61, 0.055),
+      transparent 72%
     );
 }
 
-.work-project:hover .work-project-line,
-.work-project-active .work-project-line {
-  height: 100%;
+.work-project:hover
+.work-project-line,
+.work-project-active
+.work-project-line {
+  transform:
+    scaleY(1);
+
+  transform-origin:
+    top center;
 }
 
-/* =========================================
-   NUMBER
-========================================= */
+
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
 
 .work-project-number {
-  color: #9da59b;
+  align-self: start;
 
-  font-size: 10px;
-  font-weight: 600;
+  padding-top: 4px;
 
-  letter-spacing: 0.13em;
+  color: #7f887f;
 
-  transition: color 0.3s ease;
+  font-size: 9px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing:
+    0.11em;
+
+  transition:
+    color 0.3s ease;
 }
 
-.work-project:hover .work-project-number,
-.work-project-active .work-project-number {
+.work-project:hover
+.work-project-number,
+.work-project-active
+.work-project-number {
   color: #c8ff3d;
 }
 
-/* =========================================
-   INFO
-========================================= */
+
+/* =========================================================
+   PROJECT INFO
+========================================================= */
 
 .work-project-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+
+  gap: 7px;
 
   min-width: 0;
 }
 
 .work-project-title {
+  overflow: hidden;
+
   color: #f4f6ef;
 
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 21px;
+  font-weight: 700;
 
-  line-height: 1;
+  line-height: 1.1;
 
-  letter-spacing: -0.035em;
+  letter-spacing:
+    -0.035em;
 
   white-space: nowrap;
 
-  transition: color 0.3s ease;
+  text-overflow: ellipsis;
+
+  transition:
+    color 0.3s ease,
+    transform 0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
 .work-project-category {
-  color: #a0a79e;
+  color: #8c958c;
 
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 8px;
+  font-weight: 700;
 
-  letter-spacing: 0.13em;
+  line-height: 1.3;
+
+  letter-spacing:
+    0.11em;
 
   text-transform: uppercase;
 
-  transition: color 0.3s ease;
+  transition:
+    color 0.3s ease;
 }
 
-.work-project:hover .work-project-title,
-.work-project-active .work-project-title {
+.work-project:hover
+.work-project-title,
+.work-project-active
+.work-project-title {
   color: #c8ff3d;
+
+  transform:
+    translateX(4px);
 }
 
-.work-project:hover .work-project-category,
-.work-project-active .work-project-category {
-  color: #c0c6bd;
+.work-project:hover
+.work-project-category,
+.work-project-active
+.work-project-category {
+  color: #aeb6ac;
 }
 
-/* =========================================
-   PROJECT ARROW
-========================================= */
 
-.work-project-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* =========================================================
+   PROJECT STATUS
+========================================================= */
 
-  width: 34px;
-  height: 34px;
+.work-project-status {
+  justify-self: end;
+  align-self: center;
 
-  border: 1px solid rgba(244, 246, 239, 0.17);
+  width: 10px;
+  height: 10px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border:
+    1px solid
+    rgba(200, 255, 61, 0.27);
+
   border-radius: 50%;
 
-  color: #a5aca2;
-
-  font-size: 15px;
+  box-sizing: border-box;
 
   transition:
-    transform 0.35s ease,
-    color 0.35s ease,
-    background 0.35s ease,
-    border-color 0.35s ease;
+    border-color 0.35s ease,
+    transform 0.35s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
-.work-project:hover .work-project-arrow,
-.work-project-active .work-project-arrow {
-  transform: translate(2px, -2px) rotate(0deg);
+.work-project-status > span {
+  width: 3px;
+  height: 3px;
 
-  background: #c8ff3d;
+  border-radius: 50%;
+
+  background: #596159;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.work-project:hover
+.work-project-status,
+.work-project-active
+.work-project-status {
   border-color: #c8ff3d;
 
-  color: #080908;
+  transform:
+    scale(1.12);
 }
 
-/* =========================================
+.work-project:hover
+.work-project-status > span,
+.work-project-active
+.work-project-status > span {
+  background: #c8ff3d;
+
+  transform:
+    scale(1.35);
+}
+
+
+/* =========================================================
    PREVIEW
-========================================= */
+========================================================= */
 
 .work-preview {
   min-width: 0;
@@ -401,9 +856,10 @@
   width: 100%;
 }
 
-/* =========================================
+
+/* =========================================================
    IMAGE LINK
-========================================= */
+========================================================= */
 
 .work-image-link {
   display: block;
@@ -413,9 +869,10 @@
   text-decoration: none;
 }
 
-/* =========================================
+
+/* =========================================================
    IMAGE
-========================================= */
+========================================================= */
 
 .work-image {
   position: relative;
@@ -424,9 +881,9 @@
 
   aspect-ratio: 16 / 10;
 
-  background: #111411;
-
   overflow: hidden;
+
+  background: #111411;
 }
 
 .work-image img {
@@ -437,41 +894,55 @@
 
   object-fit: cover;
 
-  filter: saturate(0.82) contrast(1.02);
+  filter:
+    saturate(0.82)
+    contrast(1.02);
 
   transition:
-    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s
+      cubic-bezier(
+        0.2,
+        0.7,
+        0.2,
+        1
+      ),
     filter 0.6s ease;
 }
 
-.work-card:hover .work-image img {
-  transform: scale(1.045);
+.work-card:hover
+.work-image img {
+  transform:
+    scale(1.045);
 
-  filter: saturate(1) contrast(1.04);
+  filter:
+    saturate(1)
+    contrast(1.04);
 }
 
-/* =========================================
+
+/* =========================================================
    IMAGE OVERLAY
-========================================= */
+========================================================= */
 
 .work-image-overlay {
   position: absolute;
   inset: 0;
 
+  pointer-events: none;
+
   background:
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.25),
-      transparent 40%,
-      rgba(0, 0, 0, 0.7)
+      rgba(0, 0, 0, 0.28),
+      transparent 38%,
+      rgba(0, 0, 0, 0.72)
     );
-
-  pointer-events: none;
 }
 
-/* =========================================
+
+/* =========================================================
    IMAGE TOP
-========================================= */
+========================================================= */
 
 .work-image-top {
   position: absolute;
@@ -489,9 +960,11 @@
   color: #f4f6ef;
 
   font-size: 8px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.14em;
+  letter-spacing:
+    0.13em;
+
   text-transform: uppercase;
 }
 
@@ -501,9 +974,10 @@
   text-align: right;
 }
 
-/* =========================================
+
+/* =========================================================
    IMAGE VIEW
-========================================= */
+========================================================= */
 
 .work-image-view {
   position: absolute;
@@ -513,48 +987,71 @@
 
   display: flex;
   align-items: center;
-  gap: 10px;
+
+  gap: 11px;
 
   color: #f4f6ef;
 
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.14em;
+  letter-spacing:
+    0.13em;
+
+  text-transform: uppercase;
 }
 
-.work-image-view span:last-child {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.work-image-status {
+  width: 34px;
+  height: 34px;
 
-  width: 35px;
-  height: 35px;
+  display: grid;
+  place-items: center;
 
-  border: 1px solid rgba(244, 246, 239, 0.35);
+  border:
+    1px solid
+    rgba(244, 246, 239, 0.32);
+
   border-radius: 50%;
 
-  color: #c8ff3d;
-
-  font-size: 16px;
-
   transition:
-    transform 0.35s ease,
     background 0.35s ease,
-    color 0.35s ease;
+    border-color 0.35s ease,
+    transform 0.35s ease;
 }
 
-.work-card:hover .work-image-view span:last-child {
-  transform: translate(3px, -3px);
+.work-image-status > span {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
 
   background: #c8ff3d;
 
-  color: #080908;
+  box-shadow:
+    0 0 10px
+      rgba(200, 255, 61, 0.6);
 }
 
-/* =========================================
+.work-card:hover
+.work-image-status {
+  background: #c8ff3d;
+
+  border-color: #c8ff3d;
+
+  transform:
+    scale(1.08);
+}
+
+.work-card:hover
+.work-image-status > span {
+  background: #080908;
+}
+
+
+/* =========================================================
    DETAILS
-========================================= */
+========================================================= */
 
 .work-details {
   padding-top: 30px;
@@ -576,9 +1073,10 @@
   color: #c8ff3d;
 
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.15em;
+  letter-spacing:
+    0.15em;
 
   text-transform: uppercase;
 }
@@ -588,50 +1086,67 @@
 
   color: #f4f6ef;
 
-  font-size: clamp(52px, 6vw, 82px);
+  font-size:
+    clamp(
+      50px,
+      5.8vw,
+      82px
+    );
 
-  font-weight: 500;
+  font-weight: 700;
 
-  line-height: 0.85;
+  line-height: 0.9;
 
-  letter-spacing: -0.065em;
+  letter-spacing:
+    -0.065em;
+
+  text-transform: uppercase;
 }
 
 .work-details-number {
   flex-shrink: 0;
 
+  padding-top: 4px;
+
   color: #818981;
 
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
+  font-weight: 700;
 
-  letter-spacing: 0.13em;
+  letter-spacing:
+    0.13em;
 }
 
-/* =========================================
+
+/* =========================================================
    DESCRIPTION
-========================================= */
+========================================================= */
 
 .work-description {
-  max-width: 610px;
+  max-width: 620px;
 
-  margin: 28px 0 0;
+  margin:
+    27px 0 0;
 
-  color: #b2b9b0;
+  color: #aeb6ac;
 
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
 
-  font-weight: 400;
+  line-height: 1.78;
 
-  line-height: 1.75;
+  letter-spacing:
+    0.015em;
 }
 
-/* =========================================
+
+/* =========================================================
    DETAILS BOTTOM
-========================================= */
+========================================================= */
 
 .work-details-bottom {
   display: flex;
+
   align-items: flex-end;
   justify-content: space-between;
 
@@ -640,9 +1155,10 @@
   margin-top: 30px;
 }
 
-/* =========================================
+
+/* =========================================================
    TAGS
-========================================= */
+========================================================= */
 
 .work-tags {
   display: flex;
@@ -652,16 +1168,22 @@
 }
 
 .work-tags span {
-  padding: 8px 11px;
+  padding:
+    8px 11px;
 
-  border: 1px solid rgba(244, 246, 239, 0.16);
+  border:
+    1px solid
+    rgba(244, 246, 239, 0.15);
 
-  color: #a7aea5;
+  color: #929a91;
 
   font-size: 8px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.1em;
+  letter-spacing:
+    0.09em;
+
+  line-height: 1.2;
 
   text-transform: uppercase;
 
@@ -674,69 +1196,102 @@
 .work-tags span:hover {
   border-color: #c8ff3d;
 
-  background: rgba(200, 255, 61, 0.06);
+  background:
+    rgba(200, 255, 61, 0.05);
 
   color: #c8ff3d;
 }
 
-/* =========================================
-   CTA
-========================================= */
+
+/* =========================================================
+   CTA — NO ARROW
+========================================================= */
 
 .work-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+
+  display: inline-block;
 
   flex-shrink: 0;
 
   width: 175px;
 
-  padding: 15px 16px;
-
-  border: 1px solid rgba(244, 246, 239, 0.22);
+  padding:
+    15px 0 10px;
 
   color: #f4f6ef;
 
   text-decoration: none;
 
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.12em;
+  letter-spacing:
+    0.12em;
+
+  text-transform: uppercase;
 
   transition:
-    background 0.35s ease,
-    color 0.35s ease,
-    border-color 0.35s ease;
+    color 0.3s ease;
 }
 
-.work-cta span:last-child {
-  font-size: 17px;
+.work-cta-line {
+  position: absolute;
 
-  transition: transform 0.35s ease;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  overflow: hidden;
+
+  background: #3b413b;
 }
 
-.work-cta:hover {
-  border-color: #c8ff3d;
+.work-cta-line::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
 
   background: #c8ff3d;
 
-  color: #080908;
+  transform:
+    translateX(-101%);
+
+  transition:
+    transform 0.55s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
-.work-cta:hover span:last-child {
-  transform: translate(3px, -3px);
+.work-cta:hover {
+  color: #c8ff3d;
 }
 
-/* =========================================
+.work-cta:hover
+.work-cta-line::after {
+  transform:
+    translateX(0);
+}
+
+
+/* =========================================================
    BOTTOM
-========================================= */
+========================================================= */
 
 .work-bottom {
   display: grid;
 
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns:
+    1fr
+    1fr
+    auto;
 
   align-items: center;
 
@@ -746,14 +1301,21 @@
 
   padding-top: 25px;
 
-  border-top: 1px solid rgba(244, 246, 239, 0.13);
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.11);
 
-  color: #929a91;
+  color: #7f887f;
 
   font-size: 8px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.15em;
+  line-height: 1.5;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform: uppercase;
 }
 
 .work-bottom span:nth-child(2) {
@@ -764,25 +1326,37 @@
   color: #c8ff3d;
 }
 
-/* =========================================
+
+/* =========================================================
    LARGE TABLET
-========================================= */
+========================================================= */
 
 @media (max-width: 1100px) {
+
   .work {
-    padding: 120px 0 90px;
+    padding:
+      120px 0
+      90px;
   }
 
   .work-container {
-    width: min(100% - 60px, 1000px);
+    width:
+      min(
+        1000px,
+        calc(100% - 60px)
+      );
   }
 
   .work-intro {
-    grid-template-columns: 1fr 0.65fr;
+    grid-template-columns:
+      1fr
+      0.7fr;
 
     gap: 50px;
 
-    padding: 75px 0 80px;
+    padding:
+      75px 0
+      80px;
   }
 
   .work-content {
@@ -796,31 +1370,40 @@
   }
 
   .work-details h3 {
-    font-size: clamp(55px, 8vw, 82px);
+    font-size:
+      clamp(
+        56px,
+        8vw,
+        84px
+      );
   }
 }
 
-/* =========================================
+
+/* =========================================================
    TABLET
-========================================= */
+========================================================= */
 
 @media (max-width: 800px) {
+
   .work-container {
-    width: calc(100% - 44px);
+    width:
+      calc(100% - 44px);
   }
 
   .work-header {
-    padding-bottom: 22px;
+    padding-bottom: 21px;
   }
 
   .work-intro {
     display: block;
 
-    padding: 70px 0;
+    padding:
+      70px 0;
   }
 
   .work-intro-copy {
-    max-width: 500px;
+    max-width: 520px;
 
     margin-top: 40px;
   }
@@ -834,18 +1417,26 @@
   }
 }
 
-/* =========================================
+
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 700px) {
+
   .work {
-    padding: 90px 0 70px;
+    padding:
+      90px 0
+      70px;
   }
 
   .work-container {
-    width: calc(100% - 32px);
+    width:
+      calc(100% - 32px);
   }
+
+
+  /* HEADER */
 
   .work-header {
     align-items: flex-start;
@@ -854,84 +1445,128 @@
   }
 
   .work-header-meta {
-    gap: 15px;
+    gap: 8px;
 
-    font-size: 8px;
+    font-size: 7px;
+  }
+
+  .work-header-meta i {
+    width: 15px;
   }
 
   .work-eyebrow {
-    font-size: 9px;
+    font-size: 8px;
   }
+
+
+  /* INTRO */
 
   .work-intro {
-    padding: 60px 0 65px;
+    padding:
+      62px 0
+      65px;
   }
 
-  .work-title h2 {
-    font-size: clamp(58px, 17vw, 92px);
+  .work-kicker {
+    margin-bottom: 22px;
+
+    font-size: 7px;
+
+    letter-spacing:
+      0.15em;
+  }
+
+  .work-title {
+    font-size:
+      clamp(
+        53px,
+        15vw,
+        86px
+      );
+
+    line-height: 0.91;
+
+    letter-spacing:
+      -0.055em;
+  }
+
+  .work-title > span + span {
+    margin-top: 0.055em;
   }
 
   .work-intro-copy {
-    margin-top: 32px;
+    margin-top: 34px;
+  }
+
+  .work-intro-label {
+    font-size: 7px;
   }
 
   .work-intro-copy p {
-    font-size: 12px;
+    font-size: 9.5px;
 
-    line-height: 1.75;
+    line-height: 1.82;
   }
 
-  /* =========================================
-     PROJECT LIST
-  ========================================= */
+
+  /* PROJECT LIST */
 
   .work-projects-header {
-    padding: 15px 12px;
+    padding:
+      14px
+      11px;
+
+    font-size: 7px;
   }
 
   .work-project {
-    grid-template-columns: 38px minmax(0, 1fr) 34px;
+    grid-template-columns:
+      30px
+      minmax(0, 1fr)
+      9px;
 
-    min-height: 76px;
+    min-height: 77px;
 
-    padding: 0 12px;
+    padding:
+      0 11px;
   }
 
   .work-project:hover,
   .work-project-active {
-    padding-left: 18px;
+    padding-left: 17px;
   }
 
   .work-project-number {
-    font-size: 9px;
-  }
+    font-size: 7px;
 
-  .work-project-info {
-    min-width: 0;
+    padding-top: 4px;
   }
 
   .work-project-title {
     font-size: 17px;
 
-    white-space: nowrap;
+    line-height: 1.05;
   }
 
   .work-project-category {
-    font-size: 7px;
+    font-size: 6.5px;
 
-    letter-spacing: 0.1em;
+    letter-spacing:
+      0.09em;
   }
 
-  .work-project-arrow {
-    width: 30px;
-    height: 30px;
-
-    font-size: 13px;
+  .work-project-status {
+    width: 8px;
+    height: 8px;
   }
 
-  /* =========================================
-     PREVIEW
-  ========================================= */
+  .work-project-status > span {
+    width: 2px;
+    height: 2px;
+  }
+
+
+  /* PREVIEW */
 
   .work-content {
     gap: 38px;
@@ -943,29 +1578,32 @@
 
   .work-image-top {
     top: 15px;
+
     left: 15px;
     right: 15px;
 
-    font-size: 7px;
+    font-size: 6.5px;
   }
 
   .work-image-view {
     right: 15px;
     bottom: 15px;
 
-    font-size: 8px;
+    font-size: 7px;
   }
 
-  .work-image-view span:last-child {
-    width: 32px;
-    height: 32px;
-
-    font-size: 14px;
+  .work-image-status {
+    width: 30px;
+    height: 30px;
   }
 
-  /* =========================================
-     DETAILS
-  ========================================= */
+  .work-image-status > span {
+    width: 3px;
+    height: 3px;
+  }
+
+
+  /* DETAILS */
 
   .work-details {
     padding-top: 24px;
@@ -978,31 +1616,41 @@
   .work-details-category {
     margin-bottom: 9px;
 
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .work-details h3 {
-    font-size: clamp(48px, 15vw, 72px);
+    font-size:
+      clamp(
+        45px,
+        14vw,
+        70px
+      );
+
+    line-height: 0.91;
   }
 
   .work-details-number {
-    padding-top: 4px;
+    padding-top: 3px;
 
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .work-description {
     margin-top: 20px;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    line-height: 1.7;
+    line-height: 1.75;
   }
+
+
+  /* TAGS */
 
   .work-details-bottom {
     display: block;
 
-    margin-top: 24px;
+    margin-top: 25px;
   }
 
   .work-tags {
@@ -1010,20 +1658,28 @@
   }
 
   .work-tags span {
-    padding: 7px 9px;
+    padding:
+      7px 9px;
 
-    font-size: 7px;
+    font-size: 6.5px;
   }
+
+
+  /* CTA */
 
   .work-cta {
     width: 100%;
 
-    padding: 14px 15px;
+    padding:
+      13px
+      0
+      9px;
+
+    font-size: 8px;
   }
 
-  /* =========================================
-     BOTTOM
-  ========================================= */
+
+  /* BOTTOM */
 
   .work-bottom {
     grid-template-columns: 1fr;
@@ -1032,29 +1688,59 @@
 
     margin-top: 30px;
 
+    font-size: 7px;
+
     line-height: 1.5;
   }
 
   .work-bottom span:nth-child(2) {
     text-align: left;
   }
+
+
+  /* BACKGROUND */
+
+  .work-orbit {
+    width: 400px;
+    height: 400px;
+
+    right: -300px;
+    top: 42%;
+  }
+
+  .work-glow-one {
+    width: 300px;
+    height: 300px;
+
+    right: -190px;
+
+    opacity: 0.03;
+  }
 }
 
-/* =========================================
+
+/* =========================================================
    SMALL MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 420px) {
+
   .work-container {
-    width: calc(100% - 24px);
+    width:
+      calc(100% - 24px);
   }
 
   .work-header-meta {
     display: none;
   }
 
-  .work-title h2 {
-    font-size: 54px;
+  .work-title {
+    font-size:
+      clamp(
+        50px,
+        14.5vw,
+        60px
+      );
   }
 
   .work-project {
@@ -1063,40 +1749,52 @@
 
   .work-project-title {
     font-size: 15px;
-
-    white-space: nowrap;
   }
 
   .work-project-category {
-    font-size: 7px;
+    font-size: 6.5px;
   }
 
   .work-details h3 {
-    font-size: 48px;
+    font-size: 46px;
   }
 
   .work-description {
-    font-size: 12px;
+    font-size: 11.5px;
+  }
+
+  .work-image-status {
+    width: 28px;
+    height: 28px;
   }
 }
 
-/* =========================================
+
+/* =========================================================
    REDUCED MOTION
-========================================= */
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
+  .work-glow,
+  .work-orbit,
+  .work-dot {
+    animation: none !important;
+  }
+
   .work-project,
   .work-project-line,
   .work-project-number,
   .work-project-title,
   .work-project-category,
-  .work-project-arrow,
+  .work-project-status,
+  .work-project-status > span,
   .work-image img,
-  .work-image-view span:last-child,
+  .work-image-status,
   .work-tags span,
   .work-cta,
-  .work-cta span:last-child,
-  .work-title h2 span {
-    transition: none;
+  .work-cta-line::after,
+  .work-title-outline {
+    transition: none !important;
   }
 }

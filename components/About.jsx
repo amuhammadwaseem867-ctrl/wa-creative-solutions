@@ -1,6 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useRef } from "react";
 import "./About.css";
 
 const stats = [
@@ -18,50 +24,176 @@ const stats = [
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1];
+
 export default function About() {
+  const visualRef = useRef(null);
+
+  /* -----------------------------------------
+     MOUSE SYSTEM
+  ----------------------------------------- */
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothX = useSpring(mouseX, {
+    stiffness: 70,
+    damping: 20,
+    mass: 0.7,
+  });
+
+  const smoothY = useSpring(mouseY, {
+    stiffness: 70,
+    damping: 20,
+    mass: 0.7,
+  });
+
+  const rotateX = useTransform(
+    smoothY,
+    [-0.5, 0.5],
+    [6, -6]
+  );
+
+  const rotateY = useTransform(
+    smoothX,
+    [-0.5, 0.5],
+    [-6, 6]
+  );
+
+  const orbX = useTransform(
+    smoothX,
+    [-0.5, 0.5],
+    [-10, 10]
+  );
+
+  const orbY = useTransform(
+    smoothY,
+    [-0.5, 0.5],
+    [-10, 10]
+  );
+
+  const handleMouseMove = (event) => {
+    if (!visualRef.current) return;
+
+    const rect =
+      visualRef.current.getBoundingClientRect();
+
+    mouseX.set(
+      (event.clientX - rect.left) /
+        rect.width -
+        0.5
+    );
+
+    mouseY.set(
+      (event.clientY - rect.top) /
+        rect.height -
+        0.5
+    );
+  };
+
+  const resetMouse = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <section className="about" id="about">
+    <section
+      className="about"
+      id="about"
+    >
 
-      {/* BACKGROUND */}
-      <div className="about-grid"></div>
+      {/* =========================================
+          ATMOSPHERE
+      ========================================= */}
 
-      <div className="about-orbit about-orbit-one"></div>
-      <div className="about-orbit about-orbit-two"></div>
+      <div className="about-grid" />
+      <div className="about-noise" />
 
+      <div className="about-glow about-glow-one" />
+      <div className="about-glow about-glow-two" />
+
+      <div className="about-orbit about-orbit-one" />
+      <div className="about-orbit about-orbit-two" />
+      <div className="about-orbit about-orbit-three" />
+
+
+      {/* =========================================
+          CONTAINER
+      ========================================= */}
 
       <div className="about-container">
 
-        {/* TOP HEADER */}
-        <motion.div
+
+        {/* =======================================
+            HEADER
+        ======================================= */}
+
+        <motion.header
           className="about-header"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.4,
+          }}
+          transition={{
+            duration: 0.75,
+            ease,
+          }}
         >
+
           <div className="about-index">
-            <span className="about-dot"></span>
+            <span className="about-dot" />
             <span>01 / ABOUT</span>
           </div>
 
-          <span className="about-header-right">
-            WA CREATIVE SOLUTIONS
-          </span>
-        </motion.div>
+          <div className="about-meta">
+            <span>
+              WA CREATIVE SOLUTIONS
+            </span>
+
+            <i />
+
+            <span>EST. 2022</span>
+          </div>
+
+        </motion.header>
 
 
-        {/* MAIN AREA */}
+        {/* =======================================
+            MAIN
+        ======================================= */}
+
         <div className="about-main">
 
-          {/* LEFT CONTENT */}
+
+          {/* =====================================
+              CONTENT
+          ===================================== */}
+
           <motion.div
             className="about-content"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              x: -40,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.22,
+            }}
             transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 0.9,
+              ease,
             }}
           >
 
@@ -71,19 +203,30 @@ export default function About() {
 
 
             <h2 className="about-title">
-              WE MAKE
-              <br />
 
-              <span className="about-stroke">
+              <span className="title-solid">
+                WE MAKE
+              </span>
+
+              <span className="title-outline">
                 IDEAS
               </span>
 
-              <br />
-
-              <span className="about-lime">
+              <span className="title-lime">
                 MATTER.
               </span>
+
             </h2>
+
+
+            <div
+              className="about-title-accent"
+              aria-hidden="true"
+            >
+              <span />
+              <span />
+              <span />
+            </div>
 
 
             <div className="about-copy">
@@ -104,67 +247,180 @@ export default function About() {
             </div>
 
 
+            {/* CTA — NO ARROW */}
+
             <a
               href="#contact"
               className="about-link"
             >
-              <span>LET'S BUILD SOMETHING</span>
-
-              <span className="about-link-arrow">
-                ↗
+              <span>
+                LET&apos;S BUILD SOMETHING
               </span>
+
+              <span className="about-link-line" />
             </a>
 
           </motion.div>
 
 
-          {/* 3D VISUAL */}
+          {/* =====================================
+              VISUAL
+          ===================================== */}
+
           <motion.div
+            ref={visualRef}
             className="about-visual"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={resetMouse}
             initial={{
               opacity: 0,
-              scale: 0.9,
+              scale: 0.92,
+              y: 25,
             }}
             whileInView={{
               opacity: 1,
               scale: 1,
+              y: 0,
             }}
-            viewport={{ once: true }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             transition={{
               duration: 1,
-              ease: [0.22, 1, 0.36, 1],
+              ease,
             }}
           >
 
-            <div className="about-visual-frame">
+            <motion.div
+              className="about-visual-frame"
+              style={{
+                rotateX,
+                rotateY,
+              }}
+            >
+
+              {/* CORNERS */}
+
+              <span className="corner corner-tl" />
+              <span className="corner corner-tr" />
+              <span className="corner corner-bl" />
+              <span className="corner corner-br" />
+
+
+              {/* TOP LABEL */}
 
               <div className="about-visual-label">
-                <span>CREATIVE ENGINE</span>
-                <span>03D / 01</span>
+
+                <span className="visual-label-left">
+                  <i className="live-dot" />
+                  CREATIVE ENGINE
+                </span>
+
+                <span>
+                  03D / 01
+                </span>
+
               </div>
 
 
-              {/* 3D OBJECT PLACEHOLDER */}
+              {/* =================================
+                  3D SYSTEM
+              ================================= */}
+
               <div className="about-3d">
 
-                <div className="about-3d-ring ring-one"></div>
-                <div className="about-3d-ring ring-two"></div>
-                <div className="about-3d-ring ring-three"></div>
+                <div className="orb-glow" />
 
-                <div className="about-3d-core">
-                  WA
+
+                <motion.div
+                  className="about-ring ring-one"
+                  style={{
+                    x: orbX,
+                    y: orbY,
+                  }}
+                />
+
+                <motion.div
+                  className="about-ring ring-two"
+                  style={{
+                    x: orbX,
+                    y: orbY,
+                  }}
+                />
+
+                <motion.div
+                  className="about-ring ring-three"
+                  style={{
+                    x: orbX,
+                    y: orbY,
+                  }}
+                />
+
+
+                {/* PARTICLES */}
+
+                <div
+                  className="orb-particles"
+                  aria-hidden="true"
+                >
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
                 </div>
 
-                <div className="about-3d-cross cross-one">
+
+                {/* CORE */}
+
+                <motion.div
+                  className="about-core"
+                  style={{
+                    x: orbX,
+                    y: orbY,
+                  }}
+                >
+                  <div className="core-glow" />
+
+                  <div className="core-shape">
+                    <span>WA</span>
+                  </div>
+                </motion.div>
+
+
+                {/* PLUS MARKS */}
+
+                <span className="about-cross cross-one">
                   +
-                </div>
+                </span>
 
-                <div className="about-3d-cross cross-two">
+                <span className="about-cross cross-two">
                   +
-                </div>
+                </span>
+
+                <span className="about-cross cross-three">
+                  +
+                </span>
 
               </div>
 
+
+              {/* SIDE LABELS */}
+
+              <div className="visual-side-label side-left">
+                <span>01</span>
+                <span>DESIGN</span>
+              </div>
+
+              <div className="visual-side-label side-right">
+                <span>02</span>
+                <span>MOTION</span>
+              </div>
+
+
+              {/* BOTTOM LABEL */}
 
               <div className="about-visual-bottom">
 
@@ -178,50 +434,73 @@ export default function About() {
 
               </div>
 
-            </div>
+            </motion.div>
 
           </motion.div>
 
         </div>
 
 
-        {/* STATS */}
+        {/* =======================================
+            STATS
+        ======================================= */}
+
         <motion.div
           className="about-stats"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.18,
+          }}
           transition={{
-            duration: 0.7,
-            delay: 0.15,
+            duration: 0.8,
+            delay: 0.08,
+            ease,
           }}
         >
 
-          {stats.map((stat, index) => (
+          {stats.map(
+            (stat, index) => (
+              <div
+                className="about-stat"
+                key={stat.label}
+              >
 
-            <div
-              className="about-stat"
-              key={stat.label}
-            >
+                <span className="about-stat-index">
+                  {String(index + 1).padStart(
+                    2,
+                    "0"
+                  )}
+                </span>
 
-              <span className="about-stat-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+                <strong>
+                  {stat.number}
+                </strong>
 
-              <strong>
-                {stat.number}
-              </strong>
+                <span>
+                  {stat.label}
+                </span>
 
-              <span>
-                {stat.label}
-              </span>
+                <span
+                  className="stat-line"
+                  aria-hidden="true"
+                />
 
-            </div>
+              </div>
+            )
+          )}
 
-          ))}
 
+          {/* GLOBAL */}
 
-          <div className="about-stat about-location">
+          <div className="about-stat">
 
             <span className="about-stat-index">
               04
@@ -234,6 +513,16 @@ export default function About() {
             <span>
               WORKING WORLDWIDE
             </span>
+
+            <span
+              className="global-pulse"
+              aria-hidden="true"
+            />
+
+            <span
+              className="stat-line"
+              aria-hidden="true"
+            />
 
           </div>
 

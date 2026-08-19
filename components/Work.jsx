@@ -68,26 +68,44 @@ const projects = [
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1];
+
 export default function Work() {
   const [activeProject, setActiveProject] = useState(projects[0]);
 
   return (
     <section className="work" id="work">
 
+      {/* BACKGROUND */}
       <div className="work-grid" />
+      <div className="work-glow work-glow-one" />
+      <div className="work-glow work-glow-two" />
+      <div className="work-orbit" />
 
       <div className="work-container">
 
-        {/* =========================================
+        {/* =================================================
             HEADER
-        ========================================= */}
+        ================================================= */}
 
-        <motion.div
+        <motion.header
           className="work-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.35,
+          }}
+          transition={{
+            duration: 0.75,
+            ease,
+          }}
         >
           <div className="work-eyebrow">
             <span className="work-dot" />
@@ -96,35 +114,60 @@ export default function Work() {
 
           <div className="work-header-meta">
             <span>PORTFOLIO</span>
+            <i />
             <span>2026</span>
           </div>
-        </motion.div>
+        </motion.header>
 
 
-        {/* =========================================
+        {/* =================================================
             INTRO
-        ========================================= */}
+        ================================================= */}
 
         <motion.div
           className="work-intro"
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          transition={{
+            duration: 0.9,
+            ease,
+          }}
         >
+          <div className="work-title-wrap">
 
-          <div className="work-title">
+            <span className="work-kicker">
+              SELECTED PROJECTS
+            </span>
 
-            <h2>
-              SELECTED
-              <span>WORK.</span>
+            <h2 className="work-title">
+              <span>SELECTED</span>
+              <span className="work-title-outline">
+                WORK.
+              </span>
             </h2>
+
+            <div
+              className="work-title-accent"
+              aria-hidden="true"
+            >
+              <span />
+              <span />
+              <span />
+            </div>
 
           </div>
 
-
           <div className="work-intro-copy">
-
             <span className="work-intro-label">
               OUR RECENT WORK
             </span>
@@ -134,47 +177,38 @@ export default function Work() {
               EXPERIENCES, IDENTITIES AND CREATIVE
               SYSTEMS BUILT WITH PURPOSE.
             </p>
-
           </div>
-
         </motion.div>
 
 
-        {/* =========================================
+        {/* =================================================
             MAIN WORK AREA
-        ========================================= */}
+        ================================================= */}
 
         <div className="work-content">
 
-
-          {/* =========================================
+          {/* =================================================
               PROJECT LIST
-          ========================================= */}
+          ================================================= */}
 
           <div className="work-projects">
 
             <div className="work-projects-header">
+              <span>PROJECT</span>
 
               <span>
-                PROJECT
+                {String(projects.length).padStart(2, "0")}
               </span>
-
-              <span>
-                06
-              </span>
-
             </div>
-
 
             <div className="work-projects-list">
 
               {projects.map((project, index) => {
-
                 const isActive =
-                  activeProject.number === project.number;
+                  activeProject.number ===
+                  project.number;
 
                 return (
-
                   <motion.button
                     key={project.number}
                     type="button"
@@ -196,18 +230,25 @@ export default function Work() {
                     }}
                     viewport={{
                       once: true,
+                      amount: 0.12,
                     }}
                     transition={{
-                      duration: 0.45,
-                      delay: index * 0.05,
+                      duration: 0.5,
+                      delay: Math.min(
+                        index * 0.045,
+                        0.3
+                      ),
+                      ease,
                     }}
                   >
 
+                    {/* NUMBER */}
                     <span className="work-project-number">
                       {project.number}
                     </span>
 
 
+                    {/* INFO */}
                     <span className="work-project-info">
 
                       <span className="work-project-title">
@@ -221,17 +262,23 @@ export default function Work() {
                     </span>
 
 
-                    <span className="work-project-arrow">
-                      ↗
+                    {/* STATUS */}
+                    <span
+                      className="work-project-status"
+                      aria-hidden="true"
+                    >
+                      <span />
                     </span>
 
 
-                    <span className="work-project-line" />
+                    {/* ACTIVE LINE */}
+                    <span
+                      className="work-project-line"
+                      aria-hidden="true"
+                    />
 
                   </motion.button>
-
                 );
-
               })}
 
             </div>
@@ -239,20 +286,20 @@ export default function Work() {
           </div>
 
 
-          {/* =========================================
+          {/* =================================================
               PREVIEW
-          ========================================= */}
+          ================================================= */}
 
           <div className="work-preview">
 
             <AnimatePresence mode="wait">
 
-              <motion.div
+              <motion.article
                 key={activeProject.number}
                 className="work-card"
                 initial={{
                   opacity: 0,
-                  y: 20,
+                  y: 18,
                 }}
                 animate={{
                   opacity: 1,
@@ -260,24 +307,21 @@ export default function Work() {
                 }}
                 exit={{
                   opacity: 0,
-                  y: -20,
+                  y: -18,
                 }}
                 transition={{
                   duration: 0.45,
+                  ease,
                 }}
               >
 
-
-                {/* =================================
-                    PROJECT IMAGE
-                ================================= */}
+                {/* IMAGE */}
 
                 <Link
                   href={activeProject.route}
                   className="work-image-link"
                   aria-label={`View ${activeProject.title} project`}
                 >
-
                   <div className="work-image">
 
                     <img
@@ -285,9 +329,7 @@ export default function Work() {
                       alt={`${activeProject.title} project`}
                     />
 
-
                     <div className="work-image-overlay" />
-
 
                     <div className="work-image-top">
 
@@ -301,27 +343,22 @@ export default function Work() {
 
                     </div>
 
-
                     <div className="work-image-view">
+                      <span>VIEW PROJECT</span>
 
-                      <span>
-                        VIEW PROJECT
+                      <span
+                        className="work-image-status"
+                        aria-hidden="true"
+                      >
+                        <span />
                       </span>
-
-                      <span>
-                        ↗
-                      </span>
-
                     </div>
 
                   </div>
-
                 </Link>
 
 
-                {/* =================================
-                    PROJECT DETAILS
-                ================================= */}
+                {/* DETAILS */}
 
                 <div className="work-details">
 
@@ -339,7 +376,6 @@ export default function Work() {
 
                     </div>
 
-
                     <span className="work-details-number">
                       {activeProject.number}
                     </span>
@@ -356,13 +392,13 @@ export default function Work() {
 
                     <div className="work-tags">
 
-                      {activeProject.tags.map((tag) => (
-
-                        <span key={tag}>
-                          {tag}
-                        </span>
-
-                      ))}
+                      {activeProject.tags.map(
+                        (tag) => (
+                          <span key={tag}>
+                            {tag}
+                          </span>
+                        )
+                      )}
 
                     </div>
 
@@ -371,22 +407,21 @@ export default function Work() {
                       href={activeProject.route}
                       className="work-cta"
                     >
-
                       <span>
                         VIEW PROJECT
                       </span>
 
-                      <span>
-                        ↗
-                      </span>
-
+                      <span
+                        className="work-cta-line"
+                        aria-hidden="true"
+                      />
                     </Link>
 
                   </div>
 
                 </div>
 
-              </motion.div>
+              </motion.article>
 
             </AnimatePresence>
 
@@ -395,20 +430,27 @@ export default function Work() {
         </div>
 
 
-        {/* =========================================
+        {/* =================================================
             BOTTOM
-        ========================================= */}
+        ================================================= */}
 
-        <motion.div
+        <motion.footer
           className="work-bottom"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.65,
+          }}
         >
-
           <span>
-            06 PROJECTS
+            {String(projects.length).padStart(2, "0")} PROJECTS
           </span>
 
           <span>
@@ -418,11 +460,9 @@ export default function Work() {
           <span className="work-bottom-accent">
             2026
           </span>
-
-        </motion.div>
+        </motion.footer>
 
       </div>
-
     </section>
   );
 }

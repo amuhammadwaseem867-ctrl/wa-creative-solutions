@@ -5,57 +5,92 @@ import Link from "next/link";
 import "./Footer.css";
 
 const footerLinks = [
-  { number: "01", label: "ABOUT", href: "#about" },
-  { number: "02", label: "SERVICES", href: "#services" },
-  { number: "03", label: "TECHNOLOGY", href: "#technology" },
-  { number: "04", label: "WORK", href: "#work" },
-  { number: "05", label: "PROCESS", href: "#process" },
-  { number: "06", label: "TESTIMONIALS", href: "#testimonials" },
-  { number: "07", label: "CONTACT", href: "#contact" },
+  {
+    number: "01",
+    label: "ABOUT",
+    href: "#about",
+  },
+  {
+    number: "02",
+    label: "SERVICES",
+    href: "#services",
+  },
+  {
+    number: "03",
+    label: "TECHNOLOGY",
+    href: "#technology",
+  },
+  {
+    number: "04",
+    label: "WORK",
+    href: "#work",
+  },
+  {
+    number: "05",
+    label: "CONTACT",
+    href: "#contact",
+  },
 ];
 
 const socialLinks = [
   {
-    label: "BEHANCE",
+    label: "Behance",
     href: "https://www.behance.net/",
   },
   {
-    label: "DRIBBBLE",
+    label: "Dribbble",
     href: "#",
   },
   {
-    label: "INSTAGRAM",
+    label: "Instagram",
     href: "https://www.instagram.com/wacreativesstudio/",
   },
   {
-    label: "FACEBOOK",
+    label: "Facebook",
     href: "https://www.facebook.com/people/WA-Creative-Solutions/61593247537659/",
   },
   {
-    label: "LINKEDIN",
+    label: "LinkedIn",
     href: "https://www.linkedin.com/in/muhammad-waseem-akram-996015425/",
   },
 ];
+
+const ease = [0.22, 1, 0.36, 1];
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
+      {/* BACKGROUND */}
+      <div className="footer__grid" />
+
+      <div className="footer__glow footer__glow-one" />
+      <div className="footer__glow footer__glow-two" />
+
       <div className="footer__container">
 
-        {/* =========================================
+        {/* =================================================
             CTA
-        ========================================= */}
+        ================================================= */}
 
         <motion.div
           className="footer__cta"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
           transition={{
-            duration: 0.7,
-            ease: "easeOut",
+            duration: 0.8,
+            ease,
           }}
         >
           <div className="footer__cta-label">
@@ -74,15 +109,17 @@ export default function Footer() {
               LET&apos;S CREATE
             </span>
 
-            <span className="footer__cta-arrow">
-              ↗
-            </span>
+            <span
+              className="footer__cta-line"
+              aria-hidden="true"
+            />
           </Link>
         </motion.div>
 
-        {/* =========================================
+
+        {/* =================================================
             MAIN FOOTER
-        ========================================= */}
+        ================================================= */}
 
         <div className="footer__main">
 
@@ -92,7 +129,7 @@ export default function Footer() {
             className="footer__brand"
             initial={{
               opacity: 0,
-              y: 25,
+              y: 22,
             }}
             whileInView={{
               opacity: 1,
@@ -100,9 +137,11 @@ export default function Footer() {
             }}
             viewport={{
               once: true,
+              amount: 0.15,
             }}
             transition={{
-              duration: 0.6,
+              duration: 0.65,
+              ease,
             }}
           >
             <Link
@@ -119,18 +158,20 @@ export default function Footer() {
             </Link>
 
             <p>
-              We build brands, digital experiences and
-              creative solutions designed to make an impact.
+              WE BUILD BRANDS, DIGITAL EXPERIENCES
+              AND CREATIVE SOLUTIONS DESIGNED TO
+              MAKE AN IMPACT.
             </p>
           </motion.div>
 
-          {/* NAVIGATION */}
+
+          {/* EXPLORE */}
 
           <motion.div
-            className="footer__column footer__navigation"
+            className="footer__column"
             initial={{
               opacity: 0,
-              y: 25,
+              y: 22,
             }}
             whileInView={{
               opacity: 1,
@@ -138,10 +179,12 @@ export default function Footer() {
             }}
             viewport={{
               once: true,
+              amount: 0.15,
             }}
             transition={{
-              duration: 0.6,
-              delay: 0.08,
+              duration: 0.65,
+              delay: 0.06,
+              ease,
             }}
           >
             <span className="footer__column-title">
@@ -162,21 +205,23 @@ export default function Footer() {
                     {link.label}
                   </span>
 
-                  <span className="footer__link-arrow">
-                    ↗
-                  </span>
+                  <span
+                    className="footer__link-dot"
+                    aria-hidden="true"
+                  />
                 </Link>
               ))}
             </nav>
           </motion.div>
 
-          {/* SOCIAL */}
+
+          {/* CONNECT */}
 
           <motion.div
             className="footer__column"
             initial={{
               opacity: 0,
-              y: 25,
+              y: 22,
             }}
             whileInView={{
               opacity: 1,
@@ -184,10 +229,12 @@ export default function Footer() {
             }}
             viewport={{
               once: true,
+              amount: 0.15,
             }}
             transition={{
-              duration: 0.6,
-              delay: 0.16,
+              duration: 0.65,
+              delay: 0.12,
+              ease,
             }}
           >
             <span className="footer__column-title">
@@ -211,17 +258,19 @@ export default function Footer() {
                   }
                   aria-label={`Visit ${link.label}`}
                 >
-                  <span>
+                  <span className="footer__social-label">
                     {link.label}
                   </span>
 
-                  <span>
-                    ↗
-                  </span>
+                  <span
+                    className="footer__social-dot"
+                    aria-hidden="true"
+                  />
                 </a>
               ))}
             </div>
           </motion.div>
+
 
           {/* CONTACT */}
 
@@ -229,7 +278,7 @@ export default function Footer() {
             className="footer__column footer__contact"
             initial={{
               opacity: 0,
-              y: 25,
+              y: 22,
             }}
             whileInView={{
               opacity: 1,
@@ -237,10 +286,12 @@ export default function Footer() {
             }}
             viewport={{
               once: true,
+              amount: 0.15,
             }}
             transition={{
-              duration: 0.6,
-              delay: 0.24,
+              duration: 0.65,
+              delay: 0.18,
+              ease,
             }}
           >
             <span className="footer__column-title">
@@ -264,19 +315,25 @@ export default function Footer() {
             <span className="footer__location">
               RAWALPINDI, PAKISTAN
             </span>
+
+            <span className="footer__availability">
+              <i />
+              AVAILABLE FOR PROJECTS
+            </span>
           </motion.div>
 
         </div>
 
-        {/* =========================================
+
+        {/* =================================================
             GIANT WORDMARK
-        ========================================= */}
+        ================================================= */}
 
         <motion.div
           className="footer__wordmark"
           initial={{
             opacity: 0,
-            y: 40,
+            y: 35,
           }}
           whileInView={{
             opacity: 1,
@@ -284,20 +341,20 @@ export default function Footer() {
           }}
           viewport={{
             once: true,
+            amount: 0.15,
           }}
           transition={{
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.9,
+            ease,
           }}
         >
-          <span>
-            WA
-          </span>
+          <span>WA</span>
         </motion.div>
 
-        {/* =========================================
-            BOTTOM BAR
-        ========================================= */}
+
+        {/* =================================================
+            BOTTOM
+        ================================================= */}
 
         <motion.div
           className="footer__bottom"
@@ -318,12 +375,11 @@ export default function Footer() {
             © {year} WA CREATIVE SOLUTIONS
           </span>
 
-          <span className="footer__status">
-            <i />
-            AVAILABLE FOR PROJECTS
+          <span>
+            DESIGN / DIGITAL / TECHNOLOGY
           </span>
 
-          <span>
+          <span className="footer__bottom-accent">
             DESIGNED &amp; BUILT WITH INTENT
           </span>
         </motion.div>

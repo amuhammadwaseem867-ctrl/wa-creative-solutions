@@ -35,170 +35,311 @@ const services = [
   "DIGITAL MARKETING",
 ];
 
+const ease = [0.22, 1, 0.36, 1];
+
 export default function Contact() {
   return (
     <section className="contact" id="contact">
+
+      {/* BACKGROUND */}
       <div className="contact__grid-bg" />
+      <div className="contact__glow contact__glow-one" />
+      <div className="contact__glow contact__glow-two" />
+      <div className="contact__orbit" />
 
       <div className="contact__container">
 
-        {/* EYEBROW */}
-        <motion.div
-          className="contact__eyebrow"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="contact__eyebrow-line" />
-          <span>GET IN TOUCH</span>
-        </motion.div>
+        {/* =================================================
+            HEADER
+        ================================================= */}
 
-        {/* HERO */}
+        <motion.header
+          className="contact__header"
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.35,
+          }}
+          transition={{
+            duration: 0.75,
+            ease,
+          }}
+        >
+          <div className="contact__eyebrow">
+            <span className="contact__eyebrow-dot" />
+            <span>05 / CONTACT</span>
+          </div>
+
+          <div className="contact__header-meta">
+            <span>LET&apos;S TALK</span>
+            <i />
+            <span>2026</span>
+          </div>
+        </motion.header>
+
+
+        {/* =================================================
+            HERO
+        ================================================= */}
+
         <div className="contact__hero">
 
-          <motion.h2
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+          <motion.div
+            className="contact__hero-main"
+            initial={{
+              opacity: 0,
+              y: 45,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 0.95,
+              ease,
             }}
           >
-            LET&apos;S CREATE
-            <br />
-            SOMETHING
-            <br />
-            <span>REMARKABLE.</span>
-          </motion.h2>
+            <span className="contact__kicker">
+              GET IN TOUCH
+            </span>
+
+            <h2>
+              LET&apos;S CREATE
+              <span>SOMETHING</span>
+              <span className="contact__outline">
+                REMARKABLE.
+              </span>
+            </h2>
+
+            <div
+              className="contact__title-accent"
+              aria-hidden="true"
+            >
+              <span />
+              <span />
+              <span />
+            </div>
+          </motion.div>
+
 
           <motion.div
             className="contact__hero-side"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.25,
+            }}
             transition={{
-              duration: 0.7,
-              delay: 0.15,
+              duration: 0.8,
+              delay: 0.12,
+              ease,
             }}
           >
-            <span>01 / CONTACT</span>
+            <span className="contact__hero-side-index">
+              01 / CONTACT
+            </span>
 
             <p>
-              Have a project, idea or opportunity in mind?
-              Tell us what you&apos;re building and let&apos;s
-              turn it into something people remember.
+              HAVE A PROJECT, IDEA OR OPPORTUNITY IN MIND?
+              TELL US WHAT YOU&apos;RE BUILDING AND LET&apos;S
+              TURN IT INTO SOMETHING PEOPLE REMEMBER.
             </p>
 
-            <div className="contact__hero-line" />
+            <span className="contact__hero-side-line" />
           </motion.div>
 
         </div>
 
+
         {/* DIVIDER */}
+
         <motion.div
           className="contact__divider"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
+          initial={{
+            scaleX: 0,
+          }}
+          whileInView={{
+            scaleX: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
-            ease: "easeOut",
+            ease,
           }}
         />
 
-        {/* MAIN CONTENT */}
+
+        {/* =================================================
+            MAIN CONTENT
+        ================================================= */}
+
         <div className="contact__grid">
 
           {/* LEFT */}
+
           <motion.div
             className="contact__info"
-            initial={{ opacity: 0, x: -35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              x: -30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             transition={{
-              duration: 0.7,
-              ease: "easeOut",
+              duration: 0.8,
+              ease,
             }}
           >
 
-            <div>
+            <div className="contact__info-intro">
+
               <span className="contact__info-label">
                 CONTACT DETAILS
               </span>
 
-              <p className="contact__info-description">
-                Let&apos;s start a conversation about your next
-                digital experience, brand or creative project.
+              <p>
+                LET&apos;S START A CONVERSATION ABOUT
+                YOUR NEXT DIGITAL EXPERIENCE, BRAND
+                OR CREATIVE PROJECT.
               </p>
+
             </div>
 
+
             <div className="contact__details">
-              {contactDetails.map((item, index) => (
-                <motion.a
-                  key={`${item.label}-${index}`}
-                  href={item.href}
-                  className="contact__detail"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
-                  }}
-                >
-                  <span className="contact__detail-label">
-                    {item.label}
-                  </span>
 
-                  <span className="contact__detail-value">
-                    {item.value}
-                  </span>
+              {contactDetails.map(
+                (item, index) => (
+                  <motion.a
+                    key={`${item.label}-${index}`}
+                    href={item.href}
+                    className="contact__detail"
+                    initial={{
+                      opacity: 0,
+                      y: 16,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                      amount: 0.1,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      delay: index * 0.06,
+                      ease,
+                    }}
+                  >
 
-                  <span className="contact__detail-arrow">
-                    ↗
-                  </span>
-                </motion.a>
-              ))}
+                    <span className="contact__detail-label">
+                      {item.label}
+                    </span>
+
+                    <span className="contact__detail-value">
+                      {item.value}
+                    </span>
+
+                    {/* NO ARROW */}
+                    <span
+                      className="contact__detail-status"
+                      aria-hidden="true"
+                    >
+                      <span />
+                    </span>
+
+                    <span
+                      className="contact__detail-line"
+                      aria-hidden="true"
+                    />
+
+                  </motion.a>
+                )
+              )}
+
             </div>
 
           </motion.div>
 
 
-          {/* RIGHT CTA */}
+          {/* RIGHT */}
+
           <motion.div
             className="contact__cta"
-            initial={{ opacity: 0, x: 35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             transition={{
-              duration: 0.7,
+              duration: 0.8,
               delay: 0.1,
-              ease: "easeOut",
+              ease,
             }}
           >
 
             <div className="contact__cta-top">
-              <span>START A PROJECT</span>
+
+              <span>
+                START A PROJECT
+              </span>
 
               <span className="contact__cta-number">
                 02
               </span>
+
             </div>
+
 
             <h3>
               HAVE AN
-              <br />
               <span>IDEA?</span>
             </h3>
 
+
             <p>
-              From identity and websites to digital experiences,
-              we build work that gives brands a reason to be remembered.
+              FROM IDENTITY AND WEBSITES TO DIGITAL
+              EXPERIENCES, WE BUILD WORK THAT GIVES
+              BRANDS A REASON TO BE REMEMBERED.
             </p>
 
+
             {/* SERVICES */}
+
             <div className="contact__services">
 
               <span className="contact__services-label">
@@ -206,47 +347,81 @@ export default function Contact() {
               </span>
 
               <div className="contact__services-list">
-                {services.map((service) => (
-                  <span key={service}>
-                    {service}
-                  </span>
-                ))}
+
+                {services.map(
+                  (service, index) => (
+                    <span key={service}>
+                      <small>
+                        {String(index + 1).padStart(
+                          2,
+                          "0"
+                        )}
+                      </small>
+
+                      {service}
+                    </span>
+                  )
+                )}
+
               </div>
 
             </div>
 
-            {/* BUTTON */}
+
+            {/* CTA */}
+
             <a
               href="mailto:wacreativestudio@gmail.com"
               className="contact__button"
             >
-              <span>SEND AN EMAIL</span>
-
-              <span className="contact__button-arrow">
-                ↗
+              <span>
+                SEND AN EMAIL
               </span>
+
+              <span
+                className="contact__button-line"
+                aria-hidden="true"
+              />
             </a>
 
           </motion.div>
 
         </div>
 
-        {/* BOTTOM */}
-        <motion.div
-          className="contact__bottom"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span>WA CREATIVE SOLUTIONS</span>
 
-          <span>RAWALPINDI, PAKISTAN</span>
+        {/* =================================================
+            BOTTOM
+        ================================================= */}
+
+        <motion.footer
+          className="contact__bottom"
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.7,
+          }}
+        >
+
+          <span>
+            WA CREATIVE SOLUTIONS
+          </span>
+
+          <span>
+            RAWALPINDI, PAKISTAN
+          </span>
 
           <span className="contact__accent">
             AVAILABLE FOR PROJECTS
           </span>
-        </motion.div>
+
+        </motion.footer>
 
       </div>
     </section>

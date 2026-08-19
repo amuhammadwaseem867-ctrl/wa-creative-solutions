@@ -33,7 +33,6 @@ const technologies = [
       },
     ],
   },
-
   {
     category: "DESIGN SOFTWARE",
     items: [
@@ -55,7 +54,6 @@ const technologies = [
       },
     ],
   },
-
   {
     category: "MOTION & VIDEO",
     items: [
@@ -75,6 +73,8 @@ const technologies = [
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1];
+
 export default function TechStack() {
   const totalTools = technologies.reduce(
     (total, group) => total + group.items.length,
@@ -82,50 +82,104 @@ export default function TechStack() {
   );
 
   return (
-    <section className="techstack" id="technology">
+    <section
+      className="techstack"
+      id="technology"
+    >
       {/* BACKGROUND */}
       <div className="techstack-grid" />
 
+      <div className="techstack-glow techstack-glow-one" />
+      <div className="techstack-glow techstack-glow-two" />
+
+      <div className="techstack-orbit" />
+
       <div className="techstack-container">
+
         {/* HEADER */}
-        <motion.div
+        <motion.header
           className="techstack-header"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.35,
+          }}
+          transition={{
+            duration: 0.75,
+            ease,
+          }}
         >
           <div className="techstack-index">
             <span className="techstack-dot" />
-
             <span>03 / TECHNOLOGY</span>
           </div>
 
           <div className="techstack-header-info">
             <span>OUR STACK</span>
 
-            <span>{totalTools} TOOLS</span>
+            <i />
+
+            <span>
+              {totalTools} TOOLS
+            </span>
           </div>
-        </motion.div>
+        </motion.header>
+
 
         {/* INTRO */}
         <motion.div
           className="techstack-intro"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          transition={{
+            duration: 0.9,
+            ease,
+          }}
         >
-          <h2>
-            BUILT
-            <span>WITH</span>
+          <div className="techstack-title-wrap">
 
-            <span className="techstack-outline">
-              PURPOSE.
+            <span className="techstack-kicker">
+              OUR TOOLKIT
             </span>
-          </h2>
 
-          <p>
+            <h2 className="techstack-title">
+              <span>BUILT</span>
+              <span>WITH</span>
+
+              <span className="techstack-outline">
+                PURPOSE.
+              </span>
+            </h2>
+
+            <div
+              className="techstack-title-accent"
+              aria-hidden="true"
+            >
+              <span />
+              <span />
+              <span />
+            </div>
+
+          </div>
+
+          <p className="techstack-intro-copy">
             FROM CODE TO CREATIVE TOOLS, WE USE MODERN
             TECHNOLOGIES AND INDUSTRY-STANDARD SOFTWARE
             TO BUILD FAST, REFINED AND MEMORABLE DIGITAL
@@ -133,81 +187,142 @@ export default function TechStack() {
           </p>
         </motion.div>
 
+
         {/* TECHNOLOGY GROUPS */}
         <div className="techstack-groups">
-          {technologies.map((group, groupIndex) => (
-            <motion.div
-              className="techstack-group"
-              key={group.category}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: groupIndex * 0.1,
-              }}
-            >
-              {/* CATEGORY */}
-              <div className="techstack-category">
-                <span>
-                  {String(groupIndex + 1).padStart(2, "0")}
-                </span>
 
-                <h3>{group.category}</h3>
-              </div>
+          {technologies.map(
+            (group, groupIndex) => (
+              <motion.div
+                className="techstack-group"
+                key={group.category}
+                initial={{
+                  opacity: 0,
+                  y: 28,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.12,
+                }}
+                transition={{
+                  duration: 0.65,
+                  delay: groupIndex * 0.08,
+                  ease,
+                }}
+              >
 
-              {/* ITEMS */}
-              <div className="techstack-items">
-                {group.items.map((item, index) => (
-                  <motion.div
-                    className="techstack-item"
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.45,
-                      delay:
-                        groupIndex * 0.1 +
-                        index * 0.05,
-                    }}
-                  >
-                    {/* NUMBER */}
-                    <div className="techstack-item-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
+                {/* CATEGORY */}
+                <div className="techstack-category">
 
-                    {/* CONTENT */}
-                    <div className="techstack-item-main">
-                      <h4>{item.name}</h4>
+                  <span>
+                    {String(
+                      groupIndex + 1
+                    ).padStart(2, "0")}
+                  </span>
 
-                      <p>{item.description}</p>
-                    </div>
+                  <h3>
+                    {group.category}
+                  </h3>
 
-                    {/* ARROW */}
-                    <div className="techstack-arrow">
-                      ↗
-                    </div>
+                </div>
 
-                    {/* HOVER LINE */}
-                    <div className="techstack-hover-line" />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+
+                {/* ITEMS */}
+                <div className="techstack-items">
+
+                  {group.items.map(
+                    (item, index) => (
+                      <motion.div
+                        className="techstack-item"
+                        key={item.name}
+                        initial={{
+                          opacity: 0,
+                          y: 18,
+                        }}
+                        whileInView={{
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        viewport={{
+                          once: true,
+                          amount: 0.1,
+                        }}
+                        transition={{
+                          duration: 0.45,
+                          delay:
+                            groupIndex * 0.08 +
+                            index * 0.045,
+                          ease,
+                        }}
+                      >
+
+                        <div className="techstack-item-number">
+                          {String(
+                            index + 1
+                          ).padStart(2, "0")}
+                        </div>
+
+
+                        <div className="techstack-item-main">
+
+                          <h4>
+                            {item.name}
+                          </h4>
+
+                          <p>
+                            {item.description}
+                          </p>
+
+                        </div>
+
+
+                        {/* STATUS */}
+                        <div
+                          className="techstack-status"
+                          aria-hidden="true"
+                        >
+                          <span />
+                        </div>
+
+
+                        <span
+                          className="techstack-hover-line"
+                          aria-hidden="true"
+                        />
+
+                      </motion.div>
+                    )
+                  )}
+
+                </div>
+
+              </motion.div>
+            )
+          )}
+
         </div>
 
+
         {/* FOOTER */}
-        <motion.div
+        <motion.footer
           className="techstack-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.7,
+            delay: 0.1,
+          }}
         >
           <span>
             CODE / DESIGN / MOTION
@@ -218,9 +333,12 @@ export default function TechStack() {
           </span>
 
           <a href="#contact">
-            START A PROJECT ↗
+            START A PROJECT
+
+            <span className="techstack-footer-line" />
           </a>
-        </motion.div>
+        </motion.footer>
+
       </div>
     </section>
   );

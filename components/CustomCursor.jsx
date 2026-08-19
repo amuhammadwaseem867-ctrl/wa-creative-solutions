@@ -24,21 +24,21 @@ export default function CustomCursor() {
     };
 
     const handleOver = (event) => {
-      if (
-        event.target.closest(
-          "a, button, input, textarea, select, [data-cursor]"
-        )
-      ) {
+      const target = event.target.closest(
+        "a, button, input, textarea, select, [data-cursor]"
+      );
+
+      if (target) {
         setIsHovering(true);
       }
     };
 
     const handleOut = (event) => {
-      if (
-        event.target.closest(
-          "a, button, input, textarea, select, [data-cursor]"
-        )
-      ) {
+      const target = event.target.closest(
+        "a, button, input, textarea, select, [data-cursor]"
+      );
+
+      if (target) {
         setIsHovering(false);
       }
     };
@@ -51,46 +51,88 @@ export default function CustomCursor() {
       setIsVisible(true);
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    window.addEventListener(
+      "mousemove",
+      moveCursor
+    );
 
-    document.addEventListener("mouseover", handleOver);
-    document.addEventListener("mouseout", handleOut);
+    document.addEventListener(
+      "mouseover",
+      handleOver
+    );
 
-    document.addEventListener("mouseleave", handleLeave);
-    document.addEventListener("mouseenter", handleEnter);
+    document.addEventListener(
+      "mouseout",
+      handleOut
+    );
+
+    document.addEventListener(
+      "mouseleave",
+      handleLeave
+    );
+
+    document.addEventListener(
+      "mouseenter",
+      handleEnter
+    );
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener(
+        "mousemove",
+        moveCursor
+      );
 
-      document.removeEventListener("mouseover", handleOver);
-      document.removeEventListener("mouseout", handleOut);
+      document.removeEventListener(
+        "mouseover",
+        handleOver
+      );
 
-      document.removeEventListener("mouseleave", handleLeave);
-      document.removeEventListener("mouseenter", handleEnter);
+      document.removeEventListener(
+        "mouseout",
+        handleOut
+      );
+
+      document.removeEventListener(
+        "mouseleave",
+        handleLeave
+      );
+
+      document.removeEventListener(
+        "mouseenter",
+        handleEnter
+      );
     };
   }, []);
 
   return (
     <motion.div
       className={`custom-cursor ${
-        isHovering ? "custom-cursor--hover" : ""
-      } ${isVisible ? "custom-cursor--visible" : ""}`}
+        isHovering
+          ? "custom-cursor--hover"
+          : ""
+      } ${
+        isVisible
+          ? "custom-cursor--visible"
+          : ""
+      }`}
       animate={{
         x: position.x,
         y: position.y,
       }}
       transition={{
         type: "spring",
-        stiffness: 500,
-        damping: 35,
-        mass: 0.25,
+        stiffness: 520,
+        damping: 34,
+        mass: 0.2,
       }}
     >
       <span className="custom-cursor__ring" />
 
-      <span className="custom-cursor__brand">
-        WA
+      <span className="custom-cursor__core">
+        <span>WA</span>
       </span>
+
+      <span className="custom-cursor__dot" />
     </motion.div>
   );
 }

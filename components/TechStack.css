@@ -1,61 +1,183 @@
-/* =========================================
+/* =========================================================
    WA CREATIVE SOLUTIONS
-   TECH STACK
-========================================= */
+   TECH STACK — PREMIUM / READABLE / RESPONSIVE
+========================================================= */
 
 .techstack {
   position: relative;
+
+  width: 100%;
   min-height: 100vh;
+
   overflow: hidden;
+  isolation: isolate;
 
   background: #080908;
+
   color: #f4f6ef;
 }
 
-/* =========================================
-   BACKGROUND GRID
-========================================= */
+
+/* =========================================================
+   GRID
+========================================================= */
 
 .techstack-grid {
   position: absolute;
   inset: 0;
 
+  z-index: -6;
+
   pointer-events: none;
-  opacity: 0.13;
+
+  opacity: 0.19;
 
   background-image:
     linear-gradient(
-      rgba(244, 246, 239, 0.04) 1px,
+      rgba(244, 246, 239, 0.035) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(244, 246, 239, 0.04) 1px,
+      rgba(244, 246, 239, 0.035) 1px,
       transparent 1px
     );
 
-  background-size: 100px 100px;
+  background-size: 90px 90px;
 
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 20%,
-    black 78%,
-    transparent 100%
-  );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 18%,
+      black 78%,
+      transparent
+    );
 
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 20%,
-    black 78%,
-    transparent 100%
-  );
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 18%,
+      black 78%,
+      transparent
+    );
 }
 
-/* =========================================
+
+/* =========================================================
+   GLOWS
+========================================================= */
+
+.techstack-glow {
+  position: absolute;
+
+  z-index: -5;
+
+  width: 450px;
+  height: 450px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(110px);
+
+  animation:
+    techGlow
+    11s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.techstack-glow-one {
+  top: 15%;
+  right: -230px;
+
+  background: #c8ff3d;
+
+  opacity: 0.04;
+}
+
+.techstack-glow-two {
+  left: -250px;
+  bottom: 8%;
+
+  width: 340px;
+  height: 340px;
+
+  background: #c8ff3d;
+
+  opacity: 0.02;
+
+  animation-delay: -4s;
+}
+
+@keyframes techGlow {
+  from {
+    transform:
+      translate3d(0, 0, 0)
+      scale(0.94);
+  }
+
+  to {
+    transform:
+      translate3d(-18px, 15px, 0)
+      scale(1.06);
+  }
+}
+
+
+/* =========================================================
+   ORBIT
+========================================================= */
+
+.techstack-orbit {
+  position: absolute;
+
+  z-index: -2;
+
+  width: 620px;
+  height: 620px;
+
+  right: -430px;
+  top: 30%;
+
+  border:
+    1px solid
+    rgba(200, 255, 61, 0.045);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  animation:
+    techOrbit
+    15s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+@keyframes techOrbit {
+  from {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate3d(-20px, -25px, 0)
+      rotate(8deg);
+  }
+}
+
+
+/* =========================================================
    CONTAINER
-========================================= */
+========================================================= */
 
 .techstack-container {
   position: relative;
@@ -66,12 +188,16 @@
 
   margin: 0 auto;
 
-  padding: 120px 6vw 100px;
+  padding:
+    120px
+    6vw
+    100px;
 }
 
-/* =========================================
+
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
 
 .techstack-header {
   display: flex;
@@ -80,7 +206,9 @@
 
   padding-bottom: 22px;
 
-  border-bottom: 1px solid rgba(244, 246, 239, 0.1);
+  border-bottom:
+    1px solid
+    rgba(244, 246, 239, 0.11);
 }
 
 .techstack-index {
@@ -89,12 +217,13 @@
 
   gap: 10px;
 
-  color: #aeb6ac;
+  color: #9aa29a;
 
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
 
-  letter-spacing: 0.18em;
+  letter-spacing:
+    0.17em;
 
   text-transform: uppercase;
 }
@@ -105,173 +234,320 @@
 
   flex-shrink: 0;
 
-  background: #c8ff3d;
-
   border-radius: 50%;
 
+  background: #c8ff3d;
+
   box-shadow:
-    0 0 0 5px rgba(200, 255, 61, 0.07);
+    0 0 0 5px
+      rgba(200, 255, 61, 0.045),
+    0 0 15px
+      rgba(200, 255, 61, 0.28);
+
+  animation:
+    techDotPulse
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes techDotPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .techstack-header-info {
   display: flex;
   align-items: center;
 
-  gap: 45px;
+  gap: 14px;
 
-  color: #697169;
+  color: #666e67;
 
   font-size: 8px;
-  font-weight: 500;
+  font-weight: 700;
 
-  letter-spacing: 0.16em;
+  letter-spacing:
+    0.15em;
 
   text-transform: uppercase;
 }
 
-/* =========================================
+.techstack-header-info i {
+  display: block;
+
+  width: 34px;
+  height: 1px;
+
+  background: #303530;
+}
+
+
+/* =========================================================
    INTRO
-========================================= */
+========================================================= */
 
 .techstack-intro {
   display: grid;
 
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(300px, 0.65fr);
+    minmax(320px, 0.58fr);
 
   align-items: end;
 
   gap: 8vw;
 
-  padding: 100px 0 95px;
+  padding:
+    105px 0
+    95px;
 }
 
-/* =========================================
-   TITLE
-========================================= */
+.techstack-title-wrap {
+  min-width: 0;
+}
 
-.techstack-intro h2 {
-  margin: 0;
 
-  color: #f4f6ef;
+/* =========================================================
+   KICKER
+========================================================= */
 
-  font-size: clamp(65px, 8vw, 130px);
+.techstack-kicker {
+  display: inline-flex;
+  align-items: center;
 
-  font-weight: 650;
+  gap: 9px;
 
-  line-height: 0.82;
+  margin-bottom: 29px;
 
-  letter-spacing: -0.08em;
+  color: #c8ff3d;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing:
+    0.19em;
 
   text-transform: uppercase;
 }
 
-.techstack-intro h2 span {
-  display: block;
+.techstack-kicker::before {
+  content: "";
+
+  width: 22px;
+  height: 1px;
+
+  background: #c8ff3d;
+
+  box-shadow:
+    0 0 10px
+      rgba(200, 255, 61, 0.4);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.techstack-title {
+  display: flex;
+  flex-direction: column;
 
   margin: 0;
 
-  line-height: 0.82;
+  color: #f4f6ef;
 
-  letter-spacing: -0.08em;
+  font-size:
+    clamp(
+      66px,
+      7.8vw,
+      128px
+    );
+
+  font-weight: 700;
+
+  line-height: 0.9;
+
+  letter-spacing:
+    -0.055em;
+
+  text-transform: uppercase;
 }
 
-/* =========================================
-   OUTLINE TITLE
-========================================= */
+.techstack-title > span {
+  display: block;
 
-.techstack-outline {
   width: fit-content;
 
+  margin: 0;
+  padding: 0;
+
+  white-space: nowrap;
+}
+
+.techstack-title > span + span {
+  margin-top: 0.045em;
+}
+
+
+/* =========================================================
+   OUTLINE
+========================================================= */
+
+.techstack-outline {
   color: transparent;
 
-  -webkit-text-stroke: 1.5px #f4f6ef;
+  -webkit-text-stroke:
+    1.5px
+    rgba(244, 246, 239, 0.92);
 
   transition:
-    color 0.4s ease,
-    -webkit-text-stroke-color 0.4s ease;
+    color 0.45s ease,
+    -webkit-text-stroke-color 0.45s ease,
+    transform 0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
 .techstack-outline:hover {
   color: #c8ff3d;
 
-  -webkit-text-stroke-color: #c8ff3d;
+  -webkit-text-stroke-color:
+    #c8ff3d;
+
+  transform:
+    translateX(10px);
 }
 
-/* =========================================
-   DESCRIPTION
-========================================= */
 
-.techstack-intro p {
+/* =========================================================
+   TITLE ACCENT
+========================================================= */
+
+.techstack-title-accent {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 29px;
+}
+
+.techstack-title-accent span {
+  width: 4px;
+  height: 4px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #3d443d;
+}
+
+.techstack-title-accent span:first-child {
+  width: 48px;
+  height: 1px;
+
+  border-radius: 0;
+
+  background: #c8ff3d;
+}
+
+
+/* =========================================================
+   INTRO COPY
+========================================================= */
+
+.techstack-intro-copy {
   max-width: 500px;
 
-  margin: 0 0 8px;
+  margin:
+    0 0 5px;
 
   color: #aeb6ac;
 
-  font-size: 10px;
-
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 550;
 
   line-height: 1.9;
 
-  letter-spacing: 0.06em;
+  letter-spacing:
+    0.035em;
 
   text-transform: uppercase;
 }
 
-/* =========================================
+
+/* =========================================================
    GROUPS
-========================================= */
+========================================================= */
 
 .techstack-groups {
   position: relative;
 }
 
-/* =========================================
+
+/* =========================================================
    GROUP
-========================================= */
+========================================================= */
 
 .techstack-group {
   display: grid;
 
   grid-template-columns:
-    260px
+    255px
     minmax(0, 1fr);
 
-  gap: 50px;
+  gap: 45px;
 
-  padding: 55px 0;
+  padding:
+    54px 0;
 
-  border-top: 1px solid rgba(244, 246, 239, 0.1);
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.1);
 }
 
 .techstack-group:last-child {
-  border-bottom: 1px solid rgba(244, 246, 239, 0.1);
+  border-bottom:
+    1px solid
+    rgba(244, 246, 239, 0.1);
 }
 
-/* =========================================
+
+/* =========================================================
    CATEGORY
-========================================= */
+========================================================= */
 
 .techstack-category {
   display: flex;
   align-items: flex-start;
 
-  gap: 18px;
+  gap: 17px;
 
-  padding-top: 8px;
+  padding-top: 7px;
 }
 
-.techstack-category span {
-  color: #687067;
+.techstack-category > span {
+  color: #7f887f;
 
   font-size: 8px;
+  font-weight: 700;
 
-  font-weight: 600;
+  line-height: 1.2;
 
-  letter-spacing: 0.12em;
+  letter-spacing:
+    0.1em;
 }
 
 .techstack-category h3 {
@@ -280,82 +556,104 @@
   color: #f4f6ef;
 
   font-size: 11px;
+  font-weight: 700;
 
-  font-weight: 600;
+  line-height: 1.3;
 
-  line-height: 1.2;
-
-  letter-spacing: 0.12em;
+  letter-spacing:
+    0.1em;
 
   text-transform: uppercase;
 }
 
-/* =========================================
+
+/* =========================================================
    ITEMS
-========================================= */
+========================================================= */
 
 .techstack-items {
-  border-top: 1px solid rgba(244, 246, 239, 0.07);
+  border-top:
+    1px solid
+    rgba(244, 246, 239, 0.07);
 }
+
+
+/* =========================================================
+   ITEM
+========================================================= */
 
 .techstack-item {
   position: relative;
 
-  min-height: 82px;
+  min-height: 84px;
 
   display: grid;
 
   grid-template-columns:
-    45px
+    44px
     minmax(0, 1fr)
-    45px;
+    10px;
 
   align-items: center;
 
   column-gap: 20px;
 
-  padding: 18px 0;
-
-  border-bottom: 1px solid rgba(244, 246, 239, 0.07);
+  padding:
+    18px 0;
 
   overflow: hidden;
 
+  border-bottom:
+    1px solid
+    rgba(244, 246, 239, 0.07);
+
+  box-sizing: border-box;
+
   transition:
-    padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.35s ease;
+    background 0.35s ease,
+    padding-left 0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
 .techstack-item:last-child {
   border-bottom: none;
 }
 
-/* =========================================
-   NUMBER
-========================================= */
+
+/* =========================================================
+   ITEM NUMBER
+========================================================= */
 
 .techstack-item-number {
-  position: relative;
-  z-index: 2;
+  align-self: start;
 
-  color: #687067;
+  padding-top: 5px;
+
+  color: #7f887f;
 
   font-size: 8px;
+  font-weight: 700;
 
-  font-weight: 600;
+  line-height: 1;
 
-  letter-spacing: 0.12em;
+  letter-spacing:
+    0.1em;
 
-  transition: color 0.3s ease;
+  transition:
+    color 0.3s ease;
 }
 
-/* =========================================
-   MAIN
-========================================= */
+
+/* =========================================================
+   ITEM MAIN
+========================================================= */
 
 .techstack-item-main {
-  position: relative;
-  z-index: 2;
-
   min-width: 0;
 }
 
@@ -364,72 +662,100 @@
 
   color: #f4f6ef;
 
-  font-size: 21px;
-
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
 
   line-height: 1.1;
 
-  letter-spacing: -0.025em;
+  letter-spacing:
+    -0.03em;
 
   transition:
-    color 0.3s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    color 0.35s ease,
+    transform 0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
 .techstack-item-main p {
-  margin: 7px 0 0;
+  margin:
+    7px 0 0;
 
-  color: #858d83;
+  color: #969e95;
 
-  font-size: 8px;
+  font-size: 9px;
+  font-weight: 550;
 
-  font-weight: 500;
+  line-height: 1.65;
 
-  line-height: 1.5;
-
-  letter-spacing: 0.08em;
+  letter-spacing:
+    0.045em;
 
   text-transform: uppercase;
 
-  transition: color 0.3s ease;
-}
-
-/* =========================================
-   ARROW
-========================================= */
-
-.techstack-arrow {
-  position: relative;
-  z-index: 2;
-
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  justify-self: end;
-
-  border: 1px solid rgba(244, 246, 239, 0.13);
-
-  border-radius: 50%;
-
-  color: #c8ff3d;
-
-  font-size: 15px;
-
   transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.3s ease,
-    border-color 0.3s ease,
     color 0.3s ease;
 }
 
-/* =========================================
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.techstack-status {
+  justify-self: end;
+  align-self: center;
+
+  width: 10px;
+  height: 10px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border:
+    1px solid
+    rgba(200, 255, 61, 0.27);
+
+  border-radius: 50%;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.35s ease,
+    transform 0.35s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.techstack-status span {
+  display: block;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #596159;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* =========================================================
    HOVER LINE
-========================================= */
+========================================================= */
 
 .techstack-hover-line {
   position: absolute;
@@ -437,58 +763,86 @@
   left: 0;
   bottom: 0;
 
-  width: 0;
-  height: 2px;
+  width: 100%;
+  height: 1px;
 
   background: #c8ff3d;
 
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    right center;
+
   transition:
-    width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.55s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
-/* =========================================
+
+/* =========================================================
    ITEM HOVER
-========================================= */
+========================================================= */
 
 .techstack-item:hover {
-  padding-left: 12px;
+  padding-left: 13px;
 
-  background: rgba(200, 255, 61, 0.018);
+  background:
+    rgba(200, 255, 61, 0.018);
 }
 
-.techstack-item:hover .techstack-item-number {
+.techstack-item:hover
+.techstack-item-number {
   color: #c8ff3d;
 }
 
-.techstack-item:hover .techstack-item-main h4 {
+.techstack-item:hover
+.techstack-item-main h4 {
   color: #c8ff3d;
 
-  transform: translateX(6px);
+  transform:
+    translateX(5px);
 }
 
-.techstack-item:hover .techstack-item-main p {
+.techstack-item:hover
+.techstack-item-main p {
   color: #aeb6ac;
 }
 
-.techstack-item:hover .techstack-arrow {
-  transform:
-    rotate(45deg)
-    scale(1.08);
-
-  background: #c8ff3d;
-
+.techstack-item:hover
+.techstack-status {
   border-color: #c8ff3d;
 
-  color: #080908;
+  transform:
+    scale(1.12);
 }
 
-.techstack-item:hover .techstack-hover-line {
-  width: 100%;
+.techstack-item:hover
+.techstack-status span {
+  background: #c8ff3d;
+
+  transform:
+    scale(1.35);
 }
 
-/* =========================================
+.techstack-item:hover
+.techstack-hover-line {
+  transform:
+    scaleX(1);
+
+  transform-origin:
+    left center;
+}
+
+
+/* =========================================================
    FOOTER
-========================================= */
+========================================================= */
 
 .techstack-footer {
   display: grid;
@@ -500,17 +854,19 @@
 
   align-items: center;
 
-  gap: 50px;
+  gap: 45px;
 
   padding-top: 38px;
 
-  color: #858d83;
+  color: #798279;
 
-  font-size: 7px;
+  font-size: 8px;
+  font-weight: 650;
 
-  font-weight: 600;
+  line-height: 1.5;
 
-  letter-spacing: 0.14em;
+  letter-spacing:
+    0.1em;
 
   text-transform: uppercase;
 }
@@ -520,69 +876,77 @@
 }
 
 .techstack-footer a {
+  position: relative;
+
+  display: inline-block;
+
+  width: fit-content;
+
+  padding-bottom: 7px;
+
   color: #c8ff3d;
 
   text-decoration: none;
 
-  transition: color 0.3s ease;
+  font-weight: 700;
+
+  transition:
+    color 0.3s ease;
 }
 
 .techstack-footer a:hover {
   color: #f4f6ef;
 }
 
-/* =========================================
-   DECORATIVE ORBIT
-========================================= */
-
-.techstack::after {
-  content: "";
-
+.techstack-footer-line {
   position: absolute;
 
-  width: 520px;
-  height: 520px;
+  left: 0;
+  bottom: 0;
 
-  right: -370px;
-  top: 32%;
+  width: 100%;
+  height: 1px;
 
-  border: 1px solid rgba(200, 255, 61, 0.06);
+  background: #c8ff3d;
 
-  border-radius: 50%;
+  transform:
+    scaleX(0);
 
-  pointer-events: none;
+  transform-origin:
+    right center;
 
-  animation:
-    techOrbit 12s
-    ease-in-out
-    infinite alternate;
+  transition:
+    transform 0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
-@keyframes techOrbit {
-  from {
-    transform:
-      translateY(0)
-      rotate(0deg);
-  }
+.techstack-footer a:hover
+.techstack-footer-line {
+  transform:
+    scaleX(1);
 
-  to {
-    transform:
-      translateY(-25px)
-      rotate(8deg);
-  }
+  transform-origin:
+    left center;
 }
 
-/* =========================================
+
+/* =========================================================
    TABLET
-========================================= */
+========================================================= */
 
 @media (max-width: 1100px) {
+
   .techstack-intro {
     grid-template-columns:
       1fr
       0.7fr;
 
-    gap: 60px;
+    gap: 55px;
   }
 
   .techstack-group {
@@ -594,25 +958,32 @@
   }
 }
 
-/* =========================================
-   SMALL LAPTOP / TABLET
-========================================= */
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
 
 @media (max-width: 950px) {
+
   .techstack-container {
-    padding: 100px 5vw 80px;
+    padding:
+      100px
+      5vw
+      80px;
   }
 
   .techstack-intro {
     grid-template-columns: 1fr;
 
-    gap: 40px;
+    gap: 38px;
 
-    padding: 75px 0 70px;
+    padding:
+      75px 0
+      70px;
   }
 
-  .techstack-intro p {
-    max-width: 520px;
+  .techstack-intro-copy {
+    max-width: 560px;
   }
 
   .techstack-group {
@@ -622,22 +993,31 @@
 
     gap: 30px;
 
-    padding: 45px 0;
+    padding:
+      45px 0;
   }
 
   .techstack-item-main h4 {
-    font-size: 20px;
+    font-size: 21px;
   }
 }
 
-/* =========================================
+
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 650px) {
+
   .techstack-container {
-    padding: 85px 22px 65px;
+    padding:
+      85px
+      22px
+      65px;
   }
+
+
+  /* HEADER */
 
   .techstack-header {
     padding-bottom: 18px;
@@ -647,67 +1027,116 @@
     display: none;
   }
 
+  .techstack-index {
+    font-size: 7px;
+
+    letter-spacing:
+      0.13em;
+  }
+
+
   /* INTRO */
 
   .techstack-intro {
     grid-template-columns: 1fr;
 
-    gap: 32px;
+    gap: 31px;
 
-    padding: 65px 0 60px;
+    padding:
+      64px 0
+      58px;
   }
 
-  .techstack-intro h2 {
-    font-size: clamp(52px, 15vw, 82px);
+  .techstack-kicker {
+    margin-bottom: 22px;
 
-    line-height: 0.87;
+    font-size: 7px;
 
-    letter-spacing: -0.06em;
+    letter-spacing:
+      0.15em;
   }
 
-  .techstack-intro h2 span {
-    line-height: 0.87;
-
-    letter-spacing: -0.06em;
+  .techstack-kicker::before {
+    width: 18px;
   }
 
-  .techstack-intro p {
+  .techstack-title {
+    font-size:
+      clamp(
+        48px,
+        13.8vw,
+        79px
+      );
+
+    font-weight: 700;
+
+    line-height: 0.92;
+
+    letter-spacing:
+      -0.05em;
+  }
+
+  .techstack-title > span + span {
+    margin-top: 0.055em;
+  }
+
+  .techstack-intro-copy {
     max-width: 100%;
 
-    font-size: 8px;
+    color: #aeb6ac;
+
+    font-size: 9.5px;
+    font-weight: 550;
 
     line-height: 1.85;
+
+    letter-spacing:
+      0.035em;
   }
+
 
   /* GROUP */
 
   .techstack-group {
     display: block;
 
-    padding: 38px 0;
+    padding:
+      39px 0;
   }
 
   .techstack-category {
-    padding: 0 0 22px;
+    padding:
+      0 0 22px;
   }
 
   .techstack-category h3 {
     font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing:
+      0.09em;
   }
+
+  .techstack-category > span {
+    font-size: 7px;
+  }
+
 
   /* ITEMS */
 
   .techstack-item {
-    min-height: 72px;
+    min-height: 76px;
 
     grid-template-columns:
       28px
       minmax(0, 1fr)
-      35px;
+      9px;
 
     column-gap: 12px;
 
-    padding: 17px 0;
+    padding:
+      18px 0;
   }
 
   .techstack-item:hover {
@@ -715,87 +1144,144 @@
   }
 
   .techstack-item-number {
+    padding-top: 4px;
+
     font-size: 7px;
   }
 
   .techstack-item-main h4 {
-    font-size: 18px;
+    font-size: 19px;
+
+    font-weight: 700;
 
     line-height: 1.1;
+
+    letter-spacing:
+      -0.025em;
   }
 
   .techstack-item-main p {
-    margin-top: 5px;
+    margin-top: 6px;
 
-    font-size: 7px;
+    color: #939b92;
 
-    line-height: 1.5;
+    font-size: 7.5px;
+    font-weight: 550;
+
+    line-height: 1.65;
+
+    letter-spacing:
+      0.035em;
   }
 
-  .techstack-arrow {
-    width: 33px;
-    height: 33px;
-
-    font-size: 13px;
+  .techstack-status {
+    width: 8px;
+    height: 8px;
   }
+
+  .techstack-status span {
+    width: 2px;
+    height: 2px;
+  }
+
 
   /* FOOTER */
 
   .techstack-footer {
     grid-template-columns: 1fr;
 
-    gap: 16px;
+    gap: 14px;
 
-    padding-top: 28px;
+    padding-top: 29px;
+
+    font-size: 7px;
+
+    letter-spacing:
+      0.075em;
   }
 
   .techstack-footer span:nth-child(2) {
     text-align: left;
   }
+
+
+  /* BACKGROUND */
+
+  .techstack-orbit {
+    width: 400px;
+    height: 400px;
+
+    right: -300px;
+    top: 40%;
+  }
+
+  .techstack-glow-one {
+    width: 300px;
+    height: 300px;
+
+    right: -190px;
+
+    opacity: 0.03;
+  }
 }
 
-/* =========================================
+
+/* =========================================================
    SMALL MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 400px) {
+
   .techstack-container {
     padding-left: 18px;
     padding-right: 18px;
   }
 
-  .techstack-intro h2 {
-    font-size: 50px;
+  .techstack-title {
+    font-size:
+      clamp(
+        45px,
+        13.3vw,
+        62px
+      );
+
+    line-height: 0.93;
   }
 
   .techstack-item {
     grid-template-columns:
-      25px
+      23px
       minmax(0, 1fr)
-      32px;
+      8px;
 
-    column-gap: 10px;
+    column-gap: 9px;
   }
 
   .techstack-item-main h4 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .techstack-item-main p {
     font-size: 7px;
   }
 
-  .techstack-arrow {
-    width: 30px;
-    height: 30px;
+  .techstack-status {
+    width: 8px;
+    height: 8px;
+  }
+
+  .techstack-footer {
+    font-size: 6.5px;
   }
 }
 
-/* =========================================
+
+/* =========================================================
    VERY SMALL MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 340px) {
+
   .techstack-container {
     padding-left: 15px;
     padding-right: 15px;
@@ -803,39 +1289,42 @@
 
   .techstack-item {
     grid-template-columns:
-      22px
+      21px
       minmax(0, 1fr)
-      29px;
+      8px;
 
     column-gap: 8px;
   }
 
   .techstack-item-main h4 {
-    font-size: 16px;
+    font-size: 16.5px;
   }
 
   .techstack-item-main p {
-    font-size: 7px;
-  }
-
-  .techstack-arrow {
-    width: 28px;
-    height: 28px;
-
-    font-size: 11px;
+    font-size: 6.6px;
   }
 }
 
-/* =========================================
+
+/* =========================================================
    REDUCED MOTION
-========================================= */
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .techstack::after,
+
+  .techstack-glow,
+  .techstack-dot,
+  .techstack-orbit {
+    animation: none !important;
+  }
+
+  .techstack-outline,
   .techstack-item,
   .techstack-item-main h4,
-  .techstack-arrow {
-    animation: none;
-    transition: none;
+  .techstack-status,
+  .techstack-status span,
+  .techstack-hover-line,
+  .techstack-footer-line {
+    transition: none !important;
   }
 }

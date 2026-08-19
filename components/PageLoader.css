@@ -1,0 +1,278 @@
+/* =========================================================
+   WA CREATIVE SOLUTIONS
+   PAGE LOADER
+========================================================= */
+
+.page-loader {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #080908;
+
+  color: #f4f6ef;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.page-loader::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.18;
+
+  background-image:
+    linear-gradient(
+      rgba(244, 246, 239, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(244, 246, 239, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 90px 90px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black,
+      transparent 72%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at center,
+      black,
+      transparent 72%
+    );
+}
+
+
+/* =========================================================
+   BRAND SYSTEM
+========================================================= */
+
+.page-loader-brand {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  width: min(
+    700px,
+    88vw
+  );
+}
+
+
+/* =========================================================
+   LOGO ROW
+========================================================= */
+
+.page-loader-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   WA
+========================================================= */
+
+.page-loader-mark {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #c8ff3d;
+
+  color: #080908;
+
+  font-size: 21px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing:
+    -0.08em;
+
+  box-shadow:
+    0 0 55px
+      rgba(200, 255, 61, 0.13);
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   BRAND NAME
+========================================================= */
+
+.page-loader-name {
+  color: #f4f6ef;
+
+  font-size:
+    clamp(
+      15px,
+      1.7vw,
+      23px
+    );
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing:
+    0.13em;
+
+  white-space: nowrap;
+
+  text-transform: uppercase;
+
+  will-change:
+    transform,
+    opacity,
+    clip-path;
+}
+
+
+/* =========================================================
+   LINE UNDER LOGO
+========================================================= */
+
+.page-loader-line {
+  width: 100%;
+
+  height: 1px;
+
+  margin-top: 24px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #c8ff3d 15%,
+      #c8ff3d 85%,
+      transparent
+    );
+
+  transform-origin:
+    center center;
+
+  box-shadow:
+    0 0 12px
+      rgba(200, 255, 61, 0.25);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .page-loader-brand {
+    width: 90vw;
+  }
+
+  .page-loader-logo-row {
+    gap: 12px;
+  }
+
+  .page-loader-mark {
+    width: 54px;
+    height: 54px;
+
+    font-size: 16px;
+  }
+
+  .page-loader-name {
+    font-size: 9px;
+
+    letter-spacing:
+      0.09em;
+  }
+
+  .page-loader-line {
+    margin-top: 18px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .page-loader-logo-row {
+    gap: 10px;
+  }
+
+  .page-loader-mark {
+    width: 48px;
+    height: 48px;
+
+    font-size: 14px;
+  }
+
+  .page-loader-name {
+    font-size: 7.5px;
+
+    letter-spacing:
+      0.07em;
+  }
+
+  .page-loader-line {
+    margin-top: 16px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader-mark,
+  .page-loader-name,
+  .page-loader-line {
+    transition: none !important;
+  }
+}

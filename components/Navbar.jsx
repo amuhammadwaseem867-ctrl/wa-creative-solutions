@@ -5,14 +5,34 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
 
 const navLinks = [
-  { name: "ABOUT", href: "#about" },
-  { name: "SERVICES", href: "#services" },
-  { name: "TECHNOLOGY", href: "#technology" },
-  { name: "WORK", href: "#work" },
-  { name: "PROCESS", href: "#process" },
-  { name: "TESTIMONIALS", href: "#testimonials" },
-  { name: "CONTACT", href: "#contact" },
+  {
+    number: "01",
+    name: "ABOUT",
+    href: "#about",
+  },
+  {
+    number: "02",
+    name: "SERVICES",
+    href: "#services",
+  },
+  {
+    number: "03",
+    name: "TECHNOLOGY",
+    href: "#technology",
+  },
+  {
+    number: "04",
+    name: "WORK",
+    href: "#work",
+  },
+  {
+    number: "05",
+    name: "CONTACT",
+    href: "#contact",
+  },
 ];
+
+const ease = [0.22, 1, 0.36, 1];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,10 +41,20 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
-  return (
-    <header className="navbar">
+  const toggleMenu = () => {
+    setMenuOpen((current) => !current);
+  };
 
-      {/* BRAND */}
+  return (
+    <header
+      className={`navbar ${
+        menuOpen ? "navbar-open" : ""
+      }`}
+    >
+      {/* =================================================
+          BRAND — ORIGINAL LOGO
+      ================================================= */}
+
       <a
         href="#hero"
         className="navbar-brand"
@@ -39,78 +69,108 @@ export default function Navbar() {
         </span>
       </a>
 
-      {/* DESKTOP NAV */}
-      <nav className="navbar-links">
 
-        {navLinks.map((link, index) => (
+      {/* =================================================
+          DESKTOP NAVIGATION
+      ================================================= */}
+
+      <nav
+        className="navbar-links"
+        aria-label="Primary navigation"
+      >
+        {navLinks.map((link) => (
           <a
             href={link.href}
             className="navbar-link"
             key={link.name}
           >
             <span className="navbar-link-number">
-              {String(index + 1).padStart(2, "0")}
+              {link.number}
             </span>
 
             <span className="navbar-link-text">
               {link.name}
             </span>
+
+            <span
+              className="navbar-link-dot"
+              aria-hidden="true"
+            />
           </a>
         ))}
-
       </nav>
 
-      {/* DESKTOP CTA */}
+
+      {/* =================================================
+          DESKTOP CTA
+      ================================================= */}
+
       <a
         href="#contact"
         className="navbar-cta"
       >
-        <span>
+        <span className="navbar-cta-text">
           START A PROJECT
         </span>
 
-        <span className="navbar-cta-arrow">
-          ↗
-        </span>
+        <span
+          className="navbar-cta-line"
+          aria-hidden="true"
+        />
       </a>
 
-      {/* MOBILE MENU BUTTON */}
+
+      {/* =================================================
+          MOBILE MENU BUTTON
+      ================================================= */}
+
       <button
+        type="button"
         className={`navbar-menu ${
           menuOpen ? "active" : ""
         }`}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle navigation"
+        onClick={toggleMenu}
+        aria-label={
+          menuOpen
+            ? "Close navigation"
+            : "Open navigation"
+        }
         aria-expanded={menuOpen}
       >
-        <span></span>
-        <span></span>
+        <span />
+        <span />
       </button>
 
-      {/* MOBILE MENU */}
+
+      {/* =================================================
+          MOBILE MENU
+      ================================================= */}
+
       <AnimatePresence>
-
         {menuOpen && (
-
           <motion.div
             className="mobile-menu"
             initial={{
               opacity: 0,
-              clipPath: "inset(0 0 100% 0)",
+              clipPath:
+                "inset(0 0 100% 0)",
             }}
             animate={{
               opacity: 1,
-              clipPath: "inset(0 0 0% 0)",
+              clipPath:
+                "inset(0 0 0% 0)",
             }}
             exit={{
               opacity: 0,
-              clipPath: "inset(0 0 100% 0)",
+              clipPath:
+                "inset(0 0 100% 0)",
             }}
             transition={{
               duration: 0.45,
-              ease: [0.22, 1, 0.36, 1],
+              ease,
             }}
           >
+            {/* MENU HEADER */}
 
             <div className="mobile-menu-top">
               <span>
@@ -122,48 +182,57 @@ export default function Navbar() {
               </span>
             </div>
 
-            <nav className="mobile-nav">
 
-              {navLinks.map((link, index) => (
+            {/* MOBILE LINKS */}
 
-                <motion.a
-                  href={link.href}
-                  className="mobile-nav-link"
-                  key={link.name}
-                  onClick={closeMenu}
-                  initial={{
-                    opacity: 0,
-                    x: -30,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    delay: 0.08 + index * 0.05,
-                  }}
-                >
+            <nav
+              className="mobile-nav"
+              aria-label="Mobile navigation"
+            >
+              {navLinks.map(
+                (link, index) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    className="mobile-nav-link"
+                    onClick={closeMenu}
+                    initial={{
+                      opacity: 0,
+                      x: -25,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      delay:
+                        0.06 +
+                        index * 0.05,
+                      ease,
+                    }}
+                  >
+                    <span className="mobile-nav-number">
+                      {link.number}
+                    </span>
 
-                  <span className="mobile-nav-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                    <span className="mobile-nav-text">
+                      {link.name}
+                    </span>
 
-                  <span>
-                    {link.name}
-                  </span>
-
-                  <span className="mobile-nav-arrow">
-                    ↗
-                  </span>
-
-                </motion.a>
-
-              ))}
-
+                    <span
+                      className="mobile-nav-dot"
+                      aria-hidden="true"
+                    />
+                  </motion.a>
+                )
+              )}
             </nav>
 
-            <div className="mobile-menu-bottom">
 
+            {/* MOBILE FOOTER */}
+
+            <div className="mobile-menu-bottom">
               <span>
                 BRAND / DIGITAL / EXPERIENCE
               </span>
@@ -172,17 +241,12 @@ export default function Navbar() {
                 href="#contact"
                 onClick={closeMenu}
               >
-                START A PROJECT ↗
+                START A PROJECT
               </a>
-
             </div>
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
-
     </header>
   );
 }
