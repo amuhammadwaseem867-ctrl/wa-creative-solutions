@@ -5,7 +5,6 @@
 
 .hero {
   position: relative;
-
   width: 100%;
   min-height: 100svh;
 
@@ -37,7 +36,6 @@
 
   display: flex;
   flex-direction: column;
-
   justify-content: center;
 }
 
@@ -55,7 +53,6 @@
   right: 6vw;
 
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 
@@ -65,7 +62,6 @@
   font-weight: 500;
 
   letter-spacing: 0.18em;
-
   text-transform: uppercase;
 }
 
@@ -92,7 +88,6 @@
   font-weight: 500;
 
   letter-spacing: 0.2em;
-
   text-transform: uppercase;
 }
 
@@ -106,13 +101,7 @@
 
   border-radius: 50%;
 
-  box-shadow:
-    0 0 0 5px rgba(
-      200,
-      255,
-      61,
-      0.07
-    );
+  box-shadow: 0 0 0 5px rgba(200, 255, 61, 0.07);
 }
 
 
@@ -122,18 +111,13 @@
 
 .hero-title {
   display: flex;
-
   flex-direction: column;
 
   margin: 0;
 
   color: #f4f6ef;
 
-  font-size: clamp(
-    70px,
-    10.5vw,
-    170px
-  );
+  font-size: clamp(70px, 10.5vw, 170px);
 
   font-weight: 650;
 
@@ -147,7 +131,6 @@
 
 /* =========================================
    STROKE WORDS
-   BRANDS + EXPERIENCES
 ========================================= */
 
 .hero-stroke-word {
@@ -162,16 +145,8 @@
   transition:
     color 0.45s ease,
     -webkit-text-stroke-color 0.45s ease,
-    transform 0.45s cubic-bezier(
-      0.22,
-      1,
-      0.36,
-      1
-    );
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-
-/* HOVER */
 
 .hero-stroke-word:hover {
   color: #c8ff3d;
@@ -190,7 +165,6 @@
   display: flex;
 
   align-items: flex-end;
-
   justify-content: space-between;
 
   gap: 60px;
@@ -211,7 +185,6 @@
   color: #858c84;
 
   font-size: 11px;
-
   font-weight: 500;
 
   line-height: 1.85;
@@ -237,11 +210,12 @@
 }
 
 
-/* PRIMARY */
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
 
 .hero-primary {
   display: flex;
-
   align-items: center;
 
   gap: 13px;
@@ -255,7 +229,6 @@
   text-decoration: none;
 
   font-size: 9px;
-
   font-weight: 700;
 
   letter-spacing: 0.1em;
@@ -273,6 +246,11 @@
   transform: translateY(-3px);
 }
 
+
+/* =========================================
+   PRIMARY ARROW
+========================================= */
+
 .hero-arrow {
   width: 28px;
   height: 28px;
@@ -282,17 +260,17 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(
-    8,
-    9,
-    8,
-    0.25
-  );
+  flex-shrink: 0;
+
+  border: 1px solid rgba(8, 9, 8, 0.25);
 
   border-radius: 50%;
 
+  font-size: 12px;
+
   transition:
-    transform 0.35s ease;
+    transform 0.35s ease,
+    background 0.3s ease;
 }
 
 .hero-primary:hover .hero-arrow {
@@ -300,7 +278,9 @@
 }
 
 
-/* SECONDARY */
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
 
 .hero-secondary {
   color: #858c84;
@@ -308,7 +288,6 @@
   text-decoration: none;
 
   font-size: 9px;
-
   font-weight: 500;
 
   letter-spacing: 0.12em;
@@ -332,7 +311,7 @@
 
 
 /* =========================================
-   SCROLL TO EXPLORE
+   SCROLL
 ========================================= */
 
 .hero-scroll {
@@ -387,22 +366,12 @@
 
   background-image:
     linear-gradient(
-      rgba(
-        244,
-        246,
-        239,
-        0.035
-      ) 1px,
+      rgba(244, 246, 239, 0.035) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(
-        244,
-        246,
-        239,
-        0.035
-      ) 1px,
+      rgba(244, 246, 239, 0.035) 1px,
       transparent 1px
     );
 
@@ -433,28 +402,18 @@
 
   pointer-events: none;
 
-  border: 1px solid rgba(
-    200,
-    255,
-    61,
-    0.1
-  );
+  border: 1px solid rgba(200, 255, 61, 0.1);
 
   transform: rotate(45deg);
 
   animation:
     frameFloat 9s
-    cubic-bezier(
-      0.45,
-      0,
-      0.55,
-      1
-    )
+    cubic-bezier(0.45, 0, 0.55, 1)
     infinite alternate;
 }
 
 
-/* LARGE FRAME */
+/* LARGE */
 
 .hero-frame-one {
   width: 520px;
@@ -467,7 +426,7 @@
 }
 
 
-/* MEDIUM FRAME */
+/* MEDIUM */
 
 .hero-frame-two {
   width: 340px;
@@ -476,20 +435,14 @@
   right: -170px;
   top: 27%;
 
-  border-color: rgba(
-    244,
-    246,
-    239,
-    0.07
-  );
+  border-color: rgba(244, 246, 239, 0.07);
 
   animation-duration: 7s;
-
   animation-delay: -4s;
 }
 
 
-/* SMALL FRAME */
+/* SMALL */
 
 .hero-frame-three {
   width: 180px;
@@ -498,31 +451,23 @@
   right: -90px;
   top: 38%;
 
-  border-color: rgba(
-    200,
-    255,
-    61,
-    0.15
-  );
+  border-color: rgba(200, 255, 61, 0.15);
 
   animation-duration: 5s;
-
   animation-delay: -1s;
 }
 
 
-/* FRAME MOTION */
+/* =========================================
+   FRAME MOTION
+========================================= */
 
 @keyframes frameFloat {
 
   0% {
     transform:
       rotate(45deg)
-      translate3d(
-        0,
-        0,
-        0
-      );
+      translate3d(0, 0, 0);
 
     opacity: 0.35;
   }
@@ -534,11 +479,7 @@
   100% {
     transform:
       rotate(48deg)
-      translate3d(
-        -18px,
-        15px,
-        0
-      );
+      translate3d(-18px, 15px, 0);
 
     opacity: 0.35;
   }
@@ -547,7 +488,7 @@
 
 
 /* =========================================
-   MOVING ARCHITECTURAL LINES
+   ARCHITECTURAL LINES
 ========================================= */
 
 .hero-line {
@@ -562,12 +503,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(
-      200,
-      255,
-      61,
-      0.22
-    ),
+    rgba(200, 255, 61, 0.22),
     transparent
   );
 
@@ -581,7 +517,6 @@
   width: 42vw;
 
   right: -8vw;
-
   top: 28%;
 
   animation-delay: -2s;
@@ -591,7 +526,6 @@
   width: 30vw;
 
   right: 4vw;
-
   top: 68%;
 
   opacity: 0.5;
@@ -634,26 +568,14 @@
   height: 74px;
 
   display: flex;
-
   align-items: stretch;
 
   overflow: hidden;
 
   background: #111411;
 
-  border-top: 1px solid rgba(
-    244,
-    246,
-    239,
-    0.12
-  );
-
-  border-bottom: 1px solid rgba(
-    244,
-    246,
-    239,
-    0.08
-  );
+  border-top: 1px solid rgba(244, 246, 239, 0.12);
+  border-bottom: 1px solid rgba(244, 246, 239, 0.08);
 }
 
 
@@ -671,7 +593,6 @@
   flex-shrink: 0;
 
   display: flex;
-
   align-items: center;
 
   gap: 10px;
@@ -680,17 +601,11 @@
 
   background: #111411;
 
-  border-right: 1px solid rgba(
-    244,
-    246,
-    239,
-    0.08
-  );
+  border-right: 1px solid rgba(244, 246, 239, 0.08);
 
   color: #858c84;
 
   font-size: 8px;
-
   font-weight: 600;
 
   letter-spacing: 0.2em;
@@ -701,6 +616,8 @@
 .marquee-label-dot {
   width: 6px;
   height: 6px;
+
+  flex-shrink: 0;
 
   background: #c8ff3d;
 
@@ -718,7 +635,6 @@
   flex: 1;
 
   display: flex;
-
   align-items: center;
 
   overflow: hidden;
@@ -776,12 +692,13 @@
   will-change: transform;
 
   animation:
-    servicesMove 30s linear infinite;
+    servicesMove 30s
+    linear
+    infinite;
 }
 
 .marquee-group {
   display: flex;
-
   align-items: stretch;
 
   flex-shrink: 0;
@@ -796,27 +713,19 @@
   position: relative;
 
   width: 190px;
-
   height: 74px;
 
   flex-shrink: 0;
 
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
 
   gap: 5px;
 
   padding: 0 25px;
 
-  border-right: 1px solid rgba(
-    244,
-    246,
-    239,
-    0.08
-  );
+  border-right: 1px solid rgba(244, 246, 239, 0.08);
 
   overflow: hidden;
 
@@ -824,14 +733,10 @@
     background 0.35s ease;
 }
 
-
-/* TOP NUMBER */
-
 .marquee-number {
   color: #4e554e;
 
   font-size: 7px;
-
   font-weight: 500;
 
   letter-spacing: 0.12em;
@@ -840,14 +745,10 @@
     color 0.3s ease;
 }
 
-
-/* SERVICE */
-
 .marquee-service {
   color: #dfe5dc;
 
   font-size: 9px;
-
   font-weight: 600;
 
   line-height: 1.2;
@@ -861,9 +762,6 @@
     transform 0.35s ease;
 }
 
-
-/* PLUS */
-
 .marquee-cross {
   position: absolute;
 
@@ -873,7 +771,6 @@
   color: #c8ff3d;
 
   font-size: 12px;
-
   font-weight: 300;
 
   transition:
@@ -881,15 +778,10 @@
 }
 
 
-/* COLUMN HOVER */
+/* HOVER */
 
 .marquee-column:hover {
-  background: rgba(
-    200,
-    255,
-    61,
-    0.045
-  );
+  background: rgba(200, 255, 61, 0.045);
 }
 
 .marquee-column:hover .marquee-number {
@@ -921,21 +813,14 @@
   flex-shrink: 0;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 18px;
 
   background: #111411;
 
-  border-left: 1px solid rgba(
-    244,
-    246,
-    239,
-    0.08
-  );
+  border-left: 1px solid rgba(244, 246, 239, 0.08);
 
   color: #5d655d;
 
@@ -954,8 +839,7 @@
 }
 
 .marquee-end:hover span:last-child {
-  transform:
-    translate(3px, -3px);
+  transform: translate(3px, -3px);
 }
 
 
@@ -997,11 +881,7 @@
   }
 
   .hero-title {
-    font-size: clamp(
-      65px,
-      10vw,
-      125px
-    );
+    font-size: clamp(65px, 10vw, 125px);
   }
 
   .hero-bottom {
@@ -1029,11 +909,17 @@
     padding-top: 86px;
   }
 
+
+  /* HERO CONTAINER */
+
   .hero-container {
     min-height: calc(100svh - 86px);
 
     padding: 65px 22px 125px;
   }
+
+
+  /* TOP LINE */
 
   .hero-topline {
     top: 28px;
@@ -1046,14 +932,33 @@
     letter-spacing: 0.12em;
   }
 
+
+  /* LABEL */
+
+  .hero-label {
+    gap: 9px;
+
+    margin-bottom: 22px;
+
+    font-size: 7px;
+
+    letter-spacing: 0.14em;
+  }
+
+  .hero-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+
+  /* TITLE */
+
   .hero-title {
-    font-size: clamp(
-      48px,
-      14vw,
-      82px
-    );
+    font-size: clamp(48px, 14vw, 82px);
 
     line-height: 0.83;
+
+    letter-spacing: -0.075em;
   }
 
   .hero-stroke-word {
@@ -1064,24 +969,94 @@
     transform: translateX(8px);
   }
 
+
+  /* BOTTOM */
+
   .hero-bottom {
     margin-top: 35px;
 
     gap: 28px;
   }
 
+
+  /* DESCRIPTION */
+
   .hero-description {
     max-width: 350px;
 
     font-size: 9px;
+
+    line-height: 1.75;
   }
+
+
+  /* =========================================
+     MOBILE ACTIONS
+  ========================================= */
+
+  .hero-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 18px;
+
+    flex-wrap: nowrap;
+  }
+
+
+  /* PRIMARY */
+
+  .hero-primary {
+    gap: 10px;
+
+    padding: 8px 8px 8px 14px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.09em;
+
+    white-space: nowrap;
+  }
+
+
+  /* MOBILE ARROW */
+
+  .hero-arrow {
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    font-size: 11px;
+  }
+
+
+  /* SECONDARY */
+
+  .hero-secondary {
+    font-size: 8px;
+
+    letter-spacing: 0.1em;
+
+    white-space: nowrap;
+  }
+
+
+  /* SCROLL */
 
   .hero-scroll {
     display: none;
   }
 
 
-  /* MOBILE FRAME */
+  /* =========================================
+     MOBILE FRAMES
+  ========================================= */
 
   .hero-frame-one {
     width: 300px;
@@ -1105,7 +1080,9 @@
   }
 
 
-  /* SERVICES */
+  /* =========================================
+     SERVICES
+  ========================================= */
 
   .hero-marquee {
     height: 62px;
@@ -1164,6 +1141,61 @@
 
   .marquee-track {
     animation-duration: 25s;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .hero-container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(43px, 13.5vw, 58px);
+  }
+
+  .hero-description {
+    font-size: 8px;
+  }
+
+  .hero-actions {
+    gap: 13px;
+  }
+
+  .hero-primary {
+    padding-left: 12px;
+
+    gap: 8px;
+
+    font-size: 7px;
+  }
+
+  .hero-arrow {
+    width: 22px;
+    height: 22px;
+
+    font-size: 10px;
+  }
+
+  .hero-secondary {
+    font-size: 7px;
+  }
+
+  .marquee-label {
+    width: 72px;
+
+    padding-left: 18px;
+  }
+
+  .marquee-column {
+    width: 135px;
   }
 
 }
