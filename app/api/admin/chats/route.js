@@ -1,34 +1,47 @@
 import { neon } from "@neondatabase/serverless";
 
-const sql = neon(process.env.DATABASE_URL);
+const databaseUrl = process.env.DATABASE_URL;
 
-export async function GET() {
+export async function GET(request, { params }) {
+  if (!databaseUrl) {
+    return new Response(
+      JSON.stringify({
+        error: "Database is not configured.",
+      }),
+      {
+        status: 503,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
+  const sql = neon(databaseUrl);
+
   try {
+    const { sessionId } = await params;
+
     const chats = await sql`
-      SELECT
-        session_id,
-        COUNT(*)::int AS message_count,
-        MIN(created_at) AS started_at,
-        MAX(created_at) AS last_message_at
-      FROM chat_conversations
-      GROUP BY session_id
-      ORDER BY last_message_at DESC
+      SELECT *
+      FROM chats
+      WHERE session_id = ${sessionId}
+      ORDER BY created_at ASC
     `;
 
-    return Response.json({
-      success: true,
-      chats,
-    });
+    return Response.json(chats);
   } catch (error) {
-    console.error("ADMIN CHAT API ERROR:", error);
+    console.error("Failed to fetch chats:", error);
 
-    return Response.json(
-      {
-        success: false,
-        message: "Unable to load conversations.",
-      },
+    return new Response(
+      JSON.stringify({
+        error: "Failed to fetch chats.",
+      }),
       {
         status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
   }
