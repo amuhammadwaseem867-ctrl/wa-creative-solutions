@@ -1,6 +1,6 @@
 /* =========================================================
    WA CREATIVE SOLUTIONS
-   PAGE LOADER
+   PAGE LOADER — FINAL
 ========================================================= */
 
 .page-loader {
@@ -8,7 +8,7 @@
 
   inset: 0;
 
-  z-index: 99999;
+  z-index: 999999;
 
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
 
 
 /* =========================================================
-   BACKGROUND
+   BACKGROUND GRID
 ========================================================= */
 
 .page-loader::before {
@@ -37,7 +37,7 @@
 
   pointer-events: none;
 
-  opacity: 0.18;
+  opacity: 0.16;
 
   background-image:
     linear-gradient(
@@ -50,7 +50,8 @@
       transparent 1px
     );
 
-  background-size: 90px 90px;
+  background-size:
+    90px 90px;
 
   mask-image:
     radial-gradient(
@@ -69,7 +70,37 @@
 
 
 /* =========================================================
-   BRAND SYSTEM
+   SUBTLE GLOW
+========================================================= */
+
+.page-loader::after {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #c8ff3d;
+
+  filter: blur(150px);
+
+  opacity: 0.025;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BRAND WRAPPER
 ========================================================= */
 
 .page-loader-brand {
@@ -77,15 +108,16 @@
 
   z-index: 2;
 
+  width:
+    min(
+      700px,
+      88vw
+    );
+
   display: flex;
   flex-direction: column;
 
   align-items: center;
-
-  width: min(
-    700px,
-    88vw
-  );
 }
 
 
@@ -105,12 +137,12 @@
 
 
 /* =========================================================
-   WA
+   WA MARK
 ========================================================= */
 
 .page-loader-mark {
-  width: 72px;
-  height: 72px;
+  width: 74px;
+  height: 74px;
 
   display: flex;
   align-items: center;
@@ -123,7 +155,8 @@
   color: #080908;
 
   font-size: 21px;
-  font-weight: 800;
+
+  font-weight: 900;
 
   line-height: 1;
 
@@ -150,7 +183,7 @@
   font-size:
     clamp(
       15px,
-      1.7vw,
+      1.65vw,
       23px
     );
 
@@ -173,7 +206,7 @@
 
 
 /* =========================================================
-   LINE UNDER LOGO
+   LINE
 ========================================================= */
 
 .page-loader-line {
@@ -187,8 +220,10 @@
     linear-gradient(
       90deg,
       transparent,
-      #c8ff3d 15%,
-      #c8ff3d 85%,
+      rgba(200, 255, 61, 0.2) 5%,
+      #c8ff3d 18%,
+      #c8ff3d 82%,
+      rgba(200, 255, 61, 0.2) 95%,
       transparent
     );
 
@@ -196,8 +231,30 @@
     center center;
 
   box-shadow:
-    0 0 12px
-      rgba(200, 255, 61, 0.25);
+    0 0 15px
+      rgba(200, 255, 61, 0.18);
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.page-loader-status {
+  margin-top: 12px;
+
+  color: #5d665d;
+
+  font-size: 6.5px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing:
+    0.2em;
+
+  text-transform: uppercase;
 }
 
 
@@ -208,7 +265,8 @@
 @media (max-width: 600px) {
 
   .page-loader-brand {
-    width: 90vw;
+    width:
+      90vw;
   }
 
   .page-loader-logo-row {
@@ -216,8 +274,8 @@
   }
 
   .page-loader-mark {
-    width: 54px;
-    height: 54px;
+    width: 55px;
+    height: 55px;
 
     font-size: 16px;
   }
@@ -232,6 +290,13 @@
   .page-loader-line {
     margin-top: 18px;
   }
+
+  .page-loader-status {
+    font-size: 5.5px;
+
+    letter-spacing:
+      0.15em;
+  }
 }
 
 
@@ -242,7 +307,7 @@
 @media (max-width: 400px) {
 
   .page-loader-logo-row {
-    gap: 10px;
+    gap: 9px;
   }
 
   .page-loader-mark {
@@ -260,8 +325,21 @@
   }
 
   .page-loader-line {
-    margin-top: 16px;
+    margin-top: 15px;
   }
+
+  .page-loader-status {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   PREVENT SCROLL DURING LOADING
+========================================================= */
+
+body.page-loading {
+  overflow: hidden;
 }
 
 
@@ -270,9 +348,13 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
+  .page-loader,
   .page-loader-mark,
   .page-loader-name,
-  .page-loader-line {
+  .page-loader-line,
+  .page-loader-status {
+    animation: none !important;
     transition: none !important;
   }
 }

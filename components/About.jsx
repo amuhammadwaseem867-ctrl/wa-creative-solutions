@@ -29,9 +29,9 @@ const ease = [0.22, 1, 0.36, 1];
 export default function About() {
   const visualRef = useRef(null);
 
-  /* -----------------------------------------
-     MOUSE SYSTEM
-  ----------------------------------------- */
+  /* ========================================================
+     MOUSE / 3D SYSTEM
+  ======================================================== */
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -72,6 +72,11 @@ export default function About() {
     [-10, 10]
   );
 
+
+  /* ========================================================
+     MOUSE EVENTS
+  ======================================================== */
+
   const handleMouseMove = (event) => {
     if (!visualRef.current) return;
 
@@ -96,37 +101,42 @@ export default function About() {
     mouseY.set(0);
   };
 
+
   return (
     <section
       className="about"
       id="about"
     >
 
-      {/* =========================================
+      {/* ==================================================
           ATMOSPHERE
-      ========================================= */}
+      ================================================== */}
 
       <div className="about-grid" />
+
       <div className="about-noise" />
 
       <div className="about-glow about-glow-one" />
+
       <div className="about-glow about-glow-two" />
 
       <div className="about-orbit about-orbit-one" />
+
       <div className="about-orbit about-orbit-two" />
+
       <div className="about-orbit about-orbit-three" />
 
 
-      {/* =========================================
+      {/* ==================================================
           CONTAINER
-      ========================================= */}
+      ================================================== */}
 
       <div className="about-container">
 
 
-        {/* =======================================
+        {/* ==================================================
             HEADER
-        ======================================= */}
+        ================================================== */}
 
         <motion.header
           className="about-header"
@@ -140,7 +150,9 @@ export default function About() {
           }}
           viewport={{
             once: true,
-            amount: 0.4,
+            amount: 0.1,
+            margin:
+              "0px 0px -40px 0px",
           }}
           transition={{
             duration: 0.75,
@@ -149,33 +161,43 @@ export default function About() {
         >
 
           <div className="about-index">
+
             <span className="about-dot" />
-            <span>01 / ABOUT</span>
+
+            <span>
+              01 / ABOUT
+            </span>
+
           </div>
 
+
           <div className="about-meta">
+
             <span>
               WA CREATIVE SOLUTIONS
             </span>
 
             <i />
 
-            <span>EST. 2022</span>
+            <span>
+              EST. 2022
+            </span>
+
           </div>
 
         </motion.header>
 
 
-        {/* =======================================
+        {/* ==================================================
             MAIN
-        ======================================= */}
+        ================================================== */}
 
         <div className="about-main">
 
 
-          {/* =====================================
+          {/* =================================================
               CONTENT
-          ===================================== */}
+          ================================================= */}
 
           <motion.div
             className="about-content"
@@ -189,7 +211,9 @@ export default function About() {
             }}
             viewport={{
               once: true,
-              amount: 0.22,
+              amount: 0.08,
+              margin:
+                "0px 0px -80px 0px",
             }}
             transition={{
               duration: 0.9,
@@ -197,10 +221,14 @@ export default function About() {
             }}
           >
 
+            {/* KICKER */}
+
             <span className="about-kicker">
               WHO WE ARE
             </span>
 
+
+            {/* TITLE */}
 
             <h2 className="about-title">
 
@@ -219,6 +247,8 @@ export default function About() {
             </h2>
 
 
+            {/* TITLE ACCENT */}
+
             <div
               className="about-title-accent"
               aria-hidden="true"
@@ -228,6 +258,8 @@ export default function About() {
               <span />
             </div>
 
+
+            {/* COPY */}
 
             <div className="about-copy">
 
@@ -247,7 +279,7 @@ export default function About() {
             </div>
 
 
-            {/* CTA — NO ARROW */}
+            {/* CTA */}
 
             <a
               href="#contact"
@@ -257,15 +289,17 @@ export default function About() {
                 LET&apos;S BUILD SOMETHING
               </span>
 
-              <span className="about-link-line" />
+              <span
+                className="about-link-line"
+              />
             </a>
 
           </motion.div>
 
 
-          {/* =====================================
+          {/* =================================================
               VISUAL
-          ===================================== */}
+          ================================================= */}
 
           <motion.div
             ref={visualRef}
@@ -284,7 +318,9 @@ export default function About() {
             }}
             viewport={{
               once: true,
-              amount: 0.2,
+              amount: 0.08,
+              margin:
+                "0px 0px -80px 0px",
             }}
             transition={{
               duration: 1,
@@ -300,11 +336,14 @@ export default function About() {
               }}
             >
 
-              {/* CORNERS */}
+              {/* CORNER MARKS */}
 
               <span className="corner corner-tl" />
+
               <span className="corner corner-tr" />
+
               <span className="corner corner-bl" />
+
               <span className="corner corner-br" />
 
 
@@ -313,8 +352,11 @@ export default function About() {
               <div className="about-visual-label">
 
                 <span className="visual-label-left">
+
                   <i className="live-dot" />
+
                   CREATIVE ENGINE
+
                 </span>
 
                 <span>
@@ -324,14 +366,18 @@ export default function About() {
               </div>
 
 
-              {/* =================================
+              {/* =================================================
                   3D SYSTEM
-              ================================= */}
+              ================================================= */}
 
               <div className="about-3d">
 
+                {/* GLOW */}
+
                 <div className="orb-glow" />
 
+
+                {/* RINGS */}
 
                 <motion.div
                   className="about-ring ring-one"
@@ -382,11 +428,15 @@ export default function About() {
                     y: orbY,
                   }}
                 >
+
                   <div className="core-glow" />
 
                   <div className="core-shape">
-                    <span>WA</span>
+                    <span>
+                      WA
+                    </span>
                   </div>
+
                 </motion.div>
 
 
@@ -410,13 +460,28 @@ export default function About() {
               {/* SIDE LABELS */}
 
               <div className="visual-side-label side-left">
-                <span>01</span>
-                <span>DESIGN</span>
+
+                <span>
+                  01
+                </span>
+
+                <span>
+                  DESIGN
+                </span>
+
               </div>
 
+
               <div className="visual-side-label side-right">
-                <span>02</span>
-                <span>MOTION</span>
+
+                <span>
+                  02
+                </span>
+
+                <span>
+                  MOTION
+                </span>
+
               </div>
 
 
@@ -441,9 +506,9 @@ export default function About() {
         </div>
 
 
-        {/* =======================================
+        {/* ==================================================
             STATS
-        ======================================= */}
+        ================================================== */}
 
         <motion.div
           className="about-stats"
@@ -457,7 +522,9 @@ export default function About() {
           }}
           viewport={{
             once: true,
-            amount: 0.18,
+            amount: 0.08,
+            margin:
+              "0px 0px -60px 0px",
           }}
           transition={{
             duration: 0.8,
@@ -474,10 +541,9 @@ export default function About() {
               >
 
                 <span className="about-stat-index">
-                  {String(index + 1).padStart(
-                    2,
-                    "0"
-                  )}
+                  {String(
+                    index + 1
+                  ).padStart(2, "0")}
                 </span>
 
                 <strong>
@@ -498,7 +564,7 @@ export default function About() {
           )}
 
 
-          {/* GLOBAL */}
+          {/* GLOBAL STAT */}
 
           <div className="about-stat">
 
