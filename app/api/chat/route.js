@@ -172,11 +172,14 @@ Always prioritize clarity and useful answers over long explanations.
 
 export async function POST(request) {
   try {
-    const { messages } = await request.json();
+    const body = await request.json();
+
+    const { messages } = body;
 
     if (!Array.isArray(messages)) {
       return Response.json(
         {
+          success: false,
           message: "Invalid messages.",
         },
         {
@@ -187,29 +190,48 @@ export async function POST(request) {
 
     const cookieStore = await cookies();
 
-    let sessionId = cookieStore.get("wa_chat_session")?.value;
+    let sessionId =
+      cookieStore.get("wa_chat_session")?.value;
 
     if (!sessionId) {
       sessionId = crypto.randomUUID();
     }
 
+    /*
+     * Find latest user message.
+     */
     const latestUserMessage = [...messages]
       .reverse()
-      .find((message) => message?.role === "user");
+      .find(
+        (message) =>
+          message?.role === "user" &&
+          message?.content
+      );
 
-    if (latestUserMessage?.content) {
+    /*
+     * Save user message.
+     *
+     * created_at is automatically generated
+     * by the database.
+     */
+    if (latestUserMessage) {
       await sql`
-        INSERT INTO chat_conversations
-          (session_id, role, message)
-        VALUES
-          (
-            ${sessionId},
-            'user',
-            ${String(latestUserMessage.content)}
-          )
+        INSERT INTO chat_conversations (
+          session_id,
+          role,
+          message
+        )
+        VALUES (
+          ${sessionId},
+          'user',
+          ${String(latestUserMessage.content)}
+        )
       `;
     }
 
+    /*
+     * Send conversation to Ollama Cloud.
+     */
     const response = await fetch(
       "https://ollama.com/api/chat",
       {
@@ -236,17 +258,22 @@ export async function POST(request) {
       }
     );
 
+    /*
+     * Handle Ollama errors.
+     */
     if (!response.ok) {
-      const error = await response.text();
+      const errorText = await response.text();
 
       console.error(
         `Ollama Cloud error (${response.status}):`,
-        error
+        errorText
       );
 
       return Response.json(
         {
-          message: "Ollama Cloud request failed.",
+          success: false,
+          message:
+            "The AI service is temporarily unavailable.",
         },
         {
           status: 500,
@@ -254,27 +281,44 @@ export async function POST(request) {
       );
     }
 
+    /*
+     * Parse AI response.
+     */
     const data = await response.json();
 
     const assistantMessage =
       data?.message?.content ||
       "Sorry, I couldn't generate a response.";
 
+    /*
+     * Save assistant message.
+     */
     await sql`
-      INSERT INTO chat_conversations
-        (session_id, role, message)
-      VALUES
-        (
-          ${sessionId},
-          'assistant',
-          ${String(assistantMessage)}
-        )
+      INSERT INTO chat_conversations (
+        session_id,
+        role,
+        message
+      )
+      VALUES (
+        ${sessionId},
+        'assistant',
+        ${String(assistantMessage)}
+      )
     `;
 
+    /*
+     * Return response.
+     */
     const result = Response.json({
+      success: true,
       message: assistantMessage,
+      sessionId,
     });
 
+    /*
+     * Keep visitor connected to the same conversation
+     * for 30 days.
+     */
     result.headers.append(
       "Set-Cookie",
       `wa_chat_session=${sessionId}; Path=/; Max-Age=2592000; SameSite=Lax`
@@ -282,10 +326,14 @@ export async function POST(request) {
 
     return result;
   } catch (error) {
-    console.error("CHAT ROUTE ERROR:", error);
+    console.error(
+      "CHAT ROUTE ERROR:",
+      error
+    );
 
     return Response.json(
       {
+        success: false,
         message:
           error?.message ||
           "Unable to connect to the AI.",

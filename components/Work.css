@@ -5,19 +5,12 @@
 
 .work {
   position: relative;
-
   width: 100%;
   min-height: 100vh;
-
-  padding:
-    150px 0
-    110px;
-
+  padding: 150px 0 110px;
   overflow: hidden;
   isolation: isolate;
-
   background: #080908;
-
   color: #f4f6ef;
 }
 
@@ -29,11 +22,8 @@
 .work-grid {
   position: absolute;
   inset: 0;
-
   z-index: -6;
-
   pointer-events: none;
-
   opacity: 0.19;
 
   background-image:
@@ -75,16 +65,11 @@
 
 .work-glow {
   position: absolute;
-
   z-index: -5;
-
   width: 460px;
   height: 460px;
-
   border-radius: 50%;
-
   pointer-events: none;
-
   filter: blur(115px);
 
   animation:
@@ -98,23 +83,17 @@
 .work-glow-one {
   right: -230px;
   top: 16%;
-
   background: #c8ff3d;
-
   opacity: 0.045;
 }
 
 .work-glow-two {
   left: -260px;
   bottom: 7%;
-
   width: 340px;
   height: 340px;
-
   background: #c8ff3d;
-
   opacity: 0.02;
-
   animation-delay: -4s;
 }
 
@@ -139,21 +118,15 @@
 
 .work-orbit {
   position: absolute;
-
   z-index: -2;
-
   width: 680px;
   height: 680px;
-
   right: -480px;
   top: 31%;
-
   border:
     1px solid
     rgba(200, 255, 61, 0.045);
-
   border-radius: 50%;
-
   pointer-events: none;
 
   animation:
@@ -216,24 +189,19 @@
 .work-eyebrow {
   display: flex;
   align-items: center;
-
   gap: 11px;
 
   color: #9aa29a;
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.17em;
-
+  letter-spacing: 0.17em;
   text-transform: uppercase;
 }
 
 .work-dot {
   width: 6px;
   height: 6px;
-
   flex-shrink: 0;
 
   border-radius: 50%;
@@ -267,24 +235,19 @@
 .work-header-meta {
   display: flex;
   align-items: center;
-
   gap: 14px;
 
   color: #666e67;
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
-
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .work-header-meta i {
   width: 32px;
   height: 1px;
-
   background: #303530;
 }
 
@@ -313,11 +276,6 @@
     105px;
 }
 
-
-/* =========================================================
-   TITLE WRAP
-========================================================= */
-
 .work-title-wrap {
   min-width: 0;
 }
@@ -330,7 +288,6 @@
 .work-kicker {
   display: inline-flex;
   align-items: center;
-
   gap: 9px;
 
   margin-bottom: 28px;
@@ -339,10 +296,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.19em;
-
+  letter-spacing: 0.19em;
   text-transform: uppercase;
 }
 
@@ -356,7 +310,7 @@
 
   box-shadow:
     0 0 10px
-      rgba(200, 255, 61, 0.4);
+    rgba(200, 255, 61, 0.4);
 }
 
 
@@ -380,20 +334,15 @@
     );
 
   font-weight: 700;
-
   line-height: 0.88;
-
-  letter-spacing:
-    -0.065em;
+  letter-spacing: -0.065em;
 
   text-transform: uppercase;
 }
 
 .work-title > span {
   display: block;
-
   width: fit-content;
-
   white-space: nowrap;
 }
 
@@ -438,7 +387,6 @@
 .work-title-accent {
   display: flex;
   align-items: center;
-
   gap: 6px;
 
   margin-top: 29px;
@@ -469,7 +417,6 @@
 
 .work-intro-copy {
   max-width: 410px;
-
   padding-bottom: 6px;
 }
 
@@ -482,10 +429,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.17em;
-
+  letter-spacing: 0.17em;
   text-transform: uppercase;
 }
 
@@ -496,11 +440,8 @@
 
   font-size: 12px;
   font-weight: 550;
-
   line-height: 1.9;
-
-  letter-spacing:
-    0.035em;
+  letter-spacing: 0.035em;
 
   text-transform: uppercase;
 }
@@ -546,9 +487,7 @@
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
+  letter-spacing: 0.15em;
 
   text-transform: uppercase;
 }
@@ -587,7 +526,6 @@
     0 17px;
 
   border: 0;
-
   border-bottom:
     1px solid
     rgba(244, 246, 239, 0.09);
@@ -628,11 +566,9 @@
 
   background: #c8ff3d;
 
-  transform:
-    scaleY(0);
+  transform: scaleY(0);
 
-  transform-origin:
-    bottom center;
+  transform-origin: bottom center;
 
   transition:
     transform 0.45s
@@ -656,15 +592,10 @@
     );
 }
 
-.work-project:hover
-.work-project-line,
-.work-project-active
-.work-project-line {
-  transform:
-    scaleY(1);
-
-  transform-origin:
-    top center;
+.work-project:hover .work-project-line,
+.work-project-active .work-project-line {
+  transform: scaleY(1);
+  transform-origin: top center;
 }
 
 
@@ -681,20 +612,15 @@
 
   font-size: 9px;
   font-weight: 700;
-
   line-height: 1;
-
-  letter-spacing:
-    0.11em;
+  letter-spacing: 0.11em;
 
   transition:
     color 0.3s ease;
 }
 
-.work-project:hover
-.work-project-number,
-.work-project-active
-.work-project-number {
+.work-project:hover .work-project-number,
+.work-project-active .work-project-number {
   color: #c8ff3d;
 }
 
@@ -719,14 +645,10 @@
 
   font-size: 21px;
   font-weight: 700;
-
   line-height: 1.1;
-
-  letter-spacing:
-    -0.035em;
+  letter-spacing: -0.035em;
 
   white-space: nowrap;
-
   text-overflow: ellipsis;
 
   transition:
@@ -745,11 +667,8 @@
 
   font-size: 8px;
   font-weight: 700;
-
   line-height: 1.3;
-
-  letter-spacing:
-    0.11em;
+  letter-spacing: 0.11em;
 
   text-transform: uppercase;
 
@@ -757,20 +676,16 @@
     color 0.3s ease;
 }
 
-.work-project:hover
-.work-project-title,
-.work-project-active
-.work-project-title {
+.work-project:hover .work-project-title,
+.work-project-active .work-project-title {
   color: #c8ff3d;
 
   transform:
     translateX(4px);
 }
 
-.work-project:hover
-.work-project-category,
-.work-project-active
-.work-project-category {
+.work-project:hover .work-project-category,
+.work-project-active .work-project-category {
   color: #aeb6ac;
 }
 
@@ -823,20 +738,16 @@
     transform 0.3s ease;
 }
 
-.work-project:hover
-.work-project-status,
-.work-project-active
-.work-project-status {
+.work-project:hover .work-project-status,
+.work-project-active .work-project-status {
   border-color: #c8ff3d;
 
   transform:
     scale(1.12);
 }
 
-.work-project:hover
-.work-project-status > span,
-.work-project-active
-.work-project-status > span {
+.work-project:hover .work-project-status > span,
+.work-project-active .work-project-status > span {
   background: #c8ff3d;
 
   transform:
@@ -865,7 +776,6 @@
   display: block;
 
   color: inherit;
-
   text-decoration: none;
 }
 
@@ -909,8 +819,7 @@
     filter 0.6s ease;
 }
 
-.work-card:hover
-.work-image img {
+.work-card:hover .work-image img {
   transform:
     scale(1.045);
 
@@ -926,6 +835,7 @@
 
 .work-image-overlay {
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -961,16 +871,13 @@
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.13em;
+  letter-spacing: 0.13em;
 
   text-transform: uppercase;
 }
 
 .work-image-top span:last-child {
   color: #c8ff3d;
-
   text-align: right;
 }
 
@@ -994,9 +901,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.13em;
+  letter-spacing: 0.13em;
 
   text-transform: uppercase;
 }
@@ -1030,11 +935,10 @@
 
   box-shadow:
     0 0 10px
-      rgba(200, 255, 61, 0.6);
+    rgba(200, 255, 61, 0.6);
 }
 
-.work-card:hover
-.work-image-status {
+.work-card:hover .work-image-status {
   background: #c8ff3d;
 
   border-color: #c8ff3d;
@@ -1043,8 +947,7 @@
     scale(1.08);
 }
 
-.work-card:hover
-.work-image-status > span {
+.work-card:hover .work-image-status > span {
   background: #080908;
 }
 
@@ -1074,9 +977,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
+  letter-spacing: 0.15em;
 
   text-transform: uppercase;
 }
@@ -1097,8 +998,7 @@
 
   line-height: 0.9;
 
-  letter-spacing:
-    -0.065em;
+  letter-spacing: -0.065em;
 
   text-transform: uppercase;
 }
@@ -1112,9 +1012,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.13em;
+  letter-spacing: 0.13em;
 }
 
 
@@ -1135,8 +1033,7 @@
 
   line-height: 1.78;
 
-  letter-spacing:
-    0.015em;
+  letter-spacing: 0.015em;
 }
 
 
@@ -1146,7 +1043,6 @@
 
 .work-details-bottom {
   display: flex;
-
   align-items: flex-end;
   justify-content: space-between;
 
@@ -1180,8 +1076,7 @@
   font-size: 8px;
   font-weight: 700;
 
-  letter-spacing:
-    0.09em;
+  letter-spacing: 0.09em;
 
   line-height: 1.2;
 
@@ -1204,7 +1099,7 @@
 
 
 /* =========================================================
-   CTA — NO ARROW
+   CTA
 ========================================================= */
 
 .work-cta {
@@ -1226,8 +1121,7 @@
   font-size: 9px;
   font-weight: 700;
 
-  letter-spacing:
-    0.12em;
+  letter-spacing: 0.12em;
 
   text-transform: uppercase;
 
@@ -1253,6 +1147,7 @@
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   background: #c8ff3d;
@@ -1274,8 +1169,7 @@
   color: #c8ff3d;
 }
 
-.work-cta:hover
-.work-cta-line::after {
+.work-cta:hover .work-cta-line::after {
   transform:
     translateX(0);
 }
@@ -1312,8 +1206,7 @@
 
   line-height: 1.5;
 
-  letter-spacing:
-    0.14em;
+  letter-spacing: 0.14em;
 
   text-transform: uppercase;
 }
@@ -1491,7 +1384,8 @@
   }
 
   .work-title > span + span {
-    margin-top: 0.055em;
+    margin-top:
+      0.055em;
   }
 
   .work-intro-copy {

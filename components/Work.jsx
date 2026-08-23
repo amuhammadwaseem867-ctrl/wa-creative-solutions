@@ -16,6 +16,7 @@ const projects = [
     route: "/work/ember-and-oaks",
     image: "/portfolio/project-01/cover.png",
   },
+
   {
     number: "02",
     title: "NOVA",
@@ -26,6 +27,7 @@ const projects = [
     route: "/work/nova",
     image: "/portfolio/project-02/cover.png",
   },
+
   {
     number: "03",
     title: "MONO",
@@ -36,6 +38,7 @@ const projects = [
     route: "/work/mono",
     image: "/portfolio/project-03/cover.png",
   },
+
   {
     number: "04",
     title: "NEXUS",
@@ -46,6 +49,7 @@ const projects = [
     route: "/work/nexus",
     image: "/portfolio/project-05/cover.png",
   },
+
   {
     number: "05",
     title: "VANTA",
@@ -56,15 +60,17 @@ const projects = [
     route: "/work/vanta",
     image: "/portfolio/project-06/cover.png",
   },
+
   {
     number: "06",
-    title: "NOORAH",
-    category: "Brand Identity",
+    title: "BURGER IN TOWN",
+    category: "Web Development",
     description:
-      "A distinctive brand identity created with a refined visual language, memorable character and a cohesive identity system.",
-    tags: ["Branding", "Identity", "Art Direction"],
-    route: "/work/noorah",
-    image: "/portfolio/project-07/cover.jpg",
+      "A modern restaurant website concept created to showcase the brand, menu and digital ordering experience through a bold, engaging and conversion-focused interface.",
+    tags: ["Web Development", "Restaurant", "Next.js"],
+    external: true,
+    route: "https://burger-in-town.vercel.app/",
+    image: "/portfolio/burgerintown/logo.png",
   },
 ];
 
@@ -73,10 +79,14 @@ const ease = [0.22, 1, 0.36, 1];
 export default function Work() {
   const [activeProject, setActiveProject] = useState(projects[0]);
 
+  const isExternal = activeProject.external;
+
   return (
     <section className="work" id="work">
+      {/* =================================================
+          BACKGROUND
+      ================================================= */}
 
-      {/* BACKGROUND */}
       <div className="work-grid" />
       <div className="work-glow work-glow-one" />
       <div className="work-glow work-glow-two" />
@@ -119,7 +129,6 @@ export default function Work() {
           </div>
         </motion.header>
 
-
         {/* =================================================
             INTRO
         ================================================= */}
@@ -151,6 +160,7 @@ export default function Work() {
 
             <h2 className="work-title">
               <span>SELECTED</span>
+
               <span className="work-title-outline">
                 WORK.
               </span>
@@ -164,7 +174,6 @@ export default function Work() {
               <span />
               <span />
             </div>
-
           </div>
 
           <div className="work-intro-copy">
@@ -179,7 +188,6 @@ export default function Work() {
             </p>
           </div>
         </motion.div>
-
 
         {/* =================================================
             MAIN WORK AREA
@@ -205,8 +213,7 @@ export default function Work() {
 
               {projects.map((project, index) => {
                 const isActive =
-                  activeProject.number ===
-                  project.number;
+                  activeProject.number === project.number;
 
                 return (
                   <motion.button
@@ -241,14 +248,14 @@ export default function Work() {
                       ease,
                     }}
                   >
-
                     {/* NUMBER */}
+
                     <span className="work-project-number">
                       {project.number}
                     </span>
 
-
                     {/* INFO */}
+
                     <span className="work-project-info">
 
                       <span className="work-project-title">
@@ -261,8 +268,8 @@ export default function Work() {
 
                     </span>
 
-
                     {/* STATUS */}
+
                     <span
                       className="work-project-status"
                       aria-hidden="true"
@@ -270,21 +277,18 @@ export default function Work() {
                       <span />
                     </span>
 
-
                     {/* ACTIVE LINE */}
+
                     <span
                       className="work-project-line"
                       aria-hidden="true"
                     />
-
                   </motion.button>
                 );
               })}
 
             </div>
-
           </div>
-
 
           {/* =================================================
               PREVIEW
@@ -315,50 +319,105 @@ export default function Work() {
                 }}
               >
 
-                {/* IMAGE */}
+                {/* =================================================
+                    IMAGE
+                ================================================= */}
 
-                <Link
-                  href={activeProject.route}
-                  className="work-image-link"
-                  aria-label={`View ${activeProject.title} project`}
-                >
-                  <div className="work-image">
+                {isExternal ? (
+                  <a
+                    href={activeProject.route}
+                    className="work-image-link"
+                    aria-label={`View ${activeProject.title} project`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="work-image">
 
-                    <img
-                      src={activeProject.image}
-                      alt={`${activeProject.title} project`}
-                    />
+                      <img
+                        src={activeProject.image}
+                        alt={`${activeProject.title} project`}
+                      />
 
-                    <div className="work-image-overlay" />
+                      <div className="work-image-overlay" />
 
-                    <div className="work-image-top">
+                      <div className="work-image-top">
 
-                      <span>
-                        PROJECT / {activeProject.number}
-                      </span>
+                        <span>
+                          PROJECT / {activeProject.number}
+                        </span>
 
-                      <span>
-                        {activeProject.category}
-                      </span>
+                        <span>
+                          {activeProject.category}
+                        </span>
+
+                      </div>
+
+                      <div className="work-image-view">
+
+                        <span>
+                          VIEW LIVE DEMO
+                        </span>
+
+                        <span
+                          className="work-image-status"
+                          aria-hidden="true"
+                        >
+                          <span />
+                        </span>
+
+                      </div>
 
                     </div>
+                  </a>
+                ) : (
+                  <Link
+                    href={activeProject.route}
+                    className="work-image-link"
+                    aria-label={`View ${activeProject.title} project`}
+                  >
+                    <div className="work-image">
 
-                    <div className="work-image-view">
-                      <span>VIEW PROJECT</span>
+                      <img
+                        src={activeProject.image}
+                        alt={`${activeProject.title} project`}
+                      />
 
-                      <span
-                        className="work-image-status"
-                        aria-hidden="true"
-                      >
-                        <span />
-                      </span>
+                      <div className="work-image-overlay" />
+
+                      <div className="work-image-top">
+
+                        <span>
+                          PROJECT / {activeProject.number}
+                        </span>
+
+                        <span>
+                          {activeProject.category}
+                        </span>
+
+                      </div>
+
+                      <div className="work-image-view">
+
+                        <span>
+                          VIEW PROJECT
+                        </span>
+
+                        <span
+                          className="work-image-status"
+                          aria-hidden="true"
+                        >
+                          <span />
+                        </span>
+
+                      </div>
+
                     </div>
+                  </Link>
+                )}
 
-                  </div>
-                </Link>
-
-
-                {/* DETAILS */}
+                {/* =================================================
+                    DETAILS
+                ================================================= */}
 
                 <div className="work-details">
 
@@ -382,11 +441,9 @@ export default function Work() {
 
                   </div>
 
-
                   <p className="work-description">
                     {activeProject.description}
                   </p>
-
 
                   <div className="work-details-bottom">
 
@@ -402,23 +459,43 @@ export default function Work() {
 
                     </div>
 
+                    {/* =================================================
+                        CTA
+                    ================================================= */}
 
-                    <Link
-                      href={activeProject.route}
-                      className="work-cta"
-                    >
-                      <span>
-                        VIEW PROJECT
-                      </span>
+                    {isExternal ? (
+                      <a
+                        href={activeProject.route}
+                        className="work-cta"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>
+                          VIEW LIVE DEMO
+                        </span>
 
-                      <span
-                        className="work-cta-line"
-                        aria-hidden="true"
-                      />
-                    </Link>
+                        <span
+                          className="work-cta-line"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    ) : (
+                      <Link
+                        href={activeProject.route}
+                        className="work-cta"
+                      >
+                        <span>
+                          VIEW PROJECT
+                        </span>
+
+                        <span
+                          className="work-cta-line"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    )}
 
                   </div>
-
                 </div>
 
               </motion.article>
@@ -426,9 +503,7 @@ export default function Work() {
             </AnimatePresence>
 
           </div>
-
         </div>
-
 
         {/* =================================================
             BOTTOM

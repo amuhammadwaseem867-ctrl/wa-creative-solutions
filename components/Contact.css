@@ -5,22 +5,14 @@
 
 .contact {
   position: relative;
-
   width: 100%;
   min-height: 100vh;
-
-  padding:
-    150px 0
-    100px;
-
+  padding: 150px 0 100px;
   overflow: hidden;
   isolation: isolate;
-
   background: #080908;
-
   color: #f4f6ef;
 }
-
 
 /* =========================================================
    GRID
@@ -29,11 +21,8 @@
 .contact__grid-bg {
   position: absolute;
   inset: 0;
-
   z-index: -6;
-
   pointer-events: none;
-
   opacity: 0.18;
 
   background-image:
@@ -68,20 +57,15 @@
     );
 }
 
-
 /* =========================================================
    GLOWS
 ========================================================= */
 
 .contact__glow {
   position: absolute;
-
   z-index: -5;
-
   border-radius: 50%;
-
   pointer-events: none;
-
   filter: blur(115px);
 
   animation:
@@ -95,24 +79,18 @@
 .contact__glow-one {
   width: 480px;
   height: 480px;
-
   right: -230px;
   top: 17%;
-
   background: #c8ff3d;
-
   opacity: 0.05;
 }
 
 .contact__glow-two {
   width: 320px;
   height: 320px;
-
   left: -220px;
   bottom: 5%;
-
   background: #c8ff3d;
-
   opacity: 0.02;
 
   animation-delay: -4s;
@@ -132,19 +110,15 @@
   }
 }
 
-
 /* =========================================================
    ORBIT
 ========================================================= */
 
 .contact__orbit {
   position: absolute;
-
   z-index: -2;
-
   width: 700px;
   height: 700px;
-
   right: -500px;
   top: 25%;
 
@@ -153,7 +127,6 @@
     rgba(200, 255, 61, 0.045);
 
   border-radius: 50%;
-
   pointer-events: none;
 
   animation:
@@ -178,7 +151,6 @@
   }
 }
 
-
 /* =========================================================
    CONTAINER
 ========================================================= */
@@ -191,11 +163,8 @@
   max-width: 1700px;
 
   margin: 0 auto;
-
-  padding:
-    0 6vw;
+  padding: 0 6vw;
 }
-
 
 /* =========================================================
    HEADER
@@ -216,35 +185,27 @@
 .contact__eyebrow {
   display: flex;
   align-items: center;
-
   gap: 10px;
 
   color: #9aa29a;
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.17em;
-
+  letter-spacing: 0.17em;
   text-transform: uppercase;
 }
 
 .contact__eyebrow-dot {
   width: 6px;
   height: 6px;
-
   flex-shrink: 0;
 
   border-radius: 50%;
-
   background: #c8ff3d;
 
   box-shadow:
-    0 0 0 5px
-      rgba(200, 255, 61, 0.045),
-    0 0 16px
-      rgba(200, 255, 61, 0.28);
+    0 0 0 5px rgba(200, 255, 61, 0.045),
+    0 0 16px rgba(200, 255, 61, 0.28);
 
   animation:
     contactDotPulse
@@ -267,31 +228,25 @@
 .contact__header-meta {
   display: flex;
   align-items: center;
-
   gap: 14px;
 
   color: #666e67;
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
-
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .contact__header-meta i {
   width: 32px;
   height: 1px;
-
   background: #303530;
 }
 
 .contact__header-meta span:last-child {
   color: #c8ff3d;
 }
-
 
 /* =========================================================
    HERO
@@ -305,12 +260,9 @@
     minmax(280px, 0.55fr);
 
   gap: 8vw;
-
   align-items: end;
 
-  padding:
-    105px 0
-    95px;
+  padding: 105px 0 95px;
 }
 
 .contact__hero-main {
@@ -320,7 +272,6 @@
 .contact__kicker {
   display: inline-flex;
   align-items: center;
-
   gap: 9px;
 
   margin-bottom: 29px;
@@ -329,10 +280,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.19em;
-
+  letter-spacing: 0.19em;
   text-transform: uppercase;
 }
 
@@ -346,7 +294,7 @@
 
   box-shadow:
     0 0 10px
-      rgba(200, 255, 61, 0.4);
+    rgba(200, 255, 61, 0.4);
 }
 
 .contact__hero h2 {
@@ -365,20 +313,14 @@
     );
 
   font-weight: 700;
-
   line-height: 0.89;
-
-  letter-spacing:
-    -0.06em;
-
+  letter-spacing: -0.06em;
   text-transform: uppercase;
 }
 
 .contact__hero h2 > span {
   display: block;
-
   width: fit-content;
-
   margin-top: 0.045em;
 }
 
@@ -414,9 +356,7 @@
 .contact__title-accent {
   display: flex;
   align-items: center;
-
   gap: 6px;
-
   margin-top: 29px;
 }
 
@@ -425,7 +365,6 @@
   height: 4px;
 
   border-radius: 50%;
-
   background: #3d443d;
 }
 
@@ -434,10 +373,8 @@
   height: 1px;
 
   border-radius: 0;
-
   background: #c8ff3d;
 }
-
 
 /* =========================================================
    HERO SIDE
@@ -445,7 +382,6 @@
 
 .contact__hero-side {
   max-width: 390px;
-
   padding-bottom: 7px;
 }
 
@@ -458,10 +394,7 @@
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
-
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
@@ -472,12 +405,8 @@
 
   font-size: 12px;
   font-weight: 550;
-
   line-height: 1.9;
-
-  letter-spacing:
-    0.035em;
-
+  letter-spacing: 0.035em;
   text-transform: uppercase;
 }
 
@@ -497,7 +426,6 @@
     );
 }
 
-
 /* =========================================================
    DIVIDER
 ========================================================= */
@@ -512,7 +440,6 @@
     rgba(244, 246, 239, 0.1);
 }
 
-
 /* =========================================================
    MAIN GRID
 ========================================================= */
@@ -526,11 +453,8 @@
 
   gap: 8vw;
 
-  padding:
-    90px 0
-    100px;
+  padding: 90px 0 100px;
 }
-
 
 /* =========================================================
    INFO
@@ -553,10 +477,7 @@
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.16em;
-
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -567,15 +488,10 @@
 
   font-size: 12px;
   font-weight: 550;
-
   line-height: 1.85;
-
-  letter-spacing:
-    0.03em;
-
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
-
 
 /* =========================================================
    DETAILS
@@ -604,11 +520,9 @@
   column-gap: 22px;
 
   min-height: 76px;
-
   padding: 0;
 
   color: inherit;
-
   text-decoration: none;
 
   border-bottom:
@@ -627,10 +541,7 @@
 
   font-size: 7px;
   font-weight: 700;
-
-  letter-spacing:
-    0.13em;
-
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -641,11 +552,8 @@
 
   font-size: 13px;
   font-weight: 650;
-
   line-height: 1.3;
-
-  letter-spacing:
-    -0.01em;
+  letter-spacing: -0.01em;
 
   word-break: break-word;
 
@@ -659,11 +567,6 @@
         1
       );
 }
-
-
-/* =========================================================
-   DETAIL STATUS
-========================================================= */
 
 .contact__detail-status {
   justify-self: end;
@@ -691,7 +594,6 @@
   height: 3px;
 
   border-radius: 50%;
-
   background: #596159;
 
   transition:
@@ -699,32 +601,22 @@
     transform 0.3s ease;
 }
 
-.contact__detail:hover
-.contact__detail-value {
+.contact__detail:hover .contact__detail-value {
   color: #c8ff3d;
 
   transform:
     translateX(4px);
 }
 
-.contact__detail:hover
-.contact__detail-status {
+.contact__detail:hover .contact__detail-status {
   border-color: #c8ff3d;
-
-  transform:
-    scale(1.12);
+  transform: scale(1.12);
 }
 
-.contact__detail:hover
-.contact__detail-status > span {
+.contact__detail:hover .contact__detail-status > span {
   background: #c8ff3d;
-
-  transform:
-    scale(1.35);
+  transform: scale(1.35);
 }
-
-
-/* DETAIL LINE */
 
 .contact__detail-line {
   position: absolute;
@@ -737,11 +629,8 @@
 
   background: #c8ff3d;
 
-  transform:
-    scaleX(0);
-
-  transform-origin:
-    right center;
+  transform: scaleX(0);
+  transform-origin: right center;
 
   transition:
     transform 0.5s
@@ -753,15 +642,10 @@
       );
 }
 
-.contact__detail:hover
-.contact__detail-line {
-  transform:
-    scaleX(1);
-
-  transform-origin:
-    left center;
+.contact__detail:hover .contact__detail-line {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
-
 
 /* =========================================================
    CTA PANEL
@@ -772,8 +656,7 @@
 
   min-width: 0;
 
-  padding:
-    32px;
+  padding: 32px;
 
   background:
     rgba(17, 20, 17, 0.82);
@@ -784,7 +667,7 @@
 
   box-shadow:
     0 35px 90px
-      rgba(0, 0, 0, 0.28);
+    rgba(0, 0, 0, 0.28);
 }
 
 .contact__cta::before {
@@ -800,7 +683,6 @@
 
   pointer-events: none;
 }
-
 
 /* =========================================================
    CTA TOP
@@ -824,17 +706,13 @@
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
-
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .contact__cta-number {
   color: #c8ff3d;
 }
-
 
 /* =========================================================
    CTA HEADING
@@ -847,8 +725,7 @@
   display: flex;
   flex-direction: column;
 
-  margin:
-    48px 0 0;
+  margin: 48px 0 0;
 
   color: #f4f6ef;
 
@@ -860,19 +737,14 @@
     );
 
   font-weight: 700;
-
   line-height: 0.9;
-
-  letter-spacing:
-    -0.065em;
-
+  letter-spacing: -0.065em;
   text-transform: uppercase;
 }
 
 .contact__cta h3 span {
   color: #c8ff3d;
 }
-
 
 /* =========================================================
    CTA DESCRIPTION
@@ -884,22 +756,16 @@
 
   max-width: 540px;
 
-  margin:
-    28px 0 0;
+  margin: 28px 0 0;
 
   color: #9ea69d;
 
   font-size: 12px;
   font-weight: 550;
-
   line-height: 1.85;
-
-  letter-spacing:
-    0.025em;
-
+  letter-spacing: 0.025em;
   text-transform: uppercase;
 }
-
 
 /* =========================================================
    SERVICES
@@ -910,7 +776,6 @@
   z-index: 2;
 
   margin-top: 35px;
-
   padding-top: 25px;
 
   border-top:
@@ -927,28 +792,22 @@
 
   font-size: 8px;
   font-weight: 700;
-
-  letter-spacing:
-    0.15em;
-
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .contact__services-list {
   display: flex;
   flex-wrap: wrap;
-
   gap: 8px;
 }
 
 .contact__services-list span {
   display: inline-flex;
   align-items: center;
-
   gap: 7px;
 
-  padding:
-    8px 10px;
+  padding: 8px 10px;
 
   border:
     1px solid
@@ -958,12 +817,8 @@
 
   font-size: 7px;
   font-weight: 700;
-
   line-height: 1.2;
-
-  letter-spacing:
-    0.08em;
-
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 
   transition:
@@ -974,7 +829,6 @@
 
 .contact__services-list small {
   color: #c8ff3d;
-
   font-size: 6px;
 }
 
@@ -988,9 +842,8 @@
     rgba(200, 255, 61, 0.04);
 }
 
-
 /* =========================================================
-   BUTTON — NO ARROW
+   BUTTON
 ========================================================= */
 
 .contact__button {
@@ -1003,24 +856,38 @@
 
   margin-top: 34px;
 
-  padding:
-    17px 0
-    11px;
+  padding: 17px 0 11px;
 
   color: #f4f6ef;
 
+  background: transparent;
+
+  border: 0;
+
+  cursor: pointer;
+
   text-decoration: none;
+
+  font-family: inherit;
 
   font-size: 9px;
   font-weight: 700;
-
-  letter-spacing:
-    0.14em;
-
+  letter-spacing: 0.14em;
+  text-align: left;
   text-transform: uppercase;
 
   transition:
-    color 0.3s ease;
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.contact__button:hover {
+  color: #c8ff3d;
+}
+
+.contact__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .contact__button-line {
@@ -1045,8 +912,7 @@
 
   background: #c8ff3d;
 
-  transform:
-    translateX(-101%);
+  transform: translateX(-101%);
 
   transition:
     transform 0.55s
@@ -1058,16 +924,247 @@
       );
 }
 
-.contact__button:hover {
+.contact__button:hover
+.contact__button-line::after {
+  transform: translateX(0);
+}
+
+/* =========================================================
+   PROJECT FORM
+========================================================= */
+
+.contact__project-form {
+  position: relative;
+  z-index: 2;
+}
+
+.contact__form-close {
+  padding: 0;
+
+  color: #697169;
+
+  background: transparent;
+
+  border: 0;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.3s ease;
+}
+
+.contact__form-close:hover {
   color: #c8ff3d;
 }
 
-.contact__button:hover
-.contact__button-line::after {
-  transform:
-    translateX(0);
+/* =========================================================
+   FORM
+========================================================= */
+
+.contact__form {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 35px;
 }
 
+.contact__form-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 16px;
+
+  margin-bottom: 18px;
+}
+
+.contact__field {
+  min-width: 0;
+}
+
+.contact__field label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #697169;
+
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact__field input,
+.contact__field select,
+.contact__field textarea {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  color: #f4f6ef;
+
+  background:
+    rgba(8, 9, 8, 0.65);
+
+  border:
+    1px solid
+    rgba(244, 246, 239, 0.1);
+
+  border-radius: 0;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact__field input,
+.contact__field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.contact__field textarea {
+  min-height: 125px;
+
+  padding: 14px;
+
+  resize: vertical;
+
+  line-height: 1.7;
+}
+
+.contact__field input::placeholder,
+.contact__field textarea::placeholder {
+  color: #4f574f;
+}
+
+.contact__field select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  cursor: pointer;
+
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      #697169 50%
+    ),
+    linear-gradient(
+      135deg,
+      #697169 50%,
+      transparent 50%
+    );
+
+  background-position:
+    calc(100% - 16px) 20px,
+    calc(100% - 12px) 20px;
+
+  background-size:
+    4px 4px,
+    4px 4px;
+
+  background-repeat: no-repeat;
+}
+
+.contact__field select option {
+  color: #f4f6ef;
+  background: #111411;
+}
+
+.contact__field input:focus,
+.contact__field select:focus,
+.contact__field textarea:focus {
+  border-color:
+    rgba(200, 255, 61, 0.55);
+
+  background:
+    rgba(8, 9, 8, 0.9);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(200, 255, 61, 0.035);
+}
+
+/* =========================================================
+   FORM STATUS
+========================================================= */
+
+.contact__form-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 18px;
+
+  padding: 11px 13px;
+
+  border:
+    1px solid
+    rgba(244, 246, 239, 0.08);
+
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.contact__form-status.is-success {
+  color: #c8ff3d;
+
+  border-color:
+    rgba(200, 255, 61, 0.2);
+
+  background:
+    rgba(200, 255, 61, 0.035);
+}
+
+.contact__form-status.is-error {
+  color: #f4f6ef;
+
+  border-color:
+    rgba(244, 246, 239, 0.15);
+
+  background:
+    rgba(244, 246, 239, 0.025);
+}
+
+.contact__form-status-dot {
+  width: 5px;
+  height: 5px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: currentColor;
+
+  box-shadow:
+    0 0 10px
+    currentColor;
+}
 
 /* =========================================================
    BOTTOM
@@ -1095,12 +1192,8 @@
 
   font-size: 8px;
   font-weight: 700;
-
   line-height: 1.5;
-
-  letter-spacing:
-    0.13em;
-
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -1112,7 +1205,6 @@
   color: #c8ff3d;
 }
 
-
 /* =========================================================
    TABLET
 ========================================================= */
@@ -1120,9 +1212,7 @@
 @media (max-width: 1000px) {
 
   .contact {
-    padding:
-      120px 0
-      90px;
+    padding: 120px 0 90px;
   }
 
   .contact__hero {
@@ -1132,8 +1222,7 @@
 
     gap: 50px;
 
-    padding:
-      80px 0;
+    padding: 80px 0;
   }
 
   .contact__grid {
@@ -1141,12 +1230,10 @@
 
     gap: 55px;
 
-    padding:
-      75px 0
-      85px;
+    padding: 75px 0 85px;
   }
-}
 
+}
 
 /* =========================================================
    MOBILE
@@ -1156,17 +1243,12 @@
 
   .contact {
     min-height: auto;
-
-    padding:
-      90px 0
-      65px;
+    padding: 90px 0 65px;
   }
 
   .contact__container {
-    padding:
-      0 22px;
+    padding: 0 22px;
   }
-
 
   /* HEADER */
 
@@ -1182,20 +1264,16 @@
     display: none;
   }
 
-
   /* HERO */
 
   .contact__hero {
     display: block;
 
-    padding:
-      63px 0
-      60px;
+    padding: 63px 0 60px;
   }
 
   .contact__kicker {
     margin-bottom: 22px;
-
     font-size: 7px;
   }
 
@@ -1208,9 +1286,7 @@
       );
 
     line-height: 0.92;
-
-    letter-spacing:
-      -0.05em;
+    letter-spacing: -0.05em;
   }
 
   .contact__hero h2 > span {
@@ -1219,20 +1295,17 @@
 
   .contact__hero-side {
     max-width: 100%;
-
     margin-top: 35px;
   }
 
   .contact__hero-side p {
     font-size: 9.5px;
-
     line-height: 1.85;
   }
 
   .contact__hero-side-line {
     margin-top: 20px;
   }
-
 
   /* MAIN */
 
@@ -1241,17 +1314,13 @@
 
     gap: 55px;
 
-    padding:
-      60px 0
-      65px;
+    padding: 60px 0 65px;
   }
-
 
   /* INFO */
 
   .contact__info-description {
     font-size: 9px;
-
     line-height: 1.85;
   }
 
@@ -1272,13 +1341,11 @@
 
   .contact__detail-label {
     padding-top: 23px;
-
     font-size: 6.5px;
   }
 
   .contact__detail-value {
     font-size: 11px;
-
     font-weight: 650;
   }
 
@@ -1287,12 +1354,10 @@
     height: 8px;
   }
 
-
   /* CTA */
 
   .contact__cta {
-    padding:
-      25px;
+    padding: 25px;
   }
 
   .contact__cta::before {
@@ -1301,7 +1366,6 @@
 
   .contact__cta-top {
     padding-bottom: 18px;
-
     font-size: 7px;
   }
 
@@ -1322,13 +1386,13 @@
     margin-top: 23px;
 
     font-size: 9px;
-
     line-height: 1.8;
   }
 
+  /* SERVICES */
+
   .contact__services {
     margin-top: 28px;
-
     padding-top: 21px;
   }
 
@@ -1337,18 +1401,49 @@
   }
 
   .contact__services-list span {
-    padding:
-      7px 8px;
-
+    padding: 7px 8px;
     font-size: 6.5px;
+  }
+
+  /* FORM */
+
+  .contact__form {
+    margin-top: 28px;
+  }
+
+  .contact__form-row {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    margin-bottom: 17px;
+  }
+
+  .contact__field label {
+    font-size: 6.5px;
+  }
+
+  .contact__field input,
+  .contact__field select {
+    height: 46px;
+  }
+
+  .contact__field textarea {
+    min-height: 120px;
+  }
+
+  .contact__field input,
+  .contact__field select,
+  .contact__field textarea {
+    font-size: 9px;
   }
 
   .contact__button {
     margin-top: 29px;
-
     font-size: 8px;
   }
 
+  .contact__form-status {
+    font-size: 6.5px;
+  }
 
   /* BOTTOM */
 
@@ -1363,7 +1458,6 @@
   .contact__bottom span:nth-child(2) {
     text-align: left;
   }
-
 
   /* BACKGROUND */
 
@@ -1383,8 +1477,8 @@
 
     opacity: 0.03;
   }
-}
 
+}
 
 /* =========================================================
    SMALL MOBILE
@@ -1393,8 +1487,7 @@
 @media (max-width: 400px) {
 
   .contact__container {
-    padding:
-      0 18px;
+    padding: 0 18px;
   }
 
   .contact__hero h2 {
@@ -1430,8 +1523,12 @@
   .contact__services-list span {
     font-size: 6px;
   }
-}
 
+  .contact__form-status {
+    font-size: 6px;
+  }
+
+}
 
 /* =========================================================
    REDUCED MOTION
@@ -1453,7 +1550,11 @@
   .contact__button,
   .contact__button-line::after,
   .contact__outline,
-  .contact__services-list span {
+  .contact__services-list span,
+  .contact__field input,
+  .contact__field select,
+  .contact__field textarea {
     transition: none !important;
   }
+
 }

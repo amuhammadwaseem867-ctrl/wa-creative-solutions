@@ -1,16 +1,36 @@
 import { neon } from "@neondatabase/serverless";
+import { isAdminAuthenticated } from "@/lib/adminAuth";
 
 const sql = neon(process.env.DATABASE_URL);
 
-export async function GET(request, { params }) {
+export async function GET(
+  request,
+  { params }
+) {
   try {
+    const authenticated =
+      await isAdminAuthenticated();
+
+    if (!authenticated) {
+      return Response.json(
+        {
+          success: false,
+          message: "Unauthorized.",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
     const { sessionId } = await params;
 
     if (!sessionId) {
       return Response.json(
         {
           success: false,
-          message: "Session ID is required.",
+          message:
+            "Session ID is required.",
         },
         {
           status: 400,
@@ -43,7 +63,8 @@ export async function GET(request, { params }) {
     return Response.json(
       {
         success: false,
-        message: "Unable to load conversation.",
+        message:
+          "Unable to load conversation.",
       },
       {
         status: 500,

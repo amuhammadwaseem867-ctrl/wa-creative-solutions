@@ -1,327 +1,233 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import "./admin.css";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function AdminPage() {
-  const [chats, setChats] = useState([]);
-  const [selectedChat, setSelectedChat] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [loadingChats, setLoadingChats] = useState(true);
-  const [loadingMessages, setLoadingMessages] = useState(false);
+export default function AdminLoginPage() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const messagesEndRef = useRef(null);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  useEffect(() => {
-    loadChats();
-  }, []);
+    setLoading(true);
+    setError("");
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [messages]);
-
-  const loadChats = async () => {
     try {
-      setLoadingChats(true);
-      setError("");
-
-      const response = await fetch("/api/admin/chats");
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        cache: "no-store",
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+        }),
+      });
 
       const data = await response.json();
 
       if (!response.ok || !data.success) {
         throw new Error(
-          data?.message || "Unable to load conversations."
+          data?.message || "Invalid email or password."
         );
       }
 
-      setChats(data.chats || []);
-
-      if (data.chats?.length > 0) {
-        loadMessages(data.chats[0].session_id);
-      }
+      router.replace("/admin/dashboard");
+      router.refresh();
     } catch (error) {
-      console.error(error);
-      setError("Unable to load conversations.");
-    } finally {
-      setLoadingChats(false);
-    }
-  };
+      console.error("LOGIN ERROR:", error);
 
-  const loadMessages = async (sessionId) => {
-    try {
-      setSelectedChat(sessionId);
-      setLoadingMessages(true);
-      setMessages([]);
-
-      const response = await fetch(
-        `/api/admin/chats/${sessionId}`
+      setError(
+        error?.message ||
+          "Unable to login."
       );
-
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data?.message || "Unable to load messages."
-        );
-      }
-
-      setMessages(data.messages || []);
-    } catch (error) {
-      console.error(error);
-      setError("Unable to load conversation.");
     } finally {
-      setLoadingMessages(false);
+      setLoading(false);
     }
-  };
-
-  const formatDate = (date) => {
-    return new Date(date).toLocaleString([], {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
-  };
-
-  const formatShortDate = (date) => {
-    return new Date(date).toLocaleDateString([], {
-      month: "short",
-      day: "numeric",
-    });
   };
 
   return (
-    <main className="admin">
-      <div className="admin-noise"></div>
-
-      {/* HEADER */}
-
-      <header className="admin-header">
-        <div>
-          <div className="admin-brand">
-            <span className="admin-brand-dot"></span>
-
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#080908",
+        color: "#f4f6ef",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "24px",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "420px",
+          background: "#111411",
+          border: "1px solid #252925",
+          padding: "40px",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          style={{
+            marginBottom: "32px",
+          }}
+        >
+          <div
+            style={{
+              color: "#c8ff3d",
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.18em",
+            }}
+          >
             WA CREATIVE SOLUTIONS
           </div>
 
-          <h1>AI Chat Inbox</h1>
+          <h1
+            style={{
+              margin: "12px 0 8px",
+              fontSize: "32px",
+            }}
+          >
+            Admin Login
+          </h1>
 
-          <p>
-            Monitor and review conversations from your
-            website AI assistant.
+          <p
+            style={{
+              margin: 0,
+              color: "#8d938b",
+              fontSize: "14px",
+            }}
+          >
+            Access your AI conversation inbox.
           </p>
         </div>
 
-        <div className="admin-header-meta">
-          <span className="admin-live-dot"></span>
+        <form onSubmit={handleSubmit}>
 
-          AI SUPPORT
-
-          <strong>{chats.length}</strong>
-
-          CONVERSATIONS
-        </div>
-      </header>
-
-      {/* MAIN */}
-
-      <section className="admin-workspace">
-        {/* SIDEBAR */}
-
-        <aside className="admin-sidebar">
-          <div className="admin-sidebar-header">
-            <div>
-              <span>INBOX</span>
-              <h2>Conversations</h2>
-            </div>
-
-            <button
-              className="admin-refresh"
-              onClick={loadChats}
-              type="button"
-              aria-label="Refresh conversations"
+          <div
+            style={{
+              marginBottom: "18px",
+            }}
+          >
+            <label
+              htmlFor="email"
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontSize: "11px",
+                letterSpacing: "0.1em",
+              }}
             >
-              ↻
-            </button>
+              EMAIL
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(event) =>
+                setEmail(event.target.value)
+              }
+              autoComplete="email"
+              required
+              disabled={loading}
+              style={{
+                width: "100%",
+                boxSizing: "border-box",
+                padding: "14px",
+                background: "#080908",
+                border: "1px solid #303530",
+                color: "#f4f6ef",
+                outline: "none",
+              }}
+            />
           </div>
 
-          {loadingChats && (
-            <div className="admin-empty">
-              <span className="admin-loader"></span>
+          <div
+            style={{
+              marginBottom: "20px",
+            }}
+          >
+            <label
+              htmlFor="password"
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontSize: "11px",
+                letterSpacing: "0.1em",
+              }}
+            >
+              PASSWORD
+            </label>
 
-              Loading conversations...
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(event) =>
+                setPassword(event.target.value)
+              }
+              autoComplete="current-password"
+              required
+              disabled={loading}
+              style={{
+                width: "100%",
+                boxSizing: "border-box",
+                padding: "14px",
+                background: "#080908",
+                border: "1px solid #303530",
+                color: "#f4f6ef",
+                outline: "none",
+              }}
+            />
+          </div>
+
+          {error && (
+            <div
+              style={{
+                marginBottom: "18px",
+                padding: "12px",
+                background: "#2a1717",
+                border: "1px solid #553030",
+                color: "#ff9d9d",
+                fontSize: "13px",
+              }}
+            >
+              {error}
             </div>
           )}
 
-          {!loadingChats &&
-            chats.length === 0 && (
-              <div className="admin-empty">
-                No conversations yet.
-              </div>
-            )}
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              width: "100%",
+              padding: "15px",
+              border: "none",
+              background: "#c8ff3d",
+              color: "#080908",
+              fontWeight: 800,
+              cursor: loading
+                ? "wait"
+                : "pointer",
+            }}
+          >
+            {loading
+              ? "SIGNING IN..."
+              : "SIGN IN"}
+          </button>
 
-          <div className="admin-conversation-list">
-            {chats.map((chat) => (
-              <button
-                key={chat.session_id}
-                className={`admin-conversation ${
-                  selectedChat === chat.session_id
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() =>
-                  loadMessages(chat.session_id)
-                }
-                type="button"
-              >
-                <div className="admin-conversation-top">
-                  <span className="admin-avatar">
-                    WA
-                  </span>
-
-                  <span className="admin-conversation-date">
-                    {formatShortDate(
-                      chat.last_message_at
-                    )}
-                  </span>
-                </div>
-
-                <div className="admin-session">
-                  {chat.session_id.slice(0, 18)}...
-                </div>
-
-                <div className="admin-conversation-bottom">
-                  <span>
-                    {chat.message_count} messages
-                  </span>
-
-                  <span>●</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </aside>
-
-        {/* CHAT */}
-
-        <section className="admin-chat">
-          {!selectedChat ? (
-            <div className="admin-chat-empty">
-              <div className="admin-chat-empty-icon">
-                WA
-              </div>
-
-              <h2>Select a conversation</h2>
-
-              <p>
-                Choose a conversation from the inbox
-                to view the complete chat.
-              </p>
-            </div>
-          ) : (
-            <>
-              {/* CHAT HEADER */}
-
-              <div className="admin-chat-header">
-                <div className="admin-chat-person">
-                  <div className="admin-avatar large">
-                    WA
-                  </div>
-
-                  <div>
-                    <span>AI SUPPORT SESSION</span>
-
-                    <h2>
-                      {selectedChat.slice(0, 22)}...
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="admin-chat-status">
-                  <span></span>
-
-                  ACTIVE SESSION
-                </div>
-              </div>
-
-              {/* MESSAGES */}
-
-              <div className="admin-messages">
-                {loadingMessages && (
-                  <div className="admin-message-loading">
-                    <span className="admin-loader"></span>
-                    Loading conversation...
-                  </div>
-                )}
-
-                {!loadingMessages &&
-                  messages.map((message) => (
-                    <div
-                      key={message.id}
-                      className={`admin-message-row ${
-                        message.role === "user"
-                          ? "user"
-                          : "assistant"
-                      }`}
-                    >
-                      <div className="admin-message-meta">
-                        <span>
-                          {message.role === "user"
-                            ? "VISITOR"
-                            : "WA ASSISTANT"}
-                        </span>
-
-                        <time>
-                          {formatDate(
-                            message.created_at
-                          )}
-                        </time>
-                      </div>
-
-                      <div className="admin-message-bubble">
-                        {message.role ===
-                        "assistant" ? (
-                          <ReactMarkdown>
-                            {message.message}
-                          </ReactMarkdown>
-                        ) : (
-                          <p>{message.message}</p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* FOOTER */}
-
-              <div className="admin-chat-footer">
-                <span>
-                  SESSION ID
-                </span>
-
-                <code>{selectedChat}</code>
-
-                <span className="admin-footer-dot"></span>
-
-                <span>
-                  {messages.length} MESSAGES
-                </span>
-              </div>
-            </>
-          )}
-        </section>
-      </section>
-
-      {error && (
-        <div className="admin-error">
-          {error}
-        </div>
-      )}
+        </form>
+      </div>
     </main>
   );
 }

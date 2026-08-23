@@ -7,27 +7,27 @@ import "./Footer.css";
 const footerLinks = [
   {
     number: "01",
-    label: "ABOUT",
+    label: "About",
     href: "#about",
   },
   {
     number: "02",
-    label: "SERVICES",
+    label: "Services",
     href: "#services",
   },
   {
     number: "03",
-    label: "TECHNOLOGY",
+    label: "Technology",
     href: "#technology",
   },
   {
     number: "04",
-    label: "WORK",
+    label: "Our Work",
     href: "#work",
   },
   {
     number: "05",
-    label: "CONTACT",
+    label: "Contact",
     href: "#contact",
   },
 ];
@@ -62,7 +62,9 @@ export default function Footer() {
 
   return (
     <footer className="footer">
+
       {/* BACKGROUND */}
+
       <div className="footer__grid" />
 
       <div className="footer__glow footer__glow-one" />
@@ -97,7 +99,7 @@ export default function Footer() {
             <span className="footer__dot" />
 
             <span>
-              HAVE A PROJECT IN MIND?
+              Have a project in mind?
             </span>
           </div>
 
@@ -106,7 +108,7 @@ export default function Footer() {
             className="footer__cta-link"
           >
             <span>
-              LET&apos;S CREATE
+              Let&apos;s create something great
             </span>
 
             <span
@@ -153,14 +155,14 @@ export default function Footer() {
               </span>
 
               <span className="footer__logo-name">
-                CREATIVE SOLUTIONS
+                Creative Solutions
               </span>
             </Link>
 
             <p>
-              WE BUILD BRANDS, DIGITAL EXPERIENCES
-              AND CREATIVE SOLUTIONS DESIGNED TO
-              MAKE AN IMPACT.
+              We build brands, websites, digital
+              experiences, and creative solutions
+              designed to help businesses stand out.
             </p>
           </motion.div>
 
@@ -188,10 +190,11 @@ export default function Footer() {
             }}
           >
             <span className="footer__column-title">
-              EXPLORE
+              Explore
             </span>
 
             <nav className="footer__links">
+
               {footerLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -211,6 +214,7 @@ export default function Footer() {
                   />
                 </Link>
               ))}
+
             </nav>
           </motion.div>
 
@@ -238,10 +242,11 @@ export default function Footer() {
             }}
           >
             <span className="footer__column-title">
-              CONNECT
+              Connect
             </span>
 
             <div className="footer__links footer__social">
+
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
@@ -268,6 +273,7 @@ export default function Footer() {
                   />
                 </a>
               ))}
+
             </div>
           </motion.div>
 
@@ -294,15 +300,16 @@ export default function Footer() {
               ease,
             }}
           >
+
             <span className="footer__column-title">
-              START A PROJECT
+              Start a Project
             </span>
 
             <a
-              href="mailto:wacreativestudio@gmail.com"
+              href="mailto:amuhammadwaseem867@gmail.com"
               className="footer__email"
             >
-              wacreativestudio@gmail.com
+              amuhammadwaseem867@gmail.com
             </a>
 
             <a
@@ -313,13 +320,14 @@ export default function Footer() {
             </a>
 
             <span className="footer__location">
-              RAWALPINDI, PAKISTAN
+              Rawalpindi, Pakistan
             </span>
 
             <span className="footer__availability">
               <i />
-              AVAILABLE FOR PROJECTS
+              Available for new projects
             </span>
+
           </motion.div>
 
         </div>
@@ -348,7 +356,9 @@ export default function Footer() {
             ease,
           }}
         >
-          <span>WA</span>
+          <span>
+            WA
+          </span>
         </motion.div>
 
 
@@ -371,17 +381,19 @@ export default function Footer() {
             duration: 0.6,
           }}
         >
+
           <span>
-            © {year} WA CREATIVE SOLUTIONS
+            © {year} WA Creative Solutions
           </span>
 
           <span>
-            DESIGN / DIGITAL / TECHNOLOGY
+            Design / Digital / Technology
           </span>
 
           <span className="footer__bottom-accent">
-            DESIGNED &amp; BUILT WITH INTENT
+            Designed &amp; Built With Intent
           </span>
+
         </motion.div>
 
       </div>
