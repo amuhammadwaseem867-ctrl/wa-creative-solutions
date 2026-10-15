@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Portfolio artwork pipeline (rendered offline, not part of the app bundle).
+    "design/**",
   ]),
 ]);
 

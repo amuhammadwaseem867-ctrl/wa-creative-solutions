@@ -1,3 +1,4 @@
+import { fieldProjects } from "./field-projects";
 import { liveProjects } from "./live-projects";
 
 /**
@@ -8,14 +9,16 @@ import { liveProjects } from "./live-projects";
  *   beyond what the live site itself shows.
  * - `kind: "concept"` — self-initiated design explorations, always labelled.
  */
-export type WorkCategory = "web" | "apps" | "branding" | "cgi" | "digital";
+/** Work is organised by the studio's six service fields (ids match lib/services.ts). */
+export type WorkCategory = "brand-identity" | "web" | "ai" | "3d-motion" | "marketing" | "graphic";
 
 export const workCategories: { id: WorkCategory; label: string }[] = [
-  { id: "web", label: "Web Design" },
-  { id: "apps", label: "Web Apps & Systems" },
-  { id: "branding", label: "Branding" },
-  { id: "cgi", label: "3D & CGI" },
-  { id: "digital", label: "Digital Experiences" },
+  { id: "brand-identity", label: "Brand Identity" },
+  { id: "web", label: "Web Design & Development" },
+  { id: "ai", label: "AI Solutions" },
+  { id: "3d-motion", label: "3D, CGI & Motion" },
+  { id: "marketing", label: "Marketing & Content" },
+  { id: "graphic", label: "Graphic Design" },
 ];
 
 export type ProjectKind = "live" | "concept";
@@ -37,6 +40,8 @@ export type Project = {
   features?: string[];
   tech?: string[];
   services: string[];
+  /** Optional brand palette shown on the case study. */
+  palette?: string[];
   cover: ProjectImage;
   gallery: ProjectImage[];
   liveUrl?: string;
@@ -55,7 +60,7 @@ export const conceptProjects: Project[] = [
     slug: "ember-and-oaks",
     title: "Ember & Oak",
     discipline: "Brand Identity · Packaging · Web",
-    categories: ["branding", "web"],
+    categories: ["brand-identity", "graphic", "web"],
     kind: "concept",
     summary: "A luxury coffee brand built around slow craft, origin stories and an editorial e-commerce experience.",
     overview:
@@ -87,7 +92,7 @@ export const conceptProjects: Project[] = [
     slug: "nova",
     title: "Nova",
     discipline: "Product Design · UI/UX",
-    categories: ["web", "digital"],
+    categories: ["web"],
     kind: "concept",
     summary: "A productivity platform concept that brings projects, tasks, teams and performance into one focused workspace.",
     overview:
@@ -115,7 +120,7 @@ export const conceptProjects: Project[] = [
     slug: "mono",
     title: "Mono",
     discipline: "Brand Identity · Art Direction",
-    categories: ["branding"],
+    categories: ["brand-identity", "graphic"],
     kind: "concept",
     summary: "A monochrome identity system built on typography, structure and visual restraint.",
     overview:
@@ -145,7 +150,7 @@ export const conceptProjects: Project[] = [
     slug: "nexus",
     title: "Nexus",
     discipline: "AI Experience · Product · CGI",
-    categories: ["digital", "cgi"],
+    categories: ["ai", "3d-motion"],
     kind: "concept",
     summary: "A fictional AI automation platform connecting data, intelligence and workflows in one system.",
     overview:
@@ -174,7 +179,7 @@ export const conceptProjects: Project[] = [
     slug: "vanta",
     title: "Vanta",
     discipline: "Luxury Identity · Digital · CGI",
-    categories: ["branding", "digital", "cgi", "web"],
+    categories: ["brand-identity", "3d-motion", "web"],
     kind: "concept",
     summary: "A dark luxury fashion and lifestyle identity extended into spaces, membership and web.",
     overview:
@@ -203,7 +208,7 @@ export const conceptProjects: Project[] = [
     slug: "noorah",
     title: "Noorah",
     discipline: "Mascot · Brand Identity · Content",
-    categories: ["branding", "digital"],
+    categories: ["brand-identity", "marketing"],
     kind: "concept",
     summary: "A character-led lifestyle identity that turns a personality into a complete content system.",
     overview:
@@ -227,6 +232,9 @@ export const conceptProjects: Project[] = [
   },
 ];
 
-export const projects: Project[] = [...liveProjects, ...conceptProjects];
+export const projects: Project[] = [...liveProjects, ...fieldProjects, ...conceptProjects];
+
+/** Projects for one service field, live work first. */
+export const projectsForField = (field: WorkCategory) => projects.filter((p) => p.categories.includes(field));
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

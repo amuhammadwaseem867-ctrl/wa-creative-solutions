@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Check, ChevronDown } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { services } from "@/lib/services";
+import { projectsForField, type WorkCategory } from "@/lib/projects";
 import { ButtonLink } from "@/components/ui/Button";
 import { ServiceVisual } from "./ServiceVisual";
 import { serviceIcons } from "./serviceIcons";
@@ -93,6 +96,7 @@ export function ServiceCatalogue() {
                       <ServiceVisual kind={s.visual} className="relative h-auto w-full" />
                     </div>
                   </div>
+                  <RelatedWork field={s.id as WorkCategory} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -100,5 +104,36 @@ export function ServiceCatalogue() {
         );
       })}
     </ul>
+  );
+}
+
+/** Up to three projects from this field, with a link to the filtered Work page. */
+function RelatedWork({ field }: { field: WorkCategory }) {
+  const related = projectsForField(field);
+  if (!related.length) return null;
+  return (
+    <div className="border-t border-white/[0.08] p-5 sm:p-7">
+      <div className="mb-5 flex items-center justify-between gap-4">
+        <h3 className="label-caps text-white/50">Related work</h3>
+        <Link href={`/work?field=${field}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-paper hover:text-white/70">
+          All {related.length} projects <ArrowUpRight size={15} aria-hidden />
+        </Link>
+      </div>
+      <ul className="grid gap-4 sm:grid-cols-3">
+        {related.slice(0, 3).map((p) => (
+          <li key={p.slug}>
+            <Link href={`/work/${p.slug}`} className="group block">
+              <span className="relative block aspect-[16/10] overflow-hidden rounded-lg bg-ink-3">
+                <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(min-width: 640px) 30vw, 100vw" className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]" />
+              </span>
+              <span className="mt-3 flex items-center justify-between gap-3">
+                <span className="font-display text-base font-bold text-paper">{p.title}</span>
+                <span className="text-[0.65rem] font-semibold tracking-[0.12em] text-white/45 uppercase">{p.kind === "live" ? "Live" : "Concept"}</span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

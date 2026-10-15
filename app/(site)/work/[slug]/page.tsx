@@ -39,10 +39,11 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
 
   const i = projects.indexOf(project);
   const next = projects[(i + 1) % projects.length];
-  const categories = workCategories.filter((c) => project.categories.includes(c.id)).map((c) => c.label);
+  const fields = workCategories.filter((c) => project.categories.includes(c.id));
   const live = project.kind === "live";
   // The cover is already shown full-width above, so don't repeat it in the gallery.
   const gallery = project.gallery.filter((g) => g.src !== project.cover.src);
+  const galleryRows = layoutGallery(gallery);
   const landscapeCover = project.cover.width > project.cover.height;
   const logoCover = project.cover.width < 600;
 
@@ -98,8 +99,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               <dd className="mt-2">{live ? "Live, deployed build" : "Self-initiated concept (no client)"}</dd>
             </div>
             <div>
-              <dt className="label-caps text-mute">Category</dt>
-              <dd className="mt-2">{categories.join(" · ")}</dd>
+              <dt className="label-caps text-mute">{fields.length > 1 ? "Fields" : "Field"}</dt>
+              <dd className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+                {fields.map((f) => (
+                  <Link key={f.id} href={`/work?field=${f.id}`} className="link-underline text-paper">
+                    {f.label}
+                  </Link>
+                ))}
+              </dd>
             </div>
             <div className="sm:col-span-2 lg:col-span-1">
               <dt className="label-caps text-mute">Services delivered</dt>
@@ -130,6 +137,18 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-underline break-all text-paper">
                     {project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
                   </a>
+                </dd>
+              </div>
+            )}
+            {project.palette && project.palette.length > 0 && (
+              <div className="sm:col-span-2 lg:col-span-1">
+                <dt className="label-caps text-mute">Palette</dt>
+                <dd className="mt-3 flex overflow-hidden rounded-lg border border-white/10">
+                  {project.palette.map((c) => (
+                    <span key={c} className="flex h-16 flex-1 items-end p-2 text-[0.62rem] font-medium tracking-wide uppercase" style={{ background: c, color: luminance(c) > 0.5 ? "#080808" : "#ffffff" }}>
+                      {c}
+                    </span>
+                  ))}
                 </dd>
               </div>
             )}
@@ -168,34 +187,40 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         </div>
       </section>
 
-      {gallery.length > 0 && (
+      {galleryRows.length > 0 && (
         <section className="pb-[clamp(5rem,11vw,10rem)]" aria-label="Project gallery">
-          <div className="container-site grid gap-6 md:grid-cols-2 md:gap-8">
-            {gallery.map((img, idx) => {
-              const portrait = img.height > img.width;
-              // Every third landscape image spans full width for editorial rhythm.
-              const wide = !portrait && idx % 3 === 0;
-              return (
-                <figure key={img.src} className={wide ? "md:col-span-2" : ""} data-reveal>
-                  <div className="overflow-hidden rounded-[14px] bg-ink-3">
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      width={img.width}
-                      height={img.height}
-                      sizes={wide ? "(min-width: 1440px) 1360px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
-                      className="h-auto w-full"
-                    />
-                  </div>
-                  {img.caption && (
-                    <figcaption className="label-caps mt-3 flex justify-between text-mute">
-                      <span>{img.caption}</span>
-                      <span>{String(idx + 1).padStart(2, "0")}</span>
-                    </figcaption>
-                  )}
-                </figure>
-              );
-            })}
+          <div className="container-site space-y-6 md:space-y-8">
+            {galleryRows.map((row, r) => (
+              <div
+                key={r}
+                className={`grid gap-6 md:gap-8 ${row.length === 3 ? "grid-cols-3" : row.length === 2 ? "md:grid-cols-2" : ""}`}
+              >
+                {row.map(({ img, n }) => (
+                  <figure
+                    key={img.src}
+                    data-reveal
+                    className={row.length === 1 && img.width / img.height < 1.15 ? `mx-auto w-full ${img.width / img.height < 0.62 ? "max-w-sm" : "max-w-2xl"}` : undefined}
+                  >
+                    <div className="overflow-hidden rounded-[14px] bg-ink-3">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        width={img.width}
+                        height={img.height}
+                        sizes={row.length === 1 ? "(min-width: 1280px) 1200px, 100vw" : row.length === 2 ? "(min-width: 768px) 50vw, 100vw" : "33vw"}
+                        className="h-auto w-full"
+                      />
+                    </div>
+                    {img.caption && (
+                      <figcaption className="mt-3 flex justify-between gap-4 text-xs font-medium tracking-[0.1em] text-white/45 uppercase">
+                        <span>{img.caption}</span>
+                        <span className="tabular-nums">{String(n).padStart(2, "0")}</span>
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            ))}
           </div>
         </section>
       )}
@@ -216,4 +241,48 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       <ContactCTA title="Want something built like this?" />
     </article>
   );
+}
+
+/** Relative luminance of a hex colour (0 = black, 1 = white), for legible swatch labels. */
+function luminance(hex: string) {
+  const m = hex.replace("#", "");
+  const full = m.length === 3 ? m.split("").map((c) => c + c).join("") : m.slice(0, 6);
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const v = parseInt(full.slice(i, i + 2), 16) / 255;
+    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+type GalleryItem = { img: (typeof projects)[number]["gallery"][number]; n: number };
+
+/**
+ * Editorial gallery rhythm: landscape boards run full-width; tall boards pair up two per row;
+ * phone-shaped screens group three per row.
+ */
+function layoutGallery(images: GalleryItem["img"][]) {
+  const rows: GalleryItem[][] = [];
+  let pending: GalleryItem[] = [];
+  let pendingKind: "tall" | "phone" | null = null;
+  const flush = () => {
+    if (pending.length) rows.push(pending);
+    pending = [];
+    pendingKind = null;
+  };
+  images.forEach((img, i) => {
+    const ratio = img.width / img.height;
+    const item = { img, n: i + 1 };
+    if (ratio >= 1.15) {
+      flush();
+      rows.push([item]);
+      return;
+    }
+    const kind = ratio < 0.62 ? "phone" : "tall";
+    if (pendingKind && pendingKind !== kind) flush();
+    pendingKind = kind;
+    pending.push(item);
+    if (pending.length === (kind === "phone" ? 3 : 2)) flush();
+  });
+  flush();
+  return rows;
 }

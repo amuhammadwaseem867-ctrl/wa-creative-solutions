@@ -579,7 +579,9 @@ html.js [data-reveal].is-visible {
   }
 }
 .page-enter {
-  animation: page-enter 0.6s var(--ease-expo) both;
+  /* "backwards", not "both": a transform kept in effect after the entrance would make this wrapper
+     the containing block for position:fixed descendants (e.g. the work index preview). */
+  animation: page-enter 0.6s var(--ease-expo) backwards;
 }
 
 /* Legal prose */
