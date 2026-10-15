@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/work/ProjectCard";
 
-const featured = ["ember-and-oaks", "nexus", "vanta", "nova"];
+const featured = ["restaurant-os", "apparel-fastener", "spirit", "alhaytham-school"];
 
 export function WorkPreview() {
   const list = featured.map((slug) => projects.find((p) => p.slug === slug)).filter((p) => p !== undefined);
@@ -15,8 +15,8 @@ export function WorkPreview() {
             align="left"
             className="text-center md:text-left"
             eyebrow="Selected work"
-            title={<span id="work-title">Recent projects & explorations</span>}
-            intro="Self-initiated concept projects across branding, product, web and CGI. Concept work is always labelled as such."
+            title={<span id="work-title">Built, shipped and live</span>}
+            intro="Websites, stores and full web applications in production — every project links to the live build."
           />
           <div data-reveal>
             <ButtonLink href="/work" variant="ghost">

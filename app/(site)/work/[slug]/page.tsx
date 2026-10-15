@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { getProject, projects, workCategories } from "@/lib/projects";
 import { ButtonLink } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
@@ -40,6 +40,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
   const i = projects.indexOf(project);
   const next = projects[(i + 1) % projects.length];
   const categories = workCategories.filter((c) => project.categories.includes(c.id)).map((c) => c.label);
+  const live = project.kind === "live";
   const landscapeCover = project.cover.width > project.cover.height;
   const logoCover = project.cover.width < 600;
 
@@ -53,16 +54,24 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <p className="label-caps fade-up mb-6 flex flex-wrap items-center gap-3 text-mute">
-                <span className="rounded-full border border-white/20 px-3 py-1 text-paper">{project.concept ? "Concept project" : project.client}</span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-paper">
+                  {live && <span className="h-1.5 w-1.5 rounded-full bg-[#3ddc84]" aria-hidden />}
+                  {live ? "Live project" : "Concept project"}
+                </span>
                 {project.discipline}
               </p>
               <h1 className="text-mega rise overflow-hidden pb-[0.05em] font-bold">
                 <span>{project.title}</span>
               </h1>
             </div>
-            <p className="text-lead fade-up text-paper/80 lg:col-span-4" style={{ "--d": "200ms" } as React.CSSProperties}>
-              {project.summary}
-            </p>
+            <div className="fade-up lg:col-span-4" style={{ "--d": "200ms" } as React.CSSProperties}>
+              <p className="text-lead text-paper/80">{project.summary}</p>
+              {project.liveUrl && (
+                <ButtonLink href={project.liveUrl} className="mt-7">
+                  Visit live site
+                </ButtonLink>
+              )}
+            </div>
           </div>
         </div>
         <div className="container-site mt-14">
@@ -73,7 +82,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               fill
               priority
               sizes="100vw"
-              className={logoCover ? "object-contain p-[12%]" : "object-cover"}
+              className={logoCover ? "object-contain p-[12%]" : "object-cover object-top"}
             />
           </div>
         </div>
@@ -84,7 +93,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           <dl className="grid content-start gap-8 border-t border-line pt-8 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
             <div>
               <dt className="label-caps text-mute">Type</dt>
-              <dd className="mt-2">{project.concept ? "Self-initiated concept (no client)" : project.client}</dd>
+              <dd className="mt-2">{live ? "Live, deployed build" : "Self-initiated concept (no client)"}</dd>
             </div>
             <div>
               <dt className="label-caps text-mute">Category</dt>
@@ -100,13 +109,25 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                 ))}
               </dd>
             </div>
+            {project.tech && project.tech.length > 0 && (
+              <div className="sm:col-span-2 lg:col-span-1">
+                <dt className="label-caps text-mute">Built with</dt>
+                <dd className="mt-3 flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span key={t} className="rounded-full bg-white/[0.06] px-3 py-1.5 text-sm text-paper/85">
+                      {t}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            )}
             {project.liveUrl && (
               <div>
-                <dt className="sr-only">Live prototype</dt>
-                <dd>
-                  <ButtonLink href={project.liveUrl} variant="ghost">
-                    View live prototype
-                  </ButtonLink>
+                <dt className="label-caps text-mute">Live site</dt>
+                <dd className="mt-2">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-underline break-all text-paper">
+                    {project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
+                  </a>
                 </dd>
               </div>
             )}
@@ -116,16 +137,31 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               <h2 className="label-caps mb-5 text-white/45">Overview</h2>
               <p className="text-[clamp(1.3rem,2.2vw,1.85rem)] leading-[1.35] tracking-[-0.015em] text-paper">{project.overview}</p>
             </div>
-            <div className="grid gap-10 md:grid-cols-2">
+            {project.challenge && project.solution && (
+              <div className="grid gap-10 md:grid-cols-2">
+                <div data-reveal>
+                  <h2 className="label-caps mb-4 text-mute">The challenge</h2>
+                  <p className="text-paper/80">{project.challenge}</p>
+                </div>
+                <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
+                  <h2 className="label-caps mb-4 text-mute">The solution</h2>
+                  <p className="text-paper/80">{project.solution}</p>
+                </div>
+              </div>
+            )}
+            {project.features && project.features.length > 0 && (
               <div data-reveal>
-                <h2 className="label-caps mb-4 text-mute">The challenge</h2>
-                <p className="text-paper/80">{project.challenge}</p>
+                <h2 className="label-caps mb-5 text-mute">What we built</h2>
+                <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                  {project.features.map((f) => (
+                    <li key={f} className="flex gap-3 text-paper/80">
+                      <Check size={17} className="mt-1 shrink-0 text-white/40" aria-hidden />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
-                <h2 className="label-caps mb-4 text-mute">The solution</h2>
-                <p className="text-paper/80">{project.solution}</p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

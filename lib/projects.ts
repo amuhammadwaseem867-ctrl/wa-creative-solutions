@@ -1,16 +1,24 @@
+import { liveProjects } from "./live-projects";
+
 /**
- * Portfolio data. Every project below is a self-initiated CONCEPT project —
- * no client relationship, testimonial or commercial result is implied.
- * When genuine client work is added, set `concept: false` and fill `client`.
+ * Portfolio data.
+ *
+ * - `kind: "live"`  — real, deployed builds (see lib/live-projects.ts). Each links
+ *   to its live site. No client relationship, testimonial or result is implied
+ *   beyond what the live site itself shows.
+ * - `kind: "concept"` — self-initiated design explorations, always labelled.
  */
-export type WorkCategory = "branding" | "web" | "cgi" | "digital";
+export type WorkCategory = "web" | "apps" | "branding" | "cgi" | "digital";
 
 export const workCategories: { id: WorkCategory; label: string }[] = [
-  { id: "branding", label: "Branding" },
   { id: "web", label: "Web Design" },
+  { id: "apps", label: "Web Apps & Systems" },
+  { id: "branding", label: "Branding" },
   { id: "cgi", label: "3D & CGI" },
   { id: "digital", label: "Digital Experiences" },
 ];
+
+export type ProjectKind = "live" | "concept";
 
 export type ProjectImage = { src: string; alt: string; width: number; height: number; caption?: string };
 
@@ -19,12 +27,15 @@ export type Project = {
   title: string;
   discipline: string;
   categories: WorkCategory[];
-  concept: boolean;
-  client?: string;
+  kind: ProjectKind;
   summary: string;
   overview: string;
-  challenge: string;
-  solution: string;
+  /** Concept projects: the brief we set ourselves and how we answered it. */
+  challenge?: string;
+  solution?: string;
+  /** Live projects: what was built, and with what. */
+  features?: string[];
+  tech?: string[];
   services: string[];
   cover: ProjectImage;
   gallery: ProjectImage[];
@@ -39,13 +50,13 @@ const img = (src: string, alt: string, width: number, height: number, caption?: 
   caption,
 });
 
-export const projects: Project[] = [
+export const conceptProjects: Project[] = [
   {
     slug: "ember-and-oaks",
     title: "Ember & Oak",
     discipline: "Brand Identity · Packaging · Web",
     categories: ["branding", "web"],
-    concept: true,
+    kind: "concept",
     summary: "A luxury coffee brand built around slow craft, origin stories and an editorial e-commerce experience.",
     overview:
       "Ember & Oak is a concept specialty-coffee brand shaped around carefully sourced beans and the rituals that make coffee memorable. Warm natural tones, refined typography and an editorial visual language create a brand that feels timeless, tactile and quietly premium.",
@@ -77,7 +88,7 @@ export const projects: Project[] = [
     title: "Nova",
     discipline: "Product Design · UI/UX",
     categories: ["web", "digital"],
-    concept: true,
+    kind: "concept",
     summary: "A productivity platform concept that brings projects, tasks, teams and performance into one focused workspace.",
     overview:
       "Nova is a productivity platform concept designed to bring projects, tasks, teams and performance into one focused digital environment. The interface pairs a precise visual system with calm, information-dense layouts.",
@@ -105,7 +116,7 @@ export const projects: Project[] = [
     title: "Mono",
     discipline: "Brand Identity · Art Direction",
     categories: ["branding"],
-    concept: true,
+    kind: "concept",
     summary: "A monochrome identity system built on typography, structure and visual restraint.",
     overview:
       "Mono is a contemporary brand identity created with a strong focus on simplicity, structure and visual recognition. The system was designed to stay consistent across stationery, packaging, signage and social.",
@@ -135,7 +146,7 @@ export const projects: Project[] = [
     title: "Nexus",
     discipline: "AI Experience · Product · CGI",
     categories: ["digital", "cgi"],
-    concept: true,
+    kind: "concept",
     summary: "A fictional AI automation platform connecting data, intelligence and workflows in one system.",
     overview:
       "Nexus is a fictional AI automation platform that connects data, intelligence and workflows into one unified digital system. The concept explores how complex automation can feel understandable and trustworthy.",
@@ -164,7 +175,7 @@ export const projects: Project[] = [
     title: "Vanta",
     discipline: "Luxury Identity · Digital · CGI",
     categories: ["branding", "digital", "cgi", "web"],
-    concept: true,
+    kind: "concept",
     summary: "A dark luxury fashion and lifestyle identity extended into spaces, membership and web.",
     overview:
       "Vanta is a fictional high-end fashion and lifestyle brand built around restraint, atmosphere and timeless visual language. It communicates quality without ever raising its voice.",
@@ -193,7 +204,7 @@ export const projects: Project[] = [
     title: "Noorah",
     discipline: "Mascot · Brand Identity · Content",
     categories: ["branding", "digital"],
-    concept: true,
+    kind: "concept",
     summary: "A character-led lifestyle identity that turns a personality into a complete content system.",
     overview:
       "Noorah is a playful mascot identity created to give a lifestyle brand a recognisable personality, visual voice and emotional connection across beauty, fashion and self-care content.",
@@ -214,24 +225,8 @@ export const projects: Project[] = [
       img("/portfolio/project-07/merchandisecollection.jpg", "Noorah merchandise", 5713, 3751, "Merchandise"),
     ],
   },
-  {
-    slug: "burger-in-town",
-    title: "Burger in Town",
-    discipline: "Web Design · Next.js",
-    categories: ["web"],
-    concept: true,
-    summary: "A bold restaurant website concept showcasing brand, menu and a digital ordering flow.",
-    overview:
-      "Burger in Town is a restaurant website concept built to showcase the brand, menu and digital ordering experience through a bold, engaging and conversion-focused interface.",
-    challenge:
-      "Restaurant sites are usually either a PDF menu or a slow template. The aim was an appetite-first site that loads fast and moves visitors toward ordering.",
-    solution:
-      "A Next.js build with strong product photography slots, a scannable menu structure and clear calls to order — deployed as a working prototype.",
-    services: ["Web design", "Next.js development", "Responsive build"],
-    cover: img("/portfolio/burgerintown/logo.png", "Burger in Town logo", 447, 447),
-    gallery: [],
-    liveUrl: "https://burger-in-town.vercel.app/",
-  },
 ];
+
+export const projects: Project[] = [...liveProjects, ...conceptProjects];
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

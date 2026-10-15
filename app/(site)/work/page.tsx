@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Selected concept projects across branding, web design, 3D & CGI and digital experiences by WA Creative Solution.",
+  description: "Live websites, e-commerce stores and web applications built by WA Creative Solution, plus concept explorations in branding and CGI.",
   alternates: { canonical: "/work" },
   openGraph: { url: "/work", title: `Work — ${site.name}` },
 };
@@ -19,8 +19,8 @@ export default function WorkPage() {
         title={<>Work that shows <span className="text-chrome">the thinking</span></>}
         intro={
           <>
-            Branding, product, web and CGI explorations. Every project here is a clearly labelled <strong className="font-semibold text-paper">concept project</strong> —
-            self-initiated work that demonstrates our process and craft. Client case studies will be published with permission.
+            Live websites, e-commerce, and full web applications — POS, ERP and school-management systems — alongside
+            clearly labelled concept explorations. Every live project links to the deployed site.
           </>
         }
       />
