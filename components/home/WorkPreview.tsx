@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/work/ProjectCard";
 
-const featured = ["restaurant-os", "apparel-fastener", "spirit", "alhaytham-school"];
+const featured = ["restaurant-os", "zama-zama", "apparel-fastener", "spirit", "alhaytham-school", "af7"];
 
 export function WorkPreview() {
   const list = featured.map((slug) => projects.find((p) => p.slug === slug)).filter((p) => p !== undefined);
@@ -24,10 +24,10 @@ export function WorkPreview() {
             </ButtonLink>
           </div>
         </div>
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-14">
+        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-3">
           {list.map((p, i) => (
-            <li key={p.slug} data-reveal style={{ "--reveal-delay": `${(i % 2) * 90}ms` } as React.CSSProperties}>
-              <ProjectCard project={p} sizes="(min-width: 768px) 50vw, 100vw" />
+            <li key={p.slug} data-reveal style={{ "--reveal-delay": `${(i % 3) * 90}ms` } as React.CSSProperties}>
+              <ProjectCard project={p} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" />
             </li>
           ))}
         </ul>
