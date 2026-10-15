@@ -1,25 +1,22 @@
-import { MONOGRAM_BAR_PATH, MONOGRAM_BODY_PATH, MONOGRAM_VIEWBOX } from "@/lib/brand";
+import { MONOGRAM_ACCENT_PATH, MONOGRAM_BODY_PATH, MONOGRAM_VIEWBOX } from "@/lib/brand";
 
-export type LogoTone = "white" | "black" | "red" | "accent";
+export type LogoTone = "white" | "black" | "red" | "accent" | "accent-dark";
 
 /**
  * tone:
- *  - "accent": white body + red crossbar (primary, for dark backgrounds)
- *  - "white" / "black": single-colour versions
- *  - "red": full red mark
+ *  - "accent": white mark + red apex (primary, dark backgrounds)
+ *  - "accent-dark": black mark + red apex (primary, light backgrounds)
+ *  - "white" / "black" / "red": single-colour versions
  */
-const toneColors: Record<LogoTone, { body: string; bar: string }> = {
-  accent: { body: "#FFFFFF", bar: "#FF202D" },
-  white: { body: "#FFFFFF", bar: "#FFFFFF" },
-  black: { body: "#080808", bar: "#080808" },
-  red: { body: "#FF202D", bar: "#FF202D" },
+const toneColors: Record<LogoTone, { body: string; accent: string; text: string }> = {
+  accent: { body: "#FFFFFF", accent: "#FF202D", text: "text-paper" },
+  "accent-dark": { body: "#080808", accent: "#FF202D", text: "text-ink" },
+  white: { body: "#FFFFFF", accent: "#FFFFFF", text: "text-paper" },
+  black: { body: "#080808", accent: "#080808", text: "text-ink" },
+  red: { body: "#FF202D", accent: "#FF202D", text: "text-red" },
 };
 
-type MonogramProps = {
-  tone?: LogoTone;
-  className?: string;
-  title?: string;
-};
+type MonogramProps = { tone?: LogoTone; className?: string; title?: string };
 
 export function Monogram({ tone = "accent", className, title }: MonogramProps) {
   const c = toneColors[tone];
@@ -32,31 +29,22 @@ export function Monogram({ tone = "accent", className, title }: MonogramProps) {
       aria-label={title}
     >
       <path d={MONOGRAM_BODY_PATH} fill={c.body} />
-      <path d={MONOGRAM_BAR_PATH} fill={c.bar} />
+      <path d={MONOGRAM_ACCENT_PATH} fill={c.accent} />
     </svg>
   );
 }
 
-type LogoProps = {
-  tone?: LogoTone;
-  className?: string;
-  /** Hide the descriptor line ("CREATIVE SOLUTION") at small sizes. */
-  compact?: boolean;
-};
+type LogoProps = { tone?: LogoTone; className?: string; compact?: boolean };
 
-/** Primary horizontal lock-up: monogram + wordmark. */
+/** Primary horizontal lock-up: prism mark + two-line wordmark. */
 export function Logo({ tone = "accent", className = "", compact = false }: LogoProps) {
-  const text = tone === "black" ? "text-ink" : tone === "red" ? "text-red" : "text-paper";
+  const c = toneColors[tone];
   return (
-    <span className={`inline-flex items-center gap-3 ${text} ${className}`}>
-      <Monogram tone={tone} className="h-[1.35em] w-auto shrink-0" />
+    <span className={`inline-flex items-center gap-[0.55em] ${c.text} ${className}`}>
+      <Monogram tone={tone} className="h-[1.5em] w-auto shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[1em] font-extrabold tracking-[-0.02em]">WA</span>
-        {!compact && (
-          <span className="mt-[0.3em] font-display text-[0.4em] font-semibold tracking-[0.26em] opacity-75">
-            CREATIVE SOLUTION
-          </span>
-        )}
+        <span className="font-display text-[0.82em] font-bold tracking-[0.14em]">WA CREATIVE</span>
+        {!compact && <span className="mt-[0.3em] font-sans text-[0.5em] font-medium tracking-[0.5em] opacity-60">SOLUTION</span>}
       </span>
       <span className="sr-only">WA Creative Solution</span>
     </span>

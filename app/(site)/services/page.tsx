@@ -37,7 +37,7 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }} />
       <PageHeader
         eyebrow="Services"
-        title={<>Complete creative <span className="text-gradient-red">capability</span></>}
+        title={<>Complete creative <span className="text-chrome">capability</span></>}
         intro="Six disciplines that work as one system. Open any service for its scope, deliverables and a direct path to a quote."
       >
         <div className="flex flex-wrap justify-center gap-3">

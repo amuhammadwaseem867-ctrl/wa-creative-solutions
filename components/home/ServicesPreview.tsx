@@ -15,7 +15,7 @@ export function ServicesPreview() {
       <div className="container-site">
         <SectionHeading
           eyebrow="What we do"
-          title={<span id="services-title">Everything your brand needs, <span className="text-gradient-red">under one roof</span></span>}
+          title={<span id="services-title">Everything your brand needs, <span className="text-chrome">under one roof</span></span>}
           intro="Strategy, design, engineering, 3D and AI working as one team — so your brand, website and campaigns all speak the same language."
         />
 

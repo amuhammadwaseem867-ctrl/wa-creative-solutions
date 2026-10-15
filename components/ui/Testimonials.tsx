@@ -24,7 +24,7 @@ export function Testimonials() {
               <figcaption className="mt-6 text-sm text-white/55">
                 <strong className="text-paper">{t.name}</strong> — {t.role}, {t.company}
                 {t.projectSlug && (
-                  <Link href={`/work/${t.projectSlug}`} className="ml-3 text-red">
+                  <Link href={`/work/${t.projectSlug}`} className="ml-3 text-paper underline">
                     View project
                   </Link>
                 )}

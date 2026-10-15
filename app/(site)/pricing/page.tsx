@@ -30,7 +30,7 @@ export default function PricingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <PageHeader
         eyebrow="Pricing"
-        title={<>Transparent pricing, <span className="text-gradient-red">no surprises</span></>}
+        title={<>Transparent pricing, <span className="text-chrome">no surprises</span></>}
         intro="Clear starting points, written scopes and defined revision rounds. Prices are illustrative starting prices in USD and are confirmed in a written quote."
       >
         <div className="flex flex-wrap justify-center gap-3">

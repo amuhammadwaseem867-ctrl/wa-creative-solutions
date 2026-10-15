@@ -5,7 +5,7 @@ import { PackageCards } from "@/components/pricing/PackageCards";
 export function PricingPreview() {
   return (
     <section className="section-y relative overflow-hidden" aria-labelledby="pricing-title">
-      <div className="absolute top-1/3 left-1/2 -z-10 h-[400px] w-[900px] -translate-x-1/2 rounded-full bg-red/[0.07] blur-[140px]" aria-hidden />
+      <div className="absolute top-1/3 left-1/2 -z-10 h-[400px] w-[900px] -translate-x-1/2 rounded-full bg-white/[0.03] blur-[140px]" aria-hidden />
       <div className="container-site">
         <SectionHeading
           eyebrow="Transparent pricing"

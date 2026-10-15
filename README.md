@@ -35,7 +35,14 @@ Everything editable lives in `lib/`. Change it there and the UI updates, with no
 
 ## Brand assets
 
-`public/brand/`: horizontal logo and monogram in accent / white / black / red, square icon, social profile image (SVG + PNG). The horizontal SVG wordmark uses live text (Montserrat / Poppins); convert it to outlines for print. Favicon: `app/favicon.ico` + `app/icon.svg`; Apple icon and Open Graph image are generated at build time.
+The mark is the **WA Prism**. Two inverted blades and an upright A are separated by precision cuts of equal width. The outer edges and the cuts trace a W, and the centre form is the A. The A's apex is the only red element, a small upward "what comes next" signal. The geometry lives in `lib/brand.ts`.
+
+`public/brand/` contains:
+- `wa-mark-{accent,accent-dark,white,black,red}.svg`: the mark alone.
+- `wa-logo-horizontal-*.svg`: the mark with the "WA CREATIVE / SOLUTION" wordmark (live Montserrat/Poppins text; convert it to outlines for print).
+- `wa-icon-square.svg` and `wa-social-profile.{svg,png}`: favicon and profile images.
+
+The favicon is `app/favicon.ico` + `app/icon.svg`. The Apple icon and Open Graph image are generated at build time.
 
 ## Environment variables
 
@@ -47,4 +54,4 @@ See `.env.example`. All secrets are read only on the server.
 
 ## 3D & performance notes
 
-The hero sculpture (`components/three/`) loads only after the page is idle, through `next/dynamic` with `ssr: false`. It renders a static SVG fallback first, and keeps that fallback when WebGL is missing, on low-memory or low-core devices, or with Save-Data. Rendering pauses off-screen and in hidden tabs. Quality drops on mobile and weaker devices, and `prefers-reduced-motion` shows a still pose. The canvas never captures pointer events.
+The hero centerpiece (`components/three/BlobScene.tsx`) is a liquid-chrome form displaced by a simplex-noise vertex shader and lit by a procedural studio environment. It loads only after the page is idle, through `next/dynamic` with `ssr: false`. It renders a static SVG fallback first, and keeps that fallback when WebGL is missing, on low-memory or low-core devices, or with Save-Data. Rendering pauses off-screen and in hidden tabs. Quality drops on mobile and weaker devices, and `prefers-reduced-motion` shows a still pose. The canvas never captures pointer events.

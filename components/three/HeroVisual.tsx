@@ -2,9 +2,9 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { MonogramFallback } from "./MonogramFallback";
+import { BlobFallback } from "./BlobFallback";
 
-const MonogramScene = dynamic(() => import("./MonogramScene"), { ssr: false });
+const BlobScene = dynamic(() => import("./BlobScene"), { ssr: false });
 
 type Mode = "pending" | "static" | "3d";
 
@@ -99,11 +99,11 @@ export function HeroVisual() {
       <div
         className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${ready ? "opacity-0" : "opacity-100"}`}
       >
-        <MonogramFallback className="h-auto w-[86%] drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]" />
+        <BlobFallback className="h-auto w-[72%]" />
       </div>
       {mode === "3d" && (
         <div className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`}>
-          <MonogramScene
+          <BlobScene
             pointer={pointer}
             scroll={scroll}
             quality={quality}

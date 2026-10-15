@@ -70,7 +70,7 @@ export function ServiceCatalogue() {
                       <ul className="space-y-2.5 text-sm">
                         {s.outcomes.map((o) => (
                           <li key={o} className="flex gap-2.5 text-white/75">
-                            <Check size={16} className="mt-0.5 shrink-0 text-red" aria-hidden /> {o}
+                            <Check size={16} className="mt-0.5 shrink-0 text-white/50" aria-hidden /> {o}
                           </li>
                         ))}
                       </ul>

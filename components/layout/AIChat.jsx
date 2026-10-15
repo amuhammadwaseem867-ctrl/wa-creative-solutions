@@ -621,7 +621,7 @@ export default function AIChat() {
         <span className="ai-chat__launcher-status"></span>
 
         <span>
-          {isOpen ? "CLOSE" : "AI SUPPORT"}
+          {isOpen ? "Close" : "Ask our AI"}
         </span>
 
         <strong>

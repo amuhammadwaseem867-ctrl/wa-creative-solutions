@@ -10,7 +10,7 @@ export function CapabilityMarquee() {
         {row.map((item, i) => (
           <li key={i} className="flex items-center gap-12 font-display text-lg font-semibold whitespace-nowrap text-white/45 md:text-xl">
             {item}
-            <span className="inline-block h-1.5 w-1.5 rotate-45 bg-red/70" />
+            <span className="inline-block h-1.5 w-1.5 rotate-45 bg-white/25" />
           </li>
         ))}
       </ul>

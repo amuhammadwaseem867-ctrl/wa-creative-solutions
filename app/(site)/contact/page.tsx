@@ -30,7 +30,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
     <>
       <PageHeader
         eyebrow="Contact"
-        title={<>Let&apos;s build <span className="text-gradient-red">what&apos;s next</span></>}
+        title={<>Let&apos;s build <span className="text-chrome">what&apos;s next</span></>}
         intro="Tell us about the project. The more context you share, the more useful our first reply will be."
       />
       <section className="section-y pt-4!" aria-label="Project inquiry">
@@ -41,14 +41,14 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
               <ul className="space-y-4">
                 <li>
                   <a href={`mailto:${contact.email}`} className="group flex items-start gap-3 text-sm [overflow-wrap:anywhere]">
-                    <Mail size={18} className="mt-1 shrink-0 text-red" aria-hidden />
+                    <Mail size={18} className="mt-1 shrink-0 text-white/40" aria-hidden />
                     <span className="link-underline">{contact.email}</span>
                   </a>
                 </li>
                 {contact.phones.map((p) => (
                   <li key={p.href}>
                     <a href={p.href} className="flex items-start gap-3">
-                      <Phone size={18} className="mt-1 shrink-0 text-red" aria-hidden />
+                      <Phone size={18} className="mt-1 shrink-0 text-white/40" aria-hidden />
                       <span className="link-underline">{p.display}</span>
                     </a>
                   </li>
@@ -61,7 +61,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
                   </li>
                 )}
                 <li className="flex items-start gap-3 text-mute">
-                  <MapPin size={18} className="mt-1 shrink-0 text-red" aria-hidden />
+                  <MapPin size={18} className="mt-1 shrink-0 text-white/40" aria-hidden />
                   {contact.location}
                 </li>
               </ul>
@@ -69,9 +69,9 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
             <div className="card p-6">
               <h2 className="mb-5 font-display text-base font-bold">What happens next</h2>
               <ol className="space-y-4 text-mute">
-                <li><span className="font-display font-bold text-red">01 </span>We review your brief and reply {contact.responseTime} where possible.</li>
-                <li><span className="font-display font-bold text-red">02 </span>A short call to clarify goals, scope and constraints.</li>
-                <li><span className="font-display font-bold text-red">03 </span>A written proposal with deliverables, timeline and price.</li>
+                <li><span className="font-display font-bold text-white/35">01 </span>We review your brief and reply {contact.responseTime} where possible.</li>
+                <li><span className="font-display font-bold text-white/35">02 </span>A short call to clarify goals, scope and constraints.</li>
+                <li><span className="font-display font-bold text-white/35">03 </span>A written proposal with deliverables, timeline and price.</li>
               </ol>
             </div>
             <div className="card p-6">

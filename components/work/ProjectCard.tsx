@@ -41,7 +41,7 @@ export function ProjectCard({ project, aspect = "aspect-[4/3]", sizes = "(min-wi
             <h3 className="text-xl">{project.title}</h3>
             <p className="mt-1 text-sm text-white/50">{project.discipline}</p>
           </div>
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-paper transition-all duration-300 group-hover:border-red group-hover:bg-red-deep">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-paper transition-all duration-300 group-hover:border-paper group-hover:bg-paper group-hover:text-ink">
             <ArrowUpRight size={17} aria-hidden />
           </span>
         </div>

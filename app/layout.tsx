@@ -45,7 +45,7 @@ const organizationJsonLd = {
   "@type": "ProfessionalService",
   name: site.name,
   url: site.url,
-  logo: absoluteUrl("/brand/wa-monogram-accent.svg"),
+  logo: absoluteUrl("/brand/wa-icon-square.svg"),
   description: site.description,
   email: contact.email,
   telephone: contact.phones[0]?.href.replace("tel:", ""),

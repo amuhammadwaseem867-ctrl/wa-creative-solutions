@@ -53,7 +53,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <p className="label-caps fade-up mb-6 flex flex-wrap items-center gap-3 text-mute">
-                <span className="rounded-full border border-red/60 px-3 py-1 text-red">{project.concept ? "Concept project" : project.client}</span>
+                <span className="rounded-full border border-white/20 px-3 py-1 text-paper">{project.concept ? "Concept project" : project.client}</span>
                 {project.discipline}
               </p>
               <h1 className="text-mega rise overflow-hidden pb-[0.05em] font-bold">
@@ -113,7 +113,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           </dl>
           <div className="space-y-14 lg:col-span-7 lg:col-start-6">
             <div data-reveal>
-              <h2 className="label-caps mb-5 text-red">Overview</h2>
+              <h2 className="label-caps mb-5 text-white/45">Overview</h2>
               <p className="text-[clamp(1.3rem,2.2vw,1.85rem)] leading-[1.35] tracking-[-0.015em] text-paper">{project.overview}</p>
             </div>
             <div className="grid gap-10 md:grid-cols-2">
@@ -166,11 +166,11 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         <Link href={`/work/${next.slug}`} className="group container-site flex items-center justify-between gap-6 py-16 md:py-24">
           <span>
             <span className="label-caps block text-mute">Next project</span>
-            <span className="mt-4 block font-display text-[clamp(2.6rem,8vw,7rem)] leading-none font-bold tracking-[-0.05em] transition-colors group-hover:text-red">
+            <span className="mt-4 block font-display text-[clamp(2.6rem,8vw,7rem)] leading-none font-bold tracking-[-0.05em] transition-colors group-hover:text-white/70">
               {next.title}
             </span>
           </span>
-          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-line transition-all duration-500 group-hover:rotate-45 group-hover:border-red group-hover:bg-red-deep md:h-24 md:w-24">
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-line transition-all duration-500 group-hover:rotate-45 group-hover:border-paper group-hover:bg-paper group-hover:text-ink md:h-24 md:w-24">
             <ArrowUpRight aria-hidden />
           </span>
         </Link>

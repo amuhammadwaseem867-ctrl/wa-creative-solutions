@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { MONOGRAM_BAR_PATH, MONOGRAM_BODY_PATH, MONOGRAM_VIEWBOX } from "@/lib/brand";
+import { MONOGRAM_ACCENT_PATH, MONOGRAM_BODY_PATH, MONOGRAM_VIEWBOX } from "@/lib/brand";
 import { site } from "@/lib/site";
 
 export const alt = `${site.name} — ${site.tagline}`;
@@ -20,20 +20,20 @@ export default async function OpengraphImage() {
           padding: 72,
           color: "#fff",
           fontFamily: "sans-serif",
-          backgroundImage: "radial-gradient(circle at 85% 30%, rgba(255,32,45,0.35), transparent 45%)",
+          backgroundImage: "radial-gradient(circle at 80% 35%, rgba(255,255,255,0.12), transparent 45%)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <svg width={110} height={80} viewBox={`0 0 ${MONOGRAM_VIEWBOX.width} ${MONOGRAM_VIEWBOX.height}`}>
+          <svg width={96} height={76} viewBox={`0 0 ${MONOGRAM_VIEWBOX.width} ${MONOGRAM_VIEWBOX.height}`}>
             <path d={MONOGRAM_BODY_PATH} fill="#fff" />
-            <path d={MONOGRAM_BAR_PATH} fill="#FF202D" />
+            <path d={MONOGRAM_ACCENT_PATH} fill="#FF202D" />
           </svg>
           <div style={{ fontSize: 26, letterSpacing: 8, color: "#A7A7A7" }}>WA CREATIVE SOLUTION</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 112, fontWeight: 700, lineHeight: 0.95, letterSpacing: -5 }}>We Create What</div>
           <div style={{ display: "flex", fontSize: 112, fontWeight: 700, lineHeight: 0.95, letterSpacing: -5 }}>
-            Comes&nbsp;<span style={{ color: "#FF202D" }}>Next</span>.
+            Comes Next<span style={{ color: "#FF202D" }}>.</span>
           </div>
         </div>
         <div style={{ fontSize: 26, color: "#A7A7A7" }}>Brand · Web · 3D & Motion · AI Creative Solutions</div>

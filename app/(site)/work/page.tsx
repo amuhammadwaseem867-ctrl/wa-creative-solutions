@@ -16,7 +16,7 @@ export default function WorkPage() {
     <>
       <PageHeader
         eyebrow="Selected work"
-        title={<>Work that shows <span className="text-gradient-red">the thinking</span></>}
+        title={<>Work that shows <span className="text-chrome">the thinking</span></>}
         intro={
           <>
             Branding, product, web and CGI explorations. Every project here is a clearly labelled <strong className="font-semibold text-paper">concept project</strong> —

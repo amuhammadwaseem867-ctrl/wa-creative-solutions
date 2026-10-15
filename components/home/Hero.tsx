@@ -1,66 +1,72 @@
-import { Box, Code2, Palette, Sparkles } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { HeroVisual } from "@/components/three/HeroVisual";
 import { site } from "@/lib/site";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
-const pillars = [
-  { icon: Palette, label: "Brand Identity" },
-  { icon: Code2, label: "Web Development" },
-  { icon: Box, label: "3D & Motion" },
-  { icon: Sparkles, label: "AI Solutions" },
-];
-
 export function Hero() {
   return (
-    <section id="hero" className="relative isolate overflow-hidden pt-[calc(var(--header-h)+2.5rem)] pb-16 lg:min-h-[100svh] lg:pb-20">
-      {/* Backdrop: masked grid + red bloom */}
-      <div className="grid-lines absolute inset-0 -z-20 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black,transparent)]" aria-hidden />
-      <div className="absolute top-[-15%] right-[-10%] -z-20 h-[640px] w-[640px] rounded-full bg-red/20 blur-[150px]" aria-hidden />
-      <div className="absolute bottom-0 left-[-15%] -z-20 h-[420px] w-[520px] rounded-full bg-red-deep/10 blur-[140px]" aria-hidden />
+    <section id="hero" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+      {/* Atmosphere: soft white bloom and a faint grid */}
+      <div className="absolute top-1/2 left-1/2 -z-20 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.05] blur-[120px]" aria-hidden />
+      <div className="grid-lines absolute inset-0 -z-20 opacity-60 [mask-image:radial-gradient(ellipse_60%_55%_at_50%_50%,black,transparent)]" aria-hidden />
 
-      <div className="container-site grid items-center gap-6 lg:min-h-[calc(100svh-var(--header-h)-4.5rem)] lg:grid-cols-[1.05fr_1fr] lg:gap-4">
-        <div className="relative z-10 text-center lg:text-left">
-          <p className="badge fade-up" style={d(0)}>
-            <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-red" aria-hidden />
-            {site.availability}
-          </p>
+      {/* Liquid-chrome centerpiece */}
+      <div
+        className="fade-up absolute top-[36%] left-1/2 -z-10 aspect-square w-[min(112vw,62svh)] -translate-x-1/2 -translate-y-1/2 sm:top-1/2 sm:w-[min(80vw,80svh)] sm:-translate-y-[52%]"
+        style={d(250)}
+      >
+        <HeroVisual />
+      </div>
 
-          <h1 className="text-mega fade-up mt-7" style={d(80)}>
-            We Create <br className="hidden sm:block" />
-            What Comes <span className="text-gradient-red">Next.</span>
-          </h1>
-
-          <p className="text-lead fade-up mx-auto mt-6 max-w-xl text-white/60 lg:mx-0" style={d(180)}>
-            {site.statement}
-          </p>
-
-          <div className="fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start" style={d(280)}>
-            <ButtonLink href="/services" magnetic>
-              Explore Our Services
-            </ButtonLink>
-            <ButtonLink href="/work" variant="ghost" magnetic>
-              View Our Work
-            </ButtonLink>
-          </div>
-
-          <ul className="fade-up mt-12 flex flex-wrap justify-center gap-x-7 gap-y-3 border-t border-white/[0.08] pt-8 lg:justify-start" style={d(380)}>
-            {pillars.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-2 text-sm font-medium whitespace-nowrap text-white/70">
-                <Icon size={16} className="shrink-0 text-red" aria-hidden />
-                {label}
-              </li>
-            ))}
-          </ul>
+      <div className="container-site flex flex-1 flex-col pt-[calc(76px+1.75rem)] pb-8 sm:pb-10 md:pb-[92px]">
+        {/* Meta row */}
+        <div className="fade-up flex items-center justify-between gap-4 text-xs font-medium tracking-[0.18em] text-white/50 uppercase" style={d(0)}>
+          <span>Creative Technology Studio</span>
+          <span className="hidden sm:inline">Brand — Web — 3D — AI</span>
         </div>
 
-        {/* 3D centerpiece */}
-        <div className="fade-up relative mx-auto aspect-square w-full max-w-[560px] lg:max-w-none" style={d(200)}>
-          <div className="absolute inset-[18%] rounded-full bg-red/10 blur-[80px]" aria-hidden />
-          <div className="absolute inset-[6%] rounded-full border border-white/[0.06]" aria-hidden />
-          <div className="absolute inset-[18%] rounded-full border border-dashed border-white/[0.06]" aria-hidden />
-          <HeroVisual />
+        {/* Headline — difference blend keeps it legible over the chrome */}
+        <h1 className="my-auto py-10 font-display leading-[0.86] font-extrabold tracking-[-0.045em] text-paper uppercase mix-blend-difference">
+          <span className="rise block overflow-hidden text-[clamp(3rem,9.2vw,9rem)]">
+            <span style={d(120)}>We create</span>
+          </span>
+          <span className="rise block overflow-hidden text-[clamp(3rem,9.2vw,9rem)] sm:text-right">
+            <span style={d(240)}>What comes</span>
+          </span>
+          <span className="rise block overflow-hidden text-[clamp(3rem,9.2vw,9rem)] sm:text-right">
+            <span style={d(360)}>
+              Next<span className="text-red">.</span>
+            </span>
+          </span>
+        </h1>
+
+        {/* Footer row */}
+        <div className="grid items-end gap-8 border-t border-white/10 pt-7 md:grid-cols-[1fr_auto_1fr]">
+          <div className="fade-up max-w-sm" style={d(520)}>
+            <p className="flex items-center gap-2.5 text-xs font-medium tracking-[0.14em] text-white/70 uppercase">
+              <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-red" aria-hidden />
+              {site.availability}
+            </p>
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-white/55">{site.statement}</p>
+          </div>
+          <a
+            href="#capabilities"
+            className="fade-up hidden h-12 w-12 items-center justify-center justify-self-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-white/40 hover:text-paper md:flex"
+            style={d(640)}
+            aria-label="Scroll to content"
+          >
+            <ArrowDown size={16} aria-hidden />
+          </a>
+          <div className="fade-up flex flex-wrap gap-3 md:justify-end" style={d(600)}>
+            <ButtonLink href="/services" magnetic>
+              Explore services
+            </ButtonLink>
+            <ButtonLink href="/work" variant="ghost" magnetic>
+              View our work
+            </ButtonLink>
+          </div>
         </div>
       </div>
     </section>

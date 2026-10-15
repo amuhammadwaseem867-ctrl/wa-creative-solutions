@@ -43,7 +43,7 @@ export function CustomCursor() {
     <div
       ref={ring}
       aria-hidden
-      className="pointer-events-none fixed top-0 left-0 z-[70] hidden h-8 w-8 rounded-full border border-red/80 opacity-0 transition-[opacity,border-color,background-color] duration-300 data-[active=true]:border-transparent data-[active=true]:bg-red/15 [@media(hover:hover)_and_(pointer:fine)]:block"
+      className="pointer-events-none fixed top-0 left-0 z-[70] hidden h-8 w-8 rounded-full border border-white/50 opacity-0 transition-[opacity,border-color,background-color] duration-300 data-[active=true]:border-transparent data-[active=true]:bg-white/10 [@media(hover:hover)_and_(pointer:fine)]:block"
     />
   );
 }
