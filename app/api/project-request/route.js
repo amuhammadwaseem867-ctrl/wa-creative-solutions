@@ -2,9 +2,9 @@ import { neon } from "@neondatabase/serverless";
 import { cookies } from "next/headers";
 import { Resend } from "resend";
 
-const sql = neon(process.env.DATABASE_URL);
+// Created per query so builds succeed without DATABASE_URL; runtime behaviour is unchanged.
+const sql = (...args) => neon(process.env.DATABASE_URL)(...args);
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
@@ -195,7 +195,7 @@ ${cleanRequirements}
      * Send email through Resend.
      */
     const { error: resendError } =
-      await resend.emails.send({
+      await new Resend(process.env.RESEND_API_KEY).emails.send({
         from:
           "WA Creative Solutions <hello@wacreativesolution.com>",
         to: ["amuhammadwaseem867@gmail.com"],

@@ -1,108 +1,71 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { absoluteUrl, contact, site, socials } from "@/lib/site";
+import { services } from "@/lib/services";
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://www.wacreativesolution.com";
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
+const sans = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-
+  metadataBase: new URL(site.url),
   title: {
-    default:
-      "WA Creative Solutions | Web Design, Branding & Development Agency",
-    template:
-      "%s | WA Creative Solutions",
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s — ${site.name}`,
   },
-
-  description:
-    "WA Creative Solutions is a creative technology studio in Rawalpindi, Pakistan specializing in branding, UI/UX design, web design, Next.js development and digital experiences.",
-
-  keywords: [
-    "WA Creative Solutions",
-    "web design agency Rawalpindi",
-    "web development company Rawalpindi",
-    "website design Pakistan",
-    "Next.js development Pakistan",
-    "branding agency Rawalpindi",
-    "brand identity Pakistan",
-    "UI UX design Pakistan",
-    "graphic design Rawalpindi",
-    "creative agency Pakistan",
-  ],
-
-  authors: [
-    {
-      name: "WA Creative Solutions",
-    },
-  ],
-
-  creator: "WA Creative Solutions",
-  publisher: "WA Creative Solutions",
-
-  alternates: {
-    canonical: "/",
-  },
-
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name }],
+  creator: site.name,
+  publisher: site.name,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    locale: "en_PK",
-    url: siteUrl,
-    siteName: "WA Creative Solutions",
-
-    title:
-      "WA Creative Solutions | Web Design, Branding & Development Agency",
-
-    description:
-      "Branding, UI/UX, web design, Next.js development and digital experiences by WA Creative Solutions.",
-
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "WA Creative Solutions",
-      },
-    ],
+    siteName: site.name,
+    url: "/",
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
   },
-
   twitter: {
     card: "summary_large_image",
-
-    title:
-      "WA Creative Solutions | Web Design & Development",
-
-    description:
-      "Branding, UI/UX, websites and digital experiences by WA Creative Solutions.",
-
-    images: ["/og-image.jpg"],
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
   },
-
-  robots: {
-    index: true,
-    follow: true,
-
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-
-  icons: {
-    icon: "/favicon.ico",
-  },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#080808",
+  colorScheme: "dark",
+};
+
+/** Only facts the business has actually published — no ratings, awards or founding dates. */
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  url: site.url,
+  logo: absoluteUrl("/brand/wa-monogram-accent.svg"),
+  description: site.description,
+  email: contact.email,
+  telephone: contact.phones[0]?.href.replace("tel:", ""),
+  address: { "@type": "PostalAddress", addressLocality: "Rawalpindi", addressCountry: "PK" },
+  sameAs: socials.map((s) => s.href),
+  knowsAbout: services.map((s) => s.title),
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available so scroll-reveal styles only apply when they can resolve. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

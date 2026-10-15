@@ -1,7 +1,8 @@
 import { neon } from "@neondatabase/serverless";
 import { cookies } from "next/headers";
 
-const sql = neon(process.env.DATABASE_URL);
+// Created per query so builds succeed without DATABASE_URL; runtime behaviour is unchanged.
+const sql = (...args) => neon(process.env.DATABASE_URL)(...args);
 
 const SYSTEM_PROMPT = `
 You are the official AI customer support assistant for WA Creative Solutions.

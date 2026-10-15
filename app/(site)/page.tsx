@@ -1,0 +1,21 @@
+import { Hero } from "@/components/home/Hero";
+import { CapabilityMarquee } from "@/components/home/CapabilityMarquee";
+import { ServicesPreview } from "@/components/home/ServicesPreview";
+import { WorkPreview } from "@/components/home/WorkPreview";
+import { ProcessSection } from "@/components/home/ProcessSection";
+import { PricingPreview } from "@/components/home/PricingPreview";
+import { ContactCTA } from "@/components/home/ContactCTA";
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+      <CapabilityMarquee />
+      <ServicesPreview />
+      <WorkPreview />
+      <ProcessSection />
+      <PricingPreview />
+      <ContactCTA />
+    </>
+  );
+}

@@ -1,7 +1,8 @@
 import { neon } from "@neondatabase/serverless";
 import { isAdminAuthenticated } from "@/lib/adminAuth";
 
-const sql = neon(process.env.DATABASE_URL);
+// Created per query so builds succeed without DATABASE_URL; runtime behaviour is unchanged.
+const sql = (...args) => neon(process.env.DATABASE_URL)(...args);
 
 export async function GET(
   request,

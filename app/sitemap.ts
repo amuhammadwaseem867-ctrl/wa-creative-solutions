@@ -1,33 +1,20 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://www.wacreativesolution.com";
-
-const routes = [
-  "",
-  "/work/ember-and-oaks",
-  "/work/nova",
-  "/work/mono",
-  "/work/nexus",
-  "/work/vanta",
-  "/work/noorah",
-];
+import { projects } from "@/lib/projects";
+import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route, index) => ({
-    url: `${siteUrl}${route}`,
-
-    lastModified: new Date(),
-
-    changeFrequency:
-      index === 0
-        ? "monthly"
-        : "yearly",
-
-    priority:
-      index === 0
-        ? 1
-        : 0.8,
-  }));
+  const pages: { path: string; priority: number; changeFrequency: "monthly" | "yearly" }[] = [
+    { path: "/", priority: 1, changeFrequency: "monthly" },
+    { path: "/services", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/work", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/pricing", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/about", priority: 0.7, changeFrequency: "yearly" },
+    { path: "/contact", priority: 0.8, changeFrequency: "yearly" },
+    { path: "/privacy", priority: 0.2, changeFrequency: "yearly" },
+    { path: "/terms", priority: 0.2, changeFrequency: "yearly" },
+  ];
+  return [
+    ...pages.map((p) => ({ url: absoluteUrl(p.path), changeFrequency: p.changeFrequency, priority: p.priority })),
+    ...projects.map((p) => ({ url: absoluteUrl(`/work/${p.slug}`), changeFrequency: "yearly" as const, priority: 0.7 })),
+  ];
 }
