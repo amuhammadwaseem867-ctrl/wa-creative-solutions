@@ -51,7 +51,6 @@ function Environment() {
 function Sculpture({ pointer, scroll, quality, animate }: SceneInput & { quality: Props["quality"]; animate: boolean }) {
   const group = useRef<THREE.Group>(null);
   const halo = useRef<THREE.Mesh>(null);
-  const blades = useRef<THREE.Group>(null);
 
   const { body, bar } = useMemo(() => {
     const extrude: THREE.ExtrudeGeometryOptions = {
@@ -78,7 +77,7 @@ function Sculpture({ pointer, scroll, quality, animate }: SceneInput & { quality
     [],
   );
   const red = useMemo(
-    () => new THREE.MeshStandardMaterial({ color: "#c81020", emissive: "#ff202d", emissiveIntensity: 0.32, metalness: 0, roughness: 0.62, envMapIntensity: 0.12 }),
+    () => new THREE.MeshStandardMaterial({ color: "#1a0002", emissive: "#e8101d", emissiveIntensity: 1, metalness: 0, roughness: 1, envMapIntensity: 0 }),
     [],
   );
   const matte = useMemo(() => new THREE.MeshStandardMaterial({ color: "#121212", metalness: 0.15, roughness: 0.82 }), []);
@@ -107,7 +106,6 @@ function Sculpture({ pointer, scroll, quality, animate }: SceneInput & { quality
     g.scale.setScalar(THREE.MathUtils.damp(g.scale.x, scale, 4, d));
 
     if (halo.current) halo.current.rotation.z = t * 0.05 + s * 0.8;
-    if (blades.current) blades.current.rotation.z = -t * 0.03 - s * 0.4;
   });
 
   return (
@@ -117,15 +115,8 @@ function Sculpture({ pointer, scroll, quality, animate }: SceneInput & { quality
 
       {/* Matte architectural halo — faceted, not a glowing ring */}
       <mesh ref={halo} position={[0, 0, -0.9]} material={matte}>
-        <torusGeometry args={[2.15, 0.07, quality === "high" ? 8 : 4, 8]} />
+        <torusGeometry args={[2.05, 0.05, quality === "high" ? 8 : 4, 8]} />
       </mesh>
-      <group ref={blades} position={[0, 0, -1.3]}>
-        {[0, 1, 2].map((i) => (
-          <mesh key={i} rotation={[0, 0, (i * Math.PI) / 3]} material={matte}>
-            <boxGeometry args={[5.4, 0.035, 0.035]} />
-          </mesh>
-        ))}
-      </group>
     </group>
   );
 }
@@ -146,7 +137,7 @@ export default function MonogramScene({ pointer, scroll, quality, animate, activ
     <Canvas
       dpr={quality === "high" ? [1, 1.75] : [1, 1.25]}
       gl={{ antialias: quality === "high", powerPreference: "high-performance", alpha: true }}
-      camera={{ position: [0, 0, 8.4], fov: 35 }}
+      camera={{ position: [0, 0, 6.4], fov: 35 }}
       frameloop={!active ? "never" : animate ? "always" : "demand"}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;

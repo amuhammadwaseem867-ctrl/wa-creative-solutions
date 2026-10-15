@@ -99,7 +99,7 @@ export function HeroVisual() {
       <div
         className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${ready ? "opacity-0" : "opacity-100"}`}
       >
-        <MonogramFallback className="h-auto w-[78%] max-w-[640px] drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]" />
+        <MonogramFallback className="h-auto w-[86%] drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]" />
       </div>
       {mode === "3d" && (
         <div className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`}>

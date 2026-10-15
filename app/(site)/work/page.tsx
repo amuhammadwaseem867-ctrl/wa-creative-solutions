@@ -16,15 +16,15 @@ export default function WorkPage() {
     <>
       <PageHeader
         eyebrow="Selected work"
-        title={<>Work that shows the thinking.</>}
+        title={<>Work that shows <span className="text-gradient-red">the thinking</span></>}
         intro={
           <>
-            Branding, product, web and CGI explorations. Every project here is a clearly labelled <strong className="font-medium text-paper">concept project</strong> —
+            Branding, product, web and CGI explorations. Every project here is a clearly labelled <strong className="font-semibold text-paper">concept project</strong> —
             self-initiated work that demonstrates our process and craft. Client case studies will be published with permission.
           </>
         }
       />
-      <section className="section-y pt-16!" aria-label="Projects">
+      <section className="section-y pt-4!" aria-label="Projects">
         <div className="container-site">
           <WorkGrid />
         </div>

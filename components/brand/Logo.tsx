@@ -51,9 +51,9 @@ export function Logo({ tone = "accent", className = "", compact = false }: LogoP
     <span className={`inline-flex items-center gap-3 ${text} ${className}`}>
       <Monogram tone={tone} className="h-[1.35em] w-auto shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[1em] font-bold tracking-[-0.02em]">WA</span>
+        <span className="font-display text-[1em] font-extrabold tracking-[-0.02em]">WA</span>
         {!compact && (
-          <span className="mt-[0.28em] font-mono text-[0.42em] font-medium tracking-[0.32em] opacity-80">
+          <span className="mt-[0.3em] font-display text-[0.4em] font-semibold tracking-[0.26em] opacity-75">
             CREATIVE SOLUTION
           </span>
         )}

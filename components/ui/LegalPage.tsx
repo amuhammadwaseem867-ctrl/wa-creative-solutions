@@ -6,9 +6,9 @@ export function LegalPage({ title, updated, children }: { title: string; updated
     <>
       <section className="border-b border-line pt-[calc(var(--header-h)+5rem)] pb-14">
         <div className="container-site">
-          <p className="label-mono mb-6 text-mute">Legal · Template</p>
+          <p className="label-caps mb-6 text-mute">Legal · Template</p>
           <h1 className="text-display">{title}</h1>
-          <p className="label-mono mt-6 text-mute">Last updated: {updated}</p>
+          <p className="label-caps mt-6 text-mute">Last updated: {updated}</p>
         </div>
       </section>
       <section className="surface-light py-16 md:py-24">

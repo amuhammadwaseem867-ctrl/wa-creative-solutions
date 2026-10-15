@@ -8,9 +8,9 @@ export function ComparisonTable() {
         <caption className="sr-only">What each package includes</caption>
         <thead>
           <tr className="border-b border-[#cfcfcf]">
-            <th scope="col" className="label-mono py-4 pr-4 font-normal text-mute-dark">Feature</th>
+            <th scope="col" className="py-4 pr-4 text-sm font-medium text-mute-dark">Feature</th>
             {packages.map((p) => (
-              <th key={p.id} scope="col" className="py-4 pr-4 font-display text-lg font-semibold tracking-[-0.02em]">
+              <th key={p.id} scope="col" className="py-4 pr-4 font-display text-base font-bold text-ink">
                 {p.name.split(" / ")[0]}
               </th>
             ))}
@@ -19,7 +19,7 @@ export function ComparisonTable() {
         <tbody>
           {comparisonRows.map((row) => (
             <tr key={row.label} className="border-b border-[#dedede]">
-              <th scope="row" className="py-4 pr-4 font-medium">{row.label}</th>
+              <th scope="row" className="py-4 pr-4 font-medium text-ink">{row.label}</th>
               {packages.map((p) => {
                 const v = row.values[p.id];
                 return (

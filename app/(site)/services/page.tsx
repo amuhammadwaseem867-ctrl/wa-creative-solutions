@@ -37,22 +37,22 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }} />
       <PageHeader
         eyebrow="Services"
-        title={<>Complete creative capability.</>}
+        title={<>Complete creative <span className="text-gradient-red">capability</span></>}
         intro="Six disciplines that work as one system. Open any service for its scope, deliverables and a direct path to a quote."
       >
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           <ButtonLink href="/pricing">See pricing</ButtonLink>
           <ButtonLink href="/contact" variant="ghost">
             Describe your project
           </ButtonLink>
         </div>
       </PageHeader>
-      <section className="section-y" aria-label="Service catalogue">
-        <div className="container-site">
+      <section className="section-y pt-4!" aria-label="Service catalogue">
+        <div className="container-site max-w-[1080px]!">
           <ServiceCatalogue />
         </div>
       </section>
-      <ProcessSection index="02" />
+      <ProcessSection />
       <ContactCTA title="Not sure which service fits?" />
     </>
   );

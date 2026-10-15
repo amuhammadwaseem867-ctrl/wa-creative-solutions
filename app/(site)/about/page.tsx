@@ -6,6 +6,7 @@ import { ContactCTA } from "@/components/home/ContactCTA";
 import { BrandShowcase } from "@/components/brand/BrandShowcase";
 import { Testimonials } from "@/components/ui/Testimonials";
 import { ButtonLink } from "@/components/ui/Button";
+import { Box, Code2, Gauge, Handshake, Palette, Sparkles, Target, Users } from "lucide-react";
 import { principles } from "@/lib/process";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -18,54 +19,65 @@ export const metadata: Metadata = {
   openGraph: { url: "/about", title: `About — ${site.name}` },
 };
 
+const principleIcons = [Target, Gauge, Handshake, Users];
+
 const capabilityGroups = [
-  { title: "Creative", items: ["Brand strategy", "Identity systems", "Art direction", "Editorial & campaign design"] },
-  { title: "Digital", items: ["UI/UX design", "Next.js & React", "E-commerce", "Performance & SEO foundations"] },
-  { title: "Immersive", items: ["3D & CGI", "Motion design", "WebGL / Three.js", "Logo animation"] },
-  { title: "Intelligent", items: ["AI-assisted workflows", "Chat assistants", "Automation consulting", "Customer experience"] },
+  { icon: Palette, title: "Creative", items: ["Brand strategy", "Identity systems", "Art direction", "Editorial & campaign design"] },
+  { icon: Code2, title: "Digital", items: ["UI/UX design", "Next.js & React", "E-commerce", "Performance & SEO foundations"] },
+  { icon: Box, title: "Immersive", items: ["3D & CGI", "Motion design", "WebGL / Three.js", "Logo animation"] },
+  { icon: Sparkles, title: "Intelligent", items: ["AI-assisted workflows", "Chat assistants", "Automation consulting", "Customer experience"] },
 ];
 
 export default function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="About"
-        title={<>Creativity, engineered.</>}
-        intro={`${site.name} is a creative technology partner. We turn ambitious ideas into carefully engineered digital experiences — where brand thinking, design craft and modern engineering are treated as one discipline.`}
-      />
+        eyebrow="About us"
+        title={<>Creativity, engineered for the future</>}
+        intro={`${site.name} is a creative technology partner. We turn ambitious ideas into carefully engineered digital experiences — treating brand thinking, design craft and modern engineering as one discipline.`}
+      >
+        <ButtonLink href="/contact">Work with us</ButtonLink>
+      </PageHeader>
 
-      <section className="section-y" aria-labelledby="philosophy-title">
-        <div className="container-site grid gap-12 lg:grid-cols-12">
-          <p className="label-mono text-mute lg:col-span-3" data-reveal>
-            <span className="text-red">01</span> — Philosophy
-          </p>
-          <div className="lg:col-span-8">
-            <h2 id="philosophy-title" className="text-[clamp(1.8rem,4vw,3.4rem)] leading-[1.08] font-medium tracking-[-0.035em]" data-reveal>
-              Most digital work fails in the gaps — between the brand and the website, the design and the build, the idea and the
-              launch. <span className="text-mute">We close those gaps by owning the whole chain.</span>
+      <section className="section-y pt-8!" aria-labelledby="philosophy-title">
+        <div className="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div data-reveal>
+            <p className="badge mb-5">
+              <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden /> Our philosophy
+            </p>
+            <h2 id="philosophy-title" className="text-display">
+              We close the gaps where digital work usually fails
             </h2>
-            <p className="text-lead mt-10 max-w-2xl text-mute" data-reveal>
-              Strategy informs the identity. The identity shapes the interface. The interface is engineered for speed and
-              accessibility. 3D, motion and AI are used where they make communication sharper — never as decoration for its own sake.
+          </div>
+          <div className="card p-8" data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
+            <p className="text-lead text-white/75">
+              Most projects break down between the brand and the website, the design and the build, the idea and the launch. We own the
+              whole chain.
+            </p>
+            <p className="mt-5 text-white/55">
+              Strategy informs the identity. The identity shapes the interface. The interface is engineered for speed and accessibility. 3D,
+              motion and AI are used where they make communication sharper — never as decoration for its own sake.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="surface-light section-y" aria-labelledby="capabilities-title">
+      <section className="section-y" aria-labelledby="capabilities-title">
         <div className="container-site">
           <SectionHeading
-            index="02"
             eyebrow="Capabilities"
-            title={<span id="capabilities-title">Creative and technical,<br />in one team.</span>}
-            intro={`${services.length} service lines, four core competencies. One accountable partner from first sketch to launch.`}
+            title={<span id="capabilities-title">Creative and technical, in one team</span>}
+            intro={`${services.length} service lines, four core competencies — one accountable partner from first sketch to launch.`}
           />
-          <ul className="mt-16 grid border-t border-l border-[#d6d6d6] sm:grid-cols-2 lg:grid-cols-4">
-            {capabilityGroups.map((g, i) => (
-              <li key={g.title} className="border-r border-b border-[#d6d6d6] p-7 lg:p-8" data-reveal style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}>
-                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em]">{g.title}</h3>
-                <ul className="mt-6 space-y-2 text-mute-dark">
-                  {g.items.map((it) => (
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {capabilityGroups.map(({ icon: Icon, title, items }, i) => (
+              <li key={title} className="card card-hover p-7" data-reveal style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}>
+                <span className="icon-tile">
+                  <Icon size={20} aria-hidden />
+                </span>
+                <h3 className="mt-6 text-lg">{title}</h3>
+                <ul className="mt-4 space-y-2 text-sm text-white/55">
+                  {items.map((it) => (
                     <li key={it}>{it}</li>
                   ))}
                 </ul>
@@ -78,31 +90,36 @@ export default function AboutPage() {
       <section className="section-y" aria-labelledby="principles-title">
         <div className="container-site">
           <SectionHeading
-            index="03"
-            eyebrow="Principles"
-            title={<span id="principles-title">Quality you can<br />measure.</span>}
+            eyebrow="Our principles"
+            title={<span id="principles-title">Quality you can measure</span>}
             intro="Detail, performance and collaboration aren't values on a wall — they're the checklist every project ships against."
           />
-          <ul className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-2">
-            {principles.map((p, i) => (
-              <li key={p.title} className="border-t border-line pt-7" data-reveal style={{ "--reveal-delay": `${(i % 2) * 80}ms` } as React.CSSProperties}>
-                <span className="label-mono text-red">0{i + 1}</span>
-                <h3 className="mt-4 font-display text-[clamp(1.6rem,2.6vw,2.2rem)] font-semibold tracking-[-0.035em]">{p.title}</h3>
-                <p className="mt-3 max-w-lg text-mute">{p.body}</p>
-              </li>
-            ))}
+          <ul className="mt-14 grid gap-4 md:grid-cols-2">
+            {principles.map((p, i) => {
+              const Icon = principleIcons[i];
+              return (
+                <li key={p.title} className="card card-hover flex gap-5 p-7" data-reveal style={{ "--reveal-delay": `${(i % 2) * 80}ms` } as React.CSSProperties}>
+                  <span className="icon-tile shrink-0">
+                    <Icon size={20} aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="text-lg">{p.title}</h3>
+                    <p className="mt-2 text-white/55">{p.body}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
 
-      <ProcessSection index="04" />
+      <ProcessSection />
 
-      <section className="section-y border-t border-line" aria-labelledby="mark-title">
+      <section className="section-y" aria-labelledby="mark-title">
         <div className="container-site">
           <SectionHeading
-            index="05"
             eyebrow="The mark"
-            title={<span id="mark-title">Built like<br />our work.</span>}
+            title={<span id="mark-title">A logo built like our work</span>}
             intro="Two blades frame a precision-cut A — the W and the A held in one geometric construction. It works at 16 pixels, in one colour, on any surface."
           />
           <div className="mt-14">
@@ -111,19 +128,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-y border-t border-line" aria-labelledby="trust-title">
+      <section className="section-y" aria-labelledby="trust-title">
         <div className="container-site">
           <SectionHeading
-            index="06"
             eyebrow="Working together"
-            title={<span id="trust-title">Trust, made<br />explicit.</span>}
+            title={<span id="trust-title">Trust, made explicit</span>}
             intro="We'd rather show you how we work than ask you to take our word for it."
           />
           <div className="mt-14">
             <Testimonials />
-          </div>
-          <div className="mt-12" data-reveal>
-            <ButtonLink href="/contact">Start a conversation</ButtonLink>
           </div>
         </div>
       </section>

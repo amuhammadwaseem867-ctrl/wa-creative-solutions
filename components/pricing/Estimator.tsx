@@ -149,7 +149,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                 <span className="flex h-full flex-col gap-1 rounded-[12px] border border-line bg-ink-2 p-4 transition-colors hover:border-[#454545] peer-checked:border-red peer-checked:bg-ink-3 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-red">
                   <span className="flex items-baseline justify-between gap-3">
                     <span className="font-display text-lg font-semibold tracking-[-0.02em]">{t.label}</span>
-                    <span className="label-mono text-mute">from {formatPrice(t.base)}</span>
+                    <span className="label-caps text-mute">from {formatPrice(t.base)}</span>
                   </span>
                   <span className="text-sm text-mute">{t.description}</span>
                 </span>
@@ -244,8 +244,8 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
       <aside className="lg:col-span-5" aria-label="Estimate summary">
         <div className="rounded-[18px] border border-line bg-ink-2 p-6 sm:p-8 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
           <div className="flex items-center justify-between">
-            <p className="label-mono text-mute">Indicative estimate</p>
-            <button type="button" onClick={reset} className="label-mono inline-flex items-center gap-2 text-mute hover:text-paper disabled:opacity-40" disabled={!input.projectType}>
+            <p className="label-caps text-mute">Indicative estimate</p>
+            <button type="button" onClick={reset} className="label-caps inline-flex items-center gap-2 text-mute hover:text-paper disabled:opacity-40" disabled={!input.projectType}>
               <RotateCcw size={13} aria-hidden /> Reset
             </button>
           </div>
@@ -275,7 +275,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                 <p className="mt-2 text-sm text-mute">One-time project fee, USD</p>
 
                 <table className="mt-8 w-full text-sm">
-                  <caption className="label-mono mb-3 text-left text-mute">Breakdown</caption>
+                  <caption className="label-caps mb-3 text-left text-mute">Breakdown</caption>
                   <tbody>
                     {estimate.lines.map((l) => (
                       <tr key={l.label} className="border-t border-line align-top">
@@ -283,12 +283,12 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                           {l.label}
                           {l.detail && <span className="block text-xs text-mute">{l.detail}</span>}
                         </th>
-                        <td className="py-3 text-right font-mono whitespace-nowrap">{formatPrice(l.amount)}</td>
+                        <td className="py-3 text-right font-display whitespace-nowrap">{formatPrice(l.amount)}</td>
                       </tr>
                     ))}
                     <tr className="border-t border-paper/40">
                       <th scope="row" className="py-3 text-left font-medium">Subtotal</th>
-                      <td className="py-3 text-right font-mono font-medium">{formatPrice(estimate.subtotal)}</td>
+                      <td className="py-3 text-right font-display font-medium">{formatPrice(estimate.subtotal)}</td>
                     </tr>
                     {estimate.monthlyLabel && (
                       <tr className="border-t border-line">
@@ -296,7 +296,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                           {estimate.monthlyLabel}
                           <span className="block text-xs text-mute">Billed monthly, separate from project fee</span>
                         </th>
-                        <td className="py-3 text-right font-mono">{formatPrice(estimate.monthly)}/mo</td>
+                        <td className="py-3 text-right font-display">{formatPrice(estimate.monthly)}/mo</td>
                       </tr>
                     )}
                   </tbody>

@@ -1,33 +1,44 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import { contact, legalNav, mainNav, site, socials } from "@/lib/site";
 import { services } from "@/lib/services";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-ink">
-      <div className="container-site py-20 lg:py-28">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Logo className="text-[1.9rem]" />
-            <p className="mt-8 max-w-sm text-mute">{site.statement}</p>
-            <Link href="/contact" className="group mt-10 inline-flex items-center gap-4 font-display text-[clamp(1.8rem,3.4vw,2.8rem)] font-semibold tracking-[-0.04em]">
-              <span className="link-underline">Start a project</span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-red-deep text-paper transition-transform duration-500 group-hover:rotate-45">
-                <ArrowUpRight aria-hidden size={20} />
-              </span>
-            </Link>
+    <footer className="relative overflow-hidden border-t border-white/[0.08] bg-ink">
+      <div className="absolute bottom-[-200px] left-1/2 h-[320px] w-[800px] -translate-x-1/2 rounded-full bg-red/10 blur-[120px]" aria-hidden />
+      <div className="container-site relative py-16 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Logo className="text-[1.6rem]" />
+            <p className="mt-6 max-w-sm text-[0.95rem] text-white/55">{site.statement}</p>
+            <ul className="mt-7 flex gap-2.5">
+              {socials.map((s) => (
+                <li key={s.href}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-red/50 hover:bg-red/10 hover:text-paper"
+                  >
+                    <SocialIcon label={s.label} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-8">
             <div>
-              <h2 className="label-mono mb-5 text-mute">Navigate</h2>
-              <ul className="space-y-3">
+              <h2 className="mb-5 font-display text-sm font-semibold text-paper">Company</h2>
+              <ul className="space-y-3 text-[0.925rem]">
                 {mainNav.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="link-underline text-paper/90 hover:text-paper">
+                    <Link href={l.href} className="text-white/55 transition-colors hover:text-paper">
                       {l.label}
                     </Link>
                   </li>
@@ -35,63 +46,51 @@ export function SiteFooter() {
               </ul>
             </div>
             <div>
-              <h2 className="label-mono mb-5 text-mute">Services</h2>
-              <ul className="space-y-3">
+              <h2 className="mb-5 font-display text-sm font-semibold text-paper">Services</h2>
+              <ul className="space-y-3 text-[0.925rem]">
                 {services.map((s) => (
                   <li key={s.id}>
-                    <Link href={`/services#${s.id}`} className="link-underline text-paper/90 hover:text-paper">
-                      {s.title.split(" & ")[0]}
+                    <Link href={`/services#${s.id}`} className="text-white/55 transition-colors hover:text-paper">
+                      {s.title}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <h2 className="label-mono mb-5 text-mute">Contact</h2>
-              <ul className="space-y-3">
+              <h2 className="mb-5 font-display text-sm font-semibold text-paper">Get in touch</h2>
+              <ul className="space-y-4 text-[0.925rem]">
                 <li>
-                  <a href={`mailto:${contact.email}`} className="link-underline break-all text-paper/90 hover:text-paper">
-                    {contact.email}
+                  <a href={`mailto:${contact.email}`} className="flex items-start gap-3 text-white/55 transition-colors hover:text-paper">
+                    <Mail size={16} className="mt-1 shrink-0 text-red" aria-hidden />
+                    <span className="break-all">{contact.email}</span>
                   </a>
                 </li>
                 {contact.phones.map((p) => (
                   <li key={p.href}>
-                    <a href={p.href} className="link-underline text-paper/90 hover:text-paper">
+                    <a href={p.href} className="flex items-start gap-3 text-white/55 transition-colors hover:text-paper">
+                      <Phone size={16} className="mt-1 shrink-0 text-red" aria-hidden />
                       {p.display}
                     </a>
                   </li>
                 ))}
-                <li className="text-mute">{contact.location}</li>
-              </ul>
-              <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-3">
-                {socials.map((s) => (
-                  <li key={s.href}>
-                    <a href={s.href} target="_blank" rel="noopener noreferrer" className="label-mono text-mute hover:text-paper">
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
+                <li className="flex items-start gap-3 text-white/55">
+                  <MapPin size={16} className="mt-1 shrink-0 text-red" aria-hidden />
+                  {contact.location}
+                </li>
               </ul>
             </div>
           </nav>
         </div>
-      </div>
 
-      <div aria-hidden className="pointer-events-none select-none overflow-hidden">
-        <p className="container-site translate-y-[18%] whitespace-nowrap font-display text-[clamp(3rem,15vw,15rem)] leading-[0.8] font-bold tracking-[-0.07em] text-ink-3">
-          WHAT&apos;S NEXT
-        </p>
-      </div>
-
-      <div className="border-t border-line">
-        <div className="container-site flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="label-mono text-mute">
-            © {year} {site.name}
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/[0.08] pt-7 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {site.name}. All rights reserved.
           </p>
           <ul className="flex gap-6">
             {legalNav.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="label-mono text-mute hover:text-paper">
+                <Link href={l.href} className="transition-colors hover:text-paper">
                   {l.label}
                 </Link>
               </li>

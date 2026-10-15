@@ -47,12 +47,12 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
     <article>
       <header className="relative pt-[calc(var(--header-h)+3rem)]">
         <div className="container-site">
-          <Link href="/work" className="label-mono inline-flex items-center gap-2 text-mute hover:text-paper">
+          <Link href="/work" className="label-caps inline-flex items-center gap-2 text-mute hover:text-paper">
             <ArrowLeft size={14} aria-hidden /> All work
           </Link>
           <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
-              <p className="label-mono fade-up mb-6 flex flex-wrap items-center gap-3 text-mute">
+              <p className="label-caps fade-up mb-6 flex flex-wrap items-center gap-3 text-mute">
                 <span className="rounded-full border border-red/60 px-3 py-1 text-red">{project.concept ? "Concept project" : project.client}</span>
                 {project.discipline}
               </p>
@@ -83,15 +83,15 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         <div className="container-site grid gap-14 lg:grid-cols-12">
           <dl className="grid content-start gap-8 border-t border-line pt-8 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
             <div>
-              <dt className="label-mono text-mute">Type</dt>
+              <dt className="label-caps text-mute">Type</dt>
               <dd className="mt-2">{project.concept ? "Self-initiated concept (no client)" : project.client}</dd>
             </div>
             <div>
-              <dt className="label-mono text-mute">Category</dt>
+              <dt className="label-caps text-mute">Category</dt>
               <dd className="mt-2">{categories.join(" · ")}</dd>
             </div>
             <div className="sm:col-span-2 lg:col-span-1">
-              <dt className="label-mono text-mute">Services delivered</dt>
+              <dt className="label-caps text-mute">Services delivered</dt>
               <dd className="mt-3 flex flex-wrap gap-2">
                 {project.services.map((s) => (
                   <span key={s} className="rounded-full border border-line px-3 py-1.5 text-sm text-paper/85">
@@ -113,16 +113,16 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           </dl>
           <div className="space-y-14 lg:col-span-7 lg:col-start-6">
             <div data-reveal>
-              <h2 className="label-mono mb-5 text-red">Overview</h2>
+              <h2 className="label-caps mb-5 text-red">Overview</h2>
               <p className="text-[clamp(1.3rem,2.2vw,1.85rem)] leading-[1.35] tracking-[-0.015em] text-paper">{project.overview}</p>
             </div>
             <div className="grid gap-10 md:grid-cols-2">
               <div data-reveal>
-                <h2 className="label-mono mb-4 text-mute">The challenge</h2>
+                <h2 className="label-caps mb-4 text-mute">The challenge</h2>
                 <p className="text-paper/80">{project.challenge}</p>
               </div>
               <div data-reveal style={{ "--reveal-delay": "100ms" } as React.CSSProperties}>
-                <h2 className="label-mono mb-4 text-mute">The solution</h2>
+                <h2 className="label-caps mb-4 text-mute">The solution</h2>
                 <p className="text-paper/80">{project.solution}</p>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                     />
                   </div>
                   {img.caption && (
-                    <figcaption className="label-mono mt-3 flex justify-between text-mute">
+                    <figcaption className="label-caps mt-3 flex justify-between text-mute">
                       <span>{img.caption}</span>
                       <span>{String(idx + 1).padStart(2, "0")}</span>
                     </figcaption>
@@ -165,7 +165,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       <nav aria-label="Next project" className="border-t border-line">
         <Link href={`/work/${next.slug}`} className="group container-site flex items-center justify-between gap-6 py-16 md:py-24">
           <span>
-            <span className="label-mono block text-mute">Next project</span>
+            <span className="label-caps block text-mute">Next project</span>
             <span className="mt-4 block font-display text-[clamp(2.6rem,8vw,7rem)] leading-none font-bold tracking-[-0.05em] transition-colors group-hover:text-red">
               {next.title}
             </span>

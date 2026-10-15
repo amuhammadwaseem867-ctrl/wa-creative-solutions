@@ -26,21 +26,21 @@ export function WorkGrid() {
             );
           })}
         </div>
-        <p className="label-mono text-mute" aria-live="polite">
+        <p className="text-sm text-white/50" aria-live="polite">
           Showing {list.length} {list.length === 1 ? "project" : "projects"}
         </p>
       </div>
 
       {list.length > 0 ? (
-        <ul className="mt-14 grid gap-x-8 gap-y-16 md:grid-cols-2">
+        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {list.map((p, i) => (
-            <li key={p.slug} className={i % 2 === 1 ? "md:mt-28" : ""}>
-              <ProjectCard project={p} index={projects.indexOf(p)} aspect={i % 3 === 0 ? "aspect-[4/5]" : "aspect-[5/4]"} sizes="(min-width: 768px) 50vw, 100vw" priority={i < 2} />
+            <li key={p.slug}>
+              <ProjectCard project={p} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" priority={i < 3} />
             </li>
           ))}
         </ul>
       ) : (
-        <div className="mt-14 rounded-[14px] border border-dashed border-line p-12 text-center">
+        <div className="card mt-10 border-dashed p-12 text-center">
           <p className="text-lead">No projects in this category yet.</p>
           <p className="mt-2 text-mute">New case studies are added as they&apos;re completed.</p>
           <div className="mt-6">

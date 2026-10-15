@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 import { Magnetic } from "./Magnetic";
 
@@ -21,7 +21,7 @@ export function ButtonLink({ href, children, variant = "primary", icon = true, m
   const content = (
     <>
       <span>{children}</span>
-      {icon && <ArrowUpRight aria-hidden size={16} strokeWidth={1.75} />}
+      {icon && <ArrowRight aria-hidden size={16} strokeWidth={2} />}
     </>
   );
   const el = external ? (

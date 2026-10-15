@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { services } from "@/lib/services";
 import { ButtonLink } from "@/components/ui/Button";
 import { ServiceVisual } from "./ServiceVisual";
+import { serviceIcons } from "./serviceIcons";
 
 export function ServiceCatalogue() {
   const [open, setOpen] = useState<string | null>(services[0].id);
@@ -23,30 +24,30 @@ export function ServiceCatalogue() {
   }, []);
 
   return (
-    <ul className="border-t border-line">
+    <ul className="space-y-3">
       {services.map((s) => {
         const isOpen = open === s.id;
+        const Icon = serviceIcons[s.id];
         return (
-          <li key={s.id} id={s.id} className="scroll-mt-28 border-b border-line">
+          <li key={s.id} id={s.id} className={`card scroll-mt-28 overflow-hidden ${isOpen ? "border-white/[0.16]" : "card-hover"}`}>
             <h2>
               <button
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={`${s.id}-panel`}
                 onClick={() => setOpen(isOpen ? null : s.id)}
-                className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-5 py-8 text-left md:grid-cols-[5rem_1fr_auto] md:py-10"
+                className="flex w-full items-center gap-5 p-5 text-left sm:p-7"
               >
-                <span className="label-mono text-red">{s.index}</span>
-                <span className="font-display text-[clamp(1.6rem,4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em] transition-colors group-hover:text-paper aria-expanded:text-paper">
-                  {s.title}
+                <span className="icon-tile shrink-0">{Icon && <Icon size={20} aria-hidden />}</span>
+                <span className="flex-1">
+                  <span className="block font-display text-lg font-bold text-paper sm:text-xl">{s.title}</span>
+                  <span className="mt-1 hidden text-sm font-normal text-white/50 sm:block">{s.short}</span>
                 </span>
                 <span
-                  className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 ${
-                    isOpen ? "rotate-45 border-red bg-red-deep" : "border-line group-hover:border-paper/50"
-                  }`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 transition-transform duration-300 ${isOpen ? "rotate-180 bg-white/10" : ""}`}
                   aria-hidden
                 >
-                  <Plus size={18} />
+                  <ChevronDown size={18} />
                 </span>
               </button>
             </h2>
@@ -59,36 +60,37 @@ export function ServiceCatalogue() {
                   initial={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
                   animate={reduce ? { opacity: 1 } : { height: "auto", opacity: 1 }}
                   exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="grid gap-10 pb-14 md:grid-cols-12 md:pl-[5rem]">
-                    <div className="group md:col-span-4">
-                      <div className="flex aspect-[10/7] items-center justify-center rounded-[14px] border border-line bg-ink-2 text-paper">
-                        <ServiceVisual kind={s.visual} className="h-auto w-4/5" />
-                      </div>
-                    </div>
-                    <div className="md:col-span-4">
-                      <p className="text-lead text-paper/85">{s.description}</p>
-                      <h3 className="label-mono mt-8 mb-3 text-mute">You receive</h3>
-                      <ul className="space-y-1.5 text-mute">
+                  <div className="grid gap-8 border-t border-white/[0.08] p-5 sm:p-7 lg:grid-cols-12">
+                    <div className="lg:col-span-5">
+                      <p className="text-white/70">{s.description}</p>
+                      <h3 className="label-caps mt-7 mb-3 text-white/50">What you receive</h3>
+                      <ul className="space-y-2.5 text-sm">
                         {s.outcomes.map((o) => (
-                          <li key={o}>— {o}</li>
+                          <li key={o} className="flex gap-2.5 text-white/75">
+                            <Check size={16} className="mt-0.5 shrink-0 text-red" aria-hidden /> {o}
+                          </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="md:col-span-4">
-                      <h3 className="label-mono mb-4 text-mute">Deliverables</h3>
+                    <div className="lg:col-span-4">
+                      <h3 className="label-caps mb-3 text-white/50">Deliverables</h3>
                       <ul className="flex flex-wrap gap-2">
                         {s.deliverables.map((d) => (
-                          <li key={d} className="rounded-full border border-line px-3.5 py-2 text-sm text-paper/85">
+                          <li key={d} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-sm text-white/75">
                             {d}
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-8 flex flex-wrap gap-3">
-                        <ButtonLink href={`/contact?service=${s.inquiryValue}`}>Request a quote</ButtonLink>
-                      </div>
+                      <ButtonLink href={`/contact?service=${s.inquiryValue}`} className="mt-7">
+                        Request a quote
+                      </ButtonLink>
+                    </div>
+                    <div className="relative hidden items-center justify-center rounded-2xl border border-white/[0.06] bg-ink/60 p-6 text-white/80 lg:col-span-3 lg:flex">
+                      <div className="dot-grid absolute inset-0 rounded-2xl opacity-60" aria-hidden />
+                      <ServiceVisual kind={s.visual} className="relative h-auto w-full" />
                     </div>
                   </div>
                 </motion.div>

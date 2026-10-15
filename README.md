@@ -1,6 +1,6 @@
 # WA Creative Solution — website
 
-Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Three.js / React Three Fiber · Framer Motion.
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Three.js / React Three Fiber · Framer Motion. Typography: Montserrat (headings) + Poppins (body).
 
 ```bash
 npm install
@@ -35,7 +35,7 @@ Everything editable lives in `lib/`. Change it there and the UI updates, with no
 
 ## Brand assets
 
-`public/brand/`: horizontal logo and monogram in accent / white / black / red, square icon, social profile image (SVG + PNG). The horizontal SVG wordmark uses live text (Space Grotesk / IBM Plex Mono); convert it to outlines for print. Favicon: `app/favicon.ico` + `app/icon.svg`; Apple icon and Open Graph image are generated at build time.
+`public/brand/`: horizontal logo and monogram in accent / white / black / red, square icon, social profile image (SVG + PNG). The horizontal SVG wordmark uses live text (Montserrat / Poppins); convert it to outlines for print. Favicon: `app/favicon.ico` + `app/icon.svg`; Apple icon and Open Graph image are generated at build time.
 
 ## Environment variables
 

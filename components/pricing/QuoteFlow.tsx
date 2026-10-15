@@ -19,12 +19,12 @@ export function QuoteFlow() {
 
   return (
     <>
-      <section id="estimator" className="section-y scroll-mt-16 border-t border-line" aria-labelledby="estimator-title">
+      <section id="estimator" className="section-y scroll-mt-16" aria-labelledby="estimator-title">
         <div className="container-site">
           <SectionHeading
             index="02"
             eyebrow="Project estimator"
-            title={<span id="estimator-title">Estimate your<br />project.</span>}
+            title={<span id="estimator-title">Estimate your project in a minute</span>}
             intro="Pick a project type and adjust the scope. Every line of the calculation is shown, so you can see exactly where the number comes from."
           />
           <div className="mt-14 lg:mt-20">
@@ -33,21 +33,21 @@ export function QuoteFlow() {
         </div>
       </section>
 
-      <section id="quote" ref={formRef} className="section-y scroll-mt-16 border-t border-line bg-ink-2" aria-labelledby="quote-title">
+      <section id="quote" ref={formRef} className="section-y scroll-mt-16" aria-labelledby="quote-title">
         <div className="container-site grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="label-mono mb-6 text-mute">
-              <span className="text-red">05</span> — Custom quote
+            <p className="badge mb-5">
+              <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden /> Custom quote
             </p>
             <h2 id="quote-title" className="text-title">
-              Request a formal quote.
+              Request a formal quote
             </h2>
             <p className="mt-6 text-mute">
               Share your details, budget range, scope and timeline. We&apos;ll reply with questions or a written quote that lists deliverables,
               milestones, revision rounds and exclusions.
             </p>
           </div>
-          <div className="lg:col-span-7 lg:col-start-6">
+          <div className="card p-6 sm:p-8 lg:col-span-7 lg:col-start-6">
             <InquiryForm prefill={prefill} submitLabel="Request quote" />
           </div>
         </div>

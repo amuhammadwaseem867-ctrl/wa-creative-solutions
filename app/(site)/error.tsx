@@ -12,7 +12,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   return (
     <section className="flex min-h-[80svh] items-center pt-[var(--header-h)]">
       <div className="container-site py-24">
-        <p className="label-mono mb-6 text-red">Something went wrong</p>
+        <p className="label-caps mb-6 text-red">Something went wrong</p>
         <h1 className="text-display max-w-[16ch]">We hit an unexpected error.</h1>
         <p className="text-lead mt-6 max-w-lg text-mute">
           Try again, or reach us directly at{" "}

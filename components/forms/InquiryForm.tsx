@@ -188,7 +188,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
       {data.context && (
         <div className="flex items-start justify-between gap-4 rounded-[12px] border border-line bg-ink-3 p-4 text-sm">
           <p>
-            <span className="label-mono mb-1 block text-mute">Attached to your brief</span>
+            <span className="label-caps mb-1 block text-mute">Attached to your brief</span>
             {data.context}
           </p>
           <button type="button" onClick={() => update("context", "")} className="shrink-0 text-mute hover:text-paper" aria-label="Remove attached context">
@@ -289,7 +289,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
         />
         <div className="flex justify-between gap-4">
           {renderError("description")}
-          <span className="mt-2 ml-auto font-mono text-xs text-mute">
+          <span className="mt-2 ml-auto font-display text-xs text-mute">
             {data.description.length}/{LIMITS.description}
           </span>
         </div>

@@ -1,61 +1,46 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { Compass, Hammer, PenTool, Rocket, Search } from "lucide-react";
 import { processSteps } from "@/lib/process";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-/**
- * Visual timeline with a scroll-linked progress rail. All content is plain
- * markup, so it reads perfectly with motion disabled.
- */
-export function ProcessSection({ index = "03" }: { index?: string }) {
-  const ref = useRef<HTMLOListElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
+const icons = [Search, Compass, PenTool, Hammer, Rocket];
 
+/** Five-stage timeline. Plain markup — fully readable without animation. */
+export function ProcessSection() {
   return (
-    <section id="process" className="section-y relative border-t border-line" aria-labelledby="process-title">
+    <section id="process" className="section-y relative" aria-labelledby="process-title">
       <div className="container-site">
         <SectionHeading
-          index={index}
-          eyebrow="Process"
-          title={<span id="process-title">From idea<br />to execution.</span>}
-          intro="Five clear stages with an agreed output at each one. You always know what's happening, what's next and what we need from you."
+          eyebrow="How we work"
+          title={<span id="process-title">From idea to execution</span>}
+          intro="A clear five-stage process with an agreed output at every step — you always know what's happening and what comes next."
         />
 
-        <ol ref={ref} className="relative mt-16 lg:mt-24">
-          {/* Rail */}
-          <div className="absolute top-2 bottom-2 left-[11px] w-px bg-line md:left-[calc(25%+11px)]" aria-hidden>
-            <motion.div
-              className="absolute inset-x-0 top-0 h-full origin-top bg-red"
-              style={reduce ? { scaleY: 1 } : { scaleY: progress }}
-            />
-          </div>
-
-          {processSteps.map((step, i) => (
-            <li key={step.index} className="relative grid gap-4 pb-14 pl-12 last:pb-0 md:grid-cols-4 md:gap-10 md:pl-0" data-reveal style={{ "--reveal-delay": `${i * 40}ms` } as React.CSSProperties}>
-              <span className="label-mono hidden pt-1 text-right text-mute md:block md:pr-14">Stage {step.index}</span>
-              <span
-                className="absolute top-1 left-0 flex h-[23px] w-[23px] items-center justify-center rounded-full border border-red bg-ink md:left-[25%]"
-                aria-hidden
+        <ol className="relative mt-14 grid gap-4 lg:mt-16 lg:grid-cols-5">
+          {/* Connector line (desktop) */}
+          <div className="absolute top-[2.35rem] right-[10%] left-[10%] hidden h-px bg-gradient-to-r from-red/0 via-red/50 to-red/0 lg:block" aria-hidden />
+          {processSteps.map((step, i) => {
+            const Icon = icons[i];
+            return (
+              <li
+                key={step.index}
+                className="card card-hover relative flex gap-5 p-6 lg:flex-col lg:gap-0 lg:text-center"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
               >
-                <span className="h-2 w-2 rounded-full bg-red" />
-              </span>
-              <div className="md:col-span-2 md:pl-14">
-                <h3 className="flex items-baseline gap-4 font-display text-[clamp(2rem,4.2vw,3.6rem)] leading-none font-semibold tracking-[-0.045em]">
-                  <span className="label-mono text-red md:hidden">{step.index}</span>
-                  {step.title}
-                </h3>
-                <p className="mt-4 max-w-lg text-mute">{step.body}</p>
-              </div>
-              <p className="label-mono self-start text-paper/70 md:pt-3">
-                <span className="text-mute">Output — </span>
-                {step.output}
-              </p>
-            </li>
-          ))}
+                <div className="relative mx-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-red/40 bg-ink text-red shadow-[0_0_0_6px_var(--color-ink)]">
+                  <Icon size={18} aria-hidden />
+                </div>
+                <div>
+                  <p className="label-caps text-red lg:mt-5">Step {step.index}</p>
+                  <h3 className="mt-1.5 text-lg">{step.title}</h3>
+                  <p className="mt-2 text-sm text-white/55">{step.body}</p>
+                  <p className="mt-4 inline-flex rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-white/60">
+                    {step.output}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>

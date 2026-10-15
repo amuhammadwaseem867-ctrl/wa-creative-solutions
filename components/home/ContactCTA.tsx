@@ -1,33 +1,35 @@
-import { ButtonLink } from "@/components/ui/Button";
+import { ArrowRight, Mail } from "lucide-react";
+import Link from "next/link";
 import { Monogram } from "@/components/brand/Logo";
 import { contact } from "@/lib/site";
 
-export function ContactCTA({ title = "Have something ambitious in mind?" }: { title?: string }) {
+export function ContactCTA({ title = "Let's build something remarkable together" }: { title?: string }) {
   return (
-    <section className="relative isolate overflow-hidden border-t border-line" aria-labelledby="cta-title">
-      <Monogram
-        tone="white"
-        className="pointer-events-none absolute top-1/2 right-[-12%] -z-10 h-[130%] w-auto -translate-y-1/2 opacity-[0.03]"
-      />
-      <div className="absolute bottom-[-30%] left-[-10%] -z-10 h-[70%] w-[50%] rounded-full bg-red/20 blur-[140px]" aria-hidden />
-      <div className="container-site section-y">
-        <p className="label-mono mb-8 flex items-center gap-3 text-mute" data-reveal>
-          <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-red" aria-hidden />
-          Accepting a limited number of projects
-        </p>
-        <h2 id="cta-title" className="text-mega max-w-[13ch] font-bold" data-reveal>
-          {title}
-        </h2>
-        <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between" data-reveal>
-          <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/contact" magnetic>
-              Start a Project
-            </ButtonLink>
-            <ButtonLink href={`mailto:${contact.email}`} variant="ghost" icon={false}>
-              Email us directly
-            </ButtonLink>
+    <section className="py-[clamp(3rem,6vw,5rem)]" aria-labelledby="cta-title">
+      <div className="container-site">
+        <div
+          className="relative isolate overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#e01422] via-red-deep to-[#7a0a14] px-6 py-16 text-center sm:px-12 lg:py-20"
+          data-reveal
+        >
+          <div className="dot-grid absolute inset-0 -z-10 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" aria-hidden />
+          <Monogram tone="white" className="pointer-events-none absolute -right-16 -bottom-16 -z-10 h-[120%] w-auto opacity-[0.07]" />
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium text-paper backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-paper" aria-hidden /> Accepting new projects
+          </p>
+          <h2 id="cta-title" className="text-display mx-auto mt-6 max-w-3xl text-paper">
+            {title}
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-white/85">
+            Tell us about your idea and we&apos;ll come back with honest feedback, next steps and a clear proposal.
+          </p>
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/contact" className="btn btn-white">
+              Start a Project <ArrowRight size={16} aria-hidden />
+            </Link>
+            <a href={`mailto:${contact.email}`} className="btn border border-white/40 text-paper hover:bg-white/10">
+              <Mail size={16} aria-hidden /> Email us
+            </a>
           </div>
-          <p className="max-w-xs text-sm text-mute">We aim to reply to every brief {contact.responseTime}, with next steps and honest feedback on fit.</p>
         </div>
       </div>
     </section>

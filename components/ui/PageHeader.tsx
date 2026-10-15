@@ -7,30 +7,27 @@ type Props = {
   children?: ReactNode;
 };
 
-/** Shared top-of-page header for interior routes. */
+/** Centered interior-page hero with grid backdrop and red glow. */
 export function PageHeader({ eyebrow, title, intro, children }: Props) {
   return (
-    <section className="relative overflow-hidden border-b border-line pt-[calc(var(--header-h)+clamp(3.5rem,9vw,8rem))] pb-[clamp(3.5rem,7vw,6.5rem)]">
-      <div className="grid-lines pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden />
-      <div
-        className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-red/15 blur-[140px]"
-        aria-hidden
-      />
-      <div className="container-site relative">
-        <p className="label-mono fade-up mb-8 flex items-center gap-3 text-mute">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-red" aria-hidden />
+    <section className="relative isolate overflow-hidden pt-[calc(var(--header-h)+clamp(3.5rem,8vw,6rem))] pb-[clamp(3.5rem,7vw,5.5rem)]">
+      <div className="grid-lines absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_60%_70%_at_50%_0%,black,transparent)]" aria-hidden />
+      <div className="absolute top-[-220px] left-1/2 -z-10 h-[460px] w-[760px] -translate-x-1/2 rounded-full bg-red/25 blur-[130px]" aria-hidden />
+      <div className="container-site text-center">
+        <p className="badge fade-up mb-6">
+          <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden />
           {eyebrow}
         </p>
-        <h1 className="text-mega rise max-w-[14ch] overflow-hidden pb-[0.06em]">
-          <span>{title}</span>
+        <h1 className="text-mega text-gradient-white fade-up mx-auto max-w-4xl pb-1" style={{ "--d": "80ms" } as React.CSSProperties}>
+          {title}
         </h1>
         {intro && (
-          <div className="text-lead fade-up mt-10 max-w-2xl text-mute" style={{ "--d": "250ms" } as React.CSSProperties}>
+          <div className="text-lead fade-up mx-auto mt-6 max-w-2xl text-white/60" style={{ "--d": "180ms" } as React.CSSProperties}>
             {intro}
           </div>
         )}
         {children && (
-          <div className="fade-up mt-10" style={{ "--d": "380ms" } as React.CSSProperties}>
+          <div className="fade-up mt-9 flex justify-center" style={{ "--d": "280ms" } as React.CSSProperties}>
             {children}
           </div>
         )}
