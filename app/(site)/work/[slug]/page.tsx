@@ -41,6 +41,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
   const next = projects[(i + 1) % projects.length];
   const categories = workCategories.filter((c) => project.categories.includes(c.id)).map((c) => c.label);
   const live = project.kind === "live";
+  // The cover is already shown full-width above, so don't repeat it in the gallery.
+  const gallery = project.gallery.filter((g) => g.src !== project.cover.src);
   const landscapeCover = project.cover.width > project.cover.height;
   const logoCover = project.cover.width < 600;
 
@@ -166,10 +168,10 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         </div>
       </section>
 
-      {project.gallery.length > 0 && (
+      {gallery.length > 0 && (
         <section className="pb-[clamp(5rem,11vw,10rem)]" aria-label="Project gallery">
           <div className="container-site grid gap-6 md:grid-cols-2 md:gap-8">
-            {project.gallery.map((img, idx) => {
+            {gallery.map((img, idx) => {
               const portrait = img.height > img.width;
               // Every third landscape image spans full width for editorial rhythm.
               const wide = !portrait && idx % 3 === 0;
