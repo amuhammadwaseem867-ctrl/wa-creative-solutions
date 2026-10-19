@@ -7,3 +7,7 @@
 [build.environment]
   # Next.js 16 needs Node 20.9 or later.
   NODE_VERSION = "22"
+  # These hold public values that also appear in the site (its URL and the public contact /
+  # sender email), so the secrets scanner must not fail the build on them. Real secrets
+  # (API keys, passwords, DATABASE_URL) stay scanned.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,ADMIN_EMAIL,CONTACT_EMAIL,FROM_EMAIL"
