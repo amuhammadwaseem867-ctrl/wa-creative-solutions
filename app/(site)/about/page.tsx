@@ -42,9 +42,7 @@ export default function AboutPage() {
       <section className="section-y pt-8!" aria-labelledby="philosophy-title">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div data-reveal>
-            <p className="badge mb-5">
-              <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden /> Our philosophy
-            </p>
+            <p className="label-bracket mb-5">Our philosophy</p>
             <h2 id="philosophy-title" className="text-display">
               We close the gaps where digital work usually fails
             </h2>

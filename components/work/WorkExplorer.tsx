@@ -48,14 +48,14 @@ export function WorkExplorer() {
       {/* Controls */}
       <div className="flex flex-col gap-6 border-b border-white/[0.08] pb-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div role="group" aria-label="Filter by type" className="inline-flex rounded-full border border-white/10 p-1">
+          <div role="group" aria-label="Filter by type" className="inline-flex border border-white/10 p-1">
             {(["all", "live", "concept"] as Kind[]).map((k) => (
               <button
                 key={k}
                 type="button"
                 aria-pressed={kind === k}
                 onClick={() => set("type", k)}
-                className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition-colors hover:text-paper aria-pressed:bg-paper aria-pressed:text-ink"
+                className="px-4 py-2 text-sm font-medium text-white/60 transition-colors hover:text-paper aria-pressed:bg-paper aria-pressed:text-ink"
               >
                 {k === "all" ? "All work" : k === "live" ? "Live projects" : "Concepts"}
               </button>
@@ -65,11 +65,11 @@ export function WorkExplorer() {
             <p className="text-sm text-white/45" aria-live="polite">
               {list.length} {list.length === 1 ? "project" : "projects"}
             </p>
-            <div role="group" aria-label="Layout" className="inline-flex rounded-full border border-white/10 p-1">
-              <button type="button" aria-pressed={view === "grid"} aria-label="Grid view" onClick={() => set("view", "grid")} className="flex h-9 w-9 items-center justify-center rounded-full text-white/60 hover:text-paper aria-pressed:bg-white/10 aria-pressed:text-paper">
+            <div role="group" aria-label="Layout" className="inline-flex border border-white/10 p-1">
+              <button type="button" aria-pressed={view === "grid"} aria-label="Grid view" onClick={() => set("view", "grid")} className="flex h-9 w-9 items-center justify-center text-white/60 hover:text-paper aria-pressed:bg-white/10 aria-pressed:text-paper">
                 <LayoutGrid size={16} aria-hidden />
               </button>
-              <button type="button" aria-pressed={view === "index"} aria-label="Index view" onClick={() => set("view", "index")} className="flex h-9 w-9 items-center justify-center rounded-full text-white/60 hover:text-paper aria-pressed:bg-white/10 aria-pressed:text-paper">
+              <button type="button" aria-pressed={view === "index"} aria-label="Index view" onClick={() => set("view", "index")} className="flex h-9 w-9 items-center justify-center text-white/60 hover:text-paper aria-pressed:bg-white/10 aria-pressed:text-paper">
                 <Rows3 size={16} aria-hidden />
               </button>
             </div>

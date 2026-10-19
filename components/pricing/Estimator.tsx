@@ -146,7 +146,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                   onChange={() => selectType(t.id)}
                   className="peer sr-only"
                 />
-                <span className="flex h-full flex-col gap-1 rounded-[12px] border border-line bg-ink-2 p-4 transition-colors hover:border-[#454545] peer-checked:border-red peer-checked:bg-ink-3 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-red">
+                <span className="flex h-full flex-col gap-1 border border-line bg-ink-2 p-4 transition-colors hover:border-[#454545] peer-checked:border-red peer-checked:bg-ink-3 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-red">
                   <span className="flex items-baseline justify-between gap-3">
                     <span className="font-display text-lg font-semibold tracking-[-0.02em]">{t.label}</span>
                     <span className="label-caps text-mute">from {formatPrice(t.base)}</span>
@@ -242,7 +242,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
 
       {/* Live summary */}
       <aside className="lg:col-span-5" aria-label="Estimate summary">
-        <div className="rounded-[18px] border border-line bg-ink-2 p-6 sm:p-8 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
+        <div className="border border-line bg-ink-2 p-6 sm:p-8 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
           <div className="flex items-center justify-between">
             <p className="label-caps text-mute">Indicative estimate</p>
             <button type="button" onClick={reset} className="label-caps inline-flex items-center gap-2 text-mute hover:text-paper disabled:opacity-40" disabled={!input.projectType}>

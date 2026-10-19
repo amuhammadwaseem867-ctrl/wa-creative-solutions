@@ -36,9 +36,7 @@ export function QuoteFlow() {
       <section id="quote" ref={formRef} className="section-y scroll-mt-16" aria-labelledby="quote-title">
         <div className="container-site grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="badge mb-5">
-              <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden /> Custom quote
-            </p>
+            <p className="label-bracket mb-5">Custom quote</p>
             <h2 id="quote-title" className="text-title">
               Request a formal quote
             </h2>

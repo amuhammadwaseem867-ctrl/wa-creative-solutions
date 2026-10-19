@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { EmberLight, StarField } from "./Atmosphere";
 
 type Props = {
   eyebrow: string;
@@ -7,20 +8,32 @@ type Props = {
   children?: ReactNode;
 };
 
-/** Editorial interior-page header — mirrors the home hero's left-aligned composition. */
+/** Interior-page header — the home hero's atmosphere: ember light, star-field and a still of the particle sphere. */
 export function PageHeader({ eyebrow, title, intro, children }: Props) {
   return (
-    <section className="relative isolate overflow-hidden pt-[calc(var(--header-h)+clamp(3rem,7vw,5.5rem))] pb-[clamp(3rem,6vw,5rem)]">
-      <div className="grid-lines absolute inset-0 -z-10 opacity-70 [mask-image:radial-gradient(ellipse_70%_80%_at_20%_0%,black,transparent)]" aria-hidden />
-      <div className="absolute top-[-260px] left-[10%] -z-10 h-[480px] w-[640px] rounded-full bg-white/[0.05] blur-[130px]" aria-hidden />
+    <section className="relative isolate overflow-hidden pt-[calc(var(--header-h)+1.25rem)] pb-[clamp(3rem,6vw,5rem)]">
+      <EmberLight x="76%" soft className="h-[95%]" />
+      <StarField />
+      {/* eslint-disable-next-line @next/next/no-img-element -- decorative still; next/image adds nothing here */}
+      <img
+        src="/hero/particle-sphere-sm.webp"
+        alt=""
+        aria-hidden
+        width={760}
+        height={760}
+        fetchPriority="low"
+        decoding="async"
+        className="fade-up pointer-events-none absolute top-[-4%] right-[-30%] -z-10 w-[min(92vw,420px)] opacity-70 sm:right-[-6%] lg:right-[6%] lg:w-[400px] lg:opacity-90"
+        style={{ "--d": "300ms" } as React.CSSProperties}
+      />
       <div className="container-site">
-        <p className="fade-up mb-8 flex items-center gap-3 text-xs font-medium tracking-[0.18em] text-white/50 uppercase">
-          <span className="h-px w-8 bg-white/30" aria-hidden />
-          {eyebrow}
-        </p>
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div className="fade-up flex items-center justify-between gap-4 text-white/50">
+          <p className="label-bracket">{eyebrow}</p>
+          <p className="label-bracket hidden sm:block">Brand — Web — 3D — AI</p>
+        </div>
+        <div className="mt-[clamp(5rem,14vw,11rem)] grid gap-10 lg:grid-cols-12 lg:items-end">
           <h1
-            className="fade-up font-display text-[clamp(2.6rem,6.4vw,6rem)] leading-[0.95] font-extrabold tracking-[-0.045em] text-paper lg:col-span-8"
+            className="fade-up font-display text-[clamp(2.3rem,5.4vw,5.2rem)] leading-[1.04] font-semibold text-paper uppercase lg:col-span-8"
             style={{ "--d": "80ms" } as React.CSSProperties}
           >
             {title}

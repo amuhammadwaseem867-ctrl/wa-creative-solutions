@@ -37,7 +37,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
         <div className="container-site grid gap-6 lg:grid-cols-12">
           <aside className="space-y-4 lg:col-span-4">
             <div className="card p-6">
-              <h2 className="mb-5 font-display text-base font-bold">Direct contact</h2>
+              <h2 className="label-bracket mb-5">Direct contact</h2>
               <ul className="space-y-4">
                 <li>
                   <a href={`mailto:${contact.email}`} className="group flex items-start gap-3 text-sm [overflow-wrap:anywhere]">
@@ -67,7 +67,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
               </ul>
             </div>
             <div className="card p-6">
-              <h2 className="mb-5 font-display text-base font-bold">What happens next</h2>
+              <h2 className="label-bracket mb-5">What happens next</h2>
               <ol className="space-y-4 text-mute">
                 <li><span className="font-display font-bold text-white/35">01 </span>We review your brief and reply {contact.responseTime} where possible.</li>
                 <li><span className="font-display font-bold text-white/35">02 </span>A short call to clarify goals, scope and constraints.</li>
@@ -75,7 +75,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
               </ol>
             </div>
             <div className="card p-6">
-              <h2 className="mb-5 font-display text-base font-bold">Follow</h2>
+              <h2 className="label-bracket mb-5">Follow</h2>
               <ul className="flex flex-wrap gap-x-6 gap-y-3">
                 {socials.map((s) => (
                   <li key={s.href}>

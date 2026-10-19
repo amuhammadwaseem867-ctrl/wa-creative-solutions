@@ -11,13 +11,12 @@ type Props = {
   index?: string;
 };
 
-/** Section header: pill badge, Montserrat heading, supporting paragraph. */
+/** Section header: bracketed label, uppercase Montserrat heading, supporting paragraph. */
 export function SectionHeading({ eyebrow, title, intro, align = "center", className = "", as: Tag = "h2" }: Props) {
   const center = align === "center";
   return (
     <header className={`${center ? "mx-auto max-w-3xl text-center" : "max-w-2xl"} ${className}`}>
-      <p className="badge mb-5" data-reveal>
-        <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden />
+      <p className="label-bracket mb-5" data-reveal>
         {eyebrow}
       </p>
       <Tag className="text-display" data-reveal style={{ "--reveal-delay": "60ms" } as React.CSSProperties}>
@@ -25,7 +24,7 @@ export function SectionHeading({ eyebrow, title, intro, align = "center", classN
       </Tag>
       {intro && (
         <div
-          className={`text-lead mt-5 text-white/60 in-[.surface-light]:text-mute-dark ${center ? "mx-auto max-w-2xl" : ""}`}
+          className={`text-lead mt-5 text-white/60 ${center ? "mx-auto max-w-2xl" : ""}`}
           data-reveal
           style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
         >

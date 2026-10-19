@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check, X } from "lucide-react";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { StarField } from "@/components/ui/Atmosphere";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PackageCards } from "@/components/pricing/PackageCards";
 import { ComparisonTable } from "@/components/pricing/ComparisonTable";
@@ -55,7 +56,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="surface-light section-y" aria-labelledby="compare-title">
+      <section className="relative isolate section-y" aria-labelledby="compare-title">
+        <StarField className="opacity-60" />
         <div className="container-site">
           <h2 id="compare-title" className="text-title text-center" data-reveal>
             Compare packages
@@ -66,28 +68,28 @@ export default function PricingPage() {
 
           <div className="mt-20 grid gap-12 lg:grid-cols-3">
             <div data-reveal>
-              <h3 className="mb-4 font-display text-sm font-bold text-ink">Not included unless quoted</h3>
+              <h3 className="label-bracket mb-4 !text-white/80">Not included unless quoted</h3>
               <ul className="space-y-3">
                 {pricingPolicies.excluded.map((e) => (
                   <li key={e} className="flex gap-3">
-                    <X size={16} className="mt-1 shrink-0 text-red-deep" aria-hidden />
+                    <X size={16} className="mt-1 shrink-0 text-[#ff7a45]" aria-hidden />
                     {e}
                   </li>
                 ))}
               </ul>
             </div>
             <div data-reveal>
-              <h3 className="mb-4 font-display text-sm font-bold text-ink">Revisions</h3>
+              <h3 className="label-bracket mb-4 !text-white/80">Revisions</h3>
               <p>{pricingPolicies.revisions}</p>
-              <h3 className="mt-8 mb-4 font-display text-sm font-bold text-ink">Change requests</h3>
+              <h3 className="label-bracket mt-8 mb-4 !text-white/80">Change requests</h3>
               <p>{pricingPolicies.changeRequests}</p>
             </div>
             <div data-reveal>
-              <h3 className="mb-4 font-display text-sm font-bold text-ink">Good to know</h3>
+              <h3 className="label-bracket mb-4 !text-white/80">Good to know</h3>
               <ul className="space-y-3">
                 {pricingPolicies.notes.map((n) => (
                   <li key={n} className="flex gap-3">
-                    <Check size={16} className="mt-1 shrink-0 text-red-deep" aria-hidden />
+                    <Check size={16} className="mt-1 shrink-0 text-[#ff7a45]" aria-hidden />
                     {n}
                   </li>
                 ))}
@@ -102,9 +104,7 @@ export default function PricingPage() {
       <section className="section-y" aria-labelledby="faq-title">
         <div className="container-site grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="badge mb-5">
-              <span className="h-1.5 w-1.5 rounded-full bg-red" aria-hidden /> FAQ
-            </p>
+            <p className="label-bracket mb-5">FAQ</p>
             <h2 id="faq-title" className="text-title">
               Pricing questions, answered
             </h2>
@@ -114,7 +114,7 @@ export default function PricingPage() {
               <details key={f.q} className="card group px-6">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-base font-semibold text-paper sm:text-lg [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-lg transition-transform duration-300 group-open:rotate-45" aria-hidden>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/10 text-lg transition-transform duration-300 group-open:rotate-45" aria-hidden>
                     +
                   </span>
                 </summary>

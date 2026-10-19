@@ -4,12 +4,21 @@ import { Logo } from "@/components/brand/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { contact, legalNav, mainNav, site, socials } from "@/lib/site";
 import { services } from "@/lib/services";
+import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.08] bg-ink">
-      <div className="absolute bottom-[-200px] left-1/2 h-[320px] w-[800px] -translate-x-1/2 rounded-full bg-white/[0.035] blur-[120px]" aria-hidden />
+    <footer className="relative isolate overflow-hidden border-t border-white/[0.08] bg-black">
+      <EmberLight rise soft className="h-[70%]" />
+      <StarField
+        stars={[
+          [6, 70, 0],
+          [30, 86, 1.4],
+          [71, 78, 2.2],
+          [94, 66, 0.7],
+        ]}
+      />
       <div className="container-site relative py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -23,7 +32,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-white/40 hover:text-paper"
+                    className="flex h-10 w-10 items-center justify-center border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-white/40 hover:text-paper"
                   >
                     <SocialIcon label={s.label} />
                   </a>
@@ -34,7 +43,7 @@ export function SiteFooter() {
 
           <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-8">
             <div>
-              <h2 className="mb-5 font-display text-sm font-semibold text-paper">Company</h2>
+              <h2 className="label-bracket mb-5">Company</h2>
               <ul className="space-y-3 text-[0.925rem]">
                 {mainNav.map((l) => (
                   <li key={l.href}>
@@ -46,7 +55,7 @@ export function SiteFooter() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-5 font-display text-sm font-semibold text-paper">Services</h2>
+              <h2 className="label-bracket mb-5">Services</h2>
               <ul className="space-y-3 text-[0.925rem]">
                 {services.map((s) => (
                   <li key={s.id}>
@@ -58,7 +67,7 @@ export function SiteFooter() {
               </ul>
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <h2 className="mb-5 font-display text-sm font-semibold text-paper">Get in touch</h2>
+              <h2 className="label-bracket mb-5">Get in touch</h2>
               <ul className="space-y-4 text-[0.925rem]">
                 <li>
                   <a href={`mailto:${contact.email}`} className="flex items-start gap-3 text-white/55 transition-colors hover:text-paper">
@@ -83,7 +92,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p aria-hidden className="pointer-events-none mt-16 font-display text-[clamp(2.6rem,10.2vw,9.2rem)] leading-[0.8] font-extrabold tracking-[-0.06em] whitespace-nowrap text-white/[0.07] select-none">
+        <p aria-hidden className="pointer-events-none mt-16 bg-gradient-to-t from-[rgb(255_150_100/0.55)] via-white/[0.14] to-white/[0.05] bg-clip-text pb-[0.06em] font-display text-[clamp(2.4rem,9.6vw,8.8rem)] leading-[0.9] font-semibold whitespace-nowrap text-transparent select-none">
           WA CREATIVE
         </p>
 

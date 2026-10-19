@@ -4,6 +4,7 @@ import { HeroVisual } from "@/components/three/HeroVisual";
 import { Monogram } from "@/components/brand/Logo";
 import { projects, workCategories } from "@/lib/projects";
 import { site } from "@/lib/site";
+import { EmberLight, Spark } from "@/components/ui/Atmosphere";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -17,22 +18,6 @@ const SHIPPED = [
   { slug: "nexframe-systems", name: "Nexframe" },
   { slug: "alhaytham-school", name: "Al-Haytham" },
 ].filter((s) => projects.some((p) => p.slug === s.slug));
-
-/** Four-point spark — the headline's ornament. */
-function Spark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="-10 -10 60 60" className={className} aria-hidden>
-      <defs>
-        <radialGradient id="spark-glow">
-          <stop offset="0" stopColor="#ff7a45" stopOpacity="0.32" />
-          <stop offset="1" stopColor="#ff7a45" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="20" cy="20" r="26" fill="url(#spark-glow)" />
-      <path d="M20 0Q22 18 40 20Q22 22 20 40Q18 22 0 20Q18 18 20 0Z" fill="currentColor" />
-    </svg>
-  );
-}
 
 /**
  * Cycles through its items with CSS alone. Instances with the same item count stay in sync,
@@ -56,7 +41,7 @@ export function Hero() {
   return (
     <section id="hero" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-black">
       {/* Light from above and star-field crosses */}
-      <div className="hero-light absolute inset-x-0 top-0 -z-30 h-[92svh]" aria-hidden />
+      <EmberLight className="h-[92svh]" />
       <div className="cross-grid absolute inset-0 -z-30" aria-hidden />
       <div className="absolute inset-0 -z-30" aria-hidden>
         {[
@@ -130,10 +115,8 @@ export function Hero() {
             </div>
             <p className="mt-5 text-[0.95rem] leading-relaxed text-white/60">{site.statement}</p>
             <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-4">
-              <Link href="/contact" className="bracket-btn group">
-                <span className="relative">Start a project</span>
-                <ArrowUpRight size={16} className="relative transition-transform duration-300 group-hover:rotate-45" aria-hidden />
-                <i aria-hidden />
+              <Link href="/contact" className="btn btn-primary">
+                Start a project <ArrowUpRight size={16} aria-hidden />
               </Link>
               <Link href="/work" className="link-underline text-sm font-medium text-white/75 hover:text-paper">
                 View our work

@@ -21,7 +21,7 @@ export function ProjectCard({ project, aspect = "aspect-[16/10]", sizes = "(min-
   return (
     <article className="group relative flex h-full flex-col">
       <Link href={`/work/${project.slug}`} className="flex flex-1 flex-col" aria-label={`${project.title} — ${project.discipline}`}>
-        <div className={`relative overflow-hidden rounded-[1rem] bg-ink-3 ${aspect}`}>
+        <div className={`relative overflow-hidden bg-ink-3 ${aspect}`}>
           <Image
             src={project.cover.src}
             alt={project.cover.alt}
@@ -32,7 +32,7 @@ export function ProjectCard({ project, aspect = "aspect-[16/10]", sizes = "(min-
               contain ? "object-contain p-[18%]" : "object-cover object-top"
             }`}
           />
-          <span className="absolute right-4 bottom-4 flex h-12 w-12 translate-y-2 items-center justify-center rounded-full bg-paper text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+          <span className="absolute right-4 bottom-4 flex h-12 w-12 translate-y-2 items-center justify-center bg-paper text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
             <ArrowUpRight size={20} aria-hidden />
           </span>
         </div>

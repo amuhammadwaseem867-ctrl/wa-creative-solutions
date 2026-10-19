@@ -11,7 +11,7 @@ export function PackageCards({ compact = false }: { compact?: boolean }) {
           <li
             key={p.id}
             id={compact ? undefined : `package-${p.id}`}
-            className={`relative flex scroll-mt-28 flex-col rounded-[1.25rem] p-7 ${
+            className={`relative flex scroll-mt-28 flex-col p-7 ${
               p.featured
                 ? "border border-white/30 bg-gradient-to-b from-white/[0.09] to-white/[0.02] shadow-[0_30px_80px_-40px_rgba(255,255,255,0.25)]"
                 : "card"
@@ -20,7 +20,7 @@ export function PackageCards({ compact = false }: { compact?: boolean }) {
             style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
           >
             {p.featured && (
-              <span className="absolute -top-3 left-7 rounded-full bg-paper px-3 py-1 text-xs font-semibold text-ink shadow-lg">
+              <span className="absolute -top-3 left-7 bg-paper px-3 py-1 text-xs font-semibold text-ink shadow-lg">
                 Most popular
               </span>
             )}
@@ -30,19 +30,19 @@ export function PackageCards({ compact = false }: { compact?: boolean }) {
               {p.startingAt !== null ? (
                 <>
                   <span className="text-sm text-white/50">from</span>
-                  <span className="font-display text-[2.6rem] leading-none font-extrabold tracking-tight text-paper">
+                  <span className="font-display text-[2.6rem] leading-none font-semibold text-paper">
                     {formatPrice(p.startingAt)}
                   </span>
                 </>
               ) : (
-                <span className="font-display text-[2.2rem] leading-none font-extrabold tracking-tight text-paper">Custom</span>
+                <span className="font-display text-[2.2rem] leading-none font-semibold text-paper uppercase">Custom</span>
               )}
             </p>
             <p className="mt-4 text-sm text-white/55">{p.audience}</p>
             <ul className="mt-6 flex-1 space-y-3 border-t border-white/[0.08] pt-6 text-sm">
               {items.map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span className="mt-0.5 flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-white/10 text-paper">
+                  <span className="mt-0.5 flex h-4.5 w-4.5 shrink-0 items-center justify-center bg-white/10 text-paper">
                     <Check size={11} strokeWidth={3} aria-hidden />
                   </span>
                   <span className="text-white/75">{item}</span>

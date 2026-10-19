@@ -27,14 +27,14 @@ export function ProcessSection() {
                 data-reveal
                 style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
               >
-                <div className="relative mx-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-ink text-paper shadow-[0_0_0_6px_var(--color-ink)]">
+                <div className="relative mx-auto flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 bg-ink text-paper shadow-[0_0_0_6px_var(--color-ink)]">
                   <Icon size={18} aria-hidden />
                 </div>
                 <div>
                   <p className="label-caps text-white/40 lg:mt-5">Step {step.index}</p>
                   <h3 className="mt-1.5 text-lg">{step.title}</h3>
                   <p className="mt-2 text-sm text-white/55">{step.body}</p>
-                  <p className="mt-4 inline-flex rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-white/60">
+                  <p className="mt-4 inline-flex border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-white/60">
                     {step.output}
                   </p>
                 </div>

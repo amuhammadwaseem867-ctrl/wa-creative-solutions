@@ -68,12 +68,12 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
               >
                 <span className="hidden text-sm font-medium text-white/35 tabular-nums sm:block">{String(i + 1).padStart(2, "0")}</span>
                 {!canHover && (
-                  <span className="relative block aspect-[16/10] w-20 overflow-hidden rounded-md bg-ink-3 sm:hidden">
+                  <span className="relative block aspect-[16/10] w-20 overflow-hidden bg-ink-3 sm:hidden">
                     <Image src={p.cover.src} alt="" fill sizes="80px" className="object-cover object-top" />
                   </span>
                 )}
                 <span className="min-w-0">
-                  <span className="block font-display text-[clamp(1.4rem,3.4vw,2.7rem)] leading-[1.05] text-balance font-extrabold tracking-[-0.035em] text-paper/85 transition-all duration-500 group-hover:translate-x-2 group-hover:text-paper">
+                  <span className="block font-display text-[clamp(1.4rem,3.4vw,2.7rem)] leading-[1.08] text-balance font-semibold tracking-[-0.02em] text-paper/85 transition-all duration-500 group-hover:translate-x-2 group-hover:text-paper">
                     {p.title}
                   </span>
                   <span className="mt-1 block truncate text-sm text-white/45 sm:hidden">{fields.join(" · ")}</span>
@@ -83,7 +83,7 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
                   <span className={`h-1.5 w-1.5 rounded-full ${p.kind === "live" ? "bg-[#3ddc84]" : "bg-white/40"}`} aria-hidden />
                   {p.kind === "live" ? "Live" : "Concept"}
                 </span>
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-paper transition-all duration-300 group-hover:border-paper group-hover:bg-paper group-hover:text-ink">
+                <span className="flex h-10 w-10 items-center justify-center border border-white/10 text-paper transition-all duration-300 group-hover:border-paper group-hover:bg-paper group-hover:text-ink">
                   <ArrowUpRight size={17} aria-hidden />
                 </span>
               </Link>
@@ -96,7 +96,7 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
         <div
           ref={preview}
           aria-hidden
-          className={`pointer-events-none fixed top-0 left-0 z-40 w-[340px] overflow-hidden rounded-xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] transition-[opacity,scale] duration-300 ${
+          className={`pointer-events-none fixed top-0 left-0 z-40 w-[340px] overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] transition-[opacity,scale] duration-300 ${
             active ? "scale-100 opacity-100" : "scale-90 opacity-0"
           }`}
         >

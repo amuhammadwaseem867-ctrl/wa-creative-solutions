@@ -9,7 +9,7 @@ export function FeaturedProject({ project, priority = true }: { project: Project
   return (
     <article className="group relative">
       <Link href={`/work/${project.slug}`} className="block" aria-label={`${project.title} — ${project.discipline}`}>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[1.25rem] bg-ink-3">
+        <div className="relative aspect-[16/10] overflow-hidden bg-ink-3">
           <Image
             src={project.cover.src}
             alt={project.cover.alt}
@@ -25,13 +25,13 @@ export function FeaturedProject({ project, priority = true }: { project: Project
               <KindBadge kind={project.kind} />
               {fields.join(" · ")}
             </p>
-            <h2 className="mt-3 font-display text-[clamp(2.4rem,5.6vw,5rem)] leading-[0.92] font-extrabold tracking-[-0.045em] text-paper">
+            <h2 className="mt-3 font-display text-[clamp(2.1rem,4.8vw,4.4rem)] leading-[1.02] font-semibold tracking-[-0.02em] text-paper">
               {project.title}
             </h2>
           </div>
           <div className="flex items-end justify-between gap-6 lg:col-span-5">
             <p className="max-w-md text-white/60">{project.summary}</p>
-            <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-paper text-ink transition-transform duration-500 group-hover:rotate-45">
+            <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center bg-paper text-ink transition-transform duration-500 group-hover:rotate-45">
               <ArrowUpRight size={22} aria-hidden />
             </span>
           </div>
@@ -43,7 +43,7 @@ export function FeaturedProject({ project, priority = true }: { project: Project
 
 export function KindBadge({ kind }: { kind: Project["kind"] }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-ink/50 px-2.5 py-1 text-[0.68rem] font-semibold tracking-[0.12em] text-paper uppercase backdrop-blur-md">
+    <span className="inline-flex items-center gap-1.5 border border-white/20 bg-ink/50 px-2.5 py-1 text-[0.68rem] font-semibold tracking-[0.12em] text-paper uppercase backdrop-blur-md">
       <span className={`h-1.5 w-1.5 rounded-full ${kind === "live" ? "bg-[#3ddc84]" : "bg-white/60"}`} aria-hidden />
       {kind === "live" ? "Live" : "Concept"}
     </span>

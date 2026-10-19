@@ -25,9 +25,7 @@ export function Statement() {
   return (
     <section className="section-y" aria-label="About the studio">
       <div className="container-site">
-        <p className="mb-8 flex items-center gap-3 text-xs font-medium tracking-[0.18em] text-white/45 uppercase">
-          <span className="h-px w-8 bg-white/30" aria-hidden /> Who we are
-        </p>
+        <p className="label-bracket mb-8">Who we are</p>
         <p ref={ref} className="max-w-5xl font-display text-[clamp(1.7rem,3.6vw,3.1rem)] leading-[1.18] font-semibold tracking-[-0.025em] text-paper">
           {words.map((w, i) => (
             <Word key={i} word={w} still={!!reduce} progress={scrollYProgress} range={[i / words.length, Math.min(1, (i + 2) / words.length)]} />

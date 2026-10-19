@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 import { contact, mainNav, site, socials } from "@/lib/site";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -96,7 +97,7 @@ export function SiteHeader() {
             <button
               ref={toggleRef}
               type="button"
-              className="flex h-10 items-center gap-3 rounded-full border border-white/15 px-4 text-sm font-medium text-paper lg:hidden"
+              className="flex h-10 items-center gap-3 border border-white/15 px-4 text-sm font-medium text-paper lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               onClick={() => setOpen((o) => !o)}
@@ -118,12 +119,14 @@ export function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
-            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-ink pt-[76px] lg:hidden"
+            className="fixed inset-0 z-40 isolate flex flex-col overflow-y-auto bg-black pt-[76px] lg:hidden"
             initial={reduce ? { opacity: 0 } : { clipPath: "inset(0 0 100% 0)" }}
             animate={reduce ? { opacity: 1 } : { clipPath: "inset(0 0 0% 0)" }}
             exit={reduce ? { opacity: 0 } : { clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: reduce ? 0.15 : 0.6, ease }}
           >
+            <EmberLight x="70%" soft className="h-[70vh]" />
+            <StarField />
             <nav aria-label="Mobile" className="container-site flex-1 py-8">
               <ul>
                 {mainNav.map((item, i) => (
@@ -138,9 +141,9 @@ export function SiteHeader() {
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={isActive(item.href) ? "page" : undefined}
-                      className="flex items-baseline gap-4 py-2 font-display text-[clamp(2.2rem,10vw,3.4rem)] leading-tight font-bold tracking-tight text-paper/90 aria-[current=page]:text-paper"
+                      className="flex items-baseline gap-4 py-2 font-display text-[clamp(2rem,9vw,3.2rem)] leading-tight font-semibold text-paper/85 uppercase aria-[current=page]:text-paper"
                     >
-                      <span className="w-6 text-xs font-medium text-white/35">0{i + 1}</span>
+                      <span className="w-10 text-[0.7rem] font-medium tracking-[0.12em] text-white/40">[0{i + 1}]</span>
                       {item.label}
                       {isActive(item.href) && <span className="h-2 w-2 self-center rounded-full bg-red" aria-hidden />}
                     </Link>
@@ -164,7 +167,7 @@ export function SiteHeader() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={s.label}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/70"
+                        className="flex h-9 w-9 items-center justify-center border border-white/10 text-white/70"
                       >
                         <SocialIcon label={s.label} size={15} />
                       </a>

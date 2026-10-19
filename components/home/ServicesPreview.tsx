@@ -36,7 +36,7 @@ export function ServicesPreview() {
                     <p className="mt-2.5 text-[0.95rem] text-white/55">{s.short}</p>
                     <ul className="mt-5 flex flex-wrap gap-2">
                       {s.deliverables.slice(0, 3).map((d) => (
-                        <li key={d} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-white/60">
+                        <li key={d} className="border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-white/60">
                           {d}
                         </li>
                       ))}
@@ -46,8 +46,8 @@ export function ServicesPreview() {
                     </span>
                   </div>
                   {wide && (
-                    <div className="relative hidden flex-1 items-center justify-center self-stretch rounded-2xl border border-white/[0.06] bg-ink/60 p-6 text-white/80 sm:flex">
-                      <div className="dot-grid absolute inset-0 rounded-2xl opacity-60" aria-hidden />
+                    <div className="relative hidden flex-1 items-center justify-center self-stretch border border-white/[0.06] bg-ink/60 p-6 text-white/80 sm:flex">
+                      <div className="dot-grid absolute inset-0 opacity-60" aria-hidden />
                       <ServiceVisual kind={s.visual} className="relative h-auto w-full max-w-[260px]" />
                     </div>
                   )}

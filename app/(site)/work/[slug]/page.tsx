@@ -7,6 +7,7 @@ import { getProject, projects, workCategories } from "@/lib/projects";
 import { ButtonLink } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { site } from "@/lib/site";
+import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 
 export const dynamicParams = false;
 
@@ -49,21 +50,24 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
 
   return (
     <article>
-      <header className="relative pt-[calc(var(--header-h)+3rem)]">
+      <header className="relative isolate overflow-hidden pt-[calc(var(--header-h)+3rem)]">
+        <EmberLight x="72%" soft className="h-[70%]" />
+        <StarField />
         <div className="container-site">
-          <Link href="/work" className="label-caps inline-flex items-center gap-2 text-mute hover:text-paper">
+          <Link href="/work" className="label-bracket inline-flex items-center gap-2 hover:text-paper">
             <ArrowLeft size={14} aria-hidden /> All work
           </Link>
           <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <p className="label-caps fade-up mb-6 flex flex-wrap items-center gap-3 text-mute">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 text-paper">
+                <span className="inline-flex items-center gap-2 border border-white/20 px-3 py-1 text-paper">
                   {live && <span className="h-1.5 w-1.5 rounded-full bg-[#3ddc84]" aria-hidden />}
                   {live ? "Live project" : "Concept project"}
                 </span>
                 {project.discipline}
               </p>
-              <h1 className="text-mega rise overflow-hidden pb-[0.05em] font-bold">
+              {/* Project names keep their own casing (e.g. RestaurantOS) */}
+              <h1 className="text-mega rise overflow-hidden pb-[0.05em] tracking-[-0.02em] normal-case">
                 <span>{project.title}</span>
               </h1>
             </div>
@@ -78,7 +82,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           </div>
         </div>
         <div className="container-site mt-14">
-          <div className={`relative overflow-hidden rounded-[18px] bg-ink-3 ${landscapeCover ? "aspect-[16/9]" : "aspect-[4/5] sm:aspect-[16/10]"}`}>
+          <div className={`relative overflow-hidden bg-ink-3 ${landscapeCover ? "aspect-[16/9]" : "aspect-[4/5] sm:aspect-[16/10]"}`}>
             <Image
               src={project.cover.src}
               alt={project.cover.alt}
@@ -112,7 +116,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               <dt className="label-caps text-mute">Services delivered</dt>
               <dd className="mt-3 flex flex-wrap gap-2">
                 {project.services.map((s) => (
-                  <span key={s} className="rounded-full border border-line px-3 py-1.5 text-sm text-paper/85">
+                  <span key={s} className="border border-line px-3 py-1.5 text-sm text-paper/85">
                     {s}
                   </span>
                 ))}
@@ -123,7 +127,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                 <dt className="label-caps text-mute">Built with</dt>
                 <dd className="mt-3 flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <span key={t} className="rounded-full bg-white/[0.06] px-3 py-1.5 text-sm text-paper/85">
+                    <span key={t} className="bg-white/[0.06] px-3 py-1.5 text-sm text-paper/85">
                       {t}
                     </span>
                   ))}
@@ -143,7 +147,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             {project.palette && project.palette.length > 0 && (
               <div className="sm:col-span-2 lg:col-span-1">
                 <dt className="label-caps text-mute">Palette</dt>
-                <dd className="mt-3 flex overflow-hidden rounded-lg border border-white/10">
+                <dd className="mt-3 flex overflow-hidden border border-white/10">
                   {project.palette.map((c) => (
                     <span key={c} className="flex h-16 flex-1 items-end p-2 text-[0.62rem] font-medium tracking-wide uppercase" style={{ background: c, color: luminance(c) > 0.5 ? "#080808" : "#ffffff" }}>
                       {c}
@@ -201,7 +205,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                     data-reveal
                     className={row.length === 1 && img.width / img.height < 1.15 ? `mx-auto w-full ${img.width / img.height < 0.62 ? "max-w-sm" : "max-w-2xl"}` : undefined}
                   >
-                    <div className="overflow-hidden rounded-[14px] bg-ink-3">
+                    <div className="overflow-hidden bg-ink-3">
                       <Image
                         src={img.src}
                         alt={img.alt}
@@ -229,11 +233,11 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         <Link href={`/work/${next.slug}`} className="group container-site flex items-center justify-between gap-6 py-16 md:py-24">
           <span>
             <span className="label-caps block text-mute">Next project</span>
-            <span className="mt-4 block font-display text-[clamp(2.6rem,8vw,7rem)] leading-none font-bold tracking-[-0.05em] transition-colors group-hover:text-white/70">
+            <span className="mt-4 block font-display text-[clamp(2.6rem,8vw,7rem)] leading-none font-semibold tracking-[-0.03em] transition-colors group-hover:text-white/70">
               {next.title}
             </span>
           </span>
-          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-line transition-all duration-500 group-hover:rotate-45 group-hover:border-paper group-hover:bg-paper group-hover:text-ink md:h-24 md:w-24">
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center border border-line transition-all duration-500 group-hover:rotate-45 group-hover:border-paper group-hover:bg-paper group-hover:text-ink md:h-24 md:w-24">
             <ArrowUpRight aria-hidden />
           </span>
         </Link>

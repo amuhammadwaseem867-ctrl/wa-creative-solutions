@@ -130,7 +130,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
 
   if (status.kind === "success") {
     return (
-      <div ref={statusRef} tabIndex={-1} role="status" className="rounded-[18px] border border-line bg-ink-2 p-8 outline-none sm:p-12">
+      <div ref={statusRef} tabIndex={-1} role="status" className="border border-line bg-ink-2 p-8 outline-none sm:p-12">
         <CheckCircle2 className="text-red" size={36} aria-hidden />
         <h3 className="mt-6 font-display text-3xl font-semibold tracking-[-0.03em]">Brief received.</h3>
         <p className="mt-3 max-w-lg text-mute">{status.message}</p>
@@ -168,7 +168,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
       </p>
 
       {status.kind === "error" && (
-        <div ref={statusRef} tabIndex={-1} role="alert" className="flex gap-3 rounded-[12px] border border-red/60 bg-red/10 p-4 outline-none">
+        <div ref={statusRef} tabIndex={-1} role="alert" className="flex gap-3 border border-red/60 bg-red/10 p-4 outline-none">
           <AlertTriangle size={20} className="mt-0.5 shrink-0 text-red" aria-hidden />
           <div className="text-sm">
             <p className="font-medium text-paper">{status.message}</p>
@@ -186,7 +186,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
       )}
 
       {data.context && (
-        <div className="flex items-start justify-between gap-4 rounded-[12px] border border-line bg-ink-3 p-4 text-sm">
+        <div className="flex items-start justify-between gap-4 border border-line bg-ink-3 p-4 text-sm">
           <p>
             <span className="label-caps mb-1 block text-mute">Attached to your brief</span>
             {data.context}
