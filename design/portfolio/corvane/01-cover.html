@@ -112,7 +112,7 @@ async function loadFonts() {
 // ---- Corvane 3D kit (inlined into each CGI board) ----
 function rand(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
 /** Limestone: warm base with soft mottling and fine fossil speckle. Returns {map, bump}. */
-function limestone(THREE, { base = "#d9d1c3", size = 1024, seed = 7, repeat = [10, 10], mottle = 1 } = {}) {
+function limestone(THREE, { base = "#d9d1c3", size = 1024, seed = 7, repeat = [10, 10], mottle = 1, speckle = 1, fossils = 1 } = {}) {
   const r = rand(seed);
   const mk = (draw) => { const c = document.createElement("canvas"); c.width = c.height = size; const g = c.getContext("2d"); draw(g); return c; };
   const col = mk((g) => {
@@ -123,11 +123,27 @@ function limestone(THREE, { base = "#d9d1c3", size = 1024, seed = 7, repeat = [1
       gr.addColorStop(0, light ? `rgba(255,250,240,${0.045 * mottle})` : `rgba(120,104,80,${0.035 * mottle})`); gr.addColorStop(1, "rgba(0,0,0,0)");
       g.fillStyle = gr; for (const dx of [-size, 0, size]) for (const dy of [-size, 0, size]) { g.save(); g.translate(dx, dy); g.fillRect(x - rad, y - rad, rad * 2, rad * 2); g.restore(); }
     }
-    for (let i = 0; i < 9000; i++) { const x = r() * size, y = r() * size, a = r() * 0.22; g.fillStyle = r() > 0.4 ? `rgba(110,95,75,${a})` : `rgba(255,252,245,${a})`; g.fillRect(x, y, 1 + r() * 1.4, 1 + r() * 1.4); }
-    for (let i = 0; i < 70; i++) { const x = r() * size, y = r() * size; g.fillStyle = `rgba(150,132,105,${0.12 + r() * 0.15})`; g.beginPath(); g.ellipse(x, y, 1 + r() * 3, 0.8 + r() * 1.5, r() * 3, 0, 7); g.fill(); }
+    for (let i = 0; i < 9000; i++) { const x = r() * size, y = r() * size, a = r() * 0.22 * speckle; g.fillStyle = r() > 0.4 ? `rgba(110,95,75,${a})` : `rgba(255,252,245,${a})`; g.fillRect(x, y, 1 + r() * 1.4, 1 + r() * 1.4); }
+    for (let i = 0; i < 70 * fossils; i++) { const x = r() * size, y = r() * size; g.fillStyle = `rgba(150,132,105,${0.12 + r() * 0.15})`; g.beginPath(); g.ellipse(x, y, 1 + r() * 3, 0.8 + r() * 1.5, r() * 3, 0, 7); g.fill(); }
   });
   const map = new THREE.CanvasTexture(col); map.colorSpace = THREE.SRGBColorSpace;
   const bump = new THREE.CanvasTexture(col);
+  for (const t of [map, bump]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...repeat); t.anisotropy = 8; }
+  return { map, bump };
+}
+/** Dark surface (suede / honed stone) for ink-green sets: soft mottle, very fine grain. Returns {map, bump}. */
+function suede(THREE, { base = "#123029", size = 2048, seed = 17, repeat = [8, 8], mottle = 1, grainAmt = 1 } = {}) {
+  const r = rand(seed);
+  const [c, g] = canvas2d(size, size); g.fillStyle = base; g.fillRect(0, 0, size, size);
+  for (let i = 0; i < 220; i++) {
+    const x = r() * size, y = r() * size, rad = 60 + r() * 260, light = r() > 0.5;
+    const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+    gr.addColorStop(0, light ? `rgba(120,160,140,${0.035 * mottle})` : `rgba(0,10,8,${0.06 * mottle})`); gr.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = gr; for (const dx of [-size, 0, size]) for (const dy of [-size, 0, size]) { g.save(); g.translate(dx, dy); g.fillRect(x - rad, y - rad, rad * 2, rad * 2); g.restore(); }
+  }
+  for (let i = 0; i < 60000; i++) { const x = r() * size, y = r() * size, a = r() * 0.08 * grainAmt; g.fillStyle = r() > 0.5 ? `rgba(0,0,0,${a})` : `rgba(180,210,195,${a * 0.6})`; g.fillRect(x, y, 1, 1); }
+  const map = new THREE.CanvasTexture(c); map.colorSpace = THREE.SRGBColorSpace;
+  const bump = new THREE.CanvasTexture(c);
   for (const t of [map, bump]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...repeat); t.anisotropy = 8; }
   return { map, bump };
 }
@@ -172,10 +188,10 @@ function spotKey(THREE, s, { pos = [-3.5, 7, -3], target = [0, 0, 0], intensity 
   s.lights.key = k; return k;
 }
 /**
- * Progressive render: averages N frames with the key light jittered across a disc (area-light soft shadows)
- * and sub-pixel camera jitter (anti-aliasing), then tone-maps once to screen.
+ * Progressive render: averages N frames with the key light jittered across a disc (area-light soft shadows),
+ * sub-pixel camera jitter (anti-aliasing) and, optionally, a thin-lens aperture (depth of field focused on `focus`).
  */
-function accumulate(THREE, s, { frames = 24, radius = 0.6, onFrame = null } = {}) {
+function accumulate(THREE, s, { frames = 24, radius = 0.6, onFrame = null, focus = null, aperture = 0 } = {}) {
   const { renderer, scene, camera } = s; const key = s.lights.key; const base = key.position.clone();
   const size = renderer.getDrawingBufferSize(new THREE.Vector2());
   const opts = { type: THREE.HalfFloatType, depthBuffer: true };
@@ -186,18 +202,30 @@ function accumulate(THREE, s, { frames = 24, radius = 0.6, onFrame = null } = {}
   const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), addMat); qs.add(quad);
   // basis perpendicular to the light direction
   const dir = base.clone().normalize(); const u = new THREE.Vector3(0, 1, 0).cross(dir).normalize(); const v = dir.clone().cross(u).normalize();
+  // thin lens: camera basis and focal distance
+  camera.updateMatrixWorld(); const camPos = camera.position.clone();
+  const cr = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0), cu = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1), cf = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 2).negate();
+  const F = focus ? focus.clone().sub(camPos).dot(cf) : 1;
   const autoClear = renderer.autoClear; renderer.autoClear = false;
   renderer.setRenderTarget(acc); renderer.setClearColor(0x000000, 0); renderer.clear();
-  const r = rand(11); const W = size.x, H = size.y;
+  const r = rand(11); const W = size.x, H = size.y; const fpx = (H / 2) / Math.tan(camera.fov * Math.PI / 360);
   for (let i = 0; i < frames; i++) {
     const a = 2.399963 * i, rr = radius * Math.sqrt((i + 0.5) / frames);
     key.position.copy(base).addScaledVector(u, Math.cos(a) * rr).addScaledVector(v, Math.sin(a) * rr);
-    camera.setViewOffset(W, H, (r() - 0.5) * 0.9, (r() - 0.5) * 0.9, W, H);
+    let ox = 0, oy = 0;
+    if (focus && aperture > 0) { // golden-angle disc sample, decorrelated from the light
+      const b = 2.399963 * i + 1.3, q = aperture * Math.sqrt((((i * 7) % frames) + 0.5) / frames);
+      const dx = Math.cos(b) * q, dy = Math.sin(b) * q;
+      camera.position.copy(camPos).addScaledVector(cr, dx).addScaledVector(cu, dy);
+      ox = -dx / F * fpx; oy = dy / F * fpx;
+    }
+    camera.setViewOffset(W, H, ox + (r() - 0.5) * 0.9, oy + (r() - 0.5) * 0.9, W, H);
+    camera.updateMatrixWorld();
     if (onFrame) onFrame(i);
     renderer.setRenderTarget(frame); renderer.clear(); renderer.render(scene, camera);
     renderer.setRenderTarget(acc); renderer.render(qs, qc);
   }
-  camera.clearViewOffset(); key.position.copy(base);
+  camera.clearViewOffset(); camera.position.copy(camPos); key.position.copy(base);
   const outMat = new THREE.MeshBasicMaterial({ map: acc.texture, color: new THREE.Color(1 / frames, 1 / frames, 1 / frames), depthTest: false, depthWrite: false, toneMapped: true });
   quad.material = outMat; renderer.autoClear = autoClear; renderer.setRenderTarget(null); renderer.render(qs, qc);
   s.render = () => { renderer.setRenderTarget(null); renderer.render(qs, qc); }; // final frame for done()
@@ -299,32 +327,68 @@ function bizCard(side = "front") {
 }
 /** Colourise an alpha mask canvas and draw it onto g. */
 function stamp(g, mask, color, blur = 0) { const [t, tg] = canvas2d(mask.width, mask.height); if (blur) tg.filter = `blur(${blur}px)`; tg.drawImage(mask, 0, 0); tg.filter = "none"; tg.globalCompositeOperation = "source-in"; tg.fillStyle = color; tg.fillRect(0, 0, mask.width, mask.height); g.drawImage(t, 0, 0); }
-/** Metal card face, 85.6 x 54 mm at s px/mm. Returns {color, rough, bump} canvases. Engraved: darker, rougher, recessed. */
-function metalCard({ s = 20, name = "HAMZA RAHMAN", tier = "PRIVATE CLIENT", seed = 21, tone = "brass" } = {}) {
+/** Metal card face, 85.6 x 54 mm at s px/mm. Returns {color, rough, bump} canvases + chip rect (mm). Engraved: darker, rougher, recessed. */
+function metalCard({ s = 20, name = "HAMZA RAHMAN", tier = "PRIVATE CLIENT", seed = 21, tone = "brass", chip = true } = {}) {
   const W = Math.round(85.6 * s), H = Math.round(54 * s), mm = s;
   const [mask, mk] = canvas2d(W, H); const ink = "#fff";
-  const mh = 11 * mm, mx = 7 * mm, my = 7 * mm; drawMark(mk, mx, my, mh, ink);
+  const mh = 10 * mm, mx = 7 * mm, my = 6.5 * mm; drawMark(mk, mx, my, mh, ink);
   const tipX = mx + MARK.w / MARK.h * mh, hy = my + mh / 2;
-  mk.fillStyle = ink; mk.fillRect(tipX + 2.4 * mm, hy - 0.1 * mm, W - tipX - 2.4 * mm, 0.2 * mm); // the horizon, continued
-  label(mk, tier, W - 7 * mm, hy - 2.2 * mm, 2.0 * mm, ink, { align: "right", track: 0.26 });
-  label(mk, name, mx, H - 7 * mm, 2.4 * mm, ink, { track: 0.22 });
-  drawWordmark(mk, W - 7 * mm, H - 7 * mm, 2.5 * mm, ink, "right");
+  mk.fillStyle = ink; mk.fillRect(tipX + 2.2 * mm, hy - 0.11 * mm, W - tipX - 2.2 * mm, 0.22 * mm); // the horizon, continued to the edge
+  label(mk, tier, W - 7 * mm, hy - 2.4 * mm, 1.9 * mm, ink, { align: "right", track: 0.28 });
+  label(mk, name, mx, H - 7 * mm, 2.3 * mm, ink, { track: 0.24 });
+  drawWordmark(mk, W - 7 * mm, H - 7 * mm, 2.4 * mm, ink, "right");
   const r = rand(seed);
   const [col, cg] = canvas2d(W, H); const [rough, rg] = canvas2d(W, H); const [bump, bg] = canvas2d(W, H);
   const brass = tone === "brass";
-  cg.fillStyle = brass ? "rgb(204,160,94)" : "rgb(24,50,43)"; cg.fillRect(0, 0, W, H);
-  rg.fillStyle = "rgb(90,90,90)"; rg.fillRect(0, 0, W, H);
+  cg.fillStyle = brass ? "rgb(184,140,78)" : "rgb(20,46,39)"; cg.fillRect(0, 0, W, H);
+  rg.fillStyle = brass ? "rgb(78,78,78)" : "rgb(100,100,100)"; rg.fillRect(0, 0, W, H);
   bg.fillStyle = "rgb(200,200,200)"; bg.fillRect(0, 0, W, H);
-  for (let i = 0; i < 7000; i++) { // brushing: long horizontal streaks
-    const y = r() * H, len = W * (0.1 + r() * 0.9), x = r() * W - len * 0.3, d = r() - 0.5, th = 0.4 + r() * 1.1;
-    cg.fillStyle = d > 0 ? `rgba(255,244,220,${d * 0.16})` : `rgba(60,40,15,${-d * 0.16})`; cg.fillRect(x, y, len, th);
-    const v = Math.round(90 + d * 70); rg.fillStyle = `rgba(${v},${v},${v},0.55)`; rg.fillRect(x, y, len, th);
-    const b = Math.round(200 + d * 30); bg.fillStyle = `rgba(${b},${b},${b},0.5)`; bg.fillRect(x, y, len, th);
+  for (let i = 0; i < 9000; i++) { // brushing: long horizontal streaks
+    const y = r() * H, len = W * (0.1 + r() * 0.9), x = r() * W - len * 0.3, d = r() - 0.5, th = 0.35 + r() * 1.0;
+    cg.fillStyle = d > 0 ? `rgba(255,244,220,${d * 0.12})` : `rgba(60,40,15,${-d * 0.14})`; cg.fillRect(x, y, len, th);
+    const v = Math.round((brass ? 78 : 100) + d * 60); rg.fillStyle = `rgba(${v},${v},${v},0.55)`; rg.fillRect(x, y, len, th);
+    const b = Math.round(200 + d * 26); bg.fillStyle = `rgba(${b},${b},${b},0.5)`; bg.fillRect(x, y, len, th);
   }
-  stamp(cg, mask, brass ? "rgb(92,64,30)" : "rgb(176,141,87)");
-  stamp(rg, mask, brass ? "rgb(215,215,215)" : "rgb(120,120,120)");
+  stamp(cg, mask, brass ? "rgb(98,68,34)" : "rgb(212,170,108)");
+  stamp(rg, mask, brass ? "rgb(190,190,190)" : "rgb(120,120,120)");
   stamp(bg, mask, "rgb(40,40,40)", s / 22);
-  return { color: col, rough, bump, mask, W, H };
+  return { color: col, rough, bump, mask, W, H, chip: chip ? { x: 9.6, y: 21.5, w: 11.4, h: 8.8 } : null };
+}
+/** EMV contact plate texture (gold), w x h mm at s px/mm. */
+function chipTex(w = 11.4, h = 8.8, s = 60) {
+  const W = Math.round(w * s), H = Math.round(h * s), [c, g] = canvas2d(W, H);
+  const gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, "#e2c27f"); gr.addColorStop(0.5, "#cfa962"); gr.addColorStop(1, "#e0bd78");
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.strokeStyle = "rgba(70,48,18,0.85)"; g.lineWidth = 0.22 * s; g.lineCap = "round";
+  const cx1 = W * 0.36, cx2 = W * 0.64;
+  g.beginPath();
+  g.moveTo(cx1, 0); g.lineTo(cx1, H * 0.28); g.quadraticCurveTo(cx1, H * 0.34, cx1 + 0.4 * s, H * 0.36); g.lineTo(cx2 - 0.4 * s, H * 0.36); g.quadraticCurveTo(cx2, H * 0.38, cx2, H * 0.44); g.lineTo(cx2, H);
+  g.moveTo(cx2, 0); g.lineTo(cx2, H * 0.24);
+  g.moveTo(cx1, H * 0.62); g.lineTo(cx1, H);
+  for (const y of [0.36, 0.64]) { g.moveTo(0, H * y); g.lineTo(cx1 - 0.6 * s, H * y); g.moveTo(cx2 + 0.6 * s, H * y); g.lineTo(W, H * y); }
+  g.moveTo(cx1, H * 0.62); g.lineTo(cx1 + 1.2 * s, H * 0.62);
+  g.stroke();
+  return c;
+}
+/**
+ * Metal payment card (85.6 x 54 x thickness mm, world units: 1 = 100 mm). Lies in XY facing +Z; origin at the card centre, back face at z 0.
+ * Returns a Group. tone: "brass" | "green" (ink-green PVD with brass bright-cut edges).
+ */
+function cardMesh(THREE, env, { tone = "brass", name, tier, s = 24, thickness = 0.0085, seed = 21, chip = true, envI = 0.6, aniso = 0.85 } = {}) {
+  const mc = metalCard({ s, name, tier, seed, tone, chip });
+  const face = new THREE.MeshPhysicalMaterial({ color: "#ffffff", map: ctex(THREE, mc.color, true), metalness: 1, roughness: 1, roughnessMap: ctex(THREE, mc.rough, false), bumpMap: ctex(THREE, mc.bump, false), bumpScale: 1.1, anisotropy: aniso, envMap: env, envMapIntensity: envI });
+  if (tone === "green") { face.clearcoat = 0.35; face.clearcoatRoughness = 0.35; }
+  const edge = new THREE.MeshPhysicalMaterial({ color: tone === "brass" ? "#d9b276" : "#d6b071", metalness: 1, roughness: 0.22, envMap: env, envMapIntensity: envI * 1.5 });
+  const g = new THREE.Group();
+  const card = new THREE.Mesh(slab(THREE, 0.856, 0.54, thickness, 0.032, Math.min(0.0015, thickness * 0.2)), [face, edge]);
+  card.castShadow = card.receiveShadow = true; g.add(card);
+  if (mc.chip) {
+    const k = 0.01, cw = mc.chip.w * k, ch = mc.chip.h * k;
+    const chipMat = new THREE.MeshPhysicalMaterial({ map: ctex(THREE, chipTex(mc.chip.w, mc.chip.h), true), metalness: 1, roughness: 0.3, envMap: env, envMapIntensity: envI * 1.3, polygonOffset: true, polygonOffsetFactor: -2 });
+    const chipM = new THREE.Mesh(roundedRectGeometry(cw, ch, 0.016), chipMat);
+    chipM.position.set(-0.428 + (mc.chip.x * k) + cw / 2, 0.27 - (mc.chip.y * k) - ch / 2, thickness + 0.00015); chipM.receiveShadow = true; g.add(chipM);
+  }
+  return g;
 }
 /** Foil mask for the folio cover: centred symbol over a horizon rule (white on transparent). */
 function folioFoil(W = 1150, H = 1550) {
