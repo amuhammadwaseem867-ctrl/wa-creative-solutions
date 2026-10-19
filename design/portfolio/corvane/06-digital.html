@@ -14,7 +14,7 @@ body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:g
 .eyebrow{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
 .serif{font-family:var(--serif)}
 body{background:#d6cdbd}
-.hdr .l{color:rgba(241,236,226,.55)}.hdr .m{color:rgba(28,28,28,.55)}.hdr .r{color:#7d6237}
+.hdr .l{color:rgba(241,236,226,.55)}.hdr .m{grid-column:auto;position:absolute;left:568px;color:rgba(28,28,28,.55)}.hdr .r{color:#7d6237}
 .panel{position:absolute;left:0;top:0;width:568px;height:1000px;background:var(--green);z-index:4;color:var(--ivory)}
 .panel .in{position:absolute;left:80px;width:408px}
 .icon-xl{top:150px}
@@ -435,12 +435,12 @@ function welcomeScreen() {
   const [c, g] = screenCanvas(); const W = 390, H = 844;
   const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, "#12332b"); gr.addColorStop(1, "#0c231e"); g.fillStyle = gr; g.fillRect(0, 0, W, H);
   statusBar(g, "#F1ECE2");
-  const mh = 70, mw = MARK.w / MARK.h * mh, mx = (W - mw) / 2 + 3, my = 214, hy = my + mh / 2;
+  const mh = 70, mw = MARK.w / MARK.h * mh, mx = (W - mw) / 2 + 3, my = 252, hy = my + mh / 2;
   g.fillStyle = "#B08D57"; g.fillRect(mx + mw + 10, hy - 0.5, W - (mx + mw + 10), 1); g.fillRect(0, hy - 0.5, mx - 10, 1);
   drawMark(g, mx, my, mh, "#F1ECE2");
   g.textAlign = "center";
-  label(g, "MONDAY 19 OCTOBER", W / 2, 352, 10.5, "rgba(241,236,226,.55)", { align: "center", track: 0.22 });
-  g.font = "300 40px 'Cormorant Garamond'"; g.fillStyle = "#F1ECE2"; g.textAlign = "center"; g.fillText("Good evening,", W / 2, 410); g.fillText("Mr Rahman.", W / 2, 452);
+  label(g, "MONDAY 19 OCTOBER", W / 2, 394, 10.5, "rgba(241,236,226,.55)", { align: "center", track: 0.22 });
+  g.font = "300 40px 'Cormorant Garamond'"; g.fillStyle = "#F1ECE2"; g.textAlign = "center"; g.fillText("Good evening,", W / 2, 452); g.fillText("Mr Rahman.", W / 2, 494);
   g.textAlign = "left";
   // Face ID button
   g.strokeStyle = "rgba(241,236,226,.42)"; g.lineWidth = 1; rr(g, 24.5, 682.5, W - 49, 56, 28); g.stroke();
@@ -466,9 +466,9 @@ function homeScreen() {
   g.font = "300 50px 'Cormorant Garamond'"; g.fillStyle = "#1C1C1C"; const big = "£24,618,302"; g.fillText(big, L - 1, 248); const bw = g.measureText(big).width;
   g.font = "300 26px 'Cormorant Garamond'"; g.fillStyle = "rgba(28,28,28,.5)"; g.fillText(".40", L + bw, 248);
   g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.6)"; g.fillText("As at 18:00 GST", L, 274);
-  g.font = "500 12px Inter"; g.fillStyle = "#2f6a55"; g.textAlign = "right"; g.fillText("+ £182,440 since 30 Sep", R, 274); g.textAlign = "left";
+  g.font = "500 12px Inter"; g.fillStyle = "#0F2A24"; g.textAlign = "right"; g.fillText("+ £182,440 since 30 Sep", R, 274); g.textAlign = "left";
   // chart
-  const cx0 = L, cx1 = R, cy0 = 300, cy1 = 410; const pts = [];
+  const cx0 = L, cx1 = R, cy0 = 304, cy1 = 392; const pts = [];
   const r = rand(44); let v = 0.42; for (let i = 0; i <= 60; i++) { v += (r() - 0.46) * 0.07 + (i > 40 ? 0.006 : 0); v = Math.min(0.9, Math.max(0.12, v)); pts.push([cx0 + (cx1 - cx0) * i / 60, cy1 - (cy1 - cy0) * v]); }
   const base = pts[0][1];
   g.setLineDash([2, 3]); g.strokeStyle = "#B08D57"; g.lineWidth = 1; g.beginPath(); g.moveTo(cx0, base); g.lineTo(cx1, base); g.stroke(); g.setLineDash([]);
@@ -476,22 +476,22 @@ function homeScreen() {
   g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.lineTo(cx1, cy1 + 10); g.lineTo(cx0, cy1 + 10); g.closePath(); g.fillStyle = fill; g.fill();
   g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.strokeStyle = "#0F2A24"; g.lineWidth = 1.6; g.lineJoin = "round"; g.stroke();
   const [ex, ey] = pts[pts.length - 1]; g.fillStyle = "#0F2A24"; g.beginPath(); g.arc(ex, ey, 3.2, 0, 7); g.fill();
-  ["JUL", "AUG", "SEP", "OCT"].forEach((m, i) => label(g, m, cx0 + (cx1 - cx0) * (i + 0.5) / 4, 432, 9, "rgba(28,28,28,.45)", { align: "center", track: 0.16 }));
+  ["JUL", "AUG", "SEP", "OCT"].forEach((m, i) => label(g, m, cx0 + (cx1 - cx0) * (i + 0.5) / 4, 414, 9, "rgba(28,28,28,.45)", { align: "center", track: 0.16 }));
   // range control
   const segs = ["1M", "3M", "1Y", "5Y"]; const sw = (R - L) / 4;
-  g.fillStyle = "rgba(15,42,36,.06)"; rr(g, L, 448, R - L, 30, 15); g.fill(); g.fillStyle = "#0F2A24"; rr(g, L + sw + 2, 450, sw - 4, 26, 13); g.fill();
-  segs.forEach((t, i) => { g.font = "500 11px Inter"; g.fillStyle = i === 1 ? "#F1ECE2" : "rgba(28,28,28,.6)"; g.textAlign = "center"; g.fillText(t, L + sw * (i + 0.5), 467); }); g.textAlign = "left";
+  g.fillStyle = "rgba(15,42,36,.06)"; rr(g, L, 430, R - L, 30, 15); g.fill(); g.fillStyle = "#0F2A24"; rr(g, L + sw + 2, 432, sw - 4, 26, 13); g.fill();
+  segs.forEach((t, i) => { g.font = "500 11px Inter"; g.fillStyle = i === 1 ? "#F1ECE2" : "rgba(28,28,28,.6)"; g.textAlign = "center"; g.fillText(t, L + sw * (i + 0.5), 449); }); g.textAlign = "left";
   // next meeting
-  g.strokeStyle = "rgba(176,141,87,.6)"; g.lineWidth = 1; rr(g, L + 0.5, 498.5, R - L - 1, 58, 10); g.stroke();
-  label(g, "NEXT", L + 16, 522, 9, "#8a6c3f", { track: 0.2 });
-  g.font = "500 14px Inter"; g.fillStyle = "#1C1C1C"; g.fillText("Charter review with Zara Malik", L + 62, 524);
-  g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.6)"; g.fillText("Thursday 22 October, 11:00 · Lahore", L + 62, 542);
+  g.strokeStyle = "rgba(176,141,87,.6)"; g.lineWidth = 1; rr(g, L + 0.5, 476.5, R - L - 1, 56, 10); g.stroke();
+  label(g, "NEXT", L + 16, 500, 9, "#8a6c3f", { track: 0.2 });
+  g.font = "500 14px Inter"; g.fillStyle = "#1C1C1C"; g.fillText("Charter review with Zara Malik", L + 62, 502);
+  g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.6)"; g.fillText("Thursday 22 October, 11:00 · Lahore", L + 62, 520);
   // holdings
-  label(g, "HOLDINGS BY ENTITY", L, 594, 9.5, "rgba(28,28,28,.55)", { track: 0.2 });
+  label(g, "HOLDINGS BY ENTITY", L, 566, 9.5, "rgba(28,28,28,.55)", { track: 0.2 });
   const rows = [["Rahman Family Trust", "DIFC, Dubai", "£11,240,000"], ["Mayfair residence", "London", "£6,850,000"], ["Gulberg holdings", "Lahore", "£4,102,000"], ["Liquidity", "GBP · AED · PKR", "£2,426,302"]];
-  rows.forEach(([a, b, v2], i) => { const y = 612 + i * 50; g.fillStyle = "rgba(28,28,28,.12)"; g.fillRect(L, y, R - L, 1);
-    g.font = "500 14px Inter"; g.fillStyle = "#1C1C1C"; g.fillText(a, L, y + 22); g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.55)"; g.fillText(b, L, y + 39);
-    g.font = "400 18px 'Cormorant Garamond'"; g.fillStyle = "#1C1C1C"; g.textAlign = "right"; g.font = "500 14px Inter"; g.fillText(v2, R, y + 22); g.textAlign = "left"; });
+  rows.forEach(([a, b, v2], i) => { const y = 578 + i * 47; g.fillStyle = "rgba(28,28,28,.12)"; g.fillRect(L, y, R - L, 1);
+    g.font = "500 14px Inter"; g.fillStyle = "#1C1C1C"; g.fillText(a, L, y + 21); g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.55)"; g.fillText(b, L, y + 37);
+    g.fillStyle = "#1C1C1C"; g.textAlign = "right"; g.font = "500 14px Inter"; g.fillText(v2, R, y + 21); g.textAlign = "left"; });
   // tab bar
   g.fillStyle = "#ebe5d9"; g.fillRect(0, 768, W, H - 768); g.fillStyle = "rgba(28,28,28,.1)"; g.fillRect(0, 768, W, 1);
   const tabs = ["Overview", "Entities", "Documents", "Banker"]; const tw = W / 4;
@@ -511,16 +511,52 @@ const P = !!window.__PREVIEW;
 document.getElementById("hl").innerHTML = markSVG(12, "rgba(241,236,226,.55)", true) + "<span>Corvane</span>";
 // flat icon specimen
 { const g = document.getElementById("ix").getContext("2d"); drawIcon(g, 0, 0, 400); }
-const SZ = [[120, "120 pt"], [76, "76"], [60, "60"], [40, "40"], [29, "29"]];
+const SZ = [[87, "87 pt"], [60, "60"], [40, "40"], [29, "29"]];
 document.getElementById("szr").innerHTML = SZ.map(([n]) => `<canvas width="${n * 2}" height="${n * 2}" style="width:${n}px;height:${n}px;display:block"></canvas>`).join("");
 document.querySelectorAll("#szr canvas").forEach((cv, i) => drawIcon(cv.getContext("2d"), 0, 0, SZ[i][0] * 2));
-document.getElementById("szl").innerHTML = SZ.map(([n, t]) => `<span style="width:${n}px">${t}</span>`).join("");
+document.getElementById("szl").innerHTML = SZ.map(([n, t]) => `<span style="width:${n}px">${t}</span>`).join("") + `<span>16 px favicon</span>`;
+document.getElementById("szr").insertAdjacentHTML("beforeend", `<div style="width:16px;height:16px;display:flex;align-items:center;margin-bottom:2px">${markSVG(16 * MARK.h / MARK.w, "#F1ECE2", true)}</div>`);
 if (new URLSearchParams(location.search).has("ui")) { // debug: flat screens
   document.body.innerHTML = ""; document.body.style.background = "#888";
   for (const cv of [welcomeScreen(), homeScreen()]) { cv.style.cssText = "width:390px;height:844px;margin:40px 0 0 60px;float:left"; document.body.appendChild(cv); }
   const cv = document.createElement("canvas"); cv.width = cv.height = 512; cv.style.cssText = "width:256px;height:256px;margin:40px 0 0 60px;float:left"; drawIcon(cv.getContext("2d"), 0, 0, 512); document.body.appendChild(cv);
+  window.__READY = true;
 } else {
 // ---- scene ----
+const s = createStudio({ background: "#d6cdbd", lighting: "soft", fov: 28, exposure: 1.0, pixelRatio: P ? 1 : 1.5 });
+const { scene, camera, renderer } = s;
+renderer.toneMapping = THREE.NeutralToneMapping; // keeps the UI colours true
+renderer.shadowMap.type = THREE.PCFShadowMap;
+const env = studioLook(THREE, s, { key: [-4.2, 7.4, -3.0], target: [0, 0, 0], intensity: 3.6, angle: 0.5, envI: 0.3 });
+const stone = limestone(THREE, { base: "#d9d3c9", repeat: [12, 12], speckle: 0.5, fossils: 0.3 });
+const sweep = s.cyclorama({ color: "#ffffff", back: 6, radius: 4 });
+Object.assign(sweep.material, { map: stone.map, bumpMap: stone.bump, bumpScale: 0.5, roughness: 0.9 }); sweep.material.needsUpdate = true;
+/** Phone: 71.6 x 147.6 x 8.25 mm, graphite titanium frame, black glass, emissive screen. Lies in XY facing +Z, back at z 0. */
+function buildPhone(canvas) {
+  const g = new THREE.Group(), W = 0.716, H = 1.476, D = 0.0825, R = 0.112;
+  const ti = new THREE.MeshPhysicalMaterial({ color: "#3a3936", metalness: 1, roughness: 0.3, anisotropy: 0.4, envMap: env, envMapIntensity: 1.0 });
+  const back = new THREE.MeshPhysicalMaterial({ color: "#1d2a26", roughness: 0.55, clearcoat: 0.6, clearcoatRoughness: 0.4 });
+  const body = new THREE.Mesh(slab(THREE, W, H, D, R, 0.012), [back, ti]); body.castShadow = body.receiveShadow = true; g.add(body);
+  const glass = new THREE.Mesh(roundedRectGeometry(W - 0.012, H - 0.012, R - 0.006, 24), new THREE.MeshPhysicalMaterial({ color: "#050505", roughness: 0.1, clearcoat: 1, clearcoatRoughness: 0.04 }));
+  glass.position.z = D + 0.0004; g.add(glass);
+  const sw = 0.668, sh = 1.446 * 0.9995;
+  const tex = ctex(THREE, canvas); tex.anisotropy = 16;
+  const scr = new THREE.Mesh(roundedRectGeometry(sw, sh, 0.094, 24), new THREE.MeshBasicMaterial({ map: tex }));
+  scr.position.z = D + 0.0008; g.add(scr);
+  const refl = new THREE.Mesh(roundedRectGeometry(W - 0.012, H - 0.012, R - 0.006, 24), new THREE.MeshPhysicalMaterial({ color: "#000000", roughness: 0.06, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.03, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, envMap: env, envMapIntensity: 1.2 }));
+  refl.position.z = D + 0.0012; g.add(refl);
+  // side buttons
+  const btn = (x, y, h) => { const b = roundedBox(0.012, h, 0.03, 0.005, ti); b.position.set(x, y, D / 2); g.add(b); };
+  btn(-W / 2 - 0.003, 0.42, 0.06); btn(-W / 2 - 0.003, 0.28, 0.12); btn(-W / 2 - 0.003, 0.13, 0.12); btn(W / 2 + 0.003, 0.3, 0.17);
+  return g;
+}
+const flat = (o, x, z, rz, y = 0) => { o.rotation.x = -Math.PI / 2; o.rotation.z = rz; o.position.set(x, y, z); scene.add(o); return o; };
+const p1 = flat(buildPhone(welcomeScreen()), -0.44, 0.05, 0.07, 0.0005);
+const p2 = flat(buildPhone(homeScreen()), 0.44, -0.08, -0.05, 0.0005);
+for (const [x, z, r] of [[-0.44, 0.05, 0.07], [0.44, -0.08, -0.05]]) { const c = contactShadow(THREE, 0.72, 1.48, { opacity: 0.35, blur: 0.05 }); c.rotation.z = r; c.position.set(x, 0.0004, z); scene.add(c); }
+camera.fov = 28; camera.position.set(-0.52, 3.7, 2.05); camera.lookAt(-0.52, 0, -0.04); camera.updateProjectionMatrix();
+accumulate(THREE, s, { frames: P ? 6 : 24, radius: 0.8 });
+done(s);
 }
 </script>
 </body></html>

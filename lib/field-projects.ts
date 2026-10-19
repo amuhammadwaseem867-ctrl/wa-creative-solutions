@@ -14,5 +14,26 @@ const img = (src: string, alt: string, width: number, height: number, caption?: 
 });
 
 export const fieldProjects: Project[] = [
-
+  {
+    slug: "corvane",
+    title: "Corvane",
+    discipline: "Brand Identity · Private Wealth",
+    categories: ["brand-identity","graphic"],
+    kind: "concept",
+    summary: "A quiet-luxury identity for a fictional private bank and family office, built on a raven drawn with a compass.",
+    overview: "Corvane is a self-initiated concept: a private wealth bank and family office for Lahore, Dubai and London. We built the whole identity, from the symbol and its geometry to stationery, a brass client card, a banking app and a brand standards book.",
+    challenge: "Private banks tend to look either old and ornate or interchangeable with retail fintech. The brief we set ourselves was an identity that feels as precise as Swiss engineering and as calm as an old banking hall, with a mark that still works at sixteen pixels and in one colour.",
+    solution: "The symbol is a single initial C that is also a raven in profile. It is constructed only from circles and horizontals, with its beak resting on a horizon line that runs through every application. A restrained palette of ledger green, ivory and brushed brass, Cormorant Garamond with Inter, and a measured tone of voice carry it from foil-stamped paper to the app.",
+    services: ["Brand strategy","Logo design","Visual identity system","Stationery","Card design","App UI direction","Brand guidelines"],
+    palette: ["#0F2A24","#F1ECE2","#D8D0C1","#1C1C1C","#B08D57"],
+    cover: img("/portfolio/concepts/corvane/01-cover.jpg", "Corvane wordmark above an ink-green folio with a foiled raven symbol, a brushed brass client card, a letterhead and a fountain pen on a stone surface.", 1600, 1000, "Folio, brass client card and letterhead on limestone"),
+    gallery: [
+      img("/portfolio/concepts/corvane/02-mark.jpg", "The Corvane raven-and-C symbol in ivory on ink green, overlaid with construction circles, angles and the horizon line, with size tests down to 16 pixels.", 1600, 1000, "The symbol and its construction"),
+      img("/portfolio/concepts/corvane/03-system.jpg", "Brand system board showing the five-colour palette with proportions, Cormorant Garamond and Inter specimens, and three tone-of-voice principles with an example.", 1600, 1000, "Colour, typography and tone of voice"),
+      img("/portfolio/concepts/corvane/04-stationery.jpg", "Letterhead, compliments slip, an envelope sealed with green wax bearing the symbol, and business cards arranged on limestone.", 1600, 1000, "Stationery suite"),
+      img("/portfolio/concepts/corvane/05-client-card.jpg", "Two engraved metal client cards, one brushed brass and one ink green, angled on a dark green surface.", 1600, 1000, "Private client cards in brass and ink-green PVD"),
+      img("/portfolio/concepts/corvane/06-digital.jpg", "The Corvane app icon at several sizes beside two phones showing the app's welcome screen and a portfolio overview.", 1600, 1000, "App icon and private banking app"),
+      img("/portfolio/concepts/corvane/07-standards.jpg", "An open brand book showing the clear-space and lockup pages, beside a closed green cloth copy with a gold-foiled symbol.", 1600, 1000, "Brand standards book"),
+    ],
+  },
 ];

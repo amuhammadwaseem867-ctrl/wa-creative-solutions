@@ -166,7 +166,7 @@ function buildGT1({ paint="#cfd3d8", metalness=0.55, roughness=0.38, glass="#070
    for(let i=right.length-1;i>=0;i--)curvePts.push(new THREE.Vector3(right[i][0]+0.004,y0,-right[i][1]-0.004));
    const cv=new THREE.CatmullRomCurve3(curvePts,false,"centripetal");
    car.add(new THREE.Mesh(new THREE.TubeGeometry(cv,300,0.006,8,false),drlMat))}
-  {const tm=new THREE.Mesh(new THREE.BoxGeometry(0.01,0.018,1.18),(lightOn?new THREE.MeshBasicMaterial({color:tail,toneMapped:false}):new THREE.MeshPhysicalMaterial({color:"#2a0808",roughness:0.2})));tm.position.set(X0-0.012,0.74,0);car.add(tm)}
+  if(tail){const tm=new THREE.Mesh(new THREE.BoxGeometry(0.01,0.018,1.18),(lightOn?new THREE.MeshBasicMaterial({color:tail,toneMapped:false}):new THREE.MeshPhysicalMaterial({color:"#2a0808",roughness:0.2})));tm.position.set(X0-0.012,0.74,0);car.add(tm)}
   const tyreMat=new THREE.MeshPhysicalMaterial({color:"#161618",roughness:0.72,metalness:0,clearcoat:0.25,clearcoatRoughness:0.5,sheen:0.4,sheenRoughness:0.6,sheenColor:new THREE.Color("#3a3c40")});
   const rimMat=new THREE.MeshPhysicalMaterial({color:rim,metalness:0.55,roughness:0.34,clearcoat:0.8,clearcoatRoughness:0.08});
   const lipMat=new THREE.MeshPhysicalMaterial({color:"#d9dce1",metalness:1,roughness:0.16});
