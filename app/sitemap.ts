@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
 import { absoluteUrl } from "@/lib/site";
 
+// Generated once at build time (also required for the static GitHub Pages export).
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: { path: string; priority: number; changeFrequency: "monthly" | "yearly" }[] = [
     { path: "/", priority: 1, changeFrequency: "monthly" },

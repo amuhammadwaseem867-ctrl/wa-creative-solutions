@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { EmberLight, StarField } from "./Atmosphere";
+import { asset } from "@/lib/hosting";
 
 type Props = {
   eyebrow: string;
@@ -16,7 +17,7 @@ export function PageHeader({ eyebrow, title, intro, children }: Props) {
       <StarField />
       {/* eslint-disable-next-line @next/next/no-img-element -- decorative still; next/image adds nothing here */}
       <img
-        src="/hero/particle-sphere-sm.webp"
+        src={asset("/hero/particle-sphere-sm.webp")}
         alt=""
         aria-hidden
         width={760}

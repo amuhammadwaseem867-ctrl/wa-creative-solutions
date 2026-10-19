@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+import { asset } from "@/lib/hosting";
 const ParticleSphere = dynamic(() => import("./ParticleSphere"), { ssr: false });
 
 type Mode = "pending" | "static" | "3d";
@@ -97,7 +98,7 @@ export function HeroVisual() {
       {/* Pre-rendered still of the same sphere, for devices that don't get the live scene. */}
       {mode === "static" && (
         // eslint-disable-next-line @next/next/no-img-element -- decorative still; next/image adds nothing here
-        <img src="/hero/particle-sphere.webp" alt="" width={1200} height={1200} className="fade-up absolute inset-0 h-full w-full object-contain" />
+        <img src={asset("/hero/particle-sphere.webp")} alt="" width={1200} height={1200} className="fade-up absolute inset-0 h-full w-full object-contain" />
       )}
       {mode === "3d" && (
         <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>

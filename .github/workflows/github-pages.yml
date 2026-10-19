@@ -1,0 +1,62 @@
+# Builds the site as a static export and publishes it to GitHub Pages on every push to main.
+# Server-only parts (API routes, admin, AI chat) can't run on Pages and are left out of this build;
+# the contact and quote forms open the visitor's email app with the brief instead.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Remove server-only routes
+        run: rm -rf app/api app/admin
+
+      - name: Build static site
+        run: npx next build
+        env:
+          NEXT_PUBLIC_STATIC_EXPORT: "1"
+          # "" with a custom domain, "/<repo>" when served from <user>.github.io/<repo>
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: https://wacreativesolution.com
+          NEXT_TELEMETRY_DISABLED: "1"
+
+      - run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

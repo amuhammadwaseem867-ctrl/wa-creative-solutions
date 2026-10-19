@@ -1,6 +1,9 @@
 import { ImageResponse } from "next/og";
 import { MONOGRAM_ACCENT_PATH, MONOGRAM_BODY_PATH, MONOGRAM_VIEWBOX } from "@/lib/brand";
 
+// Generated once at build time (also required for the static GitHub Pages export).
+export const dynamic = "force-static";
+
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 

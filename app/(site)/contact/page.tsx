@@ -5,6 +5,7 @@ import { InquiryForm } from "@/components/forms/InquiryForm";
 import { contact, site, socials } from "@/lib/site";
 import { packages, formatPrice } from "@/lib/pricing";
 import { serviceOptions } from "@/lib/services";
+import { STATIC_SITE } from "@/lib/hosting";
 
 export const metadata: Metadata = {
   title: "Contact — Start a Project",
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
 
 export default async function ContactPage({ searchParams }: PageProps<"/contact">) {
-  const sp = await searchParams;
+  // A static export cannot read the query string at build time, so package pre-fill is server-only.
+  const sp: Awaited<typeof searchParams> = STATIC_SITE ? {} : await searchParams;
   const pkg = packages.find((p) => p.id === one(sp.package));
   const service = one(sp.service);
   const prefill = {
