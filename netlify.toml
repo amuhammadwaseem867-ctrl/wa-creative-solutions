@@ -11,3 +11,8 @@
   # sender email), so the secrets scanner must not fail the build on them. Real secrets
   # (API keys, passwords, DATABASE_URL) stay scanned.
   SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,ADMIN_EMAIL,CONTACT_EMAIL,FROM_EMAIL"
+
+# Declared explicitly: uploads through the API don't always get the runtime auto-added,
+# and without it Netlify publishes raw .next files (404 on every page, no server routes).
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
