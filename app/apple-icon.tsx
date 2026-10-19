@@ -8,7 +8,7 @@ export default function AppleIcon() {
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "#080808" }}>
-        <svg width={118} height={93} viewBox={`0 0 ${MONOGRAM_VIEWBOX.width} ${MONOGRAM_VIEWBOX.height}`}>
+        <svg width={104} height={120} viewBox={`0 0 ${MONOGRAM_VIEWBOX.width} ${MONOGRAM_VIEWBOX.height}`}>
           <path d={MONOGRAM_BODY_PATH} fill="#fff" />
           <path d={MONOGRAM_ACCENT_PATH} fill="#FF202D" />
         </svg>

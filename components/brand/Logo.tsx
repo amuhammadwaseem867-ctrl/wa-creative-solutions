@@ -4,8 +4,8 @@ export type LogoTone = "white" | "black" | "red" | "accent" | "accent-dark";
 
 /**
  * tone:
- *  - "accent": white mark + red apex (primary, dark backgrounds)
- *  - "accent-dark": black mark + red apex (primary, light backgrounds)
+ *  - "accent": red hexagon + white letters (primary, dark backgrounds)
+ *  - "accent-dark": red hexagon + black letters (primary, light backgrounds)
  *  - "white" / "black" / "red": single-colour versions
  */
 const toneColors: Record<LogoTone, { body: string; accent: string; text: string }> = {
@@ -36,12 +36,12 @@ export function Monogram({ tone = "accent", className, title }: MonogramProps) {
 
 type LogoProps = { tone?: LogoTone; className?: string; compact?: boolean };
 
-/** Primary horizontal lock-up: prism mark + two-line wordmark. */
+/** Primary horizontal lock-up: hexagon monogram + two-line wordmark. */
 export function Logo({ tone = "accent", className = "", compact = false }: LogoProps) {
   const c = toneColors[tone];
   return (
     <span className={`inline-flex items-center gap-[0.55em] ${c.text} ${className}`}>
-      <Monogram tone={tone} className="h-[1.5em] w-auto shrink-0" />
+      <Monogram tone={tone} className="h-[1.9em] w-auto shrink-0" />
       <span className="flex flex-col leading-none">
         <span className="font-display text-[0.82em] font-bold tracking-[0.14em]">WA CREATIVE</span>
         {!compact && <span className="mt-[0.3em] font-sans text-[0.5em] font-medium tracking-[0.5em] opacity-60">SOLUTION</span>}

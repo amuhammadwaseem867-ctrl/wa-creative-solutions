@@ -7,8 +7,8 @@ export function BrandShowcase() {
     <div className="grid gap-4 md:grid-cols-6">
       <figure className="relative flex aspect-[4/3] items-center justify-center overflow-hidden border border-line bg-ink-2 md:col-span-4 md:row-span-2 md:aspect-auto md:min-h-[420px]">
         <div className="grid-lines absolute inset-0 opacity-70" aria-hidden />
-        <LogoReveal className="relative w-1/2 max-w-[340px]" delay={200} />
-        <figcaption className="label-caps absolute bottom-5 left-5 text-mute">Prism mark · W in the cuts, A at the centre</figcaption>
+        <LogoReveal className="relative w-[34%] max-w-[230px]" delay={200} />
+        <figcaption className="label-caps absolute bottom-5 left-5 text-mute">Hexagon mark · W and A share one stroke</figcaption>
       </figure>
       <figure className="flex aspect-[4/3] flex-col items-center justify-center gap-4 bg-paper md:col-span-2">
         <Logo tone="accent-dark" className="text-[1.6rem]" />

@@ -24,7 +24,7 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <svg width={96} height={76} viewBox={`0 0 ${MONOGRAM_VIEWBOX.width} ${MONOGRAM_VIEWBOX.height}`}>
+          <svg width={78} height={90} viewBox={`0 0 ${MONOGRAM_VIEWBOX.width} ${MONOGRAM_VIEWBOX.height}`}>
             <path d={MONOGRAM_BODY_PATH} fill="#fff" />
             <path d={MONOGRAM_ACCENT_PATH} fill="#FF202D" />
           </svg>
