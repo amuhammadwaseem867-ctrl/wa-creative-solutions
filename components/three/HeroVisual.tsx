@@ -2,9 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { BlobFallback } from "./BlobFallback";
-
-const BlobScene = dynamic(() => import("./BlobScene"), { ssr: false });
+const ParticleSphere = dynamic(() => import("./ParticleSphere"), { ssr: false });
 
 type Mode = "pending" | "static" | "3d";
 
@@ -96,14 +94,14 @@ export function HeroVisual() {
 
   return (
     <div ref={wrap} className="pointer-events-none absolute inset-0" aria-hidden>
-      <div
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${ready ? "opacity-0" : "opacity-100"}`}
-      >
-        <BlobFallback className="h-auto w-[72%]" />
-      </div>
+      {/* Pre-rendered still of the same sphere, for devices that don't get the live scene. */}
+      {mode === "static" && (
+        // eslint-disable-next-line @next/next/no-img-element -- decorative still; next/image adds nothing here
+        <img src="/hero/particle-sphere.webp" alt="" width={1200} height={1200} className="fade-up absolute inset-0 h-full w-full object-contain" />
+      )}
       {mode === "3d" && (
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`}>
-          <BlobScene
+        <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>
+          <ParticleSphere
             pointer={pointer}
             scroll={scroll}
             quality={quality}

@@ -614,3 +614,182 @@ html.js [data-reveal].is-visible {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* ==================================================================
+   HERO — light cone, star-field crosses, ornaments
+   ================================================================== */
+
+.hero-light {
+  background:
+    radial-gradient(ellipse 15% 19% at 50% 0%, rgb(255 246 232), rgb(255 214 170 / 0.7) 40%, transparent 78%),
+    radial-gradient(ellipse 30% 42% at 50% 0%, rgb(255 104 44 / 0.9), rgb(255 80 36 / 0.35) 55%, transparent 76%),
+    radial-gradient(ellipse 50% 68% at 50% 0%, rgb(232 34 24 / 0.55), transparent 74%),
+    radial-gradient(ellipse 86% 100% at 50% 0%, rgb(110 14 10 / 0.45), transparent 80%);
+  animation: hero-light 7s ease-in-out infinite alternate;
+}
+@keyframes hero-light {
+  to {
+    opacity: 0.86;
+  }
+}
+
+.cross-grid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104'%3E%3Cpath d='M52 47.5v9M47.5 52h9' stroke='%23fff' stroke-opacity='.13'/%3E%3C/svg%3E");
+  background-size: 104px 104px;
+  background-position: center top;
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, black 20%, transparent 85%);
+}
+
+.twinkle {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  translate: -50% -50%;
+  background:
+    linear-gradient(white, white) center / 1px 100% no-repeat,
+    linear-gradient(white, white) center / 100% 1px no-repeat;
+  opacity: 0.08;
+  animation: twinkle 4.5s ease-in-out infinite;
+}
+@keyframes twinkle {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* Headline lines whose tails dissolve into the light */
+.fade-tail {
+  background: linear-gradient(90deg, #fff 0%, #fff 58%, rgb(255 255 255 / 0.42) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.spark {
+  color: #fff;
+  animation: spark 5s ease-in-out infinite;
+}
+@keyframes spark {
+  50% {
+    transform: translateY(-0.06em) rotate(45deg) scale(0.86);
+  }
+}
+
+/* CSS-only label cycler: six items, 3s each (keyframe stops assume six). */
+.cycle {
+  display: inline-grid;
+}
+.cycle > * {
+  grid-area: 1 / 1;
+  opacity: 0;
+  animation: cycle 18s var(--ease-expo) infinite;
+  animation-delay: calc(var(--i) * 3s);
+}
+@keyframes cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+  3%,
+  14.5% {
+    opacity: 1;
+    transform: none;
+  }
+  17.5%,
+  100% {
+    opacity: 0;
+    transform: translateY(-70%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cycle > * {
+    animation: none;
+  }
+  .cycle > :first-child {
+    opacity: 1;
+  }
+  .hero-light,
+  .twinkle,
+  .spark {
+    animation: none;
+  }
+}
+
+/* Dark glass button framed by corner crop marks */
+.bracket-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 3rem;
+  padding-inline: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-paper);
+  background: rgb(255 255 255 / 0.07);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  backdrop-filter: blur(10px);
+  transition:
+    background-color 0.35s var(--ease-expo),
+    color 0.35s var(--ease-expo);
+}
+.bracket-btn:hover {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+.bracket-btn::before,
+.bracket-btn::after,
+.bracket-btn > i::before,
+.bracket-btn > i::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 0 solid rgb(255 255 255 / 0.75);
+  transition: inset 0.35s var(--ease-expo);
+}
+.bracket-btn::before {
+  top: -5px;
+  left: -5px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+.bracket-btn::after {
+  top: -5px;
+  right: -5px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+.bracket-btn > i::before {
+  bottom: -5px;
+  left: -5px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+.bracket-btn > i::after {
+  bottom: -5px;
+  right: -5px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+.bracket-btn:hover::before {
+  top: -8px;
+  left: -8px;
+}
+.bracket-btn:hover::after {
+  top: -8px;
+  right: -8px;
+}
+.bracket-btn:hover > i::before {
+  bottom: -8px;
+  left: -8px;
+}
+.bracket-btn:hover > i::after {
+  bottom: -8px;
+  right: -8px;
+}
+.bracket-btn > i {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
