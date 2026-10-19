@@ -23,10 +23,11 @@ h1{font:300 76px/0.98 var(--serif);letter-spacing:-.01em;margin:0;color:var(--iv
 h1 em{font-style:italic;font-weight:300}
 .body{top:560px;font:400 15px/25px var(--sans);color:rgba(241,236,226,.78)}
 .body p{margin:0 0 14px}
-.scale{position:absolute;left:1000px;width:520px;top:776px}
-.scale .row{display:flex;align-items:flex-end;gap:44px;height:96px;border-bottom:1px solid rgba(176,141,87,.35);padding-bottom:18px;box-sizing:content-box}
+.scale{position:absolute;left:1000px;width:520px;top:773px}
+.scale .row{display:flex;align-items:flex-end;gap:44px;height:80px;border-bottom:1px solid rgba(176,141,87,.35);padding-bottom:18px;box-sizing:content-box}
 .scale .lab{display:flex;gap:44px;margin-top:12px;font:500 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,226,.5)}
 .scale .lab span{display:block}
+.scale .note{margin-top:18px;font:400 12px/18px var(--sans);color:rgba(241,236,226,.5)}
 </style></head>
 <body>
 <div class="hdr"><span class="l" id="hl"></span><span class="m">Brand identity · Concept</span><span class="r">02 / 07 — Symbol</span></div>
@@ -36,7 +37,7 @@ h1 em{font-style:italic;font-weight:300}
 <p>Corvane takes its name from <i>corvus</i>, the raven, and the vane that reads the wind: the keeper and the instrument. The symbol holds both. Three circles and two horizontals resolve into a single initial C; look again and it is a raven in profile, its beak resting exactly on the horizon.</p>
 <p>Every curve is struck from a fixed centre and every straight edge is level, so the mark engraves, foils and renders at sixteen pixels without redrawing.</p>
 </div>
-<div class="scale"><div class="row" id="sc"></div><div class="lab" id="sl"></div></div>
+<div class="scale"><div class="row" id="sc"></div><div class="lab" id="sl"></div><div class="note">Below 32 px the eye is omitted: the small-use symbol keeps the silhouette clean on screen.</div></div>
 <script>
 // ---- Corvane brand primitives (inlined into each board) ----
 const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
@@ -143,7 +144,8 @@ s += `<g fill="none" stroke="${br}" stroke-width="1">`;
 s += `<line x1="${cx}" y1="${cy}" x2="${X(T[0])}" y2="${Y(T[1])}"/>`;
 s += `<line x1="${cx}" y1="${cy}" x2="${X(eye[0])}" y2="${Y(eye[1])}" stroke-dasharray="2 3"/>`;
 const ar = 0.3 * R; s += `<path d="M${cx + ar} ${cy} A${ar} ${ar} 0 0 0 ${cx + ar * Math.cos(62 * D)} ${cy - ar * Math.sin(62 * D)}"/>`;
-s += `<line x1="${cx}" y1="${cy}" x2="${X(-0.64 * Math.cos(35 * D))}" y2="${Y(-0.64 * Math.sin(35 * D))}"/>`;
+s += `<line x1="${cx}" y1="${cy}" x2="${X(0.64 * Math.cos(-118 * D))}" y2="${Y(0.64 * Math.sin(-118 * D))}"/>`;
+s += `<polyline points="${X(eye[0])},${Y(eye[1]) - 7} ${X(eye[0])},${Y(1) - 52} ${X(eye[0]) + 14},${Y(1) - 52}"/>`;
 s += `</g>`;
 // points
 const dot = (u, v, r = 3.2) => `<circle cx="${X(u)}" cy="${Y(v)}" r="${r}" fill="${C.green}" stroke="${br}" stroke-width="1.2"/>`;
@@ -154,15 +156,15 @@ s += L(F.x + 16, Y(1) - 8, "HEAD · R");
 s += L(F.x + 16, Y(0) - 10, "HORIZON · 0");
 s += L(F.x + 16, Y(-0.5) - 8, "TERMINAL · −½R");
 s += L(F.x + 16, Y(-1) + 18, "BASE · −R");
-s += L(X(-0.64 * Math.cos(35 * D)) - 6, Y(-0.64 * Math.sin(35 * D)) + 18, "COUNTER · 0.64R", "middle");
+s += L(cx + 8, Y(-0.3), "0.64R");
 s += L(cx + ar + 8, cy - 14, "62°");
 s += L(X(T[0]) + 14, Y(T[1]) - 14, "CULMEN · 6R, TANGENT AT 62°");
 s += L(X(tip) - 4, Y(0) + 22, "TIP · 1.716R", "end");
-s += L(X(eye[0]) - 30, Y(eye[1]) + 4, "EYE · 0.12R", "end", iv);
+s += L(X(eye[0]) + 20, Y(1) - 48.5, "EYE · ⌀ 0.12R ON 60°");
 s += L(F.x + F.w - 16, F.y + F.h - 18, "CONSTRUCTION · UNIT R", "end");
 document.getElementById("draw").innerHTML = s;
 // scale tests
-const sizes = [[96, false, "96 px"], [48, false, "48 px"], [24, true, "24 px · Small-use"], [16, true, "16 px · Small-use"]];
+const sizes = [[80, false, "80 px"], [48, false, "48 px"], [24, true, "24 px"], [16, true, "16 px"]];
 document.getElementById("sc").innerHTML = sizes.map(([h, sm]) => markSVG(h, iv, sm)).join("");
 document.getElementById("sl").innerHTML = sizes.map(([h, sm, t]) => `<span style="width:${(MARK.w * h / MARK.h).toFixed(2)}px;white-space:nowrap">${t}</span>`).join("");
 </script>

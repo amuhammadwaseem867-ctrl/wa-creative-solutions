@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1600x1000"><title>Corvane — Stationery</title>
+<link rel="stylesheet" href="/fonts/cormorant-garamond/300.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/400.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/500.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/600.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/300-italic.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/400-italic.css"><link rel="stylesheet" href="/fonts/inter/300.css"><link rel="stylesheet" href="/fonts/inter/400.css"><link rel="stylesheet" href="/fonts/inter/500.css"><link rel="stylesheet" href="/fonts/inter/600.css">
+<style>
+:root{--green:#0F2A24;--ivory:#F1ECE2;--brass:#B08D57;--graphite:#1C1C1C;--stone:#D8D0C1;--serif:'Cormorant Garamond',serif;--sans:Inter,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1600px;height:1000px;overflow:hidden}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;font-feature-settings:"tnum" 1,"ss01" 0;position:relative}
+.hdr{position:absolute;left:80px;right:80px;top:52px;height:14px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;font:500 10.5px/14px var(--sans);letter-spacing:.18em;text-transform:uppercase;z-index:5}
+.hdr span{white-space:nowrap}
+.hdr .l{grid-column:1/4;display:flex;align-items:center;gap:10px}
+.hdr .m{grid-column:5/9}
+.hdr .r{grid-column:10/13;text-align:right}
+.eyebrow{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+.serif{font-family:var(--serif)}
+body{background:#d6cdbd}
+.hdr{color:rgba(28,28,28,.55)}.hdr .r{color:#7d6237}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head>
+<body>
+<div class="hdr"><span class="l" id="hl"></span><span class="m">Brand identity · Concept</span><span class="r">04 / 07 — Stationery</span></div>
+<script type="module">
+import * as THREE from "three";
+import { SVGLoader } from "three/addons/loaders/SVGLoader.js";
+import { createStudio, roundedBox, printed, done } from "/design/portfolio/_lib/studio.js";
+// ---- Corvane brand primitives (inlined into each board) ----
+const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
+// Symbol: head circle R=100 centred (100,100); counter 0.64R; culmen arc 6R tangent at 62deg; beak underside on the horizon (y=100);
+// lower terminal cut on the half-radius (y=150); eye 0.12R on the 60deg radial. Bounding box 271.59 x 200.
+const MARK = {
+  w: 271.59, h: 200,
+  full: "M271.590 100.000A600.000 600.000 0 0 0 146.947 11.705A100 100 0 1 0 186.603 150.000L139.950 150.000A64.000 64.000 0 1 1 164.000 100.000ZM147.000 28.986a6 6 0 1 0 -12 0a6 6 0 1 0 12 0Z",
+  small: "M271.590 100.000A600.000 600.000 0 0 0 146.947 11.705A100 100 0 1 0 186.603 150.000L139.950 150.000A64.000 64.000 0 1 1 164.000 100.000Z",
+};
+const markSVG = (h, color, small = false, extra = "") =>
+  `<svg ${extra} width="${(MARK.w * h / MARK.h).toFixed(2)}" height="${h}" viewBox="0 0 ${MARK.w} ${MARK.h}" aria-hidden="true"><path fill="${color}" fill-rule="evenodd" d="${small ? MARK.small : MARK.full}"/></svg>`;
+/** Draws the symbol with its top-left at (x,y), height h. Returns drawn width. */
+function drawMark(ctx, x, y, h, color, small = false) {
+  const s = h / MARK.h;
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color;
+  ctx.fill(new Path2D(small ? MARK.small : MARK.full), "evenodd"); ctx.restore();
+  return MARK.w * s;
+}
+const SERIF = "'Cormorant Garamond'", SANS = "Inter";
+const CAP = 0.6295; // Cormorant Garamond cap-height / em (measured)
+/** Tracked text with optional pair kerning (em units). Returns advance width. */
+function tracked(ctx, text, x, y, track = 0, kern = {}, measureOnly = false) {
+  const fs = parseFloat(ctx.font.match(/(\d+(\.\d+)?)px/)[1]);
+  let cx = x;
+  for (let i = 0; i < text.length; i++) {
+    if (!measureOnly) ctx.fillText(text[i], cx, y);
+    cx += ctx.measureText(text[i]).width + (i < text.length - 1 ? track * fs + (kern[text[i] + text[i + 1]] || 0) * fs : 0);
+  }
+  return cx - x;
+}
+const WM_KERN = { VA: -0.1, RV: -0.03 };
+/** Wordmark with baseline at y and cap height cap. align: left|center|right. Returns width. */
+function drawWordmark(ctx, x, y, cap, color, align = "left") {
+  const fs = cap / CAP;
+  ctx.font = `600 ${fs}px ${SERIF}`; ctx.fillStyle = color; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  const w = tracked(ctx, "CORVANE", 0, 0, 0.2, WM_KERN, true);
+  const sx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
+  tracked(ctx, "CORVANE", sx, y, 0.2, WM_KERN);
+  return w;
+}
+/** Horizontal lockup: symbol height = 2 x cap height; wordmark baseline on the terminal line. (x, baseline y). */
+function drawLockup(ctx, x, y, cap, color, markColor = color) {
+  const R = cap;
+  const mw = drawMark(ctx, x, y - 1.5 * R, 2 * R, markColor);
+  return mw + 0.64 * R + drawWordmark(ctx, x + mw + 0.64 * R, y, cap, color);
+}
+function lockupWidth(ctx, cap) { ctx.font = `600 ${cap / CAP}px ${SERIF}`; return MARK.w / 100 * cap + 0.64 * cap + tracked(ctx, "CORVANE", 0, 0, 0.2, WM_KERN, true); }
+/** Tracked caps label in Inter. */
+function label(ctx, text, x, y, size, color, { weight = 500, track = 0.16, align = "left" } = {}) {
+  ctx.font = `${weight} ${size}px ${SANS}`; ctx.fillStyle = color; ctx.textBaseline = "alphabetic";
+  const w = tracked(ctx, text, 0, 0, track, {}, true);
+  const sx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
+  tracked(ctx, text, sx, y, track);
+  return w;
+}
+function txt(ctx, text, x, y, font, color, align = "left") { ctx.font = font; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = "alphabetic"; ctx.fillText(text, x, y); ctx.textAlign = "left"; }
+function hair(ctx, x1, y1, x2, y2, color, w = 1) { ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+/** Wraps text into lines that fit maxW; draws them. Returns y after last line. */
+function para(ctx, text, x, y, maxW, lh, font, color) {
+  ctx.font = font; ctx.fillStyle = color; ctx.textAlign = "left";
+  const words = text.split(" "); let line = "";
+  for (const w of words) { const t = line ? line + " " + w : w; if (ctx.measureText(t).width > maxW && line) { ctx.fillText(line, x, y); y += lh; line = w; } else line = t; }
+  if (line) { ctx.fillText(line, x, y); y += lh; }
+  return y;
+}
+async function loadFonts() {
+  const specs = ["300 40px 'Cormorant Garamond'", "400 40px 'Cormorant Garamond'", "500 40px 'Cormorant Garamond'", "600 40px 'Cormorant Garamond'",
+    "italic 400 40px 'Cormorant Garamond'", "italic 300 40px 'Cormorant Garamond'", "400 40px Inter", "500 40px Inter", "600 40px Inter", "300 40px Inter"];
+  await Promise.all(specs.map((s) => document.fonts.load(s)));
+}
+// ---- end brand primitives ----
+// ---- Corvane 3D kit (inlined into each CGI board) ----
+function rand(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+/** Limestone: warm base with soft mottling and fine fossil speckle. Returns {map, bump}. */
+function limestone(THREE, { base = "#d9d1c3", size = 1024, seed = 7, repeat = [10, 10], mottle = 1 } = {}) {
+  const r = rand(seed);
+  const mk = (draw) => { const c = document.createElement("canvas"); c.width = c.height = size; const g = c.getContext("2d"); draw(g); return c; };
+  const col = mk((g) => {
+    g.fillStyle = base; g.fillRect(0, 0, size, size);
+    for (let i = 0; i < 260; i++) {
+      const x = r() * size, y = r() * size, rad = 40 + r() * 220, light = r() > 0.5;
+      const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+      gr.addColorStop(0, light ? `rgba(255,250,240,${0.045 * mottle})` : `rgba(120,104,80,${0.035 * mottle})`); gr.addColorStop(1, "rgba(0,0,0,0)");
+      g.fillStyle = gr; for (const dx of [-size, 0, size]) for (const dy of [-size, 0, size]) { g.save(); g.translate(dx, dy); g.fillRect(x - rad, y - rad, rad * 2, rad * 2); g.restore(); }
+    }
+    for (let i = 0; i < 9000; i++) { const x = r() * size, y = r() * size, a = r() * 0.22; g.fillStyle = r() > 0.4 ? `rgba(110,95,75,${a})` : `rgba(255,252,245,${a})`; g.fillRect(x, y, 1 + r() * 1.4, 1 + r() * 1.4); }
+    for (let i = 0; i < 70; i++) { const x = r() * size, y = r() * size; g.fillStyle = `rgba(150,132,105,${0.12 + r() * 0.15})`; g.beginPath(); g.ellipse(x, y, 1 + r() * 3, 0.8 + r() * 1.5, r() * 3, 0, 7); g.fill(); }
+  });
+  const map = new THREE.CanvasTexture(col); map.colorSpace = THREE.SRGBColorSpace;
+  const bump = new THREE.CanvasTexture(col);
+  for (const t of [map, bump]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...repeat); t.anisotropy = 8; }
+  return { map, bump };
+}
+/** Brushed-metal streak texture (grey), for roughness / bump / anisotropy cues. */
+function brushedTex(THREE, { w = 1024, h = 1024, seed = 3, vertical = false } = {}) {
+  const r = rand(seed); const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d");
+  g.fillStyle = "#808080"; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 2600; i++) { const y = r() * h, len = w * (0.2 + r() * 0.9), x = r() * w - len * 0.2; const v = 128 + (r() - 0.5) * 70;
+    g.fillStyle = `rgba(${v},${v},${v},${0.25 + r() * 0.35})`; g.fillRect(x, y, len, 0.6 + r() * 1.1); }
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; if (vertical) t.rotation = Math.PI / 2;
+  return t;
+}
+/** Soft contact shadow: a blurred dark rounded rectangle on a transparent plane, laid on the floor. */
+function contactShadow(THREE, w, d, { opacity = 0.55, blur = 0.18, y = 0.0006 } = {}) {
+  const S = 256, pad = blur; const c = document.createElement("canvas"); c.width = c.height = S; const g = c.getContext("2d");
+  const W = w + pad * 4, D = d + pad * 4; const sx = S / W, sy = S / D;
+  g.filter = `blur(${Math.max(2, blur * Math.min(sx, sy))}px)`; g.fillStyle = "#000";
+  g.fillRect((W - w) / 2 * sx, (D - d) / 2 * sy, w * sx, d * sy);
+  const t = new THREE.CanvasTexture(c);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(W, D), new THREE.MeshBasicMaterial({ alphaMap: t, color: "#000", transparent: true, opacity, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2; m.position.y = y; m.renderOrder = -1;
+  return m;
+}
+/** Rounded-rectangle slab (ExtrudeGeometry) whose cap UVs map 0..1 across w x h. Lies in XY, thickness along +Z from 0. */
+function slab(THREE, w, h, t, r, bevel = 0.0015) {
+  const s = new THREE.Shape(); const x = -w / 2, y = -h / 2;
+  s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.absarc(x + w - r, y + r, r, -Math.PI / 2, 0); s.lineTo(x + w, y + h - r); s.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2);
+  s.lineTo(x + r, y + h); s.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI); s.lineTo(x, y + r); s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5);
+  const g = new THREE.ExtrudeGeometry(s, { depth: t - 2 * bevel, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 3, curveSegments: 24 });
+  g.translate(0, 0, bevel);
+  const uv = g.attributes.uv, p = g.attributes.position;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, (p.getX(i) + w / 2) / w, (p.getY(i) + h / 2) / h);
+  g.computeVertexNormals();
+  return g;
+}
+/** Replace the studio key with a soft spotlight (pool of light, natural fall-off). */
+function spotKey(THREE, s, { pos = [-3.5, 7, -3], target = [0, 0, 0], intensity = 3.4, angle = 0.55, penumbra = 1, color = "#fff4e6", map = 4096, frustum = 0 } = {}) {
+  s.scene.remove(s.lights.key);
+  const k = new THREE.SpotLight(color, intensity, 0, angle, penumbra, 0);
+  k.position.set(...pos); k.target.position.set(...target); s.scene.add(k.target); s.scene.add(k);
+  k.castShadow = true; k.shadow.mapSize.set(map, map); k.shadow.camera.near = 2; k.shadow.camera.far = 30; k.shadow.bias = -0.00015; k.shadow.normalBias = 0.004; k.shadow.radius = 1.5;
+  s.lights.key = k; return k;
+}
+/**
+ * Progressive render: averages N frames with the key light jittered across a disc (area-light soft shadows)
+ * and sub-pixel camera jitter (anti-aliasing), then tone-maps once to screen.
+ */
+function accumulate(THREE, s, { frames = 24, radius = 0.6, onFrame = null } = {}) {
+  const { renderer, scene, camera } = s; const key = s.lights.key; const base = key.position.clone();
+  const size = renderer.getDrawingBufferSize(new THREE.Vector2());
+  const opts = { type: THREE.HalfFloatType, depthBuffer: true };
+  const frame = new THREE.WebGLRenderTarget(size.x, size.y, { ...opts, samples: 4 });
+  const acc = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.FloatType, depthBuffer: false });
+  const qs = new THREE.Scene(); const qc = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const addMat = new THREE.MeshBasicMaterial({ map: frame.texture, transparent: true, blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.OneFactor, blendDst: THREE.OneFactor, blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneFactor, depthTest: false, depthWrite: false, toneMapped: false });
+  const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), addMat); qs.add(quad);
+  // basis perpendicular to the light direction
+  const dir = base.clone().normalize(); const u = new THREE.Vector3(0, 1, 0).cross(dir).normalize(); const v = dir.clone().cross(u).normalize();
+  const autoClear = renderer.autoClear; renderer.autoClear = false;
+  renderer.setRenderTarget(acc); renderer.setClearColor(0x000000, 0); renderer.clear();
+  const r = rand(11); const W = size.x, H = size.y;
+  for (let i = 0; i < frames; i++) {
+    const a = 2.399963 * i, rr = radius * Math.sqrt((i + 0.5) / frames);
+    key.position.copy(base).addScaledVector(u, Math.cos(a) * rr).addScaledVector(v, Math.sin(a) * rr);
+    camera.setViewOffset(W, H, (r() - 0.5) * 0.9, (r() - 0.5) * 0.9, W, H);
+    if (onFrame) onFrame(i);
+    renderer.setRenderTarget(frame); renderer.clear(); renderer.render(scene, camera);
+    renderer.setRenderTarget(acc); renderer.render(qs, qc);
+  }
+  camera.clearViewOffset(); key.position.copy(base);
+  const outMat = new THREE.MeshBasicMaterial({ map: acc.texture, color: new THREE.Color(1 / frames, 1 / frames, 1 / frames), depthTest: false, depthWrite: false, toneMapped: true });
+  quad.material = outMat; renderer.autoClear = autoClear; renderer.setRenderTarget(null); renderer.render(qs, qc);
+  s.render = () => { renderer.setRenderTarget(null); renderer.render(qs, qc); }; // final frame for done()
+}
+
+/** Custom softbox environment: warm room with large panels so flat metal reads as brass, not black. */
+function softboxEnv(THREE, renderer, panels, { room = "#2b2723" } = {}) {
+  const sc = new THREE.Scene(); sc.background = new THREE.Color(room);
+  const grad = (() => { const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d"); const r = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    r.addColorStop(0, "#fff"); r.addColorStop(0.55, "#bbb"); r.addColorStop(1, "#000"); g.fillStyle = r; g.fillRect(0, 0, 256, 256); return new THREE.CanvasTexture(c); })();
+  for (const p of panels) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(p.w, p.h), new THREE.MeshBasicMaterial({ color: new THREE.Color(p.color || "#fff").multiplyScalar(p.i), map: p.soft ? grad : null, side: THREE.DoubleSide }));
+    m.position.set(...p.pos); m.lookAt(0, p.lookY || 0, 0); sc.add(m);
+  }
+  const pm = new THREE.PMREMGenerator(renderer); const t = pm.fromScene(sc, 0.01).texture; pm.dispose(); return t;
+}
+/** Parses the symbol into THREE shapes (SVGLoader instance passed in). Shapes are in mark units (0..271.59 x 0..200, y down). */
+function markShapes(SVGLoader, small = false) {
+  const data = new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MARK.w} ${MARK.h}"><path fill-rule="evenodd" d="${small ? MARK.small : MARK.full}"/></svg>`);
+  const shapes = []; for (const p of data.paths) shapes.push(...SVGLoader.createShapes(p)); return shapes;
+}
+/** Extruded symbol, centred on its head circle, height h (world units), facing +Z, lying in XY. */
+function markMesh(THREE, SVGLoader, h, depth, material, { bevel = 0.15, small = false } = {}) {
+  const k = h / MARK.h;
+  const g = new THREE.ExtrudeGeometry(markShapes(SVGLoader, small), { depth: depth / k, bevelEnabled: bevel > 0, bevelThickness: bevel * depth / k, bevelSize: bevel * depth / k * 0.8, bevelSegments: 3, curveSegments: 48 });
+  g.translate(-100, -100, 0); g.rotateX(Math.PI); g.scale(k, k, k); g.translate(0, 0, depth); // svg y-down -> y-up (rotation keeps winding), origin at head centre, z 0..depth
+  g.computeVertexNormals();
+  const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = true; return m;
+}
+/** Shared studio look: softbox env, spotlight key, gentle fill; returns env texture. */
+function studioLook(THREE, s, { key = [-4.6, 6.4, -3.2], target = [0, 0, 0], intensity = 4.4, angle = 0.5, envI = 0.3, room = "#1f1c19", floor = "#d9d1c3", panels = null } = {}) {
+  const env = softboxEnv(THREE, s.renderer, panels || [
+    { w: 7, h: 4, i: 1.25, pos: [-2.5, 5, -5], soft: true },
+    { w: 4, h: 4, i: 0.9, pos: [1.5, 7, 1], soft: true },
+    { w: 2.5, h: 8, i: 0.7, pos: [-7, 2.5, 1.5], soft: true },
+    { w: 3, h: 3, i: 0.5, pos: [6, 2, 4], soft: true },
+    { w: 14, h: 14, i: 0.25, color: floor, pos: [0, -5, 0] },
+  ], { room });
+  s.scene.environment = env; s.scene.environmentIntensity = envI;
+  spotKey(THREE, s, { pos: key, target, intensity, angle, penumbra: 0.9 });
+  s.lights.fill.position.set(4, 3, 5); s.lights.fill.intensity = 0.3; s.lights.fill.color.set("#f3efe8");
+  s.lights.ambient.intensity = 0.08;
+  return env;
+}
+function ctex(THREE, cv, srgb = true, aniso = 16) { const t = new THREE.CanvasTexture(cv); if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso; return t; }
+// ---- end 3D kit ----
+// ---- Corvane print textures (canvas) ----
+function canvas2d(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; return [c, c.getContext("2d")]; }
+/** Paper grain overlay. */
+function grain(g, w, h, amt = 0.035, seed = 5) { const r = rand(seed); for (let i = 0; i < w * h / 90; i++) { const v = r() > 0.5 ? 255 : 0; g.fillStyle = `rgba(${v},${v},${v},${r() * amt})`; g.fillRect(r() * w, r() * h, 1.2, 1.2); } }
+/** A4 letterhead, 1240 x 1754 (150 dpi). */
+function letterhead() {
+  const W = 1240, H = 1754, [c, g] = canvas2d(W, H); const mm = W / 210;
+  g.fillStyle = "#F3EEE4"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.03);
+  const L = 20 * mm, Rx = W - 20 * mm;
+  drawLockup(g, L, 30 * mm, 4.2 * mm, C.green);
+  label(g, "PRIVATE OFFICE", Rx, 27 * mm, 1.9 * mm, "#8a6c3f", { align: "right", track: 0.2 });
+  label(g, "LAHORE · DUBAI · LONDON", Rx, 31 * mm, 1.9 * mm, "rgba(28,28,28,.6)", { align: "right", track: 0.2 });
+  hair(g, 0, 52 * mm, W, 52 * mm, "#B08D57", 2); // the horizon
+  const f = (s, w = 400) => `${w} ${s * mm}px Inter`;
+  txt(g, "15 October 2026", L, 66 * mm, f(2.6), C.graphite);
+  txt(g, "Mr and Mrs H. Rahman", L, 76 * mm, f(2.6, 500), C.graphite);
+  txt(g, "Private and confidential", L, 80.5 * mm, f(2.6), "rgba(28,28,28,.6)");
+  g.font = `400 ${7 * mm}px 'Cormorant Garamond'`; g.fillStyle = C.green; g.fillText("Your family charter, in draft", L, 100 * mm);
+  let y = 112 * mm; const body = f(2.6), lh = 4.6 * mm, mw = 120 * mm;
+  y = para(g, "Dear Mr and Mrs Rahman,", L, y, mw, lh, body, C.graphite) + 2.4 * mm;
+  y = para(g, "Thank you for your time in Lahore on Thursday. As agreed, I enclose the first draft of the Rahman family charter, together with the consolidated statement for the third quarter.", L, y, mw, lh, body, C.graphite) + 2.4 * mm;
+  y = para(g, "The charter sets out how decisions will be made across the three generations, how the trust in Dubai will distribute income, and how the London property will be held. Nothing in it is final until all of you have read it.", L, y, mw, lh, body, C.graphite) + 2.4 * mm;
+  y = para(g, "I will call on Thursday 22 October at 11:00 to take you through it, and I am in London from the 27th should you prefer to meet.", L, y, mw, lh, body, C.graphite) + 6 * mm;
+  y = para(g, "With kind regards,", L, y, mw, lh, body, C.graphite) + 4 * mm;
+  g.font = `italic 400 ${8.5 * mm}px 'Cormorant Garamond'`; g.fillStyle = "#1f3a5a"; g.fillText("Zara Malik", L + 1 * mm, y + 2 * mm);
+  y += 10 * mm; txt(g, "Zara Malik", L, y, f(2.6, 500), C.graphite); txt(g, "Director, Private Clients", L, y + lh, body, "rgba(28,28,28,.6)");
+  hair(g, L, H - 24 * mm, Rx, H - 24 * mm, "rgba(28,28,28,.18)", 1.5);
+  label(g, "CORVANE PRIVATE BANK", L, H - 17 * mm, 1.8 * mm, "rgba(28,28,28,.7)", { track: 0.2 });
+  label(g, "CORVANE.BANK", Rx, H - 17 * mm, 1.8 * mm, "rgba(28,28,28,.7)", { track: 0.2, align: "right" });
+  label(g, "GULBERG, LAHORE  ·  DIFC, DUBAI  ·  MAYFAIR, LONDON", W / 2, H - 17 * mm, 1.8 * mm, "rgba(28,28,28,.5)", { track: 0.2, align: "center" });
+  return c;
+}
+/** Business card 85 x 55 mm at 16 px/mm. side: "front" (green) | "back" (ivory). Returns {color, foil} canvases (foil = white mask). */
+function bizCard(side = "front") {
+  const W = 1360, H = 880, mm = 16; const [c, g] = canvas2d(W, H); const [m, mg] = canvas2d(W, H);
+  mg.fillStyle = "#000"; mg.fillRect(0, 0, W, H);
+  if (side === "front") {
+    g.fillStyle = "#123029"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.05, 9);
+    const mh = 22 * mm, mw = MARK.w / MARK.h * mh; drawMark(mg, (W - mw) / 2 + 2 * mm, (H - mh) / 2, mh, "#fff");
+    drawMark(g, (W - mw) / 2 + 2 * mm, (H - mh) / 2, mh, "#6d5634");
+  } else {
+    g.fillStyle = "#F3EEE4"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.03, 4);
+    const L = 7 * mm;
+    drawLockup(g, L, 14 * mm, 2.6 * mm, C.green);
+    hair(g, 0, 26 * mm, W, 26 * mm, "#B08D57", 2.5);
+    g.font = `500 ${6 * mm}px 'Cormorant Garamond'`; g.fillStyle = C.green; g.fillText("Zara Malik", L, 37 * mm);
+    txt(g, "Director, Private Clients", L, 42 * mm, `400 ${2.3 * mm}px Inter`, "rgba(28,28,28,.65)");
+    txt(g, "+44 20 7946 0958", L, 49.5 * mm, `400 ${2.3 * mm}px Inter`, C.graphite);
+    txt(g, "z.malik@corvane.bank", W - L, 49.5 * mm, `400 ${2.3 * mm}px Inter`, C.graphite, "right");
+    label(g, "MAYFAIR, LONDON", W - L, 37 * mm, 1.9 * mm, "rgba(28,28,28,.55)", { align: "right", track: 0.18 });
+  }
+  return { color: c, foil: m };
+}
+/** Colourise an alpha mask canvas and draw it onto g. */
+function stamp(g, mask, color, blur = 0) { const [t, tg] = canvas2d(mask.width, mask.height); if (blur) tg.filter = `blur(${blur}px)`; tg.drawImage(mask, 0, 0); tg.filter = "none"; tg.globalCompositeOperation = "source-in"; tg.fillStyle = color; tg.fillRect(0, 0, mask.width, mask.height); g.drawImage(t, 0, 0); }
+/** Metal card face, 85.6 x 54 mm at s px/mm. Returns {color, rough, bump} canvases. Engraved: darker, rougher, recessed. */
+function metalCard({ s = 20, name = "HAMZA RAHMAN", tier = "PRIVATE CLIENT", seed = 21, tone = "brass" } = {}) {
+  const W = Math.round(85.6 * s), H = Math.round(54 * s), mm = s;
+  const [mask, mk] = canvas2d(W, H); const ink = "#fff";
+  const mh = 11 * mm, mx = 7 * mm, my = 7 * mm; drawMark(mk, mx, my, mh, ink);
+  const tipX = mx + MARK.w / MARK.h * mh, hy = my + mh / 2;
+  mk.fillStyle = ink; mk.fillRect(tipX + 2.4 * mm, hy - 0.1 * mm, W - tipX - 2.4 * mm, 0.2 * mm); // the horizon, continued
+  label(mk, tier, W - 7 * mm, hy - 2.2 * mm, 2.0 * mm, ink, { align: "right", track: 0.26 });
+  label(mk, name, mx, H - 7 * mm, 2.4 * mm, ink, { track: 0.22 });
+  drawWordmark(mk, W - 7 * mm, H - 7 * mm, 2.5 * mm, ink, "right");
+  const r = rand(seed);
+  const [col, cg] = canvas2d(W, H); const [rough, rg] = canvas2d(W, H); const [bump, bg] = canvas2d(W, H);
+  const brass = tone === "brass";
+  cg.fillStyle = brass ? "rgb(204,160,94)" : "rgb(24,50,43)"; cg.fillRect(0, 0, W, H);
+  rg.fillStyle = "rgb(90,90,90)"; rg.fillRect(0, 0, W, H);
+  bg.fillStyle = "rgb(200,200,200)"; bg.fillRect(0, 0, W, H);
+  for (let i = 0; i < 7000; i++) { // brushing: long horizontal streaks
+    const y = r() * H, len = W * (0.1 + r() * 0.9), x = r() * W - len * 0.3, d = r() - 0.5, th = 0.4 + r() * 1.1;
+    cg.fillStyle = d > 0 ? `rgba(255,244,220,${d * 0.16})` : `rgba(60,40,15,${-d * 0.16})`; cg.fillRect(x, y, len, th);
+    const v = Math.round(90 + d * 70); rg.fillStyle = `rgba(${v},${v},${v},0.55)`; rg.fillRect(x, y, len, th);
+    const b = Math.round(200 + d * 30); bg.fillStyle = `rgba(${b},${b},${b},0.5)`; bg.fillRect(x, y, len, th);
+  }
+  stamp(cg, mask, brass ? "rgb(92,64,30)" : "rgb(176,141,87)");
+  stamp(rg, mask, brass ? "rgb(215,215,215)" : "rgb(120,120,120)");
+  stamp(bg, mask, "rgb(40,40,40)", s / 22);
+  return { color: col, rough, bump, mask, W, H };
+}
+/** Foil mask for the folio cover: centred symbol over a horizon rule (white on transparent). */
+function folioFoil(W = 1150, H = 1550) {
+  const [c, g] = canvas2d(W, H);
+  const mh = 150, mw = MARK.w / MARK.h * mh, mx = (W - mw) / 2, my = H * 0.36 - mh / 2; drawMark(g, mx, my, mh, "#fff");
+  g.fillStyle = "#fff"; g.fillRect(mx + mw + 18, H * 0.36 - 1.6, W - (mx + mw + 18), 3.2); // horizon runs to the fore-edge
+  drawWordmark(g, W / 2, H * 0.36 + mh / 2 + 120, 34, "#fff", "center");
+  return c;
+}
+// ---- end print textures ----
+/** DL envelope back (220 x 110 mm at 6 px/mm): paper with side-flap seams; returns canvas. */
+function envelopeBack() {
+  const mm = 6, W = 220 * mm, H = 110 * mm; const [c, g] = canvas2d(W, H);
+  g.fillStyle = "#F2EDE3"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.03, 12);
+  // side flaps and bottom flap seams (subtle shading)
+  g.strokeStyle = "rgba(120,104,80,0.22)"; g.lineWidth = 2;
+  g.beginPath(); g.moveTo(0, H); g.lineTo(W * 0.42, H * 0.46); g.moveTo(W, H); g.lineTo(W * 0.58, H * 0.46); g.stroke();
+  const sh = g.createLinearGradient(0, H, 0, H * 0.4); sh.addColorStop(0, "rgba(0,0,0,0)"); sh.addColorStop(1, "rgba(0,0,0,0.03)");
+  g.fillStyle = sh; g.beginPath(); g.moveTo(0, H); g.lineTo(W * 0.42, H * 0.46); g.lineTo(W * 0.58, H * 0.46); g.lineTo(W, H); g.closePath(); g.fill();
+  label(g, "CORVANE PRIVATE BANK  ·  MAYFAIR, LONDON", W / 2, H - 9 * mm, 2 * mm, "rgba(28,28,28,.55)", { align: "center", track: 0.22 });
+  return c;
+}
+/** Plain paper with grain (for flaps, edges). */
+function paper(w = 512, h = 512, color = "#F2EDE3", seed = 2) { const [c, g] = canvas2d(w, h); g.fillStyle = color; g.fillRect(0, 0, w, h); grain(g, w, h, 0.03, seed); return c; }
+/** Compliments slip 210 x 99 mm at 6 px/mm, ink green. Returns {color, foil}. */
+function compSlip() {
+  const mm = 6, W = 210 * mm, H = 99 * mm; const [c, g] = canvas2d(W, H); const [f, fg] = canvas2d(W, H);
+  g.fillStyle = "#123029"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.05, 15);
+  const L = 14 * mm;
+  drawLockup(fg, L, 22 * mm, 4 * mm, "#fff");
+  fg.fillStyle = "#fff"; fg.fillRect(0, 22 * mm - 6 * mm - 0.5, 0, 0);
+  g.font = `italic 400 ${9 * mm}px 'Cormorant Garamond'`; g.fillStyle = "rgba(241,236,226,.92)"; g.fillText("With compliments", L, 62 * mm);
+  label(g, "GULBERG, LAHORE  ·  DIFC, DUBAI  ·  MAYFAIR, LONDON", L, H - 12 * mm, 2.1 * mm, "rgba(241,236,226,.6)", { track: 0.22 });
+  label(g, "CORVANE.BANK", W - L, H - 12 * mm, 2.1 * mm, "rgba(241,236,226,.6)", { track: 0.22, align: "right" });
+  return { color: c, foil: f };
+}
+await loadFonts();
+document.getElementById("hl").innerHTML = markSVG(12, "rgba(28,28,28,.55)", true) + "<span>Corvane</span>";
+const s = createStudio({ background: "#d6cdbd", lighting: "soft", fov: 30, exposure: 1.0 });
+const { scene, camera, renderer } = s;
+renderer.shadowMap.type = THREE.PCFShadowMap;
+const env = studioLook(THREE, s, { key: [-4.4, 7.6, -2.6], target: [0.2, 0, 0], intensity: 4.2, angle: 0.55, envI: 0.32 });
+const stone = limestone(THREE, { base: "#d8cfc0", repeat: [12, 12] });
+const sweep = s.cyclorama({ color: "#ffffff", back: 6, radius: 4 });
+Object.assign(sweep.material, { map: stone.map, bumpMap: stone.bump, bumpScale: 0.6, roughness: 0.9 }); sweep.material.needsUpdate = true;
+
+const paperMat = (cv, rough = 0.9) => new THREE.MeshStandardMaterial({ map: ctex(THREE, cv), roughness: rough });
+const flat = (obj, x, z, rz, y = 0) => { obj.rotation.x = -Math.PI / 2; obj.rotation.z = rz; obj.position.set(x, y, z); scene.add(obj); return obj; };
+
+// A4 letterhead
+const letter = printed(2.1, 2.97, 0.004, ctex(THREE, letterhead()), { edgeColor: "#efe9df", roughness: 0.9 });
+flat(letter, -0.95, 0.02, 0.035, 0.002);
+
+// compliments slip, tucked under the letter's right edge
+const cs = compSlip();
+const slip = printed(2.1, 0.99, 0.004, ctex(THREE, cs.color), { edgeColor: "#163a31", roughness: 0.85 });
+flat(slip, 0.55, 1.12, -0.06, 0.002);
+const slipFoil = new THREE.Mesh(new THREE.PlaneGeometry(2.1, 0.99), new THREE.MeshPhysicalMaterial({ color: "#d4ae6e", metalness: 1, roughness: 0.32, envMap: env, envMapIntensity: 0.9, alphaMap: new THREE.CanvasTexture(cs.foil), transparent: true, polygonOffset: true, polygonOffsetFactor: -2 }));
+slipFoil.position.z = 0.0021; slip.add(slipFoil);
+
+// DL envelope, back up, pointed flap and wax seal
+const envG = new THREE.Group();
+const body = printed(2.2, 1.1, 0.008, ctex(THREE, envelopeBack()), { edgeColor: "#efe9df", roughness: 0.9 });
+body.position.z = 0.004; envG.add(body);
+const fs = new THREE.Shape(); fs.moveTo(-1.1, 0.55); fs.lineTo(1.1, 0.55); fs.lineTo(1.1, 0.5); fs.lineTo(0.06, -0.08); fs.quadraticCurveTo(0, -0.11, -0.06, -0.08); fs.lineTo(-1.1, 0.5); fs.closePath();
+const flapG = new THREE.ExtrudeGeometry(fs, { depth: 0.0025, bevelEnabled: false, curveSegments: 12 });
+{ const uv = flapG.attributes.uv, p = flapG.attributes.position; for (let i = 0; i < uv.count; i++) uv.setXY(i, (p.getX(i) + 1.1) / 2.2, (p.getY(i) + 0.55) / 1.1); }
+const flap = new THREE.Mesh(flapG, new THREE.MeshStandardMaterial({ map: ctex(THREE, paper(1024, 512, "#F3EEE5", 8)), roughness: 0.9 }));
+flap.position.z = 0.0082; flap.castShadow = flap.receiveShadow = true; envG.add(flap);
+// wax seal
+const r = rand(31); const ss = new THREE.Shape();
+for (let i = 0; i <= 64; i++) { const a = i / 64 * Math.PI * 2; const rad = 0.155 + 0.012 * Math.sin(a * 3 + 1) + 0.008 * Math.sin(a * 7) + (r() - 0.5) * 0.006; const x = Math.cos(a) * rad, y = Math.sin(a) * rad; i ? ss.lineTo(x, y) : ss.moveTo(x, y); }
+const wax = new THREE.MeshPhysicalMaterial({ color: "#123a30", roughness: 0.38, clearcoat: 0.6, clearcoatRoughness: 0.3, envMap: env, envMapIntensity: 0.8 });
+const puddle = new THREE.Mesh(new THREE.ExtrudeGeometry(ss, { depth: 0.012, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.012, bevelSegments: 5, curveSegments: 64 }), wax);
+puddle.castShadow = puddle.receiveShadow = true; puddle.position.set(0, -0.06, 0.0105 + 0.01); envG.add(puddle);
+const rim = new THREE.Mesh(new THREE.TorusGeometry(0.118, 0.007, 12, 96), wax); rim.scale.z = 0.6; rim.position.set(0, -0.06, 0.0105 + 0.032); rim.castShadow = true; envG.add(rim);
+const mk = markMesh(THREE, SVGLoader, 0.105, 0.006, wax, { bevel: 0.3 }); mk.position.set(-0.0358 * 0.105 / 0.2 * 1.0, -0.06, 0.0105 + 0.031); envG.add(mk);
+flat(envG, 1.42, -0.72, -0.1, 0);
+
+// business cards: back (ivory) and front (green, foiled)
+const bf = bizCard("front"), bk = bizCard("back");
+const c1 = printed(0.85, 0.55, 0.006, ctex(THREE, bk.color), { edgeColor: "#efe9df", roughness: 0.85 });
+flat(c1, 1.95, 0.42, 0.22, 0.003 + 0.004);
+const c2 = printed(0.85, 0.55, 0.006, ctex(THREE, bf.color), { edgeColor: "#163a31", roughness: 0.8 });
+flat(c2, 1.12, 0.36, -0.14, 0.003 + 0.004);
+const bfoil = new THREE.Mesh(new THREE.PlaneGeometry(0.85, 0.55), new THREE.MeshPhysicalMaterial({ color: "#d4ae6e", metalness: 1, roughness: 0.3, envMap: env, envMapIntensity: 0.9, alphaMap: new THREE.CanvasTexture(bf.foil), transparent: true, polygonOffset: true, polygonOffsetFactor: -2 }));
+bfoil.position.z = 0.0031; c2.add(bfoil);
+
+camera.fov = 30; camera.position.set(0.45, 6.4, 2.9); camera.lookAt(0.45, 0, 0.12); camera.updateProjectionMatrix();
+if (!window.__PREVIEW) accumulate(THREE, s, { frames: 16, radius: 0.9 }); else { renderer.setPixelRatio(1); renderer.setSize(1600, 1000); accumulate(THREE, s, { frames: 4, radius: 0.9 }); }
+done(s);
+</script>
+</body></html>

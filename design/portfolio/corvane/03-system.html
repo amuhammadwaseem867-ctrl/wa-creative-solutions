@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1600x1000"><title>Corvane — Colour, type and tone</title>
+<link rel="stylesheet" href="/fonts/cormorant-garamond/300.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/400.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/500.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/600.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/300-italic.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/400-italic.css"><link rel="stylesheet" href="/fonts/inter/300.css"><link rel="stylesheet" href="/fonts/inter/400.css"><link rel="stylesheet" href="/fonts/inter/500.css"><link rel="stylesheet" href="/fonts/inter/600.css">
+<style>
+:root{--green:#0F2A24;--ivory:#F1ECE2;--brass:#B08D57;--graphite:#1C1C1C;--stone:#D8D0C1;--serif:'Cormorant Garamond',serif;--sans:Inter,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1600px;height:1000px;overflow:hidden}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;font-feature-settings:"tnum" 1,"ss01" 0;position:relative}
+.hdr{position:absolute;left:80px;right:80px;top:52px;height:14px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;font:500 10.5px/14px var(--sans);letter-spacing:.18em;text-transform:uppercase;z-index:5}
+.hdr span{white-space:nowrap}
+.hdr .l{grid-column:1/4;display:flex;align-items:center;gap:10px}
+.hdr .m{grid-column:5/9}
+.hdr .r{grid-column:10/13;text-align:right}
+.eyebrow{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+.serif{font-family:var(--serif)}
+body{background:var(--ivory);color:var(--graphite)}
+.hdr{color:rgba(28,28,28,.5)}.hdr .r{color:#8a6c3f}
+.eyebrow{color:#8a6c3f}
+.abs{position:absolute}
+/* colour */
+.intro{left:80px;top:120px;width:318px}
+.intro h2{font:300 40px/1.05 var(--serif);margin:22px 0 18px;letter-spacing:-.005em;color:var(--green)}
+.intro p{font:400 14px/22px var(--sans);color:rgba(28,28,28,.72);margin:0}
+.sw{top:120px;left:446px;width:1074px;display:grid;grid-template-columns:repeat(5,1fr);column-gap:24px}
+.card{height:272px;position:relative;padding:20px 20px 18px;display:flex;flex-direction:column;justify-content:space-between}
+.card .role{font:500 10px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.card .nm{font:400 27px/1 var(--serif);margin-bottom:12px;letter-spacing:.005em}
+.card .v{font:400 12px/18px var(--sans);opacity:.8;font-feature-settings:"tnum" 1}
+.bar{top:416px;left:446px;width:1074px;height:6px;display:flex;gap:3px}
+.bar i{display:block;height:100%}
+.barlab{top:432px;left:446px;width:1074px;display:flex;gap:3px;font:500 10px/1 var(--sans);letter-spacing:.14em;color:rgba(28,28,28,.55)}
+.barlab span{display:block}
+.rule{left:80px;width:1440px;top:486px;height:1px;background:rgba(28,28,28,.14)}
+/* type */
+.type{left:80px;top:520px;width:830px}
+.spec{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-top:6px}
+.aa{font-size:188px;line-height:1;height:196px;color:var(--green);margin-left:-6px}
+.spec .nm{font:500 13px/1 var(--sans);letter-spacing:.06em;margin:4px 0 10px;color:var(--graphite)}
+.spec .d{font:400 13px/20px var(--sans);color:rgba(28,28,28,.68);margin:0 0 16px;max-width:360px}
+.spec .alpha{font-size:21px;line-height:30px;color:var(--graphite);border-top:1px solid rgba(28,28,28,.14);padding-top:12px}
+/* tone */
+.tone{left:934px;top:520px;width:586px}
+.pr{display:grid;grid-template-columns:44px 1fr;border-top:1px solid rgba(28,28,28,.14);padding:14px 0 14px}
+.tone .eyebrow{margin-bottom:22px}
+.pr .n{font:500 11px/26px var(--sans);letter-spacing:.12em;color:#8a6c3f}
+.pr h3{font:400 28px/26px var(--serif);margin:0 0 6px;color:var(--green)}
+.pr p{font:400 13.5px/20px var(--sans);margin:0;color:rgba(28,28,28,.72)}
+.ex{margin-top:6px;background:var(--green);color:var(--ivory);padding:20px 24px 20px;display:grid;grid-template-columns:72px 1fr;row-gap:10px}
+.ex .k{font:500 10px/22px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.ex .yes{font:italic 400 21px/26px var(--serif)}
+.ex .no{font:400 13px/20px var(--sans);color:rgba(241,236,226,.55);text-decoration:line-through;text-decoration-color:rgba(176,141,87,.8)}
+</style></head>
+<body>
+<div class="hdr"><span class="l" id="hl"></span><span class="m">Brand identity · Concept</span><span class="r">03 / 07 — System</span></div>
+
+<div class="abs intro"><div class="eyebrow">Colour</div><h2>Ledger green, paper and brass.</h2>
+<p>A palette borrowed from the banking hall: green ledger cloth, cream paper and brass fittings. Green carries the brand; brass is kept for metal and foil, and never sets small text.</p></div>
+
+<div class="abs sw">
+ <div class="card" style="background:#0F2A24;color:#F1ECE2"><div class="role">Primary</div><div><div class="nm">Ink Green</div><div class="v">#0F2A24<br>RGB 15 42 36</div></div></div>
+ <div class="card" style="background:#F1ECE2;color:#1C1C1C;box-shadow:inset 0 0 0 1px rgba(28,28,28,.16)"><div class="role">Paper</div><div><div class="nm">Ivory</div><div class="v">#F1ECE2<br>RGB 241 236 226</div></div></div>
+ <div class="card" style="background:#D8D0C1;color:#1C1C1C"><div class="role">Support</div><div><div class="nm">Limestone</div><div class="v">#D8D0C1<br>RGB 216 208 193</div></div></div>
+ <div class="card" style="background:#1C1C1C;color:#F1ECE2"><div class="role">Text</div><div><div class="nm">Graphite</div><div class="v">#1C1C1C<br>RGB 28 28 28</div></div></div>
+ <div class="card" style="background:linear-gradient(100deg,#a8854f 0%,#c3a06a 38%,#b08d57 55%,#9c7a47 100%);color:#0F2A24"><div class="role">Accent · metal &amp; foil</div><div><div class="nm">Brushed Brass</div><div class="v">#B08D57<br>RGB 176 141 87</div></div></div>
+</div>
+<div class="abs bar"><i style="flex:45;background:#0F2A24"></i><i style="flex:28;background:#F1ECE2;box-shadow:inset 0 0 0 1px rgba(28,28,28,.2)"></i><i style="flex:14;background:#D8D0C1"></i><i style="flex:8;background:#1C1C1C"></i><i style="flex:5;background:#B08D57"></i></div>
+<div class="abs barlab"><span style="flex:45">45%</span><span style="flex:28">28%</span><span style="flex:14">14%</span><span style="flex:8">8%</span><span style="flex:5">5%</span></div>
+<div class="abs rule"></div>
+
+<div class="abs type"><div class="eyebrow">Typography</div>
+ <div class="spec">
+  <div><div class="aa serif" style="font-weight:300;transform:translateY(7px)">Aa</div><div class="nm">Cormorant Garamond</div><p class="d">Display and headlines, Light to Medium. The wordmark alone is set in Semibold, tracked +200.</p><div class="alpha serif" style="font-weight:400">ABCDEFGHIJKLM <i>abcdefghijklm</i><br>nopqrstuvwxyz &amp; 0123456789</div></div>
+  <div><div class="aa" style="font-weight:300;letter-spacing:-.04em">Aa</div><div class="nm">Inter</div><p class="d">Text, data and interface, Regular and Medium. Figures are always tabular, so columns of numbers align.</p><div class="alpha" style="font-size:17px;line-height:30px;font-weight:400">£ 24,618,302.40 · AED 1,120,000<br><span style="color:rgba(28,28,28,.6)">Statement 03 · 30 Sep 2026 · 14:00 GST</span></div></div>
+ </div>
+</div>
+
+<div class="abs tone"><div class="eyebrow">Tone of voice</div>
+ <div class="pr"><div class="n">01</div><div><h3>Measured.</h3><p>We say less and mean all of it. One idea to a sentence; no exclamation marks.</p></div></div>
+ <div class="pr"><div class="n">02</div><div><h3>Precise.</h3><p>Numbers before adjectives. Dates, figures and names, never “soon” or “significant”.</p></div></div>
+ <div class="pr"><div class="n">03</div><div><h3>Courteous.</h3><p>Warm, never familiar. Titles and surnames until a client invites otherwise.</p></div></div>
+ <div class="ex"><div class="k">We say</div><div class="yes">“Your quarterly review is ready. Zara Malik will call on Thursday at 11:00 to take you through it.”</div><div class="k">Not</div><div class="no">Great news! Your exclusive wealth update has just landed.</div></div>
+</div>
+<script>
+// ---- Corvane brand primitives (inlined into each board) ----
+const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
+// Symbol: head circle R=100 centred (100,100); counter 0.64R; culmen arc 6R tangent at 62deg; beak underside on the horizon (y=100);
+// lower terminal cut on the half-radius (y=150); eye 0.12R on the 60deg radial. Bounding box 271.59 x 200.
+const MARK = {
+  w: 271.59, h: 200,
+  full: "M271.590 100.000A600.000 600.000 0 0 0 146.947 11.705A100 100 0 1 0 186.603 150.000L139.950 150.000A64.000 64.000 0 1 1 164.000 100.000ZM147.000 28.986a6 6 0 1 0 -12 0a6 6 0 1 0 12 0Z",
+  small: "M271.590 100.000A600.000 600.000 0 0 0 146.947 11.705A100 100 0 1 0 186.603 150.000L139.950 150.000A64.000 64.000 0 1 1 164.000 100.000Z",
+};
+const markSVG = (h, color, small = false, extra = "") =>
+  `<svg ${extra} width="${(MARK.w * h / MARK.h).toFixed(2)}" height="${h}" viewBox="0 0 ${MARK.w} ${MARK.h}" aria-hidden="true"><path fill="${color}" fill-rule="evenodd" d="${small ? MARK.small : MARK.full}"/></svg>`;
+/** Draws the symbol with its top-left at (x,y), height h. Returns drawn width. */
+function drawMark(ctx, x, y, h, color, small = false) {
+  const s = h / MARK.h;
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color;
+  ctx.fill(new Path2D(small ? MARK.small : MARK.full), "evenodd"); ctx.restore();
+  return MARK.w * s;
+}
+const SERIF = "'Cormorant Garamond'", SANS = "Inter";
+const CAP = 0.6295; // Cormorant Garamond cap-height / em (measured)
+/** Tracked text with optional pair kerning (em units). Returns advance width. */
+function tracked(ctx, text, x, y, track = 0, kern = {}, measureOnly = false) {
+  const fs = parseFloat(ctx.font.match(/(\d+(\.\d+)?)px/)[1]);
+  let cx = x;
+  for (let i = 0; i < text.length; i++) {
+    if (!measureOnly) ctx.fillText(text[i], cx, y);
+    cx += ctx.measureText(text[i]).width + (i < text.length - 1 ? track * fs + (kern[text[i] + text[i + 1]] || 0) * fs : 0);
+  }
+  return cx - x;
+}
+const WM_KERN = { VA: -0.1, RV: -0.03 };
+/** Wordmark with baseline at y and cap height cap. align: left|center|right. Returns width. */
+function drawWordmark(ctx, x, y, cap, color, align = "left") {
+  const fs = cap / CAP;
+  ctx.font = `600 ${fs}px ${SERIF}`; ctx.fillStyle = color; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  const w = tracked(ctx, "CORVANE", 0, 0, 0.2, WM_KERN, true);
+  const sx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
+  tracked(ctx, "CORVANE", sx, y, 0.2, WM_KERN);
+  return w;
+}
+/** Horizontal lockup: symbol height = 2 x cap height; wordmark baseline on the terminal line. (x, baseline y). */
+function drawLockup(ctx, x, y, cap, color, markColor = color) {
+  const R = cap;
+  const mw = drawMark(ctx, x, y - 1.5 * R, 2 * R, markColor);
+  return mw + 0.64 * R + drawWordmark(ctx, x + mw + 0.64 * R, y, cap, color);
+}
+function lockupWidth(ctx, cap) { ctx.font = `600 ${cap / CAP}px ${SERIF}`; return MARK.w / 100 * cap + 0.64 * cap + tracked(ctx, "CORVANE", 0, 0, 0.2, WM_KERN, true); }
+/** Tracked caps label in Inter. */
+function label(ctx, text, x, y, size, color, { weight = 500, track = 0.16, align = "left" } = {}) {
+  ctx.font = `${weight} ${size}px ${SANS}`; ctx.fillStyle = color; ctx.textBaseline = "alphabetic";
+  const w = tracked(ctx, text, 0, 0, track, {}, true);
+  const sx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
+  tracked(ctx, text, sx, y, track);
+  return w;
+}
+function txt(ctx, text, x, y, font, color, align = "left") { ctx.font = font; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = "alphabetic"; ctx.fillText(text, x, y); ctx.textAlign = "left"; }
+function hair(ctx, x1, y1, x2, y2, color, w = 1) { ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+/** Wraps text into lines that fit maxW; draws them. Returns y after last line. */
+function para(ctx, text, x, y, maxW, lh, font, color) {
+  ctx.font = font; ctx.fillStyle = color; ctx.textAlign = "left";
+  const words = text.split(" "); let line = "";
+  for (const w of words) { const t = line ? line + " " + w : w; if (ctx.measureText(t).width > maxW && line) { ctx.fillText(line, x, y); y += lh; line = w; } else line = t; }
+  if (line) { ctx.fillText(line, x, y); y += lh; }
+  return y;
+}
+async function loadFonts() {
+  const specs = ["300 40px 'Cormorant Garamond'", "400 40px 'Cormorant Garamond'", "500 40px 'Cormorant Garamond'", "600 40px 'Cormorant Garamond'",
+    "italic 400 40px 'Cormorant Garamond'", "italic 300 40px 'Cormorant Garamond'", "400 40px Inter", "500 40px Inter", "600 40px Inter", "300 40px Inter"];
+  await Promise.all(specs.map((s) => document.fonts.load(s)));
+}
+// ---- end brand primitives ----
+document.getElementById("hl").innerHTML = markSVG(12, "rgba(28,28,28,.5)", true) + "<span>Corvane</span>";
+</script>
+</body></html>
