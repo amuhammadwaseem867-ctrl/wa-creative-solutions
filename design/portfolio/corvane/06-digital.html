@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1600x1000"><title>Corvane — Digital</title>
+<link rel="stylesheet" href="/fonts/cormorant-garamond/300.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/400.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/500.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/600.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/300-italic.css"><link rel="stylesheet" href="/fonts/cormorant-garamond/400-italic.css"><link rel="stylesheet" href="/fonts/inter/300.css"><link rel="stylesheet" href="/fonts/inter/400.css"><link rel="stylesheet" href="/fonts/inter/500.css"><link rel="stylesheet" href="/fonts/inter/600.css">
+<style>
+:root{--green:#0F2A24;--ivory:#F1ECE2;--brass:#B08D57;--graphite:#1C1C1C;--stone:#D8D0C1;--serif:'Cormorant Garamond',serif;--sans:Inter,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:1600px;height:1000px;overflow:hidden}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;font-feature-settings:"tnum" 1,"ss01" 0;position:relative}
+.hdr{position:absolute;left:80px;right:80px;top:52px;height:14px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;font:500 10.5px/14px var(--sans);letter-spacing:.18em;text-transform:uppercase;z-index:5}
+.hdr span{white-space:nowrap}
+.hdr .l{grid-column:1/4;display:flex;align-items:center;gap:10px}
+.hdr .m{grid-column:5/9}
+.hdr .r{grid-column:10/13;text-align:right}
+.eyebrow{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+.serif{font-family:var(--serif)}
+body{background:#d6cdbd}
+.hdr .l{color:rgba(241,236,226,.55)}.hdr .m{color:rgba(28,28,28,.55)}.hdr .r{color:#7d6237}
+.panel{position:absolute;left:0;top:0;width:568px;height:1000px;background:var(--green);z-index:4;color:var(--ivory)}
+.panel .in{position:absolute;left:80px;width:408px}
+.icon-xl{top:150px}
+.copy{top:420px}
+.copy .eyebrow{color:var(--brass);margin-bottom:22px}
+.copy h2{font:300 46px/1.02 var(--serif);margin:0 0 22px}
+.copy h2 em{font-style:italic}
+.copy p{margin:0;font:400 14.5px/24px var(--sans);color:rgba(241,236,226,.74)}
+.sizes{bottom:80px}
+.sizes .row{display:flex;align-items:flex-end;gap:28px;padding-bottom:16px;border-bottom:1px solid rgba(176,141,87,.35)}
+.sizes .lab{display:flex;gap:28px;margin-top:12px;font:500 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,226,.5)}
+.sizes .lab span{display:block;white-space:nowrap}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head>
+<body>
+<div class="hdr"><span class="l" id="hl"></span><span class="m">Brand identity · Concept</span><span class="r">06 / 07 — Digital</span></div>
+<div class="panel">
+  <div class="in icon-xl"><canvas id="ix" width="400" height="400" style="width:200px;height:200px;display:block"></canvas></div>
+  <div class="in copy"><div class="eyebrow">Private banking app</div><h2>The same quiet, <em>in the hand.</em></h2>
+  <p>The app opens on the ink-green of the folio and the horizon line, then turns to ivory for the numbers. One serif for the figures that matter, Inter for everything else, and no colour that is not in the palette.</p></div>
+  <div class="in sizes"><div class="row" id="szr"></div><div class="lab" id="szl"></div></div>
+</div>
+<script type="module">
+import * as THREE from "three";
+import { SVGLoader } from "three/addons/loaders/SVGLoader.js";
+import { createStudio, roundedBox, roundedRectGeometry, printed, done } from "/design/portfolio/_lib/studio.js";
+// ---- Corvane brand primitives (inlined into each board) ----
+const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
+// Symbol: head circle R=100 centred (100,100); counter 0.64R; culmen arc 6R tangent at 62deg; beak underside on the horizon (y=100);
+// lower terminal cut on the half-radius (y=150); eye 0.12R on the 60deg radial. Bounding box 271.59 x 200.
+const MARK = {
+  w: 271.59, h: 200,
+  full: "M271.590 100.000A600.000 600.000 0 0 0 146.947 11.705A100 100 0 1 0 186.603 150.000L139.950 150.000A64.000 64.000 0 1 1 164.000 100.000ZM147.000 28.986a6 6 0 1 0 -12 0a6 6 0 1 0 12 0Z",
+  small: "M271.590 100.000A600.000 600.000 0 0 0 146.947 11.705A100 100 0 1 0 186.603 150.000L139.950 150.000A64.000 64.000 0 1 1 164.000 100.000Z",
+};
+const markSVG = (h, color, small = false, extra = "") =>
+  `<svg ${extra} width="${(MARK.w * h / MARK.h).toFixed(2)}" height="${h}" viewBox="0 0 ${MARK.w} ${MARK.h}" aria-hidden="true"><path fill="${color}" fill-rule="evenodd" d="${small ? MARK.small : MARK.full}"/></svg>`;
+/** Draws the symbol with its top-left at (x,y), height h. Returns drawn width. */
+function drawMark(ctx, x, y, h, color, small = false) {
+  const s = h / MARK.h;
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color;
+  ctx.fill(new Path2D(small ? MARK.small : MARK.full), "evenodd"); ctx.restore();
+  return MARK.w * s;
+}
+const SERIF = "'Cormorant Garamond'", SANS = "Inter";
+const CAP = 0.6295; // Cormorant Garamond cap-height / em (measured)
+/** Tracked text with optional pair kerning (em units). Returns advance width. */
+function tracked(ctx, text, x, y, track = 0, kern = {}, measureOnly = false) {
+  const fs = parseFloat(ctx.font.match(/(\d+(\.\d+)?)px/)[1]);
+  let cx = x;
+  for (let i = 0; i < text.length; i++) {
+    if (!measureOnly) ctx.fillText(text[i], cx, y);
+    cx += ctx.measureText(text[i]).width + (i < text.length - 1 ? track * fs + (kern[text[i] + text[i + 1]] || 0) * fs : 0);
+  }
+  return cx - x;
+}
+const WM_KERN = { VA: -0.1, RV: -0.03 };
+/** Wordmark with baseline at y and cap height cap. align: left|center|right. Returns width. */
+function drawWordmark(ctx, x, y, cap, color, align = "left") {
+  const fs = cap / CAP;
+  ctx.font = `600 ${fs}px ${SERIF}`; ctx.fillStyle = color; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  const w = tracked(ctx, "CORVANE", 0, 0, 0.2, WM_KERN, true);
+  const sx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
+  tracked(ctx, "CORVANE", sx, y, 0.2, WM_KERN);
+  return w;
+}
+/** Horizontal lockup: symbol height = 2 x cap height; wordmark baseline on the terminal line. (x, baseline y). */
+function drawLockup(ctx, x, y, cap, color, markColor = color) {
+  const R = cap;
+  const mw = drawMark(ctx, x, y - 1.5 * R, 2 * R, markColor);
+  return mw + 0.64 * R + drawWordmark(ctx, x + mw + 0.64 * R, y, cap, color);
+}
+function lockupWidth(ctx, cap) { ctx.font = `600 ${cap / CAP}px ${SERIF}`; return MARK.w / 100 * cap + 0.64 * cap + tracked(ctx, "CORVANE", 0, 0, 0.2, WM_KERN, true); }
+/** Tracked caps label in Inter. */
+function label(ctx, text, x, y, size, color, { weight = 500, track = 0.16, align = "left" } = {}) {
+  ctx.font = `${weight} ${size}px ${SANS}`; ctx.fillStyle = color; ctx.textBaseline = "alphabetic";
+  const w = tracked(ctx, text, 0, 0, track, {}, true);
+  const sx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
+  tracked(ctx, text, sx, y, track);
+  return w;
+}
+function txt(ctx, text, x, y, font, color, align = "left") { ctx.font = font; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = "alphabetic"; ctx.fillText(text, x, y); ctx.textAlign = "left"; }
+function hair(ctx, x1, y1, x2, y2, color, w = 1) { ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+/** Wraps text into lines that fit maxW; draws them. Returns y after last line. */
+function para(ctx, text, x, y, maxW, lh, font, color) {
+  ctx.font = font; ctx.fillStyle = color; ctx.textAlign = "left";
+  const words = text.split(" "); let line = "";
+  for (const w of words) { const t = line ? line + " " + w : w; if (ctx.measureText(t).width > maxW && line) { ctx.fillText(line, x, y); y += lh; line = w; } else line = t; }
+  if (line) { ctx.fillText(line, x, y); y += lh; }
+  return y;
+}
+async function loadFonts() {
+  const specs = ["300 40px 'Cormorant Garamond'", "400 40px 'Cormorant Garamond'", "500 40px 'Cormorant Garamond'", "600 40px 'Cormorant Garamond'",
+    "italic 400 40px 'Cormorant Garamond'", "italic 300 40px 'Cormorant Garamond'", "400 40px Inter", "500 40px Inter", "600 40px Inter", "300 40px Inter"];
+  await Promise.all(specs.map((s) => document.fonts.load(s)));
+}
+// ---- end brand primitives ----
+// ---- Corvane 3D kit (inlined into each CGI board) ----
+function rand(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+/** Limestone: warm base with soft mottling and fine fossil speckle. Returns {map, bump}. */
+function limestone(THREE, { base = "#d9d1c3", size = 1024, seed = 7, repeat = [10, 10], mottle = 1, speckle = 1, fossils = 1 } = {}) {
+  const r = rand(seed);
+  const mk = (draw) => { const c = document.createElement("canvas"); c.width = c.height = size; const g = c.getContext("2d"); draw(g); return c; };
+  const col = mk((g) => {
+    g.fillStyle = base; g.fillRect(0, 0, size, size);
+    for (let i = 0; i < 260; i++) {
+      const x = r() * size, y = r() * size, rad = 40 + r() * 220, light = r() > 0.5;
+      const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+      gr.addColorStop(0, light ? `rgba(255,250,240,${0.045 * mottle})` : `rgba(120,104,80,${0.035 * mottle})`); gr.addColorStop(1, "rgba(0,0,0,0)");
+      g.fillStyle = gr; for (const dx of [-size, 0, size]) for (const dy of [-size, 0, size]) { g.save(); g.translate(dx, dy); g.fillRect(x - rad, y - rad, rad * 2, rad * 2); g.restore(); }
+    }
+    for (let i = 0; i < 9000; i++) { const x = r() * size, y = r() * size, a = r() * 0.22 * speckle; g.fillStyle = r() > 0.4 ? `rgba(110,95,75,${a})` : `rgba(255,252,245,${a})`; g.fillRect(x, y, 1 + r() * 1.4, 1 + r() * 1.4); }
+    for (let i = 0; i < 70 * fossils; i++) { const x = r() * size, y = r() * size; g.fillStyle = `rgba(150,132,105,${0.12 + r() * 0.15})`; g.beginPath(); g.ellipse(x, y, 1 + r() * 3, 0.8 + r() * 1.5, r() * 3, 0, 7); g.fill(); }
+  });
+  const map = new THREE.CanvasTexture(col); map.colorSpace = THREE.SRGBColorSpace;
+  const bump = new THREE.CanvasTexture(col);
+  for (const t of [map, bump]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...repeat); t.anisotropy = 8; }
+  return { map, bump };
+}
+/** Dark surface (suede / honed stone) for ink-green sets: soft mottle, very fine grain. Returns {map, bump}. */
+function suede(THREE, { base = "#123029", size = 2048, seed = 17, repeat = [8, 8], mottle = 1, grainAmt = 1 } = {}) {
+  const r = rand(seed);
+  const [c, g] = canvas2d(size, size); g.fillStyle = base; g.fillRect(0, 0, size, size);
+  for (let i = 0; i < 220; i++) {
+    const x = r() * size, y = r() * size, rad = 60 + r() * 260, light = r() > 0.5;
+    const gr = g.createRadialGradient(x, y, 0, x, y, rad);
+    gr.addColorStop(0, light ? `rgba(120,160,140,${0.035 * mottle})` : `rgba(0,10,8,${0.06 * mottle})`); gr.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = gr; for (const dx of [-size, 0, size]) for (const dy of [-size, 0, size]) { g.save(); g.translate(dx, dy); g.fillRect(x - rad, y - rad, rad * 2, rad * 2); g.restore(); }
+  }
+  for (let i = 0; i < 60000; i++) { const x = r() * size, y = r() * size, a = r() * 0.08 * grainAmt; g.fillStyle = r() > 0.5 ? `rgba(0,0,0,${a})` : `rgba(180,210,195,${a * 0.6})`; g.fillRect(x, y, 1, 1); }
+  const map = new THREE.CanvasTexture(c); map.colorSpace = THREE.SRGBColorSpace;
+  const bump = new THREE.CanvasTexture(c);
+  for (const t of [map, bump]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...repeat); t.anisotropy = 8; }
+  return { map, bump };
+}
+/** Brushed-metal streak texture (grey), for roughness / bump / anisotropy cues. */
+function brushedTex(THREE, { w = 1024, h = 1024, seed = 3, vertical = false } = {}) {
+  const r = rand(seed); const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d");
+  g.fillStyle = "#808080"; g.fillRect(0, 0, w, h);
+  for (let i = 0; i < 2600; i++) { const y = r() * h, len = w * (0.2 + r() * 0.9), x = r() * w - len * 0.2; const v = 128 + (r() - 0.5) * 70;
+    g.fillStyle = `rgba(${v},${v},${v},${0.25 + r() * 0.35})`; g.fillRect(x, y, len, 0.6 + r() * 1.1); }
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; if (vertical) t.rotation = Math.PI / 2;
+  return t;
+}
+/** Soft contact shadow: a blurred dark rounded rectangle on a transparent plane, laid on the floor. */
+function contactShadow(THREE, w, d, { opacity = 0.55, blur = 0.18, y = 0.0006 } = {}) {
+  const S = 256, pad = blur; const c = document.createElement("canvas"); c.width = c.height = S; const g = c.getContext("2d");
+  const W = w + pad * 4, D = d + pad * 4; const sx = S / W, sy = S / D;
+  g.filter = `blur(${Math.max(2, blur * Math.min(sx, sy))}px)`; g.fillStyle = "#000";
+  g.fillRect((W - w) / 2 * sx, (D - d) / 2 * sy, w * sx, d * sy);
+  const t = new THREE.CanvasTexture(c);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(W, D), new THREE.MeshBasicMaterial({ alphaMap: t, color: "#000", transparent: true, opacity, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2; m.position.y = y; m.renderOrder = -1;
+  return m;
+}
+/** Rounded-rectangle slab (ExtrudeGeometry) whose cap UVs map 0..1 across w x h. Lies in XY, thickness along +Z from 0. */
+function slab(THREE, w, h, t, r, bevel = 0.0015) {
+  const s = new THREE.Shape(); const x = -w / 2, y = -h / 2;
+  s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.absarc(x + w - r, y + r, r, -Math.PI / 2, 0); s.lineTo(x + w, y + h - r); s.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2);
+  s.lineTo(x + r, y + h); s.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI); s.lineTo(x, y + r); s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5);
+  const g = new THREE.ExtrudeGeometry(s, { depth: t - 2 * bevel, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 3, curveSegments: 24 });
+  g.translate(0, 0, bevel);
+  const uv = g.attributes.uv, p = g.attributes.position;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, (p.getX(i) + w / 2) / w, (p.getY(i) + h / 2) / h);
+  g.computeVertexNormals();
+  return g;
+}
+/** Replace the studio key with a soft spotlight (pool of light, natural fall-off). */
+function spotKey(THREE, s, { pos = [-3.5, 7, -3], target = [0, 0, 0], intensity = 3.4, angle = 0.55, penumbra = 1, color = "#fff4e6", map = 4096, frustum = 0 } = {}) {
+  s.scene.remove(s.lights.key);
+  const k = new THREE.SpotLight(color, intensity, 0, angle, penumbra, 0);
+  k.position.set(...pos); k.target.position.set(...target); s.scene.add(k.target); s.scene.add(k);
+  k.castShadow = true; k.shadow.mapSize.set(map, map); k.shadow.camera.near = 2; k.shadow.camera.far = 30; k.shadow.bias = -0.00015; k.shadow.normalBias = 0.004; k.shadow.radius = 1.5;
+  s.lights.key = k; return k;
+}
+/**
+ * Progressive render: averages N frames with the key light jittered across a disc (area-light soft shadows),
+ * sub-pixel camera jitter (anti-aliasing) and, optionally, a thin-lens aperture (depth of field focused on `focus`).
+ */
+function accumulate(THREE, s, { frames = 24, radius = 0.6, onFrame = null, focus = null, aperture = 0 } = {}) {
+  const { renderer, scene, camera } = s; const key = s.lights.key; const base = key.position.clone();
+  const size = renderer.getDrawingBufferSize(new THREE.Vector2());
+  const opts = { type: THREE.HalfFloatType, depthBuffer: true };
+  const frame = new THREE.WebGLRenderTarget(size.x, size.y, { ...opts, samples: 4 });
+  const acc = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.FloatType, depthBuffer: false });
+  const qs = new THREE.Scene(); const qc = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const addMat = new THREE.MeshBasicMaterial({ map: frame.texture, transparent: true, blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.OneFactor, blendDst: THREE.OneFactor, blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneFactor, depthTest: false, depthWrite: false, toneMapped: false });
+  const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), addMat); qs.add(quad);
+  // basis perpendicular to the light direction
+  const dir = base.clone().normalize(); const u = new THREE.Vector3(0, 1, 0).cross(dir).normalize(); const v = dir.clone().cross(u).normalize();
+  // thin lens: camera basis and focal distance
+  camera.updateMatrixWorld(); const camPos = camera.position.clone();
+  const cr = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0), cu = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1), cf = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 2).negate();
+  const F = focus ? focus.clone().sub(camPos).dot(cf) : 1;
+  const autoClear = renderer.autoClear; renderer.autoClear = false;
+  renderer.setRenderTarget(acc); renderer.setClearColor(0x000000, 0); renderer.clear();
+  const r = rand(11); const W = size.x, H = size.y; const fpx = (H / 2) / Math.tan(camera.fov * Math.PI / 360);
+  for (let i = 0; i < frames; i++) {
+    const a = 2.399963 * i, rr = radius * Math.sqrt((i + 0.5) / frames);
+    key.position.copy(base).addScaledVector(u, Math.cos(a) * rr).addScaledVector(v, Math.sin(a) * rr);
+    let ox = 0, oy = 0;
+    if (focus && aperture > 0) { // golden-angle disc sample, decorrelated from the light
+      const b = 2.399963 * i + 1.3, q = aperture * Math.sqrt((((i * 7) % frames) + 0.5) / frames);
+      const dx = Math.cos(b) * q, dy = Math.sin(b) * q;
+      camera.position.copy(camPos).addScaledVector(cr, dx).addScaledVector(cu, dy);
+      ox = -dx / F * fpx; oy = dy / F * fpx;
+    }
+    camera.setViewOffset(W, H, ox + (r() - 0.5) * 0.9, oy + (r() - 0.5) * 0.9, W, H);
+    camera.updateMatrixWorld();
+    if (onFrame) onFrame(i);
+    renderer.setRenderTarget(frame); renderer.clear(); renderer.render(scene, camera);
+    renderer.setRenderTarget(acc); renderer.render(qs, qc);
+  }
+  camera.clearViewOffset(); camera.position.copy(camPos); key.position.copy(base);
+  const outMat = new THREE.MeshBasicMaterial({ map: acc.texture, color: new THREE.Color(1 / frames, 1 / frames, 1 / frames), depthTest: false, depthWrite: false, toneMapped: true });
+  quad.material = outMat; renderer.autoClear = autoClear; renderer.setRenderTarget(null); renderer.render(qs, qc);
+  s.render = () => { renderer.setRenderTarget(null); renderer.render(qs, qc); }; // final frame for done()
+}
+
+/** Custom softbox environment: warm room with large panels so flat metal reads as brass, not black. */
+function softboxEnv(THREE, renderer, panels, { room = "#2b2723" } = {}) {
+  const sc = new THREE.Scene(); sc.background = new THREE.Color(room);
+  const grad = (() => { const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d"); const r = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    r.addColorStop(0, "#fff"); r.addColorStop(0.55, "#bbb"); r.addColorStop(1, "#000"); g.fillStyle = r; g.fillRect(0, 0, 256, 256); return new THREE.CanvasTexture(c); })();
+  for (const p of panels) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(p.w, p.h), new THREE.MeshBasicMaterial({ color: new THREE.Color(p.color || "#fff").multiplyScalar(p.i), map: p.soft ? grad : null, side: THREE.DoubleSide }));
+    m.position.set(...p.pos); m.lookAt(0, p.lookY || 0, 0); sc.add(m);
+  }
+  const pm = new THREE.PMREMGenerator(renderer); const t = pm.fromScene(sc, 0.01).texture; pm.dispose(); return t;
+}
+/** Parses the symbol into THREE shapes (SVGLoader instance passed in). Shapes are in mark units (0..271.59 x 0..200, y down). */
+function markShapes(SVGLoader, small = false) {
+  const data = new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MARK.w} ${MARK.h}"><path fill-rule="evenodd" d="${small ? MARK.small : MARK.full}"/></svg>`);
+  const shapes = []; for (const p of data.paths) shapes.push(...SVGLoader.createShapes(p)); return shapes;
+}
+/** Extruded symbol, centred on its head circle, height h (world units), facing +Z, lying in XY. */
+function markMesh(THREE, SVGLoader, h, depth, material, { bevel = 0.15, small = false } = {}) {
+  const k = h / MARK.h;
+  const g = new THREE.ExtrudeGeometry(markShapes(SVGLoader, small), { depth: depth / k, bevelEnabled: bevel > 0, bevelThickness: bevel * depth / k, bevelSize: bevel * depth / k * 0.8, bevelSegments: 3, curveSegments: 48 });
+  g.translate(-100, -100, 0); g.rotateX(Math.PI); g.scale(k, k, k); g.translate(0, 0, depth); // svg y-down -> y-up (rotation keeps winding), origin at head centre, z 0..depth
+  g.computeVertexNormals();
+  const m = new THREE.Mesh(g, material); m.castShadow = m.receiveShadow = true; return m;
+}
+/** Shared studio look: softbox env, spotlight key, gentle fill; returns env texture. */
+function studioLook(THREE, s, { key = [-4.6, 6.4, -3.2], target = [0, 0, 0], intensity = 4.4, angle = 0.5, envI = 0.3, room = "#1f1c19", floor = "#d9d1c3", panels = null } = {}) {
+  const env = softboxEnv(THREE, s.renderer, panels || [
+    { w: 7, h: 4, i: 1.25, pos: [-2.5, 5, -5], soft: true },
+    { w: 4, h: 4, i: 0.9, pos: [1.5, 7, 1], soft: true },
+    { w: 2.5, h: 8, i: 0.7, pos: [-7, 2.5, 1.5], soft: true },
+    { w: 3, h: 3, i: 0.5, pos: [6, 2, 4], soft: true },
+    { w: 14, h: 14, i: 0.25, color: floor, pos: [0, -5, 0] },
+  ], { room });
+  s.scene.environment = env; s.scene.environmentIntensity = envI;
+  spotKey(THREE, s, { pos: key, target, intensity, angle, penumbra: 0.9 });
+  s.lights.fill.position.set(4, 3, 5); s.lights.fill.intensity = 0.3; s.lights.fill.color.set("#f3efe8");
+  s.lights.ambient.intensity = 0.08;
+  return env;
+}
+function ctex(THREE, cv, srgb = true, aniso = 16) { const t = new THREE.CanvasTexture(cv); if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso; return t; }
+// ---- end 3D kit ----
+// ---- Corvane print textures (canvas) ----
+function canvas2d(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; return [c, c.getContext("2d")]; }
+/** Paper grain overlay. */
+function grain(g, w, h, amt = 0.035, seed = 5) { const r = rand(seed); for (let i = 0; i < w * h / 90; i++) { const v = r() > 0.5 ? 255 : 0; g.fillStyle = `rgba(${v},${v},${v},${r() * amt})`; g.fillRect(r() * w, r() * h, 1.2, 1.2); } }
+/** A4 letterhead, 1240 x 1754 (150 dpi). */
+function letterhead() {
+  const W = 1240, H = 1754, [c, g] = canvas2d(W, H); const mm = W / 210;
+  g.fillStyle = "#F3EEE4"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.03);
+  const L = 20 * mm, Rx = W - 20 * mm;
+  drawLockup(g, L, 30 * mm, 4.2 * mm, C.green);
+  label(g, "PRIVATE OFFICE", Rx, 27 * mm, 1.9 * mm, "#8a6c3f", { align: "right", track: 0.2 });
+  label(g, "LAHORE · DUBAI · LONDON", Rx, 31 * mm, 1.9 * mm, "rgba(28,28,28,.6)", { align: "right", track: 0.2 });
+  hair(g, 0, 52 * mm, W, 52 * mm, "#B08D57", 2); // the horizon
+  const f = (s, w = 400) => `${w} ${s * mm}px Inter`;
+  txt(g, "15 October 2026", L, 66 * mm, f(2.6), C.graphite);
+  txt(g, "Mr and Mrs H. Rahman", L, 76 * mm, f(2.6, 500), C.graphite);
+  txt(g, "Private and confidential", L, 80.5 * mm, f(2.6), "rgba(28,28,28,.6)");
+  g.font = `400 ${7 * mm}px 'Cormorant Garamond'`; g.fillStyle = C.green; g.fillText("Your family charter, in draft", L, 100 * mm);
+  let y = 112 * mm; const body = f(2.6), lh = 4.6 * mm, mw = 120 * mm;
+  y = para(g, "Dear Mr and Mrs Rahman,", L, y, mw, lh, body, C.graphite) + 2.4 * mm;
+  y = para(g, "Thank you for your time in Lahore on Thursday. As agreed, I enclose the first draft of the Rahman family charter, together with the consolidated statement for the third quarter.", L, y, mw, lh, body, C.graphite) + 2.4 * mm;
+  y = para(g, "The charter sets out how decisions will be made across the three generations, how the trust in Dubai will distribute income, and how the London property will be held. Nothing in it is final until all of you have read it.", L, y, mw, lh, body, C.graphite) + 2.4 * mm;
+  y = para(g, "I will call on Thursday 22 October at 11:00 to take you through it, and I am in London from the 27th should you prefer to meet.", L, y, mw, lh, body, C.graphite) + 6 * mm;
+  y = para(g, "With kind regards,", L, y, mw, lh, body, C.graphite) + 4 * mm;
+  g.font = `italic 400 ${8.5 * mm}px 'Cormorant Garamond'`; g.fillStyle = "#1f3a5a"; g.fillText("Zara Malik", L + 1 * mm, y + 2 * mm);
+  y += 10 * mm; txt(g, "Zara Malik", L, y, f(2.6, 500), C.graphite); txt(g, "Director, Private Clients", L, y + lh, body, "rgba(28,28,28,.6)");
+  hair(g, L, H - 24 * mm, Rx, H - 24 * mm, "rgba(28,28,28,.18)", 1.5);
+  label(g, "CORVANE PRIVATE BANK", L, H - 17 * mm, 1.8 * mm, "rgba(28,28,28,.7)", { track: 0.2 });
+  label(g, "CORVANE.BANK", Rx, H - 17 * mm, 1.8 * mm, "rgba(28,28,28,.7)", { track: 0.2, align: "right" });
+  label(g, "GULBERG, LAHORE  ·  DIFC, DUBAI  ·  MAYFAIR, LONDON", W / 2, H - 17 * mm, 1.8 * mm, "rgba(28,28,28,.5)", { track: 0.2, align: "center" });
+  return c;
+}
+/** Business card 85 x 55 mm at 16 px/mm. side: "front" (green) | "back" (ivory). Returns {color, foil} canvases (foil = white mask). */
+function bizCard(side = "front") {
+  const W = 1360, H = 880, mm = 16; const [c, g] = canvas2d(W, H); const [m, mg] = canvas2d(W, H);
+  mg.fillStyle = "#000"; mg.fillRect(0, 0, W, H);
+  if (side === "front") {
+    g.fillStyle = "#123029"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.05, 9);
+    const mh = 22 * mm, mw = MARK.w / MARK.h * mh; drawMark(mg, (W - mw) / 2 + 2 * mm, (H - mh) / 2, mh, "#fff");
+    drawMark(g, (W - mw) / 2 + 2 * mm, (H - mh) / 2, mh, "#6d5634");
+  } else {
+    g.fillStyle = "#F3EEE4"; g.fillRect(0, 0, W, H); grain(g, W, H, 0.03, 4);
+    const L = 7 * mm;
+    drawLockup(g, L, 14 * mm, 2.6 * mm, C.green);
+    hair(g, 0, 26 * mm, W, 26 * mm, "#B08D57", 2.5);
+    g.font = `500 ${6 * mm}px 'Cormorant Garamond'`; g.fillStyle = C.green; g.fillText("Zara Malik", L, 37 * mm);
+    txt(g, "Director, Private Clients", L, 42 * mm, `400 ${2.3 * mm}px Inter`, "rgba(28,28,28,.65)");
+    txt(g, "+44 20 7946 0958", L, 49.5 * mm, `400 ${2.3 * mm}px Inter`, C.graphite);
+    txt(g, "z.malik@corvane.bank", W - L, 49.5 * mm, `400 ${2.3 * mm}px Inter`, C.graphite, "right");
+    label(g, "MAYFAIR, LONDON", W - L, 37 * mm, 1.9 * mm, "rgba(28,28,28,.55)", { align: "right", track: 0.18 });
+  }
+  return { color: c, foil: m };
+}
+/** Colourise an alpha mask canvas and draw it onto g. */
+function stamp(g, mask, color, blur = 0) { const [t, tg] = canvas2d(mask.width, mask.height); if (blur) tg.filter = `blur(${blur}px)`; tg.drawImage(mask, 0, 0); tg.filter = "none"; tg.globalCompositeOperation = "source-in"; tg.fillStyle = color; tg.fillRect(0, 0, mask.width, mask.height); g.drawImage(t, 0, 0); }
+/** Metal card face, 85.6 x 54 mm at s px/mm. Returns {color, rough, bump} canvases + chip rect (mm). Engraved: darker, rougher, recessed. */
+function metalCard({ s = 20, name = "HAMZA RAHMAN", tier = "PRIVATE CLIENT", seed = 21, tone = "brass", chip = true } = {}) {
+  const W = Math.round(85.6 * s), H = Math.round(54 * s), mm = s;
+  const [mask, mk] = canvas2d(W, H); const ink = "#fff";
+  const mh = 10 * mm, mx = 7 * mm, my = 6.5 * mm; drawMark(mk, mx, my, mh, ink);
+  const tipX = mx + MARK.w / MARK.h * mh, hy = my + mh / 2;
+  mk.fillStyle = ink; mk.fillRect(tipX + 2.2 * mm, hy - 0.11 * mm, W - tipX - 2.2 * mm, 0.22 * mm); // the horizon, continued to the edge
+  label(mk, tier, W - 7 * mm, hy - 2.4 * mm, 1.9 * mm, ink, { align: "right", track: 0.28 });
+  label(mk, name, mx, H - 7 * mm, 2.3 * mm, ink, { track: 0.24 });
+  drawWordmark(mk, W - 7 * mm, H - 7 * mm, 2.4 * mm, ink, "right");
+  const r = rand(seed);
+  const [col, cg] = canvas2d(W, H); const [rough, rg] = canvas2d(W, H); const [bump, bg] = canvas2d(W, H);
+  const brass = tone === "brass";
+  cg.fillStyle = brass ? "rgb(184,140,78)" : "rgb(20,46,39)"; cg.fillRect(0, 0, W, H);
+  rg.fillStyle = brass ? "rgb(78,78,78)" : "rgb(100,100,100)"; rg.fillRect(0, 0, W, H);
+  bg.fillStyle = "rgb(200,200,200)"; bg.fillRect(0, 0, W, H);
+  for (let i = 0; i < 9000; i++) { // brushing: long horizontal streaks
+    const y = r() * H, len = W * (0.1 + r() * 0.9), x = r() * W - len * 0.3, d = r() - 0.5, th = 0.35 + r() * 1.0;
+    cg.fillStyle = d > 0 ? `rgba(255,244,220,${d * 0.12})` : `rgba(60,40,15,${-d * 0.14})`; cg.fillRect(x, y, len, th);
+    const v = Math.round((brass ? 78 : 100) + d * 60); rg.fillStyle = `rgba(${v},${v},${v},0.55)`; rg.fillRect(x, y, len, th);
+    const b = Math.round(200 + d * 26); bg.fillStyle = `rgba(${b},${b},${b},0.5)`; bg.fillRect(x, y, len, th);
+  }
+  stamp(cg, mask, brass ? "rgb(98,68,34)" : "rgb(212,170,108)");
+  stamp(rg, mask, brass ? "rgb(190,190,190)" : "rgb(120,120,120)");
+  stamp(bg, mask, "rgb(40,40,40)", s / 22);
+  return { color: col, rough, bump, mask, W, H, chip: chip ? { x: 9.6, y: 21.5, w: 11.4, h: 8.8 } : null };
+}
+/** EMV contact plate texture (gold), w x h mm at s px/mm. */
+function chipTex(w = 11.4, h = 8.8, s = 60) {
+  const W = Math.round(w * s), H = Math.round(h * s), [c, g] = canvas2d(W, H);
+  const gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, "#e2c27f"); gr.addColorStop(0.5, "#cfa962"); gr.addColorStop(1, "#e0bd78");
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.strokeStyle = "rgba(70,48,18,0.85)"; g.lineWidth = 0.22 * s; g.lineCap = "round";
+  const cx1 = W * 0.36, cx2 = W * 0.64;
+  g.beginPath();
+  g.moveTo(cx1, 0); g.lineTo(cx1, H * 0.28); g.quadraticCurveTo(cx1, H * 0.34, cx1 + 0.4 * s, H * 0.36); g.lineTo(cx2 - 0.4 * s, H * 0.36); g.quadraticCurveTo(cx2, H * 0.38, cx2, H * 0.44); g.lineTo(cx2, H);
+  g.moveTo(cx2, 0); g.lineTo(cx2, H * 0.24);
+  g.moveTo(cx1, H * 0.62); g.lineTo(cx1, H);
+  for (const y of [0.36, 0.64]) { g.moveTo(0, H * y); g.lineTo(cx1 - 0.6 * s, H * y); g.moveTo(cx2 + 0.6 * s, H * y); g.lineTo(W, H * y); }
+  g.moveTo(cx1, H * 0.62); g.lineTo(cx1 + 1.2 * s, H * 0.62);
+  g.stroke();
+  return c;
+}
+/**
+ * Metal payment card (85.6 x 54 x thickness mm, world units: 1 = 100 mm). Lies in XY facing +Z; origin at the card centre, back face at z 0.
+ * Returns a Group. tone: "brass" | "green" (ink-green PVD with brass bright-cut edges).
+ */
+function cardMesh(THREE, env, { tone = "brass", name, tier, s = 24, thickness = 0.0085, seed = 21, chip = true, envI = 0.6, aniso = 0.85 } = {}) {
+  const mc = metalCard({ s, name, tier, seed, tone, chip });
+  const face = new THREE.MeshPhysicalMaterial({ color: "#ffffff", map: ctex(THREE, mc.color, true), metalness: 1, roughness: 1, roughnessMap: ctex(THREE, mc.rough, false), bumpMap: ctex(THREE, mc.bump, false), bumpScale: 1.1, anisotropy: aniso, envMap: env, envMapIntensity: envI });
+  if (tone === "green") { face.clearcoat = 0.35; face.clearcoatRoughness = 0.35; }
+  const edge = new THREE.MeshPhysicalMaterial({ color: tone === "brass" ? "#d9b276" : "#d6b071", metalness: 1, roughness: 0.22, envMap: env, envMapIntensity: envI * 1.5 });
+  const g = new THREE.Group();
+  const card = new THREE.Mesh(slab(THREE, 0.856, 0.54, thickness, 0.032, Math.min(0.0015, thickness * 0.2)), [face, edge]);
+  card.castShadow = card.receiveShadow = true; g.add(card);
+  if (mc.chip) {
+    const k = 0.01, cw = mc.chip.w * k, ch = mc.chip.h * k;
+    const chipMat = new THREE.MeshPhysicalMaterial({ map: ctex(THREE, chipTex(mc.chip.w, mc.chip.h), true), metalness: 1, roughness: 0.3, envMap: env, envMapIntensity: envI * 1.3, polygonOffset: true, polygonOffsetFactor: -2 });
+    const chipM = new THREE.Mesh(roundedRectGeometry(cw, ch, 0.016), chipMat);
+    chipM.position.set(-0.428 + (mc.chip.x * k) + cw / 2, 0.27 - (mc.chip.y * k) - ch / 2, thickness + 0.00015); chipM.receiveShadow = true; g.add(chipM);
+  }
+  return g;
+}
+/** Foil mask for the folio cover: centred symbol over a horizon rule (white on transparent). */
+function folioFoil(W = 1150, H = 1550) {
+  const [c, g] = canvas2d(W, H);
+  const mh = 150, mw = MARK.w / MARK.h * mh, mx = (W - mw) / 2, my = H * 0.36 - mh / 2; drawMark(g, mx, my, mh, "#fff");
+  g.fillStyle = "#fff"; g.fillRect(mx + mw + 18, H * 0.36 - 1.6, W - (mx + mw + 18), 3.2); // horizon runs to the fore-edge
+  drawWordmark(g, W / 2, H * 0.36 + mh / 2 + 120, 34, "#fff", "center");
+  return c;
+}
+// ---- end print textures ----
+// ---- app icon + screens (canvas, logical 390 x 844 pt drawn at 3x) ----
+/** Continuous-corner (superellipse) app icon path, size S at (x, y). */
+function squircle(g, x, y, S) {
+  const n = 5, steps = 160; g.beginPath();
+  for (let i = 0; i <= steps; i++) { const t = i / steps * Math.PI * 2, c = Math.cos(t), s = Math.sin(t);
+    const px = x + S / 2 + S / 2 * Math.sign(c) * Math.pow(Math.abs(c), 2 / n), py = y + S / 2 + S / 2 * Math.sign(s) * Math.pow(Math.abs(s), 2 / n);
+    i ? g.lineTo(px, py) : g.moveTo(px, py); }
+  g.closePath();
+}
+/** App icon at size S: ink-green field, ivory symbol, brass horizon (dropped below 60 px). */
+function drawIcon(g, x, y, S, { clip = true } = {}) {
+  g.save(); squircle(g, x, y, S); if (clip) g.clip();
+  const gr = g.createLinearGradient(x, y, x, y + S); gr.addColorStop(0, "#143830"); gr.addColorStop(1, "#0c241f"); g.fillStyle = gr; g.fillRect(x, y, S, S);
+  const mh = S * 0.4, mw = MARK.w / MARK.h * mh, mx = x + (S - mw) / 2 + S * 0.02, my = y + (S - mh) / 2;
+  if (S >= 60) { g.fillStyle = "#B08D57"; g.fillRect(mx + mw + S * 0.035, my + mh / 2 - Math.max(0.6, S * 0.004), x + S - (mx + mw + S * 0.035), Math.max(1.2, S * 0.008)); }
+  drawMark(g, mx, my, mh, "#F1ECE2", S < 60);
+  g.restore();
+}
+function rr(g, x, y, w, h, r) { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+function statusBar(g, col) {
+  g.fillStyle = col; g.font = "600 16px Inter"; g.textAlign = "center"; g.fillText("9:41", 62, 51); g.textAlign = "left";
+  for (let i = 0; i < 4; i++) { rr(g, 290 + i * 5.2, 47 - (4 + i * 2.6), 3.4, 4 + i * 2.6, 0.9); g.fill(); } // signal
+  g.lineWidth = 2; g.lineCap = "round"; g.strokeStyle = col; // wifi
+  for (let i = 0; i < 3; i++) { g.beginPath(); g.arc(320, 48, 3 + i * 3.6, -Math.PI * 0.75, -Math.PI * 0.25); g.stroke(); }
+  g.lineWidth = 1; g.globalAlpha = 0.45; rr(g, 336.5, 38.5, 24, 12, 3.6); g.stroke(); g.globalAlpha = 1; rr(g, 338.5, 40.5, 17, 8, 2); g.fill(); rr(g, 361.5, 42.5, 1.6, 4, 0.8); g.globalAlpha = 0.45; g.fill(); g.globalAlpha = 1;
+  g.fillStyle = "#000"; rr(g, 132, 11, 126, 37, 18.5); g.fill(); // camera island
+}
+function screenCanvas() { const [c, g] = canvas2d(1170, 2532); g.scale(3, 3); return [c, g]; }
+function welcomeScreen() {
+  const [c, g] = screenCanvas(); const W = 390, H = 844;
+  const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, "#12332b"); gr.addColorStop(1, "#0c231e"); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  statusBar(g, "#F1ECE2");
+  const mh = 70, mw = MARK.w / MARK.h * mh, mx = (W - mw) / 2 + 3, my = 214, hy = my + mh / 2;
+  g.fillStyle = "#B08D57"; g.fillRect(mx + mw + 10, hy - 0.5, W - (mx + mw + 10), 1); g.fillRect(0, hy - 0.5, mx - 10, 1);
+  drawMark(g, mx, my, mh, "#F1ECE2");
+  g.textAlign = "center";
+  label(g, "MONDAY 19 OCTOBER", W / 2, 352, 10.5, "rgba(241,236,226,.55)", { align: "center", track: 0.22 });
+  g.font = "300 40px 'Cormorant Garamond'"; g.fillStyle = "#F1ECE2"; g.textAlign = "center"; g.fillText("Good evening,", W / 2, 410); g.fillText("Mr Rahman.", W / 2, 452);
+  g.textAlign = "left";
+  // Face ID button
+  g.strokeStyle = "rgba(241,236,226,.42)"; g.lineWidth = 1; rr(g, 24.5, 682.5, W - 49, 56, 28); g.stroke();
+  const fx = 118, fy = 700, fs = 20; g.strokeStyle = "#F1ECE2"; g.lineWidth = 1.5; g.lineCap = "round"; g.beginPath();
+  for (const [ax, ay, dx, dy] of [[fx, fy, 1, 1], [fx + fs, fy, -1, 1], [fx, fy + fs, 1, -1], [fx + fs, fy + fs, -1, -1]]) { g.moveTo(ax, ay + dy * 6); g.lineTo(ax, ay + dy * 2); g.quadraticCurveTo(ax, ay, ax + dx * 2, ay); g.lineTo(ax + dx * 6, ay); }
+  g.moveTo(fx + 7, fy + 7.5); g.lineTo(fx + 7, fy + 9); g.moveTo(fx + 13, fy + 7.5); g.lineTo(fx + 13, fy + 9); g.moveTo(fx + 7, fy + 14); g.quadraticCurveTo(fx + 10, fy + 16, fx + 13, fy + 14); g.stroke();
+  g.font = "500 16px Inter"; g.fillStyle = "#F1ECE2"; g.fillText("Unlock with Face ID", 150, 716);
+  g.font = "400 13px Inter"; g.fillStyle = "rgba(241,236,226,.5)"; g.textAlign = "center"; g.fillText("Not Mr Rahman?  Switch profile", W / 2, 776); g.textAlign = "left";
+  g.fillStyle = "rgba(241,236,226,.9)"; rr(g, (W - 134) / 2, 830, 134, 5, 2.5); g.fill();
+  return c;
+}
+function homeScreen() {
+  const [c, g] = screenCanvas(); const W = 390, H = 844, L = 24, R = W - 24;
+  g.fillStyle = "#F1ECE2"; g.fillRect(0, 0, W, H);
+  statusBar(g, "#1C1C1C");
+  // top bar
+  drawMark(g, L, 76, 22, "#0F2A24", true);
+  g.fillStyle = "#0F2A24"; g.beginPath(); g.arc(R - 17, 87, 17, 0, 7); g.fill();
+  g.font = "500 15px 'Cormorant Garamond'"; g.fillStyle = "#F1ECE2"; g.textAlign = "center"; g.fillText("HR", R - 17, 92); g.textAlign = "left";
+  g.font = "400 30px 'Cormorant Garamond'"; g.fillStyle = "#0F2A24"; g.fillText("Good evening, Mr Rahman", L, 150);
+  // total
+  label(g, "FAMILY WEALTH · CONSOLIDATED", L, 196, 9.5, "rgba(28,28,28,.55)", { track: 0.2 });
+  g.font = "300 50px 'Cormorant Garamond'"; g.fillStyle = "#1C1C1C"; const big = "£24,618,302"; g.fillText(big, L - 1, 248); const bw = g.measureText(big).width;
+  g.font = "300 26px 'Cormorant Garamond'"; g.fillStyle = "rgba(28,28,28,.5)"; g.fillText(".40", L + bw, 248);
+  g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.6)"; g.fillText("As at 18:00 GST", L, 274);
+  g.font = "500 12px Inter"; g.fillStyle = "#2f6a55"; g.textAlign = "right"; g.fillText("+ £182,440 since 30 Sep", R, 274); g.textAlign = "left";
+  // chart
+  const cx0 = L, cx1 = R, cy0 = 300, cy1 = 410; const pts = [];
+  const r = rand(44); let v = 0.42; for (let i = 0; i <= 60; i++) { v += (r() - 0.46) * 0.07 + (i > 40 ? 0.006 : 0); v = Math.min(0.9, Math.max(0.12, v)); pts.push([cx0 + (cx1 - cx0) * i / 60, cy1 - (cy1 - cy0) * v]); }
+  const base = pts[0][1];
+  g.setLineDash([2, 3]); g.strokeStyle = "#B08D57"; g.lineWidth = 1; g.beginPath(); g.moveTo(cx0, base); g.lineTo(cx1, base); g.stroke(); g.setLineDash([]);
+  const fill = g.createLinearGradient(0, cy0, 0, cy1 + 10); fill.addColorStop(0, "rgba(15,42,36,.14)"); fill.addColorStop(1, "rgba(15,42,36,0)");
+  g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.lineTo(cx1, cy1 + 10); g.lineTo(cx0, cy1 + 10); g.closePath(); g.fillStyle = fill; g.fill();
+  g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.strokeStyle = "#0F2A24"; g.lineWidth = 1.6; g.lineJoin = "round"; g.stroke();
+  const [ex, ey] = pts[pts.length - 1]; g.fillStyle = "#0F2A24"; g.beginPath(); g.arc(ex, ey, 3.2, 0, 7); g.fill();
+  ["JUL", "AUG", "SEP", "OCT"].forEach((m, i) => label(g, m, cx0 + (cx1 - cx0) * (i + 0.5) / 4, 432, 9, "rgba(28,28,28,.45)", { align: "center", track: 0.16 }));
+  // range control
+  const segs = ["1M", "3M", "1Y", "5Y"]; const sw = (R - L) / 4;
+  g.fillStyle = "rgba(15,42,36,.06)"; rr(g, L, 448, R - L, 30, 15); g.fill(); g.fillStyle = "#0F2A24"; rr(g, L + sw + 2, 450, sw - 4, 26, 13); g.fill();
+  segs.forEach((t, i) => { g.font = "500 11px Inter"; g.fillStyle = i === 1 ? "#F1ECE2" : "rgba(28,28,28,.6)"; g.textAlign = "center"; g.fillText(t, L + sw * (i + 0.5), 467); }); g.textAlign = "left";
+  // next meeting
+  g.strokeStyle = "rgba(176,141,87,.6)"; g.lineWidth = 1; rr(g, L + 0.5, 498.5, R - L - 1, 58, 10); g.stroke();
+  label(g, "NEXT", L + 16, 522, 9, "#8a6c3f", { track: 0.2 });
+  g.font = "500 14px Inter"; g.fillStyle = "#1C1C1C"; g.fillText("Charter review with Zara Malik", L + 62, 524);
+  g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.6)"; g.fillText("Thursday 22 October, 11:00 · Lahore", L + 62, 542);
+  // holdings
+  label(g, "HOLDINGS BY ENTITY", L, 594, 9.5, "rgba(28,28,28,.55)", { track: 0.2 });
+  const rows = [["Rahman Family Trust", "DIFC, Dubai", "£11,240,000"], ["Mayfair residence", "London", "£6,850,000"], ["Gulberg holdings", "Lahore", "£4,102,000"], ["Liquidity", "GBP · AED · PKR", "£2,426,302"]];
+  rows.forEach(([a, b, v2], i) => { const y = 612 + i * 50; g.fillStyle = "rgba(28,28,28,.12)"; g.fillRect(L, y, R - L, 1);
+    g.font = "500 14px Inter"; g.fillStyle = "#1C1C1C"; g.fillText(a, L, y + 22); g.font = "400 12px Inter"; g.fillStyle = "rgba(28,28,28,.55)"; g.fillText(b, L, y + 39);
+    g.font = "400 18px 'Cormorant Garamond'"; g.fillStyle = "#1C1C1C"; g.textAlign = "right"; g.font = "500 14px Inter"; g.fillText(v2, R, y + 22); g.textAlign = "left"; });
+  // tab bar
+  g.fillStyle = "#ebe5d9"; g.fillRect(0, 768, W, H - 768); g.fillStyle = "rgba(28,28,28,.1)"; g.fillRect(0, 768, W, 1);
+  const tabs = ["Overview", "Entities", "Documents", "Banker"]; const tw = W / 4;
+  tabs.forEach((t, i) => { const x = tw * (i + 0.5), y = 790, on = i === 0, col = on ? "#0F2A24" : "rgba(28,28,28,.42)";
+    g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 1.5; g.lineCap = "round"; g.lineJoin = "round"; g.beginPath();
+    if (i === 0) { g.arc(x - 2, y, 6.5, 0, Math.PI * 2); g.moveTo(x - 12, y); g.lineTo(x + 12, y); }
+    if (i === 1) { for (const dx of [-8, 0, 8]) { g.moveTo(x + dx, y + 8); g.lineTo(x + dx, y - 4 + Math.abs(dx) * 0.4); } g.moveTo(x - 11, y + 8); g.lineTo(x + 11, y + 8); g.moveTo(x - 11, y - 6); g.lineTo(x, y - 10); g.lineTo(x + 11, y - 6); }
+    if (i === 2) { g.moveTo(x - 7, y - 9); g.lineTo(x + 3, y - 9); g.lineTo(x + 8, y - 4); g.lineTo(x + 8, y + 9); g.lineTo(x - 7, y + 9); g.closePath(); g.moveTo(x - 3, y + 1); g.lineTo(x + 4, y + 1); g.moveTo(x - 3, y + 5); g.lineTo(x + 4, y + 5); }
+    if (i === 3) { g.arc(x, y - 4, 4.5, 0, Math.PI * 2); g.moveTo(x - 9, y + 10); g.quadraticCurveTo(x, y - 2, x + 9, y + 10); }
+    g.stroke(); g.font = `${on ? 600 : 500} 10px Inter`; g.textAlign = "center"; g.fillText(t, x, y + 26); g.textAlign = "left"; });
+  g.fillStyle = "rgba(28,28,28,.85)"; rr(g, (W - 134) / 2, 830, 134, 5, 2.5); g.fill();
+  return c;
+}
+// ---- end app ----
+await loadFonts();
+const P = !!window.__PREVIEW;
+document.getElementById("hl").innerHTML = markSVG(12, "rgba(241,236,226,.55)", true) + "<span>Corvane</span>";
+// flat icon specimen
+{ const g = document.getElementById("ix").getContext("2d"); drawIcon(g, 0, 0, 400); }
+const SZ = [[120, "120 pt"], [76, "76"], [60, "60"], [40, "40"], [29, "29"]];
+document.getElementById("szr").innerHTML = SZ.map(([n]) => `<canvas width="${n * 2}" height="${n * 2}" style="width:${n}px;height:${n}px;display:block"></canvas>`).join("");
+document.querySelectorAll("#szr canvas").forEach((cv, i) => drawIcon(cv.getContext("2d"), 0, 0, SZ[i][0] * 2));
+document.getElementById("szl").innerHTML = SZ.map(([n, t]) => `<span style="width:${n}px">${t}</span>`).join("");
+if (new URLSearchParams(location.search).has("ui")) { // debug: flat screens
+  document.body.innerHTML = ""; document.body.style.background = "#888";
+  for (const cv of [welcomeScreen(), homeScreen()]) { cv.style.cssText = "width:390px;height:844px;margin:40px 0 0 60px;float:left"; document.body.appendChild(cv); }
+  const cv = document.createElement("canvas"); cv.width = cv.height = 512; cv.style.cssText = "width:256px;height:256px;margin:40px 0 0 60px;float:left"; drawIcon(cv.getContext("2d"), 0, 0, 512); document.body.appendChild(cv);
+} else {
+// ---- scene ----
+}
+</script>
+</body></html>
