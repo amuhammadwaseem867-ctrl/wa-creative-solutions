@@ -5,7 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { AlertTriangle, ArrowUpRight, CheckCircle2, Loader2, X } from "lucide-react";
 import { budgetOptions, LIMITS, normalizeInquiry, timelineOptions, validateInquiry, type InquiryData, type InquiryErrors } from "@/lib/inquiry";
 import { serviceOptions } from "@/lib/services";
-import { STATIC_SITE } from "@/lib/hosting";
+import { API_BASE, STATIC_SITE } from "@/lib/hosting";
 import { contact } from "@/lib/site";
 
 export type InquiryPrefill = {
@@ -119,8 +119,8 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
       return;
     }
 
-    if (STATIC_SITE) {
-      // No server on static hosting: open the visitor's email app with the brief written out.
+    if (STATIC_SITE && !API_BASE) {
+      // No API available: open the visitor's email app with the brief written out.
       window.location.href = mailtoBrief(clean);
       setStatus({
         kind: "success",
@@ -132,7 +132,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
 
     setStatus({ kind: "submitting" });
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -165,7 +165,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
     return (
       <div ref={statusRef} tabIndex={-1} role="status" className="border border-line bg-ink-2 p-8 outline-none sm:p-12">
         <CheckCircle2 className="text-red" size={36} aria-hidden />
-        <h3 className="mt-6 font-display text-3xl font-semibold tracking-[-0.03em]">{STATIC_SITE ? "Almost there." : "Brief received."}</h3>
+        <h3 className="mt-6 font-display text-3xl font-semibold tracking-[-0.03em]">{STATIC_SITE && !API_BASE ? "Almost there." : "Brief received."}</h3>
         <p className="mt-3 max-w-lg text-mute">{status.message}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <button type="button" className="btn btn-ghost" onClick={() => setStatus({ kind: "idle" })}>

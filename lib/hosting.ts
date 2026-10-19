@@ -10,3 +10,9 @@ export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /** Prefixes a public-folder path for plain <img> tags (next/image handles this via its loader). */
 export const asset = (path: string) => `${BASE_PATH}${path}`;
+
+/**
+ * Where the API lives. Empty on the server build (same origin). The GitHub Pages build points
+ * it at the Netlify deployment, which keeps running the API routes with their secret keys.
+ */
+export const API_BASE = (process.env.NEXT_PUBLIC_API_BASE ?? "").replace(/\/$/, "");

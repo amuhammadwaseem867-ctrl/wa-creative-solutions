@@ -25,20 +25,13 @@ export default function PrivacyPage() {
           range, timeline, project description, reference links and any estimator summary you choose to attach.
         </li>
         <li>
-          <strong>AI chat assistant:</strong> messages you type into the on-site assistant and, if you submit a project request through it,
-          your name and email. Conversations are stored so we can follow up on project requests.
-        </li>
-        <li>
           <strong>Direct communication:</strong> anything you send us by email, phone or social media.
         </li>
       </ul>
       <h3>Information collected automatically</h3>
       <ul>
         <li>Standard server logs (such as IP address, browser type and request time) kept by our hosting provider for security and reliability.</li>
-        <li>
-          A first-party cookie (<code>wa_chat_session</code>) that keeps your AI chat conversation together across page views. [Review: list any
-          analytics tools if they are added.]
-        </li>
+        <li>The site sets no tracking or advertising cookies. [Review: list any analytics tools if they are added.]</li>
       </ul>
 
       <h2>2. How we use information</h2>
@@ -53,15 +46,14 @@ export default function PrivacyPage() {
       <h2>3. Service providers</h2>
       <p>We use trusted providers to operate the site. [Review and keep this list accurate.] Currently this may include:</p>
       <ul>
-        <li>Website hosting provider (e.g. Vercel) — hosting and server logs.</li>
+        <li>GitHub Pages — hosting the website and its server logs.</li>
+        <li>Netlify — running the inquiry form&apos;s submission service.</li>
         <li>Resend — delivering inquiry form submissions to our inbox.</li>
-        <li>Neon — database storage for AI chat conversations and project requests.</li>
-        <li>An AI model provider — generating chat assistant responses from the messages you send.</li>
       </ul>
 
       <h2>4. Retention</h2>
       <p>
-        We keep inquiry and chat records only as long as needed to respond, manage a resulting project, or meet legal obligations.
+        We keep inquiry records only as long as needed to respond, manage a resulting project, or meet legal obligations.
         [Define a concrete retention period, e.g. 24 months after last contact.]
       </p>
 
