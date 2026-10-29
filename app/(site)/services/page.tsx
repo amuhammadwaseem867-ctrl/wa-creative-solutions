@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { ServiceCatalogue } from "@/components/services/ServiceCatalogue";
+import { ServiceIndex, ServiceShowcase } from "@/components/services/ServiceShowcase";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { ButtonLink } from "@/components/ui/Button";
@@ -38,7 +38,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="Services"
         title={<>Complete creative <span className="text-chrome">capability</span></>}
-        intro="Six disciplines that work as one system. Open any service for its scope, deliverables and a direct path to a quote."
+        intro="Six disciplines that work as one system. Each one below shows real work from our portfolio, what you receive and a direct path to a quote."
       >
         <div className="flex flex-wrap justify-center gap-3">
           <ButtonLink href="/pricing">See pricing</ButtonLink>
@@ -48,8 +48,15 @@ export default function ServicesPage() {
         </div>
       </PageHeader>
       <section className="section-y pt-4!" aria-label="Service catalogue">
-        <div className="container-site max-w-[1080px]!">
-          <ServiceCatalogue />
+        <div className="container-site">
+          <ServiceIndex services={services} />
+          <ol className="mt-[clamp(6rem,12vw,10rem)] space-y-[clamp(7rem,13vw,11rem)]">
+            {services.map((s, i) => (
+              <li key={s.id}>
+                <ServiceShowcase service={s} total={services.length} flip={i % 2 === 1} priority={i === 0} />
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
       <ProcessSection />
