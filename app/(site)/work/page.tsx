@@ -3,33 +3,32 @@ import { Suspense } from "react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { WorkExplorer } from "@/components/work/WorkExplorer";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { projects, workCategories } from "@/lib/projects";
+import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected work across brand identity, web design & development, AI, 3D/CGI & motion, marketing and graphic design — live builds and labelled concept projects.",
+    "Live websites, e-commerce stores, SaaS platforms and brand identity work by WA Creative Solution, with screenshots of every deployed build.",
   alternates: { canonical: "/work" },
   openGraph: { url: "/work", title: `Work — ${site.name}` },
 };
 
 export default function WorkPage() {
   const live = projects.filter((p) => p.kind === "live").length;
-  const concepts = projects.length - live;
   return (
     <>
       <PageHeader
         eyebrow="Selected work"
         title={
           <>
-            Work across <span className="text-chrome">every field</span>
+            Work that&apos;s <span className="text-chrome">live right now</span>
           </>
         }
         intro={
           <>
-            {live} live builds and {concepts} concept projects spanning {workCategories.length} disciplines. Live projects link to the deployed
-            site; concept projects are self-initiated explorations and are always labelled as such.
+            {live} deployed builds, from storefronts and corporate sites to a restaurant SaaS and an ERP. Every screen is captured from the live
+            site, and every project links to it. Concept work is labelled as such.
           </>
         }
       />

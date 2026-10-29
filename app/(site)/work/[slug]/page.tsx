@@ -8,6 +8,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { site } from "@/lib/site";
 import { EmberLight, StarField } from "@/components/ui/Atmosphere";
+import { BrowserFrame, PhoneFrame } from "@/components/work/Devices";
+import { ProjectStage } from "@/components/work/ProjectShowcase";
 
 export const dynamicParams = false;
 
@@ -82,16 +84,22 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           </div>
         </div>
         <div className="container-site mt-14">
-          <div className={`relative overflow-hidden bg-ink-3 ${landscapeCover ? "aspect-[16/9]" : "aspect-[4/5] sm:aspect-[16/10]"}`}>
-            <Image
-              src={project.cover.src}
-              alt={project.cover.alt}
-              fill
-              priority
-              sizes="100vw"
-              className={logoCover ? "object-contain p-[12%]" : "object-cover object-top"}
-            />
-          </div>
+          {live ? (
+            <div className="group pb-[6%]">
+              <ProjectStage project={project} sizes="(min-width: 1280px) 1200px, 100vw" priority />
+            </div>
+          ) : (
+            <div className={`relative overflow-hidden bg-ink-3 ${landscapeCover ? "aspect-[16/9]" : "aspect-[4/5] sm:aspect-[16/10]"}`}>
+              <Image
+                src={project.cover.src}
+                alt={project.cover.alt}
+                fill
+                priority
+                sizes="100vw"
+                className={logoCover ? "object-contain p-[12%]" : "object-cover object-top"}
+              />
+            </div>
+          )}
         </div>
       </header>
 
@@ -205,16 +213,22 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                     data-reveal
                     className={row.length === 1 && img.width / img.height < 1.15 ? `mx-auto w-full ${img.width / img.height < 0.62 ? "max-w-sm" : "max-w-2xl"}` : undefined}
                   >
-                    <div className="overflow-hidden bg-ink-3">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        width={img.width}
-                        height={img.height}
-                        sizes={row.length === 1 ? "(min-width: 1280px) 1200px, 100vw" : row.length === 2 ? "(min-width: 768px) 50vw, 100vw" : "33vw"}
-                        className="h-auto w-full"
-                      />
-                    </div>
+                    {live && img.width > img.height ? (
+                      <BrowserFrame image={img} url={project.liveUrl} sizes="(min-width: 1280px) 1200px, 100vw" />
+                    ) : live ? (
+                      <PhoneFrame image={img} sizes="(min-width: 640px) 384px, 100vw" />
+                    ) : (
+                      <div className="overflow-hidden bg-ink-3">
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          width={img.width}
+                          height={img.height}
+                          sizes={row.length === 1 ? "(min-width: 1280px) 1200px, 100vw" : row.length === 2 ? "(min-width: 768px) 50vw, 100vw" : "33vw"}
+                          className="h-auto w-full"
+                        />
+                      </div>
+                    )}
                     {img.caption && (
                       <figcaption className="mt-3 flex justify-between gap-4 text-xs font-medium tracking-[0.1em] text-white/45 uppercase">
                         <span>{img.caption}</span>

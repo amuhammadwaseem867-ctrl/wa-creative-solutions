@@ -757,3 +757,22 @@ html.js [data-reveal].is-visible {
     animation: none;
   }
 }
+
+/* Browser-frame screenshots: hovering the card scrolls the page capture through the viewport */
+.shot-viewport {
+  container-type: size;
+}
+.shot-scroll {
+  transition: transform 1.4s var(--ease-expo);
+}
+.group:hover .shot-scroll,
+.group:focus-visible .shot-scroll {
+  transform: translateY(calc(-100% + 100cqh));
+  transition: transform 7s cubic-bezier(0.45, 0, 0.25, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .shot-scroll,
+  .group:focus-visible .shot-scroll {
+    transform: none;
+  }
+}

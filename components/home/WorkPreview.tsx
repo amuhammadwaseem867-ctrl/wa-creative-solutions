@@ -4,20 +4,20 @@ import { projects, workCategories, type Project } from "@/lib/projects";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/work/ProjectCard";
-import { FeaturedProject } from "@/components/work/FeaturedProject";
+import { ProjectShowcase } from "@/components/work/ProjectShowcase";
 
 /**
- * Curated homepage selection — one lead project plus four supporting projects,
+ * Curated homepage selection: two lead showcases, then four supporting projects
  * chosen to span the studio's fields. Slugs that don't exist are skipped.
  */
-const LEAD = "selune";
-const SUPPORTING = ["restaurant-os", "corvane", "veyra", "zama-zama"];
+const LEAD = ["spirit", "apparel-fastener"];
+const SUPPORTING = ["restaurant-os", "af7", "zama-zama", "corvane"];
+
+const pick = (slugs: string[]) => slugs.map((s) => projects.find((p) => p.slug === s)).filter((p): p is Project => p !== undefined);
 
 export function WorkPreview() {
-  const lead = projects.find((p) => p.slug === LEAD) ?? projects[0];
-  const supporting = SUPPORTING.map((s) => projects.find((p) => p.slug === s))
-    .filter((p): p is Project => p !== undefined && p.slug !== lead.slug)
-    .slice(0, 4);
+  const lead = pick(LEAD);
+  const supporting = pick(SUPPORTING).slice(0, 4);
   const counts = workCategories.map((c) => ({ ...c, n: projects.filter((p) => p.categories.includes(c.id)).length })).filter((c) => c.n > 0);
 
   return (
@@ -28,7 +28,7 @@ export function WorkPreview() {
             align="left"
             eyebrow="Selected work"
             title={<span id="work-title">Work that speaks for itself</span>}
-            intro="Live builds and labelled concept projects across every discipline we offer."
+            intro="Real, deployed websites and platforms. Hover a screen to scroll through the live page."
           />
           <div data-reveal>
             <ButtonLink href="/work" variant="ghost">
@@ -37,14 +37,18 @@ export function WorkPreview() {
           </div>
         </div>
 
-        <div className="mt-12 lg:mt-14" data-reveal>
-          <FeaturedProject project={lead} priority={false} />
-        </div>
+        <ol className="mt-16 space-y-[clamp(6rem,12vw,9rem)] lg:mt-20">
+          {lead.map((p, i) => (
+            <li key={p.slug}>
+              <ProjectShowcase project={p} index={i} total={projects.length} flip={i % 2 === 1} />
+            </li>
+          ))}
+        </ol>
 
-        <ul className="mt-16 grid gap-x-8 gap-y-16 md:grid-cols-2">
+        <ul className="mt-[clamp(6rem,12vw,9rem)] grid gap-x-10 gap-y-20 md:grid-cols-2">
           {supporting.map((p, i) => (
             <li key={p.slug} data-reveal style={{ "--reveal-delay": `${(i % 2) * 90}ms` } as React.CSSProperties}>
-              <ProjectCard project={p} sizes="(min-width: 768px) 50vw, 100vw" />
+              <ProjectCard project={p} />
             </li>
           ))}
         </ul>
