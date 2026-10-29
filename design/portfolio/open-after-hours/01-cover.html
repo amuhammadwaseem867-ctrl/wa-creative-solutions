@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1600x1000"><title>Open After Hours — Cover</title>
+<script>window.__ASYNC = true;</script>
+</head>
+<body>
+<script type="module">
+import { CSS, BOARD_CSS, FONTS, hook, work, tip, story, fit, done, mark } from "./_kit.js";
+document.head.insertAdjacentHTML("beforeend", FONTS + `<style>${BOARD_CSS}${CSS}</style>`);
+document.body.innerHTML = `
+  <div class="bgrid"></div>
+  <div class="bember" style="left:560px;top:-520px;width:1300px;height:1100px"></div>
+  <div class="hdr"><span>WA Creative Solution — in-house</span><span>Marketing &amp; content · Concept</span><span>01 / 03 — Campaign</span></div>
+  <div style="position:absolute;left:80px;top:250px;width:520px">
+    <div class="cap">[ Social campaign ]</div>
+    <div class="disp" style="font-size:86px;margin-top:22px">Open<br>after<br>hours</div>
+    <p style="margin:30px 0 0;font:400 18px/1.6 Poppins;color:rgba(255,255,255,.68)">Our own launch campaign: real work, honest tips and a line every shop owner in Pakistan knows. Built as a template system for posts, stories, carousels and link ads.</p>
+    <div style="margin-top:34px;display:flex;gap:10px;flex-wrap:wrap">${["Instagram", "Facebook", "LinkedIn", "Template system"].map((t) => `<span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px;font:500 12px/1 Poppins;color:rgba(255,255,255,.7)">${t}</span>`).join("")}</div>
+  </div>
+  <div class="shadow" style="position:absolute;left:640px;top:300px;transform:rotate(-7deg)">${fit(work("spirit", "SPIRIT", "E-commerce"), 380)}</div>
+  <div class="shadow" style="position:absolute;left:1030px;top:600px;transform:rotate(5deg)">${fit(tip(), 360)}</div>
+  <div class="shadow" style="position:absolute;left:790px;top:150px;transform:rotate(-1deg)">${fit(hook(), 460)}</div>
+  <div class="phone" style="left:1270px;top:150px;width:262px;transform:rotate(4deg)"><div class="notch"></div><div class="scr">${fit(story(), 238, 1080, 1920)}</div></div>
+  <div style="position:absolute;left:80px;bottom:56px;display:flex;align-items:center;gap:12px;font:600 14px/1 Poppins">${mark(26)} @wacreativesstudio</div>
+`;
+done();
+</script>
+</body></html>

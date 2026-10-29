@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1600x1000"><title>Open After Hours — Template system</title>
+<script>window.__ASYNC = true;</script>
+</head>
+<body>
+<script type="module">
+import { CSS, BOARD_CSS, FONTS, hook, story, linkAd, fit, done, RED, RED_DEEP } from "./_kit.js";
+document.head.insertAdjacentHTML("beforeend", FONTS + `<style>${BOARD_CSS}${CSS}
+.spec{position:absolute;font:500 11px/1 Poppins;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.sw{display:flex;flex-direction:column;gap:10px;font:500 12px/1.3 Poppins;color:rgba(255,255,255,.7)}
+.sw i{display:block;width:96px;height:64px;border:1px solid rgba(255,255,255,.14)}
+</style>`);
+document.body.innerHTML = `
+  <div class="bgrid"></div>
+  <div class="bember" style="left:420px;top:-600px;width:1200px;height:1000px"></div>
+  <div class="hdr"><span>WA Creative Solution — in-house</span><span>Marketing &amp; content · Concept</span><span>03 / 03 — System</span></div>
+  <div style="position:absolute;left:80px;top:130px">
+    <div class="cap">[ Template system ]</div>
+    <div class="disp" style="font-size:52px;margin-top:16px">One message,<br>every size</div>
+  </div>
+  <div class="spec" style="left:80px;top:338px">Feed post · 1080 × 1080</div>
+  <div class="shadow" style="position:absolute;left:80px;top:362px">${fit(hook(), 380)}</div>
+  <div class="spec" style="left:500px;top:338px">Link ad · 1200 × 628</div>
+  <div class="shadow" style="position:absolute;left:500px;top:362px">${fit(linkAd(), 600, 1200, 628)}</div>
+  <div class="spec" style="left:1170px;top:110px">Story · 1080 × 1920</div>
+  <div class="phone" style="left:1170px;top:134px;width:330px"><div class="notch"></div><div class="scr">${fit(story(), 306, 1080, 1920)}</div></div>
+  <div style="position:absolute;left:500px;top:720px;display:flex;gap:18px">
+    ${[["#000000", "Ink"], [RED, "Ember red"], [RED_DEEP, "Deep red"], ["#FFFFFF", "Paper"]].map(([c, n]) => `<div class="sw"><i style="background:${c}"></i>${n}<br><span style="color:rgba(255,255,255,.4)">${c.toUpperCase()}</span></div>`).join("")}
+  </div>
+  <div style="position:absolute;left:80px;top:790px;width:380px">
+    <div class="spec" style="position:static">Type</div>
+    <div class="disp" style="font-size:30px;margin-top:14px">Montserrat 800</div>
+    <div style="font:400 15px/1.5 Poppins;color:rgba(255,255,255,.66);margin-top:6px">Poppins 400 for body copy. Roman Urdu hooks, English detail underneath.</div>
+  </div>
+  <div style="position:absolute;left:960px;top:720px;width:180px;font:400 13px/1.55 Poppins;color:rgba(255,255,255,.6)">
+    <div class="spec" style="position:static;margin-bottom:12px">Rules</div>
+    Corner marks frame every post. Handle bottom-left. One red word per headline.
+  </div>
+`;
+done();
+</script>
+</body></html>

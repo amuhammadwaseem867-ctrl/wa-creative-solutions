@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1600x1000"><title>Open After Hours — Feed</title>
+<script>window.__ASYNC = true;</script>
+</head>
+<body>
+<script type="module">
+import { CSS, BOARD_CSS, FONTS, hook, work, tip, process, quote, eid, fit, done, mark, RED } from "./_kit.js";
+document.head.insertAdjacentHTML("beforeend", FONTS + `<style>${BOARD_CSS}${CSS}
+.prof{font-family:Poppins;color:#fff}
+.hl{display:flex;flex-direction:column;align-items:center;gap:6px;font:500 10px/1 Poppins;color:rgba(255,255,255,.8)}
+.hl span{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;background:#111}
+.pillar{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02);padding:22px;display:flex;gap:22px;align-items:flex-start}
+.pillar h3{margin:0;font:700 22px/1.1 Montserrat;text-transform:uppercase}
+.pillar p{margin:10px 0 0;font:400 14px/1.55 Poppins;color:rgba(255,255,255,.62)}
+</style>`);
+const tiles = [hook(), work("spirit", "SPIRIT", "E-commerce"), tip(), process(), work("af7", "AF7", "Brand website"), quote(), eid(), work("restaurant-os", "RestaurantOS", "SaaS platform"), work("zama-zama", "Zama Zama", "Service website")];
+const hlIcon = (t) => `<svg width="22" height="22" viewBox="0 0 40 40"><path d="M20 0Q22 18 40 20Q22 22 20 40Q18 22 0 20Q18 18 20 0Z" fill="${t ? RED : "#fff"}"/></svg>`;
+document.body.innerHTML = `
+  <div class="bgrid"></div>
+  <div class="bember" style="left:-200px;top:-560px;width:1100px;height:1000px"></div>
+  <div class="hdr"><span>WA Creative Solution — in-house</span><span>Marketing &amp; content · Concept</span><span>02 / 03 — Feed</span></div>
+  <div class="phone" style="left:150px;top:96px;width:414px"><div class="notch"></div>
+    <div class="scr prof" style="width:390px;height:844px">
+      <div style="height:54px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0 16px;font:600 17px/1 Poppins">wacreativesstudio <span style="letter-spacing:2px">···</span></div>
+      <div style="display:flex;align-items:center;gap:18px;padding:18px 16px 0">
+        <div style="width:82px;height:82px;border-radius:50%;background:#000;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center">${mark(48)}</div>
+        <div><div style="font:600 15px/1.2 Poppins">WA Creative Solution</div><div style="font:400 12px/1.4 Poppins;color:rgba(255,255,255,.55);margin-top:3px">Design agency</div></div>
+      </div>
+      <div style="padding:12px 16px 0;font:400 12.5px/1.5 Poppins;color:rgba(255,255,255,.85)">Brand · Web · 3D · AI<br>Websites that keep working after hours.<br>Rawalpindi, Pakistan<br><span style="color:#9ec3ff">wacreativesolution.com</span></div>
+      <div style="display:flex;gap:8px;padding:14px 16px 0">${["Follow", "Message", "Contact"].map((t, i) => `<span style="flex:1;text-align:center;padding:8px 0;border-radius:8px;font:600 12px/1 Poppins;background:${i === 0 ? RED : "rgba(255,255,255,.12)"}">${t}</span>`).join("")}</div>
+      <div style="display:flex;gap:16px;padding:16px 16px 14px">${["Work", "Tips", "Process", "Eid"].map((t, i) => `<div class="hl"><span>${hlIcon(i === 0)}</span>${t}</div>`).join("")}</div>
+      <div style="display:grid;grid-template-columns:repeat(3,128px);gap:3px;padding:0 0 0 0">${tiles.map((t) => fit(t, 128)).join("")}</div>
+    </div></div>
+  <div style="position:absolute;left:680px;top:150px;width:840px">
+    <div class="cap">[ Content pillars ]</div>
+    <div class="disp" style="font-size:58px;margin-top:18px">A feed people<br>actually save</div>
+    <p style="margin:18px 0 0;font:400 17px/1.6 Poppins;color:rgba(255,255,255,.66);max-width:620px">Four kinds of post, in rotation. Every one is a template, so the feed stays consistent without designing from scratch each week.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px">
+      ${[
+        [work("apparel-fastener", "Apparel Fastener", "Corporate website"), "01 · Work", "Real builds of ours with a link to the live site. Proof, not promises."],
+        [tip(), "02 · Tips", "Short checklists a shop owner recognises and saves for later."],
+        [process(), "03 · Process", "What happens after you call: five steps, one post each."],
+        [eid(), "04 · Moments", "Eid, launches and local occasions, planned a month ahead."],
+      ].map(([p, h, t]) => `<div class="pillar"><div class="shadow" style="flex:none">${fit(p, 112)}</div><div><h3>${h}</h3><p>${t}</p></div></div>`).join("")}
+    </div>
+  </div>
+`;
+done();
+</script>
+</body></html>

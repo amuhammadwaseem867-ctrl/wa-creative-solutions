@@ -1,0 +1,17 @@
+{
+  "slug": "open-after-hours",
+  "title": "Open After Hours",
+  "discipline": "Social Campaign · In-house",
+  "categories": ["marketing", "graphic"],
+  "summary": "Our own social launch campaign: real work, honest tips and a line every shop owner in Pakistan knows.",
+  "overview": "Open After Hours is WA Creative Solution's in-house social campaign concept for Instagram, Facebook and LinkedIn. Its idea is simple: a shop closes at night, a good website doesn't. The campaign runs as a template system of feed posts, carousels, stories and link ads, built around four content pillars.",
+  "challenge": "Small businesses scroll past agency ads that talk about \"digital transformation\". The brief we set ourselves was a campaign that sounds like the people it is for, shows real proof instead of claims, and can be produced every week without designing each post from scratch.",
+  "solution": "A Roman Urdu hook, \"Dukaan raat ko band hoti hai. Website nahi.\", with plain English detail underneath. Four pillars rotate through the feed: real builds of ours linked to the live sites, checklists owners save, the steps of our process, and local moments like Eid. Every format shares one grid, corner marks, Montserrat headlines and a single red word.",
+  "services": ["Campaign concept", "Social media design", "Content pillars", "Template system", "Story and ad formats", "Copywriting"],
+  "palette": ["#000000", "#FF202D", "#C81020", "#FFFFFF"],
+  "boards": [
+    { "file": "01-cover.jpg", "caption": "Campaign overview: feed posts, a carousel and a story poll", "alt": "Open After Hours campaign board: a feed post reading 'Dukaan raat ko band hoti hai. Website nahi.', a post showing the SPIRIT website, a red checklist post and a story poll asking how new customers find you." },
+    { "file": "02-feed.jpg", "caption": "The feed and its four content pillars", "alt": "A phone showing the WA Creative Solution profile with a nine-post grid, beside four content pillars: work, tips, process and moments." },
+    { "file": "03-system.jpg", "caption": "One message across feed, link ad and story sizes", "alt": "Template system board showing the same campaign message as a square feed post, a 1200 by 628 link ad and a story, with the colour palette, type and layout rules." }
+  ]
+}

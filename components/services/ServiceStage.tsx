@@ -7,14 +7,15 @@ import { ServiceVisual } from "./ServiceVisual";
 
 /**
  * Proof for each service, taken from the portfolio: live sites for the build services,
- * a Corvane board for identity and graphic design. Marketing has no project yet, so it
- * shows its diagram instead of borrowing someone else's work.
+ * Corvane boards for identity and graphic design, and our own Open After Hours campaign
+ * for marketing. A service without a matching project falls back to its diagram.
  */
 const EXAMPLES: Record<string, { sites?: string[]; board?: { slug: string; file: string } }> = {
   "brand-identity": { board: { slug: "corvane", file: "02-mark.jpg" } },
   web: { sites: ["spirit", "af7", "zama-zama"] },
   ai: { sites: ["restaurant-os"] },
   "3d-motion": { sites: ["apparel-fastener", "burger-in-town"] },
+  marketing: { board: { slug: "open-after-hours", file: "01-cover.jpg" } },
   graphic: { board: { slug: "corvane", file: "04-stationery.jpg" } },
 };
 
