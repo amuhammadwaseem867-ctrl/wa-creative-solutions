@@ -45,6 +45,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           NEXT_PUBLIC_SITE_URL: https://wacreativesolution.com
           NEXT_PUBLIC_API_BASE: https://wacreativesolution.netlify.app
+          NEXT_PUBLIC_ASSET_VERSION: ${{ github.run_number }}
           NEXT_TELEMETRY_DISABLED: "1"
 
       - run: touch out/.nojekyll
