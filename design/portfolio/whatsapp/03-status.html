@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1080x1920"><title>WhatsApp status</title>
+<script>window.__ASYNC = true;</script></head>
+<body>
+<script type="module">
+import { BOARD_CSS, FONTS, done, mark, RED } from "../open-after-hours/_kit.js";
+document.head.insertAdjacentHTML("beforeend", FONTS + `<style>${BOARD_CSS}
+html,body{width:1080px;height:1920px}
+.lab{font:500 26px/1 Poppins;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.frame{border:2px solid rgba(255,255,255,.16);border-radius:22px;overflow:hidden;background:#111;box-shadow:0 70px 110px -40px #000}
+.frame .bar{height:52px;display:flex;align-items:center;gap:12px;padding:0 22px;background:#171717;border-bottom:1px solid rgba(255,255,255,.08)}
+.frame .bar i{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.22)}
+.frame img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+</style>`);
+const spark = (s) => `<svg width="${s}" height="${s}" viewBox="0 0 40 40"><path d="M20 0Q22 18 40 20Q22 22 20 40Q18 22 0 20Q18 18 20 0Z" fill="#fff"/></svg>`;
+document.body.innerHTML = `
+  <div class="bgrid"></div>
+  <div class="bember" style="left:-260px;top:-760px;width:1600px;height:1500px"></div>
+  <div style="position:absolute;left:90px;top:230px;display:flex;align-items:center;gap:16px;font:600 30px/1 Poppins">${mark(58)} WA Creative Solution</div>
+  <div style="position:absolute;left:90px;right:90px;top:420px">
+    <div class="lab">[ Open after hours ]</div>
+    <div class="disp" style="font-size:84px;margin-top:34px">Dukaan raat ko<br>band hoti hai.</div>
+    <div class="disp" style="font-size:84px;margin-top:12px;display:flex;align-items:center;gap:22px">${spark(70)}<span style="color:${RED}">Website nahi.</span></div>
+    <p style="margin:40px 0 0;font:400 36px/1.45 Poppins;color:rgba(255,255,255,.72)">Your shop closes at night. A good website keeps answering customers and taking enquiries until morning.</p>
+  </div>
+  <div class="frame" style="position:absolute;left:120px;right:120px;top:1040px;transform:rotate(-2deg)"><div class="bar"><i></i><i></i><i></i></div><img src="/public/portfolio/live/spirit/desktop-0.webp" alt=""></div>
+  <div style="position:absolute;left:90px;right:90px;top:1680px;text-align:center">
+    <div style="display:inline-flex;align-items:center;gap:16px;background:#fff;color:#000;padding:28px 46px;font:600 34px/1 Poppins">Reply to this status to start →</div>
+    <div style="margin-top:34px;font:500 26px/1 Poppins;color:rgba(255,255,255,.6);letter-spacing:.06em">wacreativesolution.com</div>
+  </div>`;
+done();
+</script></body></html>

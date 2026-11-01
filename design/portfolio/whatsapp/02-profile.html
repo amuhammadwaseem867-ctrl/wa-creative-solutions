@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="640x640"><title>WhatsApp profile picture</title>
+<script>window.__ASYNC = true;</script></head>
+<body>
+<script type="module">
+import { BOARD_CSS, FONTS, done, mark } from "../open-after-hours/_kit.js";
+document.head.insertAdjacentHTML("beforeend", FONTS + `<style>${BOARD_CSS}html,body{width:640px;height:640px}</style>`);
+document.body.innerHTML = `
+  <div style="position:absolute;inset:0;background:radial-gradient(48% 48% at 50% 46%,rgba(255,90,50,.32),rgba(200,16,32,.16) 50%,transparent 75%)"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${mark(330)}</div>`;
+done();
+</script></body></html>

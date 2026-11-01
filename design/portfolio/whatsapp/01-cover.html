@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="board-size" content="1920x1080"><title>WhatsApp Business cover</title>
+<script>window.__ASYNC = true;</script></head>
+<body>
+<script type="module">
+import { BOARD_CSS, FONTS, done, mark, RED } from "../open-after-hours/_kit.js";
+document.head.insertAdjacentHTML("beforeend", FONTS + `<style>${BOARD_CSS}
+html,body{width:1920px;height:1080px}
+.cg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:96px 96px;-webkit-mask:radial-gradient(60% 70% at 70% 30%,#000,transparent);mask:radial-gradient(60% 70% at 70% 30%,#000,transparent)}
+.chrome{background:linear-gradient(180deg,#fff 15%,rgba(255,255,255,.4));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lab{font:500 17px/1 Poppins;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.chip{border:1px solid rgba(255,255,255,.18);padding:12px 20px;font:500 18px/1 Poppins;color:rgba(255,255,255,.8)}
+</style>`);
+const spark = (s) => `<svg width="${s}" height="${s}" viewBox="0 0 40 40" style="vertical-align:middle"><path d="M20 0Q22 18 40 20Q22 22 20 40Q18 22 0 20Q18 18 20 0Z" fill="#fff"/></svg>`;
+document.body.innerHTML = `
+  <div class="cg"></div>
+  <div class="bember" style="left:860px;top:-640px;width:1500px;height:1300px"></div>
+  <img src="/public/hero/particle-sphere.webp" style="position:absolute;left:1170px;top:150px;width:640px;opacity:.95" alt="">
+  <div style="position:absolute;left:130px;top:250px;width:1100px">
+    <div class="lab" style="display:flex;align-items:center;gap:14px"><span style="width:9px;height:9px;border-radius:50%;background:${RED}"></span>[ Brand — Web — 3D — AI ]</div>
+    <div class="disp" style="font-size:92px;margin-top:34px;line-height:1.06">Where ideas<br><span style="display:inline-flex;align-items:center;gap:22px">${spark(84)}Become brands</span><br><span class="chrome">people remember</span></div>
+    <p style="margin:34px 0 0;font:400 26px/1.5 Poppins;color:rgba(255,255,255,.7);max-width:820px">Websites, brand identity, 3D and AI for businesses ready to grow.</p>
+  </div>
+  <div style="position:absolute;left:130px;right:130px;bottom:120px;display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:20px">${mark(64)}<div><div style="font:700 26px/1 Montserrat;letter-spacing:.14em">WA CREATIVE</div><div style="font:500 13px/1 Poppins;letter-spacing:.6em;color:rgba(255,255,255,.6);margin-top:8px">SOLUTION</div></div></div>
+    <div style="display:flex;gap:14px"><span class="chip">wacreativesolution.com</span><span class="chip">@wacreativesstudio</span><span class="chip">Rawalpindi, Pakistan</span></div>
+  </div>`;
+done();
+</script></body></html>
