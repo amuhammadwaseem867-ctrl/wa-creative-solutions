@@ -85,7 +85,7 @@ footer .lg{margin-left:auto;color:var(--ti)}
 </nav>
 <div class="prog"></div>
 
-<!-- ============ DESIGN ============ -->
+<!-- Design -->
 <div class="abs ov" style="left:64px;top:124px"><div class="eyebrow mono"><b></b>02 — Design</div></div>
 <h2 class="abs ov" style="left:60px;top:156px;font-size:78px">Drawn as one<br>continuous line.</h2>
 <div class="abs ov" style="left:1061px;top:164px;width:475px">
@@ -101,7 +101,7 @@ footer .lg{margin-left:auto;color:var(--ti)}
   <div class="note"><span class="n mono">03</span><div><h4>Fastback canopy</h4><p>One continuous sweep of laminated glass, from the windscreen to the tail.</p></div></div>
 </div>
 
-<!-- ============ PERFORMANCE ============ -->
+<!-- Performance -->
 <div class="abs ov" style="left:64px;top:900px"><div class="eyebrow mono"><b></b>03 — Performance</div></div>
 <h2 class="abs ov" style="left:61px;top:936px;font-size:62px">Quiet power,<br>delivered at once.</h2>
 <div class="specs ov">
@@ -117,7 +117,7 @@ footer .lg{margin-left:auto;color:var(--ti)}
   <svg id="acc" width="599" height="300"></svg>
 </div>
 
-<!-- ============ CHARGING ============ -->
+<!-- Charging -->
 <div class="chart ov" style="left:64px;top:1340px;width:723px">
   <div class="hd mono"><span>Charging power, 10–80%</span><span>350 kW DC</span></div>
   <svg id="chg" width="723" height="300"></svg>
@@ -131,7 +131,7 @@ footer .lg{margin-left:auto;color:var(--ti)}
   <div><div class="v">22<small>kW</small></div><div class="l mono">AC, at home</div></div>
 </div>
 
-<!-- ============ RESERVE ============ -->
+<!-- Reserve -->
 <div class="abs ov" style="left:64px;top:1752px"><div class="eyebrow mono"><b></b>05 — Reserve</div></div>
 <h2 class="abs ov" style="left:61px;top:1786px;font-size:54px">Reserve your GT-1.</h2>
 <p class="lede abs ov" style="left:64px;top:1856px;width:520px;font-size:15px">A €2,500 deposit holds your place in the Launch Edition build queue, fully refundable until you confirm your specification.</p>
@@ -147,7 +147,7 @@ footer .lg{margin-left:auto;color:var(--ti)}
 </footer>
 
 <script>
-/* ---------- charts (drawn from data, monotone curves) ---------- */
+/* charts (drawn from data, monotone curves) */
 function monoFn(pts){const n=pts.length,xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),d=[],m=[];
   for(let i=0;i<n-1;i++)d.push((ys[i+1]-ys[i])/(xs[i+1]-xs[i]));m[0]=d[0];m[n-1]=d[n-2];
   for(let i=1;i<n-1;i++)m[i]=d[i-1]*d[i]<=0?0:(d[i-1]+d[i])/2;
@@ -188,7 +188,7 @@ import * as THREE from "three";
 import { createStudio } from "/design/portfolio/_lib/studio.js";
 import { Reflector } from "three/addons/objects/Reflector.js";
 /*@@CAR*/
-/* ===== VEYRA GT-1 parametric body (shared across boards) ===== */
+/* VEYRA GT-1 parametric body (shared across boards) */
 function mono(pts){const n=pts.length,xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),d=[],m=[];
   for(let i=0;i<n-1;i++)d.push((ys[i+1]-ys[i])/(xs[i+1]-xs[i]));m[0]=d[0];m[n-1]=d[n-2];
   for(let i=1;i<n-1;i++)m[i]=d[i-1]*d[i]<=0?0:(d[i-1]+d[i])/2;
@@ -353,7 +353,7 @@ const spot=new THREE.SpotLight("#ffffff",70,30,0.6,1,1.5);spot.position.set(-0.5
 const envSide=envFromPanels(r,[[18,0.5,"#ffffff",10,[0,0.95,8],[0,0,0]],[18,0.25,"#ffffff",4,[0,2.0,8],[0,0,0]],[10,1.6,"#ffffff",1.6,[0,6,0],[Math.PI/2,0,0]],[16,0.3,"#ffffff",2.2,[0,2.4,-8],[0,0,0]],[0.3,6,"#9ad7ff",1.4,[-8,1,4],[0,Math.PI/3,0]]],0.02);
 const envStudio=carEnvironment(r);
 
-/* --- region A: side elevation (true side view, long lens) --- */
+/* region A: side elevation (true side view, long lens) */
 const carA=buildGT1({paint:"#c9cdd2",metalness:0.62,roughness:0.3,tail:null});s.scene.add(carA);
 const A={x:0,y:330,w:1600,h:400};
 // near-orthographic long lens: 230 px per metre, ground at y=618 on the board
@@ -387,7 +387,7 @@ lab(xH+14,(ty+gy)/2,"Height<br><b>1,160 mm</b>","l");
 // end ticks
 for(const x of[wr,wf,gx0,gx1]){}
 
-/* --- region D: reserve band, front three-quarter --- */
+/* region D: reserve band, front three-quarter */
 s.scene.remove(carA);
 const carD=buildGT1({paint:"#3d4148",metalness:0.65,roughness:0.34});s.scene.add(carD);
 const refl=floorReflection(Reflector,{w:11,d:6,opacity:0.2,blur:0.0026});s.scene.add(refl);

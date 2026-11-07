@@ -44,7 +44,7 @@ export function clampUnits(type: ProjectType, units: number) {
   return Math.min(type.maxUnits, Math.max(type.minUnits, Math.round(units)));
 }
 
-/** Pure, transparent calculation — every number shown to the user comes from here. */
+/** Pure, transparent calculation, every number shown to the user comes from here. */
 export function calculateEstimate(input: EstimateInput): Estimate {
   const type = estimatorConfig.projectTypes.find((t) => t.id === input.projectType);
   if (!type) return { status: "empty" };

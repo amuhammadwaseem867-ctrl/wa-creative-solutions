@@ -1,7 +1,7 @@
 /**
  * CENTRAL PRICING CONFIGURATION
  * ------------------------------------------------------------------
- * All prices are ILLUSTRATIVE starting prices in USD — not verified
+ * All prices are ILLUSTRATIVE starting prices in USD, not verified
  * market rates. Edit values here; the packages, comparison table,
  * estimator and FAQ update automatically.
  */
@@ -143,9 +143,7 @@ export const pricingPolicies = {
   ],
 };
 
-/* ------------------------------------------------------------------ */
 /* ESTIMATOR RULES                                                     */
-/* ------------------------------------------------------------------ */
 
 export type ProjectType = {
   id: string;

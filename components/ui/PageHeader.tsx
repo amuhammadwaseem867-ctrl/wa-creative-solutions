@@ -9,7 +9,7 @@ type Props = {
   children?: ReactNode;
 };
 
-/** Interior-page header — the home hero's atmosphere: ember light, star-field and a still of the particle sphere. */
+/** Interior-page header, the home hero's atmosphere: ember light, star-field and a still of the particle sphere. */
 export function PageHeader({ eyebrow, title, intro, children }: Props) {
   return (
     <section className="relative isolate overflow-hidden pt-[calc(var(--header-h)+1.25rem)] pb-[clamp(3rem,6vw,5rem)]">

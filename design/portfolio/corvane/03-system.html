@@ -81,7 +81,7 @@ body{background:var(--ivory);color:var(--graphite)}
  <div class="ex"><div class="k">We say</div><div class="yes">“Your quarterly review is ready. Zara Malik will call on Thursday at 11:00 to take you through it.”</div><div class="k">Not</div><div class="no">Great news! Your exclusive wealth update has just landed.</div></div>
 </div>
 <script>
-// ---- Corvane brand primitives (inlined into each board) ----
+// Corvane brand primitives (inlined into each board)
 const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
 // Symbol: head circle R=100 centred (100,100); counter 0.64R; culmen arc 6R tangent at 62deg; beak underside on the horizon (y=100);
 // lower terminal cut on the half-radius (y=150); eye 0.12R on the 60deg radial. Bounding box 271.59 x 200.
@@ -151,7 +151,7 @@ async function loadFonts() {
     "italic 400 40px 'Cormorant Garamond'", "italic 300 40px 'Cormorant Garamond'", "400 40px Inter", "500 40px Inter", "600 40px Inter", "300 40px Inter"];
   await Promise.all(specs.map((s) => document.fonts.load(s)));
 }
-// ---- end brand primitives ----
+// end brand primitives
 document.getElementById("hl").innerHTML = markSVG(12, "rgba(28,28,28,.5)", true) + "<span>Corvane</span>";
 </script>
 </body></html>

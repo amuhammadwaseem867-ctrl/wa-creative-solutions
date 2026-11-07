@@ -1,6 +1,6 @@
 /**
  * Shared atmosphere from the home hero: ember light, star-field crosses and the spark ornament.
- * All decorative — hidden from assistive tech.
+ * All decorative, hidden from assistive tech.
  */
 
 type EmberProps = {
@@ -23,7 +23,7 @@ export function EmberLight({ x = "50%", soft = false, rise = false, className = 
   );
 }
 
-/** [x%, y%, delay s] — default positions keep clear of typical text columns. */
+/** [x%, y%, delay s], default positions keep clear of typical text columns. */
 const DEFAULT_STARS: [number, number, number][] = [
   [8, 22, 0],
   [21, 58, 1.8],
@@ -44,7 +44,7 @@ export function StarField({ stars = DEFAULT_STARS, className = "" }: { stars?: [
   );
 }
 
-/** Four-point spark — the headline ornament. */
+/** Four-point spark, the headline ornament. */
 export function Spark({ className = "" }: { className?: string }) {
   return (
     <svg

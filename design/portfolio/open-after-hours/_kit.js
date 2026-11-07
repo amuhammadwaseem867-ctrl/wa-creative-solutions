@@ -1,4 +1,4 @@
-// "Open After Hours" — WA Creative Solution's in-house social campaign kit.
+// "Open After Hours", WA Creative Solution's in-house social campaign kit.
 // Each post is authored at its real export size (1080×1080, 1080×1920, 1200×628) and scaled into a board.
 import { BODY, FRAME } from "./_brand.js";
 
@@ -47,7 +47,7 @@ export function fit(html, w, base = 1080, h = base) {
   return `<div style="width:${w}px;height:${(h * s).toFixed(1)}px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;width:${base}px;height:${h}px;transform:scale(${s});transform-origin:0 0">${html}</div></div>`;
 }
 
-// ---------- Posts (1080×1080) ----------
+// Posts (1080×1080)
 
 /** Hook post: the campaign line in Roman Urdu, English underneath. */
 export const hook = () => `<div class="post" style="width:1080px;height:1080px">
@@ -107,7 +107,7 @@ export const eid = () => `<div class="post" style="width:1080px;height:1080px;ba
     <div class="disp" style="font-size:78px;margin-top:30px">Eid sale coming?<br>Let your website<br>open first.</div>
   </div>${foot(`<span>Eid Mubarak</span>`)}</div>`;
 
-// ---------- Story (1080×1920) ----------
+// Story (1080×1920)
 
 export const story = () => `<div class="post" style="width:1080px;height:1920px">
   <div class="ember" style="height:60%"></div><div class="grid"></div>
@@ -122,7 +122,7 @@ export const story = () => `<div class="post" style="width:1080px;height:1920px"
   </div>
   <div style="position:absolute;left:0;right:0;bottom:90px;text-align:center;font:500 30px/1 Poppins;color:rgba(255,255,255,.6)">Tap to answer</div></div>`;
 
-// ---------- Link ad (1200×628) ----------
+// Link ad (1200×628)
 
 export const linkAd = () => `<div class="post" style="width:1200px;height:628px">
   <div class="ember" style="left:30%;right:-30%;height:120%"></div>${corners(36)}
@@ -134,7 +134,7 @@ export const linkAd = () => `<div class="post" style="width:1200px;height:628px"
   <div class="frame" style="position:absolute;left:720px;top:120px;width:560px;transform:rotate(-3deg)"><div class="bar"><i></i><i></i><i></i></div><img src="${shot("zama-zama")}" alt=""></div>
   <div style="position:absolute;left:70px;bottom:44px;display:flex;align-items:center;gap:12px;font:600 20px/1 Poppins">${mark(30)} WA Creative Solution</div></div>`;
 
-// ---------- Boards ----------
+// Boards
 
 export const BOARD_CSS = `
 *{box-sizing:border-box}

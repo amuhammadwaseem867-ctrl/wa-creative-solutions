@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * A trailing ring that complements — never replaces — the native cursor.
+ * A trailing ring that complements, never replaces, the native cursor.
  * Desktop fine-pointer only; disabled under reduced motion.
  */
 export function CustomCursor() {

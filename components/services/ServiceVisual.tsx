@@ -1,7 +1,7 @@
 import type { ServiceVisual as Kind } from "@/lib/services";
 
 /**
- * Custom line-art "visual concepts" — one constructed diagram per discipline,
+ * Custom line-art "visual concepts", one constructed diagram per discipline,
  * drawn in the brand palette rather than stock icons. Hover states are driven
  * by the parent `.group`.
  */

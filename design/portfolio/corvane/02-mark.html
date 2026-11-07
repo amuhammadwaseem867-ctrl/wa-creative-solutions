@@ -39,7 +39,7 @@ h1 em{font-style:italic;font-weight:300}
 </div>
 <div class="scale"><div class="row" id="sc"></div><div class="lab" id="sl"></div><div class="note">Below 32 px the eye is omitted: the small-use symbol keeps the silhouette clean on screen.</div></div>
 <script>
-// ---- Corvane brand primitives (inlined into each board) ----
+// Corvane brand primitives (inlined into each board)
 const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
 // Symbol: head circle R=100 centred (100,100); counter 0.64R; culmen arc 6R tangent at 62deg; beak underside on the horizon (y=100);
 // lower terminal cut on the half-radius (y=150); eye 0.12R on the 60deg radial. Bounding box 271.59 x 200.
@@ -109,7 +109,7 @@ async function loadFonts() {
     "italic 400 40px 'Cormorant Garamond'", "italic 300 40px 'Cormorant Garamond'", "400 40px Inter", "500 40px Inter", "600 40px Inter", "300 40px Inter"];
   await Promise.all(specs.map((s) => document.fonts.load(s)));
 }
-// ---- end brand primitives ----
+// end brand primitives
 document.getElementById("hl").innerHTML = markSVG(12, "rgba(241,236,226,.55)", true) + "<span>Corvane</span>";
 const R = 196, cx = 438, cy = 520; // mark geometry on the board
 const X = (u) => cx + u * R, Y = (v) => cy - v * R; // unit coords (y up) -> board
