@@ -3,7 +3,7 @@
  *
  * Contact details below were already published on the previous version of
  * this site. Anything not yet supplied is left `null` and simply isn't
- * rendered — never replace it with an invented value.
+ * rendered, never replace it with an invented value.
  */
 export const site = {
   name: "WA Creative Solution",
@@ -25,7 +25,7 @@ export const contact = {
     { display: "+92 311 5962551", href: "tel:+923115962551" },
     { display: "+92 346 5187384", href: "tel:+923465187384" },
   ],
-  /** WhatsApp link — set when a WhatsApp business number is confirmed. */
+  /** WhatsApp link, set when a WhatsApp business number is confirmed. */
   whatsapp: null as string | null,
   location: "Rawalpindi, Pakistan",
   /** Typical first-reply window shown next to forms. Adjust to match reality. */

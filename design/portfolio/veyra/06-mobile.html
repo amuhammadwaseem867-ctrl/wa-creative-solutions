@@ -28,7 +28,7 @@ import * as THREE from "three";
 import { createStudio, roundedRectGeometry, screenMaterial } from "/design/portfolio/_lib/studio.js";
 import { Reflector } from "three/addons/objects/Reflector.js";
 /*@@CAR*/
-/* ===== VEYRA GT-1 parametric body (shared across boards) ===== */
+/* VEYRA GT-1 parametric body (shared across boards) */
 function mono(pts){const n=pts.length,xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),d=[],m=[];
   for(let i=0;i<n-1;i++)d.push((ys[i+1]-ys[i])/(xs[i+1]-xs[i]));m[0]=d[0];m[n-1]=d[n-2];
   for(let i=1;i<n-1;i++)m[i]=d[i-1]*d[i]<=0?0:(d[i-1]+d[i])/2;
@@ -186,7 +186,7 @@ function envFromPanels(renderer,panels,dome=0.03){
   const pm=new THREE.PMREMGenerator(renderer);const t=pm.fromScene(room,0.012).texture;pm.dispose();return t}
 /*CAR@@*/
 /*@@SCREENS*/
-/* ===== VEYRA mobile screens (390 x 844), authored as HTML and rasterised for 3D devices ===== */
+/* VEYRA mobile screens (390 x 844), authored as HTML and rasterised for 3D devices */
 const WM_PATHS='<path d="M0 0H12.3L50 75.4L87.7 0H100L50 100Z"/><path d="M132 0H212V11H132ZM132 44.5H212V55.5H132ZM132 89H212V100H132Z"/><path d="M246 0H260.9L296 38.6L331.1 0H346L301.5 48.95V100H290.5V48.95Z"/><path d="M380 0H432A27.75 27.75 0 0 1 432 55.5H425L460 100H446L411 55.5H391V100H380ZM391 11V44.5H432A16.75 16.75 0 0 0 432 11Z"/><path d="M490 100H502.3L540 24.6L577.7 100H590L540 0Z"/>';
 const wm=(w,fill="#e7e5e0")=>`<svg width="${w}" height="${(w*100/590).toFixed(2)}" viewBox="0 0 590 100" fill="${fill}">${WM_PATHS}</svg>`;
 const ARROW=(c="#0b0c0e")=>`<svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="${c}" stroke-width="1.2"><path d="M0 5H17M12.5 0.8L17 5L12.5 9.2"/></svg>`;
@@ -347,12 +347,12 @@ async function carShot({w=780,h=480,paint="#3d4148",metalness=0.65,roughness=0.3
   const url=o.toDataURL("image/jpeg",0.93);st.renderer.dispose();st.renderer.forceContextLoss();return url}
 /*SCREENS@@*/
 
-/* ---------- screens ---------- */
+/* screens */
 const carHome=await carShot({w:780,h:480,paint:"#3d4148",cam:[5.4,1.05,6.6],look:[0.3,0.5,0],fov:18.5});
 const carCfg=await carShot({w:780,h:464,paint:"#b9cad5",metalness:0.7,roughness:0.3,cam:[5.8,2.3,7.4],look:[0,0.45,0],fov:17,fade:[0.12,0.25]});
 const canvases=[await rasterScreen(screenHome(carHome)),await rasterScreen(screenConfig(carCfg)),await rasterScreen(screenJourney())];
 
-/* ---------- studio ---------- */
+/* studio */
 const s=createStudio({canvas:document.getElementById("gl"),background:"#08090b",fov:26,pixelRatio:2,lighting:"dramatic"});
 const r=s.renderer;r.shadowMap.type=THREE.PCFSoftShadowMap;
 s.scene.fog=new THREE.Fog("#08090b",9,20);
@@ -363,7 +363,7 @@ s.lights.fill.intensity=0.15;s.lights.ambient.intensity=0.05;
 const spot=new THREE.SpotLight("#ffffff",30,20,0.7,1,1.6);spot.position.set(0,7,1.5);spot.target.position.set(0,0,-0.5);spot.castShadow=false;s.scene.add(spot,spot.target);
 s.scene.environment=envFromPanels(r,[[8,1.6,"#ffffff",2.2,[0,6,1],[Math.PI/2,0,0]],[1.2,6,"#ffffff",2.4,[-6,1.5,3],[0,Math.PI/2.4,0]],[1.2,6,"#ffffff",1.4,[6,1.5,3],[0,-Math.PI/2.4,0]],[10,0.35,"#ffffff",4,[0,1.2,8],[0,0,0]],[0.3,5,"#9ad7ff",1.2,[5,1,-3],[0,-Math.PI/4,0]]],0.025);
 
-/* ---------- phone model ---------- */
+/* phone model */
 function rr(w,h,rad){const s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+rad,y);s.lineTo(x+w-rad,y);s.absarc(x+w-rad,y+rad,rad,-Math.PI/2,0,false);s.lineTo(x+w,y+h-rad);s.absarc(x+w-rad,y+h-rad,rad,0,Math.PI/2,false);s.lineTo(x+rad,y+h);s.absarc(x+rad,y+h-rad,rad,Math.PI/2,Math.PI,false);s.lineTo(x,y+rad);s.absarc(x+rad,y+rad,rad,Math.PI,Math.PI*1.5,false);return s}
 function shapeGeo(w,h,rad){const g=new THREE.ShapeGeometry(rr(w,h,rad),24);const p=g.attributes.position,uv=g.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,(p.getX(i)+w/2)/w,(p.getY(i)+h/2)/h);return g}
 const PW=0.78,PH=1.62,PD=0.082,PR=0.118,BV=0.014;

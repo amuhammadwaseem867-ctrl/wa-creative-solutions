@@ -39,7 +39,7 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-/** Only facts the business has actually published — no ratings, awards or founding dates. */
+/** Only facts the business has actually published, no ratings, awards or founding dates. */
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",

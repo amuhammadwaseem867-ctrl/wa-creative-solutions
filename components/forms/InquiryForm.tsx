@@ -94,7 +94,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
     if (touched[k]) setErrors(validateInquiry(next));
   };
   // Validate on blur only once something was entered, and never when focus is moving to the
-  // submit button — an error appearing mid-click would shift the button out from under the pointer.
+  // submit button, an error appearing mid-click would shift the button out from under the pointer.
   const blur = (k: keyof InquiryData, e: React.FocusEvent) => {
     const next = e.relatedTarget as HTMLElement | null;
     if (next?.getAttribute("type") === "submit") return;
@@ -344,7 +344,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
         {renderError("links")}
       </div>
 
-      {/* Honeypot — hidden from people and assistive tech, attractive to bots. */}
+      {/* Honeypot, hidden from people and assistive tech, attractive to bots. */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label htmlFor={id("website")}>Leave this field empty</label>
         <input id={id("website")} name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />

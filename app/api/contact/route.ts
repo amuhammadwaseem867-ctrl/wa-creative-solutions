@@ -7,9 +7,9 @@ import { site } from "@/lib/site";
  * Project inquiry endpoint.
  *
  * Required server-only environment variables:
- *   RESEND_API_KEY — Resend API key (never exposed to the client)
- *   CONTACT_EMAIL  — inbox that receives briefs (comma-separate for several)
- *   FROM_EMAIL     — verified Resend sender, e.g. "WA Creative Solution <hello@yourdomain.com>"
+ *   RESEND_API_KEY, Resend API key (never exposed to the client)
+ *   CONTACT_EMAIL , inbox that receives briefs (comma-separate for several)
+ *   FROM_EMAIL    , verified Resend sender, e.g. "WA Creative Solution <hello@yourdomain.com>"
  *
  * The route only reports success after Resend confirms the email was accepted.
  */

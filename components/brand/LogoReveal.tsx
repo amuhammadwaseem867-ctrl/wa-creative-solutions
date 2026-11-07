@@ -1,7 +1,7 @@
 import { MONOGRAM_PARTS, MONOGRAM_VIEWBOX } from "@/lib/brand";
 
 /**
- * Cinematic logo reveal — pure CSS/SVG. The red hexagon frame draws in and fills,
+ * Cinematic logo reveal, pure CSS/SVG. The red hexagon frame draws in and fills,
  * then the WA letters follow. Reduced motion shows the end state.
  */
 export function LogoReveal({ className = "", delay = 0 }: { className?: string; delay?: number }) {
