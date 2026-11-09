@@ -12,7 +12,7 @@ import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Our Web Design & Branding Studio",
   description:
     "WA Creative Solution is a creative technology partner combining brand strategy, design, Next.js engineering, 3D and AI to turn ideas into carefully engineered digital experiences.",
   alternates: { canonical: "/about" },

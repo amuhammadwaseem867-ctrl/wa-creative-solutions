@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { getProject, projects, workCategories } from "@/lib/projects";
 import { ButtonLink } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { site } from "@/lib/site";
+import { absoluteUrl, site } from "@/lib/site";
 import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 import { BrowserFrame, PhoneFrame } from "@/components/work/Devices";
 import { ProjectStage } from "@/components/work/ProjectShowcase";
@@ -44,14 +44,43 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
   const next = projects[(i + 1) % projects.length];
   const fields = workCategories.filter((c) => project.categories.includes(c.id));
   const live = project.kind === "live";
+  // Live builds and online demos have screenshots, shown in browser and phone frames.
+  const framed = live || !!project.scroll;
   // The cover is already shown full-width above, so don't repeat it in the gallery.
   const gallery = project.gallery.filter((g) => g.src !== project.cover.src);
   const galleryRows = layoutGallery(gallery);
   const landscapeCover = project.cover.width > project.cover.height;
   const logoCover = project.cover.width < 600;
 
+  const pageUrl = absoluteUrl(`/work/${project.slug}`);
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: project.title,
+      headline: `${project.title} — ${project.discipline}`,
+      description: project.summary,
+      url: pageUrl,
+      image: absoluteUrl(project.cover.src),
+      genre: project.discipline,
+      keywords: [...fields.map((f) => f.label), ...(project.tech ?? [])].join(", "),
+      creator: { "@type": "Organization", name: site.name, url: site.url },
+      ...(project.liveUrl ? { sameAs: project.liveUrl } : {}),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Work", item: absoluteUrl("/work") },
+        { "@type": "ListItem", position: 3, name: project.title, item: pageUrl },
+      ],
+    },
+  ];
+
   return (
     <article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <header className="relative isolate overflow-hidden pt-[calc(var(--header-h)+3rem)]">
         <EmberLight x="72%" soft className="h-[70%]" />
         <StarField />
@@ -77,14 +106,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               <p className="text-lead text-paper/80">{project.summary}</p>
               {project.liveUrl && (
                 <ButtonLink href={project.liveUrl} className="mt-7">
-                  Visit live site
+                  {live ? "Visit live site" : "View the demo"}
                 </ButtonLink>
               )}
             </div>
           </div>
         </div>
         <div className="container-site mt-14">
-          {live ? (
+          {framed ? (
             <div className="group pb-[6%]">
               <ProjectStage project={project} sizes="(min-width: 1280px) 1200px, 100vw" priority />
             </div>
@@ -108,7 +137,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           <dl className="grid content-start gap-8 border-t border-line pt-8 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
             <div>
               <dt className="label-caps text-mute">Type</dt>
-              <dd className="mt-2">{live ? "Live, deployed build" : "Self-initiated concept (no client)"}</dd>
+              <dd className="mt-2">{live ? "Live, deployed build" : project.liveUrl ? "Concept, online as a demo (no client)" : "Self-initiated concept (no client)"}</dd>
             </div>
             <div>
               <dt className="label-caps text-mute">{fields.length > 1 ? "Fields" : "Field"}</dt>
@@ -144,7 +173,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             )}
             {project.liveUrl && (
               <div>
-                <dt className="label-caps text-mute">Live site</dt>
+                <dt className="label-caps text-mute">{live ? "Live site" : "Online demo"}</dt>
                 <dd className="mt-2">
                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-underline break-all text-paper">
                     {project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
@@ -213,9 +242,9 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                     data-reveal
                     className={row.length === 1 && img.width / img.height < 1.15 ? `mx-auto w-full ${img.width / img.height < 0.62 ? "max-w-sm" : "max-w-2xl"}` : undefined}
                   >
-                    {live && img.width > img.height ? (
+                    {framed && img.width > img.height ? (
                       <BrowserFrame image={img} url={project.liveUrl} sizes="(min-width: 1280px) 1200px, 100vw" />
-                    ) : live ? (
+                    ) : framed ? (
                       <PhoneFrame image={img} sizes="(min-width: 640px) 384px, 100vw" />
                     ) : (
                       <div className="overflow-hidden bg-ink-3">

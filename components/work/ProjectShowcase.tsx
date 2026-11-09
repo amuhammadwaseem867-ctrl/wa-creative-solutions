@@ -13,7 +13,7 @@ const hostOf = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "
  * home page on hover) with the phone view in front; concepts as their cover board.
  */
 export function ProjectStage({ project, sizes, priority }: { project: Project; sizes: string; priority?: boolean }) {
-  const device = project.kind === "live";
+  const device = project.kind === "live" || !!project.scroll;
   return (
     <div className="corners relative">
       <div className={`relative isolate overflow-hidden border border-white/10 bg-[#060606] ${device ? "px-[7%] pt-[7%]" : ""}`}>
@@ -117,9 +117,9 @@ export function ProjectShowcase({
               target="_blank"
               rel="noopener noreferrer"
               className="link-underline hover:text-paper text-sm font-medium text-white/75"
-              aria-label={`Visit the live ${project.title} site at ${hostOf(project.liveUrl)} (opens in a new tab)`}
+              aria-label={`${live ? "Visit the live" : "View the"} ${project.title} ${live ? "site" : "demo"} at ${hostOf(project.liveUrl)} (opens in a new tab)`}
             >
-              Visit live site ↗
+              {live ? "Visit live site" : "View the demo"} ↗
             </a>
           )}
         </div>

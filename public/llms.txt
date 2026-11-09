@@ -1,0 +1,23 @@
+# WA Creative Solution
+
+> A remote web design and branding studio based in Rawalpindi, Pakistan. We design and build custom websites, Next.js web apps, e-commerce stores, brand identities, 3D/motion and AI-assisted experiences for businesses in the USA, UK, Europe, Saudi Arabia, the UAE and Australia. Prices are quoted in US dollars.
+
+## Main pages
+- [Home](https://wacreativesolution.com/): overview of the studio and selected work
+- [Services](https://wacreativesolution.com/services/): brand identity, website design & development, AI solutions, 3D/CGI & motion, digital marketing & content, graphic design
+- [Work](https://wacreativesolution.com/work/): live websites and labelled concept projects, each with screenshots and a link to the live site
+- [Pricing](https://wacreativesolution.com/pricing/): illustrative starting prices in USD and a project estimator
+- [Where we work](https://wacreativesolution.com/web-design-agency/): how we work with clients in each market
+- [Contact](https://wacreativesolution.com/contact/): send a project brief
+
+## Markets
+- [USA](https://wacreativesolution.com/web-design-agency/usa/)
+- [United Kingdom](https://wacreativesolution.com/web-design-agency/uk/)
+- [Europe](https://wacreativesolution.com/web-design-agency/europe/)
+- [Saudi Arabia](https://wacreativesolution.com/web-design-agency/saudi-arabia/)
+- [UAE](https://wacreativesolution.com/web-design-agency/uae/)
+- [Australia](https://wacreativesolution.com/web-design-agency/australia/)
+
+## Notes
+- Concept projects are self-initiated and always labelled; no clients, testimonials or results are invented.
+- Contact: amuhammadwaseem867@gmail.com

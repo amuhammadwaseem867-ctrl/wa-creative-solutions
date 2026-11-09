@@ -4,6 +4,7 @@ import { Logo } from "@/components/brand/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { contact, legalNav, mainNav, site, socials } from "@/lib/site";
 import { services } from "@/lib/services";
+import { regions } from "@/lib/regions";
 import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 
 export function SiteFooter() {
@@ -41,7 +42,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-8">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-4 lg:col-span-8">
             <div>
               <h2 className="label-bracket mb-5">Company</h2>
               <ul className="space-y-3 text-[0.925rem]">
@@ -61,6 +62,18 @@ export function SiteFooter() {
                   <li key={s.id}>
                     <Link href={`/services#${s.id}`} className="text-white/55 transition-colors hover:text-paper">
                       {s.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="label-bracket mb-5">Where we work</h2>
+              <ul className="space-y-3 text-[0.925rem]">
+                {regions.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/web-design-agency/${r.slug}`} className="text-white/55 transition-colors hover:text-paper">
+                      {r.name}
                     </Link>
                   </li>
                 ))}

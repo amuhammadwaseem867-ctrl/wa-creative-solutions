@@ -12,7 +12,7 @@ import { pricingFaq } from "@/lib/faq";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Pricing & Project Estimator",
+  title: "Website Design Pricing & Project Estimator",
   description:
     "Transparent starting prices for websites, branding, 3D and AI projects, plus an interactive estimator with an itemised breakdown and a custom quote request.",
   alternates: { canonical: "/pricing" },

@@ -7,7 +7,7 @@ import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Portfolio: Websites, E-commerce & Brand Identity",
   description:
     "Live websites, e-commerce stores, SaaS platforms and brand identity work by WA Creative Solution, with screenshots of every deployed build.",
   alternates: { canonical: "/work" },

@@ -10,7 +10,7 @@ const sans = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"],
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} — Web Design, Branding & Next.js Agency`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     url: "/",
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} — Web Design, Branding & Next.js Agency`,
     description: site.description,
   },
   twitter: {
@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+  // Search Console / Bing Webmaster verification: set the codes as build-time env vars.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 export const viewport: Viewport = {
@@ -51,7 +56,11 @@ const organizationJsonLd = {
   telephone: contact.phones[0]?.href.replace("tel:", ""),
   address: { "@type": "PostalAddress", addressLocality: "Rawalpindi", addressCountry: "PK" },
   sameAs: socials.map((s) => s.href),
-  knowsAbout: services.map((s) => s.title),
+  knowsAbout: [...services.map((s) => s.title), "Next.js", "React", "E-commerce", "Search engine optimization"],
+  slogan: site.tagline,
+  areaServed: ["United States", "United Kingdom", "Europe", "Saudi Arabia", "United Arab Emirates", "Australia", "Pakistan"].map((name) => ({ "@type": "Place", name })),
+  priceRange: "$$",
+  currenciesAccepted: "USD",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

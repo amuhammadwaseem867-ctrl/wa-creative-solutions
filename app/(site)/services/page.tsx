@@ -8,7 +8,7 @@ import { services } from "@/lib/services";
 import { absoluteUrl, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Web Design, Branding, 3D & AI Services",
   description:
     "Brand identity, website design and Next.js development, AI creative solutions, 3D/CGI and motion, digital marketing content and graphic design.",
   alternates: { canonical: "/services" },

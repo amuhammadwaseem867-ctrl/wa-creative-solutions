@@ -13,7 +13,7 @@ export const site = {
   statement:
     "We transform ambitious ideas into extraordinary digital experiences through intelligent design, immersive technology, and creative innovation.",
   description:
-    "WA Creative Solution is a creative technology agency for brand identity, websites, Next.js development, 3D visualization, motion and AI-assisted creative services.",
+    "WA Creative Solution is a web design and branding agency building custom websites, Next.js web apps, e-commerce stores, 3D and AI-powered experiences for businesses in the USA, UK, Europe, Saudi Arabia, the UAE and Australia.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.wacreativesolution.com").replace(/\/$/, ""),
   locale: "en",
   availability: "Available for Selected Projects",
