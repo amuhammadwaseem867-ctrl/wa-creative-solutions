@@ -7,7 +7,7 @@ import { ServiceVisual } from "./ServiceVisual";
 
 /**
  * Proof for each service, taken from the portfolio: live sites for the build services,
- * Corvane boards for identity and graphic design, and our own Open After Hours campaign
+ * Corvane for identity, Mono for graphic design, and our own Open After Hours campaign
  * for marketing. A service without a matching project falls back to its diagram.
  */
 const EXAMPLES: Record<string, { sites?: string[]; board?: { slug: string; file: string } }> = {
@@ -16,7 +16,7 @@ const EXAMPLES: Record<string, { sites?: string[]; board?: { slug: string; file:
   ai: { sites: ["restaurant-os"] },
   "3d-motion": { sites: ["apparel-fastener", "burger-in-town"] },
   marketing: { board: { slug: "open-after-hours", file: "01-cover.jpg" } },
-  graphic: { board: { slug: "corvane", file: "04-stationery.jpg" } },
+  graphic: { board: { slug: "mono", file: "stationery.webp" } },
 };
 
 const bySlug = (slug: string) => projects.find((p) => p.slug === slug);

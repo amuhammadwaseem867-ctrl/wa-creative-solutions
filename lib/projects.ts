@@ -1,5 +1,6 @@
 import { fieldProjects } from "./field-projects";
 import { liveProjects } from "./live-projects";
+import { conceptProjects } from "./concept-projects";
 
 /**
  * Portfolio data.
@@ -51,7 +52,7 @@ export type Project = {
   liveUrl?: string;
 };
 
-export const projects: Project[] = [...liveProjects, ...fieldProjects];
+export const projects: Project[] = [...liveProjects, ...fieldProjects, ...conceptProjects];
 
 /** Projects for one service field, live work first. */
 export const projectsForField = (field: WorkCategory) => projects.filter((p) => p.categories.includes(field));
