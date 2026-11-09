@@ -17,7 +17,7 @@ export const conceptProjects: Project[] = [
     slug: "ember-and-oak",
     title: "Ember & Oak",
     discipline: "Brand Identity · Packaging · Web",
-    categories: ["graphic", "brand-identity", "web"],
+    categories: ["graphic"],
     kind: "concept",
     summary: "A luxury coffee brand built around slow craft, origin stories and an editorial e-commerce experience.",
     overview:
@@ -49,7 +49,7 @@ export const conceptProjects: Project[] = [
     slug: "mono",
     title: "Mono",
     discipline: "Brand Identity · Art Direction",
-    categories: ["graphic", "brand-identity"],
+    categories: ["graphic"],
     kind: "concept",
     summary: "A monochrome identity system built on typography, structure and visual restraint.",
     overview:
@@ -82,7 +82,7 @@ export const conceptProjects: Project[] = [
     slug: "noorah",
     title: "Noorah",
     discipline: "Mascot · Brand Identity · Content",
-    categories: ["graphic", "brand-identity", "marketing"],
+    categories: ["graphic"],
     kind: "concept",
     summary: "A character-led lifestyle identity that turns a personality into a complete content system.",
     overview:

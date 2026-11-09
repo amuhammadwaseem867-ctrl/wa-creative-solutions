@@ -14,8 +14,8 @@ import { MotionVideo } from "@/components/work/MotionVideo";
 const EXAMPLES: Record<string, { sites?: string[]; board?: { slug: string; file: string } }> = {
   "brand-identity": { board: { slug: "corvane", file: "02-mark.jpg" } },
   web: { sites: ["spirit", "af7", "zama-zama"] },
-  ai: { sites: ["restaurant-os"] },
-  "3d-motion": { sites: ["af7-zipper-preloader", "apparel-fastener", "burger-in-town"] },
+  ai: { sites: ["global-q-solutions"] },
+  "3d-motion": { sites: ["af7-zipper-preloader", "nexframe-window-frame-preloader", "zama-zama-wheel-preloader"] },
   marketing: { board: { slug: "open-after-hours", file: "01-cover.jpg" } },
   graphic: { board: { slug: "mono", file: "stationery.webp" } },
 };
@@ -29,9 +29,12 @@ export type ServiceExample =
 
 export function exampleFor(service: Service): ServiceExample {
   const e = EXAMPLES[service.id];
-  const sites = (e?.sites ?? []).map(bySlug).filter((p): p is Project => p !== undefined);
+  // A service only ever shows work filed under its own section.
+  const own = (p: Project | undefined): p is Project => p !== undefined && p.categories.includes(service.id as Project["categories"][number]);
+  const sites = (e?.sites ?? []).map(bySlug).filter(own);
   if (sites.length) return { type: "sites", projects: sites };
-  const board = e?.board && bySlug(e.board.slug);
+  const boardProject = e?.board && bySlug(e.board.slug);
+  const board = own(boardProject) ? boardProject : undefined;
   const image = board && [board.cover, ...board.gallery].find((g) => g.src.endsWith(e.board!.file));
   if (board && image) return { type: "board", project: board, image };
   return { type: "visual" };

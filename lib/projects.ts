@@ -12,11 +12,12 @@ import { motionProjects } from "./motion-projects";
  * - `kind: "concept"`, self-initiated design explorations, always labelled.
  */
 /** Work is organised by the studio's six service fields (ids match lib/services.ts). */
-export type WorkCategory = "brand-identity" | "web" | "ai" | "3d-motion" | "marketing" | "graphic";
+export type WorkCategory = "brand-identity" | "web" | "apps" | "ai" | "3d-motion" | "marketing" | "graphic";
 
 export const workCategories: { id: WorkCategory; label: string }[] = [
   { id: "brand-identity", label: "Brand Identity" },
   { id: "web", label: "Web Design & Development" },
+  { id: "apps", label: "Web Apps & SaaS" },
   { id: "ai", label: "AI Solutions" },
   { id: "3d-motion", label: "3D, CGI & Motion" },
   { id: "marketing", label: "Marketing & Content" },

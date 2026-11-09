@@ -28,7 +28,7 @@ export const motionProjects: Project[] = [
     slug: "af7-zipper-preloader",
     title: "AF7 Zipper Preloader",
     discipline: "Website Preloader · Motion",
-    categories: ["3d-motion", "web"],
+    categories: ["3d-motion"],
     kind: "live",
     summary: "A zipper closes across the screen as the AF7 website loads, then opens into the site.",
     overview:
@@ -47,7 +47,7 @@ export const motionProjects: Project[] = [
     slug: "nexframe-window-frame-preloader",
     title: "Nexframe Window Frame Preloader",
     discipline: "Website Preloader · Motion",
-    categories: ["3d-motion", "web"],
+    categories: ["3d-motion"],
     kind: "live",
     summary: "An aluminium window frame draws itself line by line before the Nexframe Systems website opens.",
     overview:
@@ -66,7 +66,7 @@ export const motionProjects: Project[] = [
     slug: "zama-zama-wheel-preloader",
     title: "Zama Zama Wheel Preloader",
     discipline: "Website Preloader · Motion",
-    categories: ["3d-motion", "web"],
+    categories: ["3d-motion"],
     kind: "live",
     summary: "A spinning alloy wheel and a road-red progress line greet visitors to the first Zama Zama website.",
     overview:
@@ -85,7 +85,7 @@ export const motionProjects: Project[] = [
     slug: "wa-particle-logo-intro",
     title: "WA Creative Particle Logo Intro",
     discipline: "Website Preloader · Particles",
-    categories: ["3d-motion", "web"],
+    categories: ["3d-motion"],
     kind: "live",
     summary: "Thousands of ember particles spiral in, form the WA logo, then burst as the screen splits open.",
     overview:
@@ -104,7 +104,7 @@ export const motionProjects: Project[] = [
     slug: "wa-3d-logo-reveal",
     title: "WA Creative 3D Logo Reveal",
     discipline: "3D Logo Animation · Brand Identity",
-    categories: ["3d-motion", "brand-identity"],
+    categories: ["3d-motion"],
     kind: "concept",
     summary: "The WA hexagon and letters fly in from depth, lock together in glossy 3D and catch a sweep of light.",
     overview:
@@ -122,7 +122,7 @@ export const motionProjects: Project[] = [
     slug: "corvane-brass-mark-reveal",
     title: "Corvane Brass Mark Reveal",
     discipline: "3D Logo Animation · Brand Identity",
-    categories: ["3d-motion", "brand-identity"],
+    categories: ["3d-motion"],
     kind: "concept",
     summary: "The Corvane raven rises in brushed brass onto the brand's horizon line, lit like a museum piece.",
     overview:
@@ -140,7 +140,7 @@ export const motionProjects: Project[] = [
     slug: "cellcraft-3d-phone-preloader",
     title: "CellCraft 3D Phone Preloader",
     discipline: "Website Preloader · 3D Concept",
-    categories: ["3d-motion", "web"],
+    categories: ["3d-motion"],
     kind: "concept",
     summary: "A gold-framed phone turns in 3D while its own screen counts the store loading, then shows the homepage hero.",
     overview:
