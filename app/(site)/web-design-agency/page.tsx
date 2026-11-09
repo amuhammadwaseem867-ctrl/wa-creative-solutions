@@ -24,7 +24,7 @@ export default function RegionsPage() {
             One studio, <span className="text-chrome">clients worldwide</span>
           </>
         }
-        intro="We are a remote studio based in Rawalpindi, Pakistan. These pages explain how we work with businesses in each market: time zones, local rules and the work most relevant to you."
+        intro="We are a remote studio based in Rawalpindi, Pakistan, with a South African address in Cape Town. These pages explain how we work with businesses in each market: time zones, local rules and the work most relevant to you."
       />
       <section className="section-y pt-6!" aria-label="Regions">
         <div className="container-site">

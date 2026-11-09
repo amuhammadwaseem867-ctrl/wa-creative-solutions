@@ -54,11 +54,15 @@ const organizationJsonLd = {
   description: site.description,
   email: contact.email,
   telephone: contact.phones[0]?.href.replace("tel:", ""),
-  address: { "@type": "PostalAddress", addressLocality: "Rawalpindi", addressCountry: "PK" },
+  address: [
+    { "@type": "PostalAddress", addressLocality: "Rawalpindi", addressCountry: "PK" },
+    { "@type": "PostalAddress", streetAddress: "18 Lower Burg Street", addressLocality: "Cape Town", addressRegion: "Western Cape", postalCode: "8001", addressCountry: "ZA" },
+  ],
+  contactPoint: contact.phones.map((p) => ({ "@type": "ContactPoint", telephone: p.href.replace("tel:", ""), contactType: "sales", ...(p.label === "South Africa" ? { areaServed: "ZA" } : {}) })),
   sameAs: socials.map((s) => s.href),
   knowsAbout: [...services.map((s) => s.title), "Next.js", "React", "E-commerce", "Search engine optimization"],
   slogan: site.tagline,
-  areaServed: ["United States", "United Kingdom", "Europe", "Saudi Arabia", "United Arab Emirates", "Australia", "Pakistan"].map((name) => ({ "@type": "Place", name })),
+  areaServed: ["United States", "United Kingdom", "Europe", "Saudi Arabia", "United Arab Emirates", "Australia", "South Africa", "Pakistan"].map((name) => ({ "@type": "Place", name })),
   priceRange: "$$",
   currenciesAccepted: "USD",
 };

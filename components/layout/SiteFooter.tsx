@@ -96,10 +96,15 @@ export function SiteFooter() {
                     </a>
                   </li>
                 ))}
-                <li className="flex items-start gap-3 text-white/55">
-                  <MapPin size={16} className="mt-1 shrink-0 text-white/35" aria-hidden />
-                  {contact.location}
-                </li>
+                {contact.locations.map((l) => (
+                  <li key={l.label} className="flex items-start gap-3 text-white/55">
+                    <MapPin size={16} className="mt-1 shrink-0 text-white/35" aria-hidden />
+                    <span>
+                      <span className="block text-xs text-white/40">{l.label}</span>
+                      {l.address}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           </nav>

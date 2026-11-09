@@ -13,7 +13,7 @@ export const site = {
   statement:
     "We transform ambitious ideas into extraordinary digital experiences through intelligent design, immersive technology, and creative innovation.",
   description:
-    "WA Creative Solution is a web design and branding agency building custom websites, Next.js web apps, e-commerce stores, 3D and AI-powered experiences for businesses in the USA, UK, Europe, Saudi Arabia, the UAE and Australia.",
+    "WA Creative Solution is a web design and branding agency building custom websites, Next.js web apps, e-commerce stores, 3D and AI-powered experiences for businesses in the USA, UK, Europe, Saudi Arabia, the UAE, South Africa and Australia.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.wacreativesolution.com").replace(/\/$/, ""),
   locale: "en",
   availability: "Available for Selected Projects",
@@ -24,10 +24,16 @@ export const contact = {
   phones: [
     { display: "+92 311 5962551", href: "tel:+923115962551" },
     { display: "+92 346 5187384", href: "tel:+923465187384" },
-  ],
+    { display: "+27 61 069 7051", href: "tel:+27610697051", label: "South Africa" },
+  ] as { display: string; href: string; label?: string }[],
   /** WhatsApp link, set when a WhatsApp business number is confirmed. */
   whatsapp: null as string | null,
   location: "Rawalpindi, Pakistan",
+  /** Every published address; the first is the studio's base. */
+  locations: [
+    { label: "Pakistan", address: "Rawalpindi, Pakistan" },
+    { label: "South Africa", address: "18 Lower Burg Street, Cape Town, Western Cape, 8001, South Africa" },
+  ],
   /** Typical first-reply window shown next to forms. Adjust to match reality. */
   responseTime: "within two business days",
 } as const;
@@ -45,6 +51,7 @@ export const mainNav = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
+  { label: "Insights", href: "/insights" },
   { label: "Process", href: "/#process" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },

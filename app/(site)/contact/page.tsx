@@ -52,6 +52,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
                     <a href={p.href} className="flex items-start gap-3">
                       <Phone size={18} className="mt-1 shrink-0 text-white/40" aria-hidden />
                       <span className="link-underline">{p.display}</span>
+                      {p.label && <span className="text-xs text-white/45">({p.label})</span>}
                     </a>
                   </li>
                 ))}
@@ -62,10 +63,15 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
                     </a>
                   </li>
                 )}
-                <li className="flex items-start gap-3 text-mute">
-                  <MapPin size={18} className="mt-1 shrink-0 text-white/40" aria-hidden />
-                  {contact.location}
-                </li>
+                {contact.locations.map((l) => (
+                  <li key={l.label} className="flex items-start gap-3 text-mute">
+                    <MapPin size={18} className="mt-1 shrink-0 text-white/40" aria-hidden />
+                    <span>
+                      <span className="block text-xs font-semibold tracking-[0.12em] text-white/45 uppercase">{l.label}</span>
+                      {l.address}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="card p-6">

@@ -1,6 +1,6 @@
 # WA Creative Solution
 
-> A remote web design and branding studio based in Rawalpindi, Pakistan. We design and build custom websites, Next.js web apps, e-commerce stores, brand identities, 3D/motion and AI-assisted experiences for businesses in the USA, UK, Europe, Saudi Arabia, the UAE and Australia. Prices are quoted in US dollars.
+> A remote web design and branding studio based in Rawalpindi, Pakistan, with a South African address at 18 Lower Burg Street, Cape Town. We design and build custom websites, Next.js web apps, e-commerce stores, brand identities, 3D/motion and AI-assisted experiences for businesses in the USA, UK, Europe, Saudi Arabia, the UAE, South Africa and Australia. Prices are quoted in US dollars.
 
 ## Main pages
 - [Home](https://wacreativesolution.com/): overview of the studio and selected work
@@ -10,14 +10,23 @@
 - [Where we work](https://wacreativesolution.com/web-design-agency/): how we work with clients in each market
 - [Contact](https://wacreativesolution.com/contact/): send a project brief
 
+## Guides
+- [How much does a small business website cost in 2026?](https://wacreativesolution.com/insights/small-business-website-cost-2026/)
+- [The European Accessibility Act and your website](https://wacreativesolution.com/insights/european-accessibility-act-website-guide/)
+- [Building a bilingual Arabic and English website](https://wacreativesolution.com/insights/bilingual-arabic-english-website-guide/)
+- [Next.js or WordPress for a business website?](https://wacreativesolution.com/insights/nextjs-vs-wordpress-business-website/)
+- [Hiring a web design agency in another country: a checklist](https://wacreativesolution.com/insights/hiring-web-design-agency-abroad-checklist/)
+
 ## Markets
 - [USA](https://wacreativesolution.com/web-design-agency/usa/)
 - [United Kingdom](https://wacreativesolution.com/web-design-agency/uk/)
 - [Europe](https://wacreativesolution.com/web-design-agency/europe/)
 - [Saudi Arabia](https://wacreativesolution.com/web-design-agency/saudi-arabia/)
 - [UAE](https://wacreativesolution.com/web-design-agency/uae/)
+- [South Africa](https://wacreativesolution.com/web-design-agency/south-africa/)
 - [Australia](https://wacreativesolution.com/web-design-agency/australia/)
+- [Arabic page for Saudi Arabia and the UAE](https://wacreativesolution.com/ar/)
 
 ## Notes
 - Concept projects are self-initiated and always labelled; no clients, testimonials or results are invented.
-- Contact: amuhammadwaseem867@gmail.com
+- Contact: amuhammadwaseem867@gmail.com · +92 311 5962551 · +27 61 069 7051 (South Africa)

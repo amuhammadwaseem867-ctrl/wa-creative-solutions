@@ -2,8 +2,8 @@
  * MARKETS — one landing page per region at /web-design-agency/<slug>.
  * Each page is written for that market: time-zone overlap with Pakistan (PKT, UTC+5, no daylight
  * saving), the rules that shape a website there, and the work most relevant to it. Claims stay
- * honest: the studio is remote, based in Rawalpindi, and has no office or listed clients in these
- * regions. Edit freely; keep each page specific so it never reads as a copy of the others.
+ * honest: the studio is remote, based in Rawalpindi, with a South African address in Cape Town.
+ * Only claim local work that is real. Edit freely; keep each page specific so it never reads as a copy of the others.
  */
 export type Region = {
   slug: string;
@@ -157,6 +157,33 @@ export const regions: Region[] = [
     faq: [
       { q: "Do you have an office in Dubai?", a: "No. We are a remote studio based in Rawalpindi, Pakistan, one hour ahead of the UAE. We meet by video call and share a live preview link at every stage." },
       { q: "Can you build a bilingual website?", a: "Yes. Arabic and English, with a proper right-to-left layout and translated metadata for search." },
+    ],
+  },
+  {
+    slug: "south-africa",
+    name: "South Africa",
+    audience: "South African businesses",
+    title: "Web Design Agency in Cape Town for South African Businesses",
+    description:
+      "Custom websites, online stores, WhatsApp ordering and branding for South African businesses. Cape Town address, a local number and live work for Cape Town clients.",
+    h1: "Web design for South African businesses",
+    intro:
+      "We design and build websites, online stores and brands for businesses across South Africa, from Cape Town to Johannesburg and Durban. Our South African address is 18 Lower Burg Street in Cape Town, and you can call us on a local number. Some of our strongest work is already live for Cape Town businesses.",
+    overlap: {
+      label: "Almost your whole working day",
+      body: "Pakistan is 3 hours ahead of South Africa. Our working day covers most of yours, Monday to Friday, so calls and fixes happen the same day.",
+    },
+    needs: [
+      { title: "Light, fast pages", body: "Mobile data costs matter to your customers, so we keep pages light: modern image formats, no heavy page builders and quick loading on a phone." },
+      { title: "WhatsApp first", body: "Ordering, quotes and bookings that land in your WhatsApp, the way CellCraft sells phones and Zama Zama takes bay bookings." },
+      { title: "POPIA-aware forms", body: "Forms that collect only what you need and explain why, in line with the Protection of Personal Information Act, and no advertising trackers by default." },
+      { title: "Local search", body: "A page for each service and area you cover, consistent business details and structured data, ready for your Google Business Profile." },
+    ],
+    work: ["zama-zama", "cellcraft", "global-q-solutions"],
+    faq: [
+      { q: "Do you have a South African address?", a: "Yes: 18 Lower Burg Street, Cape Town, Western Cape, 8001. You can also call us on +27 61 069 7051. The design and development team works remotely from Pakistan, three hours ahead of you." },
+      { q: "Have you built sites for South African businesses?", a: "Yes. Zama Zama Autofitment in Mitchell's Plain and the CellCraft phone store are live, and we prepared a redesign proposal for a Cape Town debt-counselling firm. All three are on our Work page." },
+      { q: "Can you show prices in Rand?", a: "Yes. Product prices on your site can be in Rand, as CellCraft's are. Our own quotes are in US dollars and fixed for the agreed scope." },
     ],
   },
   {

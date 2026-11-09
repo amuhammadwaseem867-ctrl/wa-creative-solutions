@@ -9,6 +9,7 @@ import { ProjectCard } from "@/components/work/ProjectCard";
 import { getRegion, regions } from "@/lib/regions";
 import { projects, type Project } from "@/lib/projects";
 import { services } from "@/lib/services";
+import { articles } from "@/lib/insights";
 import { absoluteUrl, site } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -25,7 +26,13 @@ export async function generateMetadata({ params }: PageProps<"/web-design-agency
   return {
     title: region.title,
     description: region.description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      // The Arabic page serves Saudi Arabia and the UAE; pair it with their English pages.
+      ...(region.slug === "saudi-arabia" || region.slug === "uae"
+        ? { languages: { [region.slug === "uae" ? "en-AE" : "en-SA"]: path, ar: "/ar" } }
+        : {}),
+    },
     openGraph: { url: path, title: `${region.title} — ${site.name}`, description: region.description },
   };
 }
@@ -37,6 +44,7 @@ export default async function RegionPage({ params }: PageProps<"/web-design-agen
 
   const work = region.work.map((s) => projects.find((p) => p.slug === s)).filter((p): p is Project => p !== undefined);
   const others = regions.filter((r) => r.slug !== region.slug);
+  const guides = articles.filter((a) => a.regions.includes(region.slug));
   const url = absoluteUrl(`/web-design-agency/${region.slug}`);
 
   const jsonLd = [
@@ -75,6 +83,11 @@ export default async function RegionPage({ params }: PageProps<"/web-design-agen
           <ButtonLink href="/pricing" variant="ghost">
             See pricing
           </ButtonLink>
+          {(region.slug === "saudi-arabia" || region.slug === "uae") && (
+            <Link href="/ar" hrefLang="ar" lang="ar" className="link-underline self-center text-sm font-medium text-white/75 hover:text-paper">
+              العربية
+            </Link>
+          )}
         </div>
       </PageHeader>
 
@@ -141,6 +154,28 @@ export default async function RegionPage({ params }: PageProps<"/web-design-agen
               {work.map((p) => (
                 <li key={p.slug} data-reveal>
                   <ProjectCard project={p} sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {guides.length > 0 && (
+        <section className="section-y pb-0!" aria-labelledby="guides-title">
+          <div className="container-site">
+            <p className="label-bracket mb-5">Guides</p>
+            <h2 id="guides-title" className="text-title max-w-3xl">
+              Worth reading first
+            </h2>
+            <ul className="mt-10 grid gap-4 md:grid-cols-3">
+              {guides.map((g) => (
+                <li key={g.slug}>
+                  <Link href={`/insights/${g.slug}`} className="card card-hover group flex h-full flex-col p-6">
+                    <span className="label-caps text-white/45">{g.tag}</span>
+                    <span className="mt-3 flex-1 font-display font-semibold text-paper">{g.title}</span>
+                    <ArrowUpRight size={16} className="mt-5 text-white/45 transition-transform group-hover:rotate-45" aria-hidden />
+                  </Link>
                 </li>
               ))}
             </ul>
