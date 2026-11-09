@@ -241,7 +241,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                 key={r}
                 className={`grid gap-6 md:gap-8 ${row.length === 3 ? "grid-cols-3" : row.length === 2 ? "md:grid-cols-2" : ""}`}
               >
-                {row.map(({ img, n }) => (
+                {row.map(({ img }) => (
                   <figure
                     key={img.src}
                     data-reveal
@@ -270,7 +270,6 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                     {img.caption && (
                       <figcaption className="mt-3 flex justify-between gap-4 text-xs font-medium tracking-[0.1em] text-white/45 uppercase">
                         <span>{img.caption}</span>
-                        <span className="tabular-nums">{String(n).padStart(2, "0")}</span>
                       </figcaption>
                     )}
                   </figure>
@@ -310,7 +309,7 @@ function luminance(hex: string) {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
-type GalleryItem = { img: (typeof projects)[number]["gallery"][number]; n: number };
+type GalleryItem = { img: (typeof projects)[number]["gallery"][number] };
 
 /**
  * Editorial gallery rhythm: landscape boards run full-width; tall boards pair up two per row;
@@ -325,9 +324,9 @@ function layoutGallery(images: GalleryItem["img"][]) {
     pending = [];
     pendingKind = null;
   };
-  images.forEach((img, i) => {
+  images.forEach((img) => {
     const ratio = img.width / img.height;
-    const item = { img, n: i + 1 };
+    const item = { img };
     if (ratio >= 1.15) {
       flush();
       rows.push([item]);

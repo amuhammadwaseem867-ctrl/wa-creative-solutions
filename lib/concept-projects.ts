@@ -91,9 +91,15 @@ export const conceptProjects: Project[] = [
     solution:
       "An expressive character mark, a soft but refined visual language, photography direction, social and YouTube templates, and merchandise: a system that lets the personality scale.",
     services: ["Mascot design", "Brand identity", "Content system", "Social templates", "Merchandise"],
-    cover: img("noorah", "logoshowcase", "Noorah logo showcase", 2000, 1311),
+    cover: {
+      src: "/portfolio/concepts/noorah/01-cover.jpg",
+      alt: "Noorah cover: the script wordmark and tagline beside the illustrated character in an arched frame, with social, thumbnail and merchandise previews",
+      width: 1600,
+      height: 1000,
+    },
     gallery: [
-      img("noorah", "cover", "Noorah mascot identity cover", 1024, 1536, "Identity"),
+      img("noorah", "cover", "Noorah mascot identity poster", 1024, 1536, "Identity"),
+      img("noorah", "logoshowcase", "Noorah logo showcase: primary, icon, typography, badge, monochrome, reverse and soft beige versions", 2000, 1311, "Logo system"),
       img("noorah", "brand-story", "Noorah brand story", 2000, 1311, "Brand story"),
       img("noorah", "moodboard", "Noorah moodboard", 2000, 1311, "Moodboard"),
       img("noorah", "typography", "Noorah typography", 2000, 1313, "Typography"),
