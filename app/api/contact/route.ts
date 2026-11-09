@@ -71,7 +71,7 @@ export async function POST(request: Request) {
       from: FROM_EMAIL,
       to: CONTACT_EMAIL.split(",").map((s) => s.trim()),
       replyTo: data.email,
-      subject: `New project brief — ${data.name}${data.company ? ` (${data.company})` : ""}`,
+      subject: `New project brief from ${data.name}${data.company ? ` (${data.company})` : ""}`,
       html: renderEmail(data),
       text: renderText(data),
     });
@@ -93,14 +93,14 @@ export async function POST(request: Request) {
 function rows(d: InquiryData): [string, string][] {
   return [
     ["Name", d.name],
-    ["Company", d.company || "—"],
+    ["Company", d.company || "Not given"],
     ["Email", d.email],
-    ["Phone / WhatsApp", d.phone || "—"],
+    ["Phone / WhatsApp", d.phone || "Not given"],
     ["Service", labelFor(serviceOptions, d.service)],
     ["Budget", labelFor(budgetOptions, d.budget)],
     ["Timeline", labelFor(timelineOptions, d.timeline)],
-    ["Context", d.context || "—"],
-    ["Reference links", d.links || "—"],
+    ["Context", d.context || "Not given"],
+    ["Reference links", d.links || "Not given"],
     ["Description", d.description],
   ];
 }

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "/ar",
     languages: { ar: "/ar", "en-SA": "/web-design-agency/saudi-arabia", "en-AE": "/web-design-agency/uae", "x-default": "/web-design-agency/saudi-arabia" },
   },
-  openGraph: { url: "/ar", title: `${title} — ${site.name}`, description, locale: "ar_SA" },
+  openGraph: { url: "/ar", title: `${title} | ${site.name}`, description, locale: "ar_SA" },
 };
 
 const reasons = [

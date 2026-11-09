@@ -46,9 +46,9 @@ export default function PrivacyPage() {
       <h2>3. Service providers</h2>
       <p>We use trusted providers to operate the site. [Review and keep this list accurate.] Currently this may include:</p>
       <ul>
-        <li>GitHub Pages — hosting the website and its server logs.</li>
-        <li>Netlify — running the inquiry form&apos;s submission service.</li>
-        <li>Resend — delivering inquiry form submissions to our inbox.</li>
+        <li>GitHub Pages: hosting the website and its server logs.</li>
+        <li>Netlify: running the inquiry form&apos;s submission service.</li>
+        <li>Resend: delivering inquiry form submissions to our inbox.</li>
       </ul>
 
       <h2>4. Retention</h2>
@@ -66,8 +66,8 @@ export default function PrivacyPage() {
 
       <h2>6. Security</h2>
       <p>
-        We use reasonable technical and organisational measures — including encrypted connections (HTTPS) and keeping API keys on the server
-        only — to protect information. No method of transmission or storage is completely secure.
+        We use reasonable technical and organisational measures, including encrypted connections (HTTPS) and keeping API keys on the server
+        only, to protect information. No method of transmission or storage is completely secure.
       </p>
 
       <h2>7. International transfers</h2>

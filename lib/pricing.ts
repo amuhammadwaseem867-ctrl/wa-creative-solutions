@@ -135,11 +135,11 @@ export const pricingPolicies = {
   revisions:
     "A revision round is one consolidated set of feedback on the current deliverable, returned within the agreed window. Revisions refine the approved direction; they don't restart it.",
   changeRequests:
-    "Anything outside the written scope — new pages, features, deliverables or a change of direction after approval — is a change request. We'll estimate it in writing and only proceed once you approve the cost and timeline impact.",
+    "Anything outside the written scope (new pages, features, deliverables or a change of direction after approval) is a change request. We'll estimate it in writing and only proceed once you approve the cost and timeline impact.",
   notes: [
     "All prices are starting prices and will be confirmed in a written quote after scoping.",
     "Final pricing depends on scope, complexity, revisions, deliverables and project requirements.",
-    "We never offer unlimited work — every project has a defined scope.",
+    "We never offer unlimited work: every project has a defined scope.",
   ],
 };
 

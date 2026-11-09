@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Brand identity, website design and Next.js development, AI creative solutions, 3D/CGI and motion, digital marketing content and graphic design.",
   alternates: { canonical: "/services" },
-  openGraph: { url: "/services", title: `Services — ${site.name}` },
+  openGraph: { url: "/services", title: `Services | ${site.name}` },
 };
 
 const servicesJsonLd = {

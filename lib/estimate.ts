@@ -55,7 +55,7 @@ export function calculateEstimate(input: EstimateInput): Estimate {
     warnings.push(`${type.unitLabel[0].toUpperCase()}${type.unitLabel.slice(1)} adjusted to the supported range (${type.minUnits}–${type.maxUnits}).`);
   }
 
-  const lines: LineItem[] = [{ label: `${type.label} — base`, amount: type.base, detail: `Includes ${type.includedUnits} ${type.unitLabel}` }];
+  const lines: LineItem[] = [{ label: `${type.label}: base`, amount: type.base, detail: `Includes ${type.includedUnits} ${type.unitLabel}` }];
 
   const extra = Math.max(0, units - type.includedUnits);
   if (extra > 0) {

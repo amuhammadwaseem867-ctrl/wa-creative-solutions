@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps<"/web-design-agency
         ? { languages: { [region.slug === "uae" ? "en-AE" : "en-SA"]: path, ar: "/ar" } }
         : {}),
     },
-    openGraph: { url: path, title: `${region.title} — ${site.name}`, description: region.description },
+    openGraph: { url: path, title: `${region.title} | ${site.name}`, description: region.description },
   };
 }
 

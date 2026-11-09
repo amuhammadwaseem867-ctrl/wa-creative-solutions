@@ -8,7 +8,7 @@ export function ProjectCard({ project, sizes = "(min-width: 768px) 45vw, 100vw" 
   const live = project.kind === "live";
   return (
     <article className="h-full">
-      <Link href={`/work/${project.slug}`} className="group flex h-full flex-col" aria-label={`${project.title} — ${project.discipline}`}>
+      <Link href={`/work/${project.slug}`} className="group flex h-full flex-col" aria-label={`${project.title}: ${project.discipline}`}>
         <ProjectStage project={project} sizes={sizes} />
         <div className="mt-12 flex items-start justify-between gap-6 border-t border-white/10 pt-5">
           <div className="min-w-0">

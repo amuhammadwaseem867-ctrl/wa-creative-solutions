@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Practical guides on website costs in the USA, UK, Australia and Saudi Arabia, the European Accessibility Act, bilingual Arabic-English sites and choosing a web design agency.",
   alternates: { canonical: "/insights" },
-  openGraph: { url: "/insights", title: `Insights — ${site.name}` },
+  openGraph: { url: "/insights", title: `Insights | ${site.name}` },
 };
 
 const formatDate = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });

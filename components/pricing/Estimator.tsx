@@ -134,7 +134,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
       {/* Controls */}
       <form className="space-y-10 lg:col-span-7" onSubmit={(e) => e.preventDefault()} aria-label="Project estimator">
         <fieldset>
-          <legend className="field-label">1 — Project type</legend>
+          <legend className="field-label">1. Project type</legend>
           <div className="grid gap-2 sm:grid-cols-2">
             {estimatorConfig.projectTypes.map((t) => (
               <label key={t.id} className="cursor-pointer">
@@ -162,7 +162,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
           <div className="space-y-10">
             <div>
               <label htmlFor={unitsId} className="field-label">
-                2 — Number of {type ? type.unitLabel : "pages / deliverables"}
+                2. Number of {type ? type.unitLabel : "pages / deliverables"}
               </label>
               <div className="flex items-center gap-2">
                 <button type="button" className="chip h-[3.25rem] w-[3.25rem] justify-center p-0" onClick={() => step(-1)} aria-label="Decrease" disabled={!type}>
@@ -194,7 +194,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
             </div>
 
             <OptionGroup
-              legend="3 — Complexity"
+              legend="3. Complexity"
               name="complexity"
               options={estimatorConfig.complexity}
               value={input.complexity}
@@ -204,7 +204,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
 
             <div className="space-y-10">
               <OptionGroup
-                legend="4 — 3D & animation"
+                legend="4. 3D & animation"
                 name="motion"
                 options={estimatorConfig.motion}
                 value={input.motion}
@@ -212,7 +212,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                 disabled={!type || !type.allowsAddons}
               />
               <OptionGroup
-                legend="5 — AI integration"
+                legend="5. AI integration"
                 name="ai"
                 options={estimatorConfig.ai}
                 value={input.ai}
@@ -222,13 +222,13 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
               {type && !type.allowsAddons && (
                 <p className="-mt-6 flex items-start gap-2 text-sm text-mute">
                   <Info size={15} className="mt-0.5 shrink-0" aria-hidden />
-                  Web add-ons don&apos;t apply to {type.label.toLowerCase()} — describe extras in your quote request.
+                  Web add-ons don&apos;t apply to {type.label.toLowerCase()}. Describe extras in your quote request.
                 </p>
               )}
             </div>
 
             <OptionGroup
-              legend="6 — Ongoing maintenance (optional, billed monthly)"
+              legend="6. Ongoing maintenance (optional, billed monthly)"
               name="maintenance"
               options={estimatorConfig.maintenance}
               value={input.maintenance}
@@ -268,7 +268,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
                     className="mt-6 font-display text-[clamp(2.4rem,5vw,3.4rem)] leading-none font-semibold tracking-[-0.05em]"
                   >
                     {formatPrice(estimate.low)}
-                    <span className="text-mute"> – </span>
+                    <span className="text-mute"> to </span>
                     {formatPrice(estimate.high)}
                   </motion.p>
                 </AnimatePresence>
@@ -325,7 +325,7 @@ export function Estimator({ onRequestQuote }: { onRequestQuote: (h: EstimateHand
           </button>
           <p className="mt-4 flex gap-2 text-xs leading-relaxed text-mute">
             <Info size={14} className="mt-0.5 shrink-0" aria-hidden />
-            Preliminary estimate only — not a binding quotation. No payment is collected here. Hosting, domains, third-party subscriptions,
+            Preliminary estimate only, not a binding quotation. No payment is collected here. Hosting, domains, third-party subscriptions,
             stock assets and API costs are excluded.
           </p>
         </div>

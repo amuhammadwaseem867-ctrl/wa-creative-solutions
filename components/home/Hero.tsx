@@ -72,7 +72,7 @@ export function Hero() {
             <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-red" aria-hidden />
             [ {site.availability} ]
           </span>
-          <span className="hidden sm:inline">[ Brand — Web — 3D — AI ]</span>
+          <span className="hidden sm:inline">[ Brand · Web · 3D · AI ]</span>
         </div>
 
         <div className="min-h-[min(46svh,22rem)] flex-1 md:min-h-[30svh]" />
@@ -128,7 +128,7 @@ export function Hero() {
         {/* Shipped strip, real, live projects only */}
         {SHIPPED.length > 0 && (
           <nav aria-label="Recently shipped projects" className="fade-up mt-14 md:mt-16" style={d(700)}>
-            <p className="text-center text-xs text-white/55">Recently shipped — live projects</p>
+            <p className="text-center text-xs text-white/55">Recently shipped live projects</p>
             <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-14">
               {SHIPPED.map((s) => (
                 <li key={s.slug}>

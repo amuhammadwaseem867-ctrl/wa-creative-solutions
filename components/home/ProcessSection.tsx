@@ -12,7 +12,7 @@ export function ProcessSection() {
         <SectionHeading
           eyebrow="How we work"
           title={<span id="process-title">From idea to execution</span>}
-          intro="A clear five-stage process with an agreed output at every step — you always know what's happening and what comes next."
+          intro="A clear five-stage process with an agreed output at every step, so you always know what's happening and what comes next."
         />
 
         <ol className="relative mt-14 grid gap-4 lg:mt-16 lg:grid-cols-5">

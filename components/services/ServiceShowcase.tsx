@@ -16,7 +16,7 @@ export function ServiceShowcase({ service, total, flip = false, priority }: { se
   return (
     <article id={service.id} className="grid scroll-mt-28 items-center gap-x-14 gap-y-14 lg:grid-cols-12">
       <figure className={`lg:col-span-7 ${flip ? "lg:order-2" : ""}`} data-reveal>
-        <Link href={href} className="group block" aria-label={shown[0] ? `${shown[0].title} — example of ${service.title}` : `Request a quote for ${service.title}`}>
+        <Link href={href} className="group block" aria-label={shown[0] ? `${shown[0].title}, an example of ${service.title}` : `Request a quote for ${service.title}`}>
           <ServiceStage service={service} sizes="(min-width: 1024px) 55vw, 100vw" priority={priority} />
         </Link>
         <figcaption className={`${ex.type === "sites" ? "mt-12" : "mt-5"} flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/45`}>

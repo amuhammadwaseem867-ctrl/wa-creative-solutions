@@ -8,10 +8,10 @@ import { serviceOptions } from "@/lib/services";
 import { STATIC_SITE } from "@/lib/hosting";
 
 export const metadata: Metadata = {
-  title: "Contact — Start a Project",
+  title: "Contact: Start a Project",
   description: "Send a project brief to WA Creative Solution: services, budget, timeline and goals. Or email us directly.",
   alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact", title: `Start a project — ${site.name}` },
+  openGraph: { url: "/contact", title: `Start a project | ${site.name}` },
 };
 
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
@@ -24,7 +24,7 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
   const prefill = {
     service: serviceOptions.some((o) => o.value === service) ? service : pkg ? (pkg.id === "enterprise" ? "multiple" : "web") : undefined,
     context: pkg
-      ? `Interested in Package ${pkg.code} — ${pkg.name}${pkg.startingAt !== null ? ` (from ${formatPrice(pkg.startingAt)})` : " (custom quote)"}`
+      ? `Interested in Package ${pkg.code}, ${pkg.name}${pkg.startingAt !== null ? ` (from ${formatPrice(pkg.startingAt)})` : " (custom quote)"}`
       : undefined,
   };
 

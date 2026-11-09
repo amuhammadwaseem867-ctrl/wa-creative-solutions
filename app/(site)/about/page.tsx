@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "WA Creative Solution is a creative technology partner combining brand strategy, design, Next.js engineering, 3D and AI to turn ideas into carefully engineered digital experiences.",
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about", title: `About — ${site.name}` },
+  openGraph: { url: "/about", title: `About | ${site.name}` },
 };
 
 const principleIcons = [Target, Gauge, Handshake, Users];
@@ -34,7 +34,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About us"
         title={<>Creativity, engineered for the future</>}
-        intro={`${site.name} is a creative technology partner. We turn ambitious ideas into carefully engineered digital experiences — treating brand thinking, design craft and modern engineering as one discipline.`}
+        intro={`${site.name} is a creative technology partner. We turn ambitious ideas into carefully engineered digital experiences, treating brand thinking, design craft and modern engineering as one discipline.`}
       >
         <ButtonLink href="/contact">Work with us</ButtonLink>
       </PageHeader>
@@ -54,7 +54,7 @@ export default function AboutPage() {
             </p>
             <p className="mt-5 text-white/55">
               Strategy informs the identity. The identity shapes the interface. The interface is engineered for speed and accessibility. 3D,
-              motion and AI are used where they make communication sharper — never as decoration for its own sake.
+              motion and AI are used where they make communication sharper, never as decoration for its own sake.
             </p>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Capabilities"
             title={<span id="capabilities-title">Creative and technical, in one team</span>}
-            intro={`${services.length} service lines, four core competencies — one accountable partner from first sketch to launch.`}
+            intro={`${services.length} service lines, four core competencies and one accountable partner from first sketch to launch.`}
           />
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {capabilityGroups.map(({ icon: Icon, title, items }, i) => (
@@ -90,7 +90,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Our principles"
             title={<span id="principles-title">Quality you can measure</span>}
-            intro="Detail, performance and collaboration aren't values on a wall — they're the checklist every project ships against."
+            intro="Detail, performance and collaboration aren't values on a wall. They're the checklist every project ships against."
           />
           <ul className="mt-14 grid gap-4 md:grid-cols-2">
             {principles.map((p, i) => {
@@ -118,7 +118,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="The mark"
             title={<span id="mark-title">A logo built like our work</span>}
-            intro="Two blades frame a precision-cut A — the W and the A held in one geometric construction. It works at 16 pixels, in one colour, on any surface."
+            intro="Two blades frame a precision-cut A: the W and the A held in one geometric construction. It works at 16 pixels, in one colour, on any surface."
           />
           <div className="mt-14">
             <BrandShowcase />

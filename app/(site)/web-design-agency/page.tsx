@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "WA Creative Solution designs and builds websites, brands and web apps for businesses in the USA, UK, Europe, Saudi Arabia, the UAE and Australia, remotely from Pakistan.",
   alternates: { canonical: "/web-design-agency" },
-  openGraph: { url: "/web-design-agency", title: `Where we work — ${site.name}` },
+  openGraph: { url: "/web-design-agency", title: `Where we work | ${site.name}` },
 };
 
 export default function RegionsPage() {

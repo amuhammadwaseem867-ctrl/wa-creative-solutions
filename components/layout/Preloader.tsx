@@ -237,7 +237,7 @@ export function Preloader() {
           <p className="pl-tag">{site.tagline}</p>
         </div>
         <div className="pl-meta">
-          <span>[ Brand — Web — 3D — AI ]</span>
+          <span>[ Brand · Web · 3D · AI ]</span>
           <span>
             <span ref={count}>000</span> %
           </span>

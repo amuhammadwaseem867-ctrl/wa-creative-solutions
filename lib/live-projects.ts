@@ -18,13 +18,13 @@ const img = (src: string, alt: string, width: number, height: number, caption?: 
 /** Cover, gallery, scroll capture and phone screen for one live site. */
 function screens(slug: string, title: string, pages: string[], scrollHeight?: number) {
   const dir = `/portfolio/live/${slug}`;
-  const desktop = pages.map((page, i) => img(`${dir}/desktop-${i}.webp`, `${title} — ${page.toLowerCase()} (desktop)`, 1920, 1200, `${page} — desktop`));
-  const mobile = img(`${dir}/mobile-0.webp`, `${title} — ${pages[0].toLowerCase()} (mobile)`, 585, 1266, `${pages[0]} — mobile`);
+  const desktop = pages.map((page, i) => img(`${dir}/desktop-${i}.webp`, `${title}, ${page.toLowerCase()} (desktop)`, 1920, 1200, `${page}, desktop`));
+  const mobile = img(`${dir}/mobile-0.webp`, `${title}, ${pages[0].toLowerCase()} (mobile)`, 585, 1266, `${pages[0]}, mobile`);
   return {
     cover: desktop[0],
     gallery: [...desktop, mobile],
     mobile,
-    scroll: scrollHeight ? img(`${dir}/long.webp`, `${title} — ${pages[0].toLowerCase()}, full scroll`, 1200, scrollHeight) : undefined,
+    scroll: scrollHeight ? img(`${dir}/long.webp`, `${title}, ${pages[0].toLowerCase()}, full scroll`, 1200, scrollHeight) : undefined,
   };
 }
 

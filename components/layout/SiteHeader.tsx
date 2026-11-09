@@ -64,7 +64,7 @@ export function SiteHeader() {
         }`}
       >
         <div className="container-site flex h-[76px] items-center justify-between gap-6">
-          <Link href="/" className="relative z-10" aria-label={`${site.name} — home`}>
+          <Link href="/" className="relative z-10" aria-label={`${site.name}, home`}>
             <Logo className="text-[1.05rem]" />
           </Link>
 

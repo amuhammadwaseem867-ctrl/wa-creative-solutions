@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Live websites, e-commerce stores, SaaS platforms and brand identity work by WA Creative Solution, with screenshots of every deployed build.",
   alternates: { canonical: "/work" },
-  openGraph: { url: "/work", title: `Work — ${site.name}` },
+  openGraph: { url: "/work", title: `Work | ${site.name}` },
 };
 
 export default function WorkPage() {

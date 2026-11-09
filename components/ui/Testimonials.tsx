@@ -4,7 +4,7 @@ import { testimonials } from "@/lib/testimonials";
 
 const trustSignals = [
   { icon: FileText, title: "Written scope", body: "Deliverables, milestones and exclusions agreed in writing before work starts." },
-  { icon: RefreshCcw, title: "Defined revisions", body: "A fixed number of revision rounds per package — no ambiguity, no endless loops." },
+  { icon: RefreshCcw, title: "Defined revisions", body: "A fixed number of revision rounds per package, so no ambiguity, no endless loops." },
   { icon: BadgeCheck, title: "Honest portfolio", body: "Concept projects are labelled as concepts. We never invent clients, quotes or results." },
   { icon: ShieldCheck, title: "You own the result", body: "Final approved deliverables and source files transfer to you on full payment." },
 ];
@@ -22,7 +22,7 @@ export function Testimonials() {
             <figure>
               <blockquote className="text-lead text-paper">&ldquo;{t.quote}&rdquo;</blockquote>
               <figcaption className="mt-6 text-sm text-white/55">
-                <strong className="text-paper">{t.name}</strong> — {t.role}, {t.company}
+                <strong className="text-paper">{t.name}</strong>, {t.role}, {t.company}
                 {t.projectSlug && (
                   <Link href={`/work/${t.projectSlug}`} className="ml-3 text-paper underline">
                     View project

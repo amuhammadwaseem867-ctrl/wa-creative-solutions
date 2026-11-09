@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const TEXT =
-  "We are a creative technology studio. Brand strategy, design, engineering, 3D and AI — combined to build digital experiences that are as precise as they are memorable. Honest scope, clear pricing, no shortcuts.";
+  "We are a creative technology studio. Brand strategy, design, engineering, 3D and AI, combined to build digital experiences that are as precise as they are memorable. Honest scope, clear pricing, no shortcuts.";
 
 function Word({ word, progress, range, still }: { word: string; progress: MotionValue<number>; range: [number, number]; still: boolean }) {
   const opacity = useTransform(progress, range, [0.14, 1]);

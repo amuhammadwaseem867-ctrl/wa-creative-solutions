@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Transparent starting prices for websites, branding, 3D and AI projects, plus an interactive estimator with an itemised breakdown and a custom quote request.",
   alternates: { canonical: "/pricing" },
-  openGraph: { url: "/pricing", title: `Pricing — ${site.name}` },
+  openGraph: { url: "/pricing", title: `Pricing | ${site.name}` },
 };
 
 const faqJsonLd = {
@@ -48,7 +48,7 @@ export default function PricingPage() {
             index="01"
             eyebrow="Packages"
             title={<span id="packages-title">Choose your starting point</span>}
-            intro="Each package is a starting price for a clearly defined scope. Anything beyond it is quoted before work begins — never billed by surprise."
+            intro="Each package is a starting price for a clearly defined scope. Anything beyond it is quoted before work begins, never billed by surprise."
           />
           <div className="mt-14 lg:mt-20">
             <PackageCards />

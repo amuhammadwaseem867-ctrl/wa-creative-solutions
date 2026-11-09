@@ -3,9 +3,9 @@ import { serviceOptions } from "./services";
 /** Shared between the client form and the API route so rules never drift. */
 export const budgetOptions = [
   { value: "under-500", label: "Under $500" },
-  { value: "500-1500", label: "$500 – $1,500" },
-  { value: "1500-5000", label: "$1,500 – $5,000" },
-  { value: "5000-15000", label: "$5,000 – $15,000" },
+  { value: "500-1500", label: "$500 to $1,500" },
+  { value: "1500-5000", label: "$1,500 to $5,000" },
+  { value: "5000-15000", label: "$5,000 to $15,000" },
   { value: "15000-plus", label: "$15,000+" },
   { value: "unsure", label: "Not sure yet" },
 ];
@@ -13,7 +13,7 @@ export const budgetOptions = [
 export const timelineOptions = [
   { value: "asap", label: "As soon as possible" },
   { value: "1-month", label: "Within 1 month" },
-  { value: "1-3-months", label: "1 – 3 months" },
+  { value: "1-3-months", label: "1 to 3 months" },
   { value: "3-plus-months", label: "3+ months" },
   { value: "flexible", label: "Flexible" },
 ];
@@ -70,9 +70,9 @@ export function validateInquiry(d: InquiryData): InquiryErrors {
   if (!allowed(serviceOptions, d.service)) e.service = "Please choose the service you need.";
   if (!allowed(budgetOptions, d.budget)) e.budget = "Please choose an estimated budget.";
   if (!allowed(timelineOptions, d.timeline)) e.timeline = "Please choose an expected timeline.";
-  if (d.description.length < 20) e.description = "Tell us a little more — at least 20 characters.";
+  if (d.description.length < 20) e.description = "Tell us a little more: at least 20 characters.";
   else if (d.description.length > LIMITS.description) e.description = `Please keep the description under ${LIMITS.description} characters.`;
-  if (d.links.length > LIMITS.links) e.links = "Too many links — please shorten this field.";
+  if (d.links.length > LIMITS.links) e.links = "Too many links. Please shorten this field.";
   else if (d.links) {
     const bad = d.links.split(/[\s,]+/).filter(Boolean).find((l) => !/^https?:\/\/\S+\.\S+/i.test(l));
     if (bad) e.links = "Links should start with http:// or https:// and be separated by spaces or new lines.";

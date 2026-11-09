@@ -34,7 +34,7 @@ export const processSteps = [
 export const principles = [
   {
     title: "Detail is the product",
-    body: "Spacing, motion curves, file naming, alt text — the small decisions are where premium work is won or lost.",
+    body: "Spacing, motion curves, file naming, alt text: the small decisions are where premium work is won or lost.",
   },
   {
     title: "Performance is design",

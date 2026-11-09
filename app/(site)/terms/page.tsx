@@ -39,7 +39,7 @@ export default function TermsPage() {
         <li>Projects typically require a deposit before work begins, with the balance due at agreed milestones or before final handover. [Set your standard split, e.g. 50/50.]</li>
         <li>Invoices are payable within [X] days of issue. [Define late-payment terms.]</li>
         <li>
-          Third-party costs — including {pricingPolicies.excluded.slice(0, 4).join(", ").toLowerCase()} — are your responsibility unless
+          Third-party costs, including {pricingPolicies.excluded.slice(0, 4).join(", ").toLowerCase()}, are your responsibility unless
           explicitly included in the quote.
         </li>
         <li>Recurring services such as maintenance are billed separately and only if you opt in.</li>

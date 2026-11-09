@@ -39,7 +39,7 @@ function mailtoBrief(d: InquiryData) {
     d.description,
     d.links && `\nReferences:\n${d.links}`,
   ].filter((l): l is string => typeof l === "string" && l.length > 0);
-  const subject = `Project brief — ${d.name}`;
+  const subject = `Project brief from ${d.name}`;
   return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
@@ -124,7 +124,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
       window.location.href = mailtoBrief(clean);
       setStatus({
         kind: "success",
-        message: `Your email app should now open with the brief ready to send — press send to deliver it. If nothing opened, email ${contact.email} directly.`,
+        message: `Your email app should now open with the brief ready to send. Press send to deliver it. If nothing opened, email ${contact.email} directly.`,
       });
       requestAnimationFrame(() => statusRef.current?.focus());
       return;
@@ -337,7 +337,7 @@ export function InquiryForm({ prefill, submitLabel = "Send project brief" }: { p
           rows={2}
           className="field resize-y"
           maxLength={LIMITS.links}
-          placeholder="https://… (websites, brands or work you like — one per line)"
+          placeholder="https://… (websites, brands or work you like, one per line)"
           value={data.links}
           onChange={(e) => update("links", e.target.value)}
         />

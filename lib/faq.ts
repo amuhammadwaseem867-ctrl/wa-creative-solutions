@@ -19,7 +19,7 @@ export const pricingFaq = [
   },
   {
     q: "How do payments work?",
-    a: "Payment terms are set out in your written quote — typically a deposit to book the project and the balance at agreed milestones or before final handover. We never take payment through the estimator.",
+    a: "Payment terms are set out in your written quote: typically a deposit to book the project and the balance at agreed milestones or before final handover. We never take payment through the estimator.",
   },
   {
     q: "Do you offer ongoing maintenance?",

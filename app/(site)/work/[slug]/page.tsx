@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
   const project = getProject(slug);
   if (!project) return {};
   return {
-    title: `${project.title} — ${project.discipline}`,
+    title: `${project.title}: ${project.discipline}`,
     description: project.summary,
     alternates: { canonical: `/work/${project.slug}` },
     openGraph: {
       type: "article",
       url: `/work/${project.slug}`,
-      title: `${project.title} — ${site.name}`,
+      title: `${project.title} | ${site.name}`,
       description: project.summary,
       images: [{ url: project.cover.src, width: project.cover.width, height: project.cover.height, alt: project.cover.alt }],
     },
@@ -58,7 +58,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       "@context": "https://schema.org",
       "@type": "CreativeWork",
       name: project.title,
-      headline: `${project.title} — ${project.discipline}`,
+      headline: `${project.title}: ${project.discipline}`,
       description: project.summary,
       url: pageUrl,
       image: absoluteUrl(project.cover.src),

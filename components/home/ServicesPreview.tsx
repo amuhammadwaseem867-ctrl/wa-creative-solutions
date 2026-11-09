@@ -19,7 +19,7 @@ export function ServicesPreview() {
               Everything your brand needs, <span className="text-chrome">under one roof</span>
             </span>
           }
-          intro="Strategy, design, engineering, 3D and AI working as one team — so your brand, website and campaigns all speak the same language."
+          intro="Strategy, design, engineering, 3D and AI working as one team, so your brand, website and campaigns all speak the same language."
         />
 
         <ol className="mt-14 border-t border-white/10 lg:mt-16">

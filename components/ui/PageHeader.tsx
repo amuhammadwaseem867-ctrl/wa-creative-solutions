@@ -30,7 +30,7 @@ export function PageHeader({ eyebrow, title, intro, children }: Props) {
       <div className="container-site">
         <div className="fade-up flex items-center justify-between gap-4 text-white/50">
           <p className="label-bracket">{eyebrow}</p>
-          <p className="label-bracket hidden sm:block">Brand — Web — 3D — AI</p>
+          <p className="label-bracket hidden sm:block">Brand · Web · 3D · AI</p>
         </div>
         <div className="mt-[clamp(5rem,14vw,11rem)] grid gap-10 lg:grid-cols-12 lg:items-end">
           <h1
