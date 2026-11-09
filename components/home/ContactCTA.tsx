@@ -3,7 +3,7 @@ import Link from "next/link";
 import { contact } from "@/lib/site";
 import { EmberLight, Spark, StarField } from "@/components/ui/Atmosphere";
 
-/** Closing call-to-action: a framed slice of the hero — ember light, star-field, spark and bracketed CTA. */
+/** Closing call-to-action: a framed slice of the hero, ember light, star-field, spark and bracketed CTA. */
 export function ContactCTA({ title = "Have something ambitious in mind?" }: { title?: string }) {
   return (
     <section className="py-[clamp(3rem,6vw,5rem)]" aria-labelledby="cta-title">

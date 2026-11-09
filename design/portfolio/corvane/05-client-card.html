@@ -42,7 +42,7 @@ h1 em{font-style:italic}
 import * as THREE from "three";
 import { SVGLoader } from "three/addons/loaders/SVGLoader.js";
 import { createStudio, roundedBox, roundedRectGeometry, printed, done } from "/design/portfolio/_lib/studio.js";
-// ---- Corvane brand primitives (inlined into each board) ----
+// Corvane brand primitives (inlined into each board)
 const C = { green: "#0F2A24", ivory: "#F1ECE2", brass: "#B08D57", graphite: "#1C1C1C", stone: "#D8D0C1" };
 // Symbol: head circle R=100 centred (100,100); counter 0.64R; culmen arc 6R tangent at 62deg; beak underside on the horizon (y=100);
 // lower terminal cut on the half-radius (y=150); eye 0.12R on the 60deg radial. Bounding box 271.59 x 200.
@@ -112,8 +112,8 @@ async function loadFonts() {
     "italic 400 40px 'Cormorant Garamond'", "italic 300 40px 'Cormorant Garamond'", "400 40px Inter", "500 40px Inter", "600 40px Inter", "300 40px Inter"];
   await Promise.all(specs.map((s) => document.fonts.load(s)));
 }
-// ---- end brand primitives ----
-// ---- Corvane 3D kit (inlined into each CGI board) ----
+// end brand primitives
+// Corvane 3D kit (inlined into each CGI board)
 function rand(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
 /** Limestone: warm base with soft mottling and fine fossil speckle. Returns {map, bump}. */
 function limestone(THREE, { base = "#d9d1c3", size = 1024, seed = 7, repeat = [10, 10], mottle = 1, speckle = 1, fossils = 1 } = {}) {
@@ -275,8 +275,8 @@ function studioLook(THREE, s, { key = [-4.6, 6.4, -3.2], target = [0, 0, 0], int
   return env;
 }
 function ctex(THREE, cv, srgb = true, aniso = 16) { const t = new THREE.CanvasTexture(cv); if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso; return t; }
-// ---- end 3D kit ----
-// ---- Corvane print textures (canvas) ----
+// end 3D kit
+// Corvane print textures (canvas)
 function canvas2d(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; return [c, c.getContext("2d")]; }
 /** Paper grain overlay. */
 function grain(g, w, h, amt = 0.035, seed = 5) { const r = rand(seed); for (let i = 0; i < w * h / 90; i++) { const v = r() > 0.5 ? 255 : 0; g.fillStyle = `rgba(${v},${v},${v},${r() * amt})`; g.fillRect(r() * w, r() * h, 1.2, 1.2); } }
@@ -402,7 +402,7 @@ function folioFoil(W = 1150, H = 1550) {
   drawWordmark(g, W / 2, H * 0.36 + mh / 2 + 120, 34, "#fff", "center");
   return c;
 }
-// ---- end print textures ----
+// end print textures
 await loadFonts();
 const P = !!window.__PREVIEW;
 document.getElementById("hl").innerHTML = markSVG(12, "rgba(241,236,226,.55)", true) + "<span>Corvane</span>";

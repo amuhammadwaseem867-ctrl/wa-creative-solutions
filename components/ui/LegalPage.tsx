@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { EmberLight, StarField } from "./Atmosphere";
 
-/** Shared layout for policy templates — the site atmosphere up top, a calm reading column below. */
+/** Shared layout for policy templates, the site atmosphere up top, a calm reading column below. */
 export function LegalPage({ title, updated, children }: { title: string; updated: string; children: ReactNode }) {
   return (
     <>

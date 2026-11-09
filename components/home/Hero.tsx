@@ -9,7 +9,7 @@ import { EmberLight, Spark } from "@/components/ui/Atmosphere";
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 const pad = (n: number) => String(n).padStart(2, "0");
 
-/** Live builds named in the bottom strip — short display names, linked to their case studies. */
+/** Live builds named in the bottom strip, short display names, linked to their case studies. */
 const SHIPPED = [
   { slug: "restaurant-os", name: "RestaurantOS" },
   { slug: "zama-zama", name: "Zama Zama" },
@@ -125,7 +125,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Shipped strip — real, live projects only */}
+        {/* Shipped strip, real, live projects only */}
         {SHIPPED.length > 0 && (
           <nav aria-label="Recently shipped projects" className="fade-up mt-14 md:mt-16" style={d(700)}>
             <p className="text-center text-xs text-white/55">Recently shipped — live projects</p>

@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-/* ==================================================================
-   WA CREATIVE SOLUTION — DESIGN TOKENS
-   Montserrat (display) + Poppins (body)
-   ================================================================== */
+/* WA Creative Solutions, design tokens
+   Montserrat (display) + Poppins (body) */
 
 @theme {
   --color-ink: #000000;
@@ -32,9 +30,7 @@
   color-scheme: dark;
 }
 
-/* ==================================================================
-   BASE
-   ================================================================== */
+/* Base */
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -87,9 +83,7 @@ img {
   max-width: 100%;
 }
 
-/* ==================================================================
-   LAYOUT & TYPE UTILITIES
-   ================================================================== */
+/* Layout & type utilities */
 
 @utility container-site {
   width: 100%;
@@ -124,7 +118,7 @@ img {
   text-transform: uppercase;
 }
 
-/* Bracketed micro-label — "[ LABEL ]" */
+/* Bracketed micro-label, "[ LABEL ]" */
 @utility label-bracket {
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -155,7 +149,7 @@ img {
   line-height: 1.4;
 }
 
-/* Key words that dissolve into the light — the hero headline's faded tails */
+/* Key words that dissolve into the light, the hero headline's faded tails */
 @utility text-chrome {
   background: linear-gradient(90deg, #ffffff 0%, #ffffff 25%, rgb(255 255 255 / 0.42) 100%);
   -webkit-background-clip: text;
@@ -171,9 +165,7 @@ img {
   color: transparent;
 }
 
-/* ==================================================================
-   COMPONENTS
-   ================================================================== */
+/* Components */
 
 @layer components {
   /* Buttons */
@@ -322,7 +314,7 @@ img {
     opacity: 1;
   }
 
-  /* Mouse-following spotlight — driven by --mx / --my from <Spotlight> */
+  /* Mouse-following spotlight, driven by --mx / --my from <Spotlight> */
   .spotlight::before {
     content: "";
     position: absolute;
@@ -440,9 +432,7 @@ img {
   }
 }
 
-/* ==================================================================
-   ATMOSPHERE
-   ================================================================== */
+/* Atmosphere */
 
 .grain {
   pointer-events: none;
@@ -466,9 +456,7 @@ img {
   background-size: 22px 22px;
 }
 
-/* ==================================================================
-   SCROLL REVEALS — hidden only once JS has booted.
-   ================================================================== */
+/* SCROLL REVEALS, hidden only once JS has booted. */
 
 html.js [data-reveal] {
   opacity: 0;
@@ -636,10 +624,8 @@ html.js [data-reveal].is-visible {
   text-underline-offset: 3px;
 }
 
-/* ==================================================================
-   ATMOSPHERE — ember light, star-field crosses, ornaments
-   (introduced by the hero, shared by every page)
-   ================================================================== */
+/* ATMOSPHERE, ember light, star-field crosses, ornaments
+   (introduced by the hero, shared by every page) */
 
 /* Warm light falling from above. --ember-x moves the source; .ember-soft dims it;
    .ember-rise flips it so the light comes up from the bottom edge. */

@@ -1,5 +1,5 @@
 /**
- * WA hexagon monogram — single source of truth for the SVG logo, favicon,
+ * WA hexagon monogram, single source of truth for the SVG logo, favicon,
  * Open Graph / app icons and brand files.
  *
  * Construction (viewBox 79.67 × 92.0): a hexagon frame holding one continuous
@@ -14,7 +14,7 @@ export const MONOGRAM_VIEWBOX = { width: 79.67, height: 92.0 } as const;
 /** The letters W + A (with the A's crossbar). */
 export const MONOGRAM_BODY_PATH = "M29.44 64.00 L20.46 64.00 L11.71 29.03 L11.46 28.00 L20.22 28.00 L25.85 50.52 L34.84 28.95 L44.03 51.02 L50.43 28.00 L59.25 28.00 L68.93 62.86 L69.25 64.00 L60.43 64.00 L57.80 54.56 L51.87 54.56 L49.25 64.00 L40.23 64.00 L34.84 51.05 Z M54.84 43.88 L53.57 48.44 L56.10 48.44 Z";
 
-/** The hexagon frame — accent-coloured on colour versions. */
+/** The hexagon frame, accent-coloured on colour versions. */
 export const MONOGRAM_ACCENT_PATH = "M0.00 23.00 L39.84 0.00 L79.67 23.00 L79.67 69.00 L39.84 92.00 L0.00 69.00 Z M71.17 27.91 L39.84 9.81 L8.50 27.91 L8.50 64.09 L39.84 82.19 L71.17 64.09 Z";
 
 /** Drawing order for animated reveals: frame first, then the letters. */

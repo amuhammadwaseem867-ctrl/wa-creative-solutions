@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const icons = [Search, Compass, PenTool, Hammer, Rocket];
 
-/** Five-stage timeline. Plain markup — fully readable without animation. */
+/** Five-stage timeline. Plain markup, fully readable without animation. */
 export function ProcessSection() {
   return (
     <section id="process" className="section-y relative" aria-labelledby="process-title">

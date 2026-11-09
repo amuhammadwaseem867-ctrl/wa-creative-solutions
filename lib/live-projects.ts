@@ -1,7 +1,7 @@
 import type { Project, ProjectImage } from "./projects";
 
 /**
- * LIVE PROJECTS — deployed builds from the studio's repositories, best first.
+ * LIVE PROJECTS, deployed builds from the studio's repositories, best first.
  * Demos and proposals that are online but not client sites are kind "concept".
  * Screenshots are captured from each live site (1440×900 desktop screens, a
  * six-screen scroll capture and a 390×844 phone screen) and saved as WebP in

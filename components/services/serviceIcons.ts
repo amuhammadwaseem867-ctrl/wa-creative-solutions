@@ -1,6 +1,6 @@
 import { Box, LayoutTemplate, Megaphone, MonitorSmartphone, Palette, Sparkles, type LucideIcon } from "lucide-react";
 
-/** Icon per service id — kept out of lib/ so content stays framework-free. */
+/** Icon per service ID, kept out of lib/ so content stays framework-free. */
 export const serviceIcons: Record<string, LucideIcon> = {
   "brand-identity": Palette,
   web: MonitorSmartphone,

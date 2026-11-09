@@ -129,7 +129,7 @@ export const services: Service[] = [
   },
 ];
 
-/** Options for the "service required" field — kept in sync with the catalogue. */
+/** Options for the "service required" field, kept in sync with the catalogue. */
 export const serviceOptions = [
   ...services.map((s) => ({ value: s.inquiryValue, label: s.title })),
   { value: "multiple", label: "Multiple services / not sure yet" },

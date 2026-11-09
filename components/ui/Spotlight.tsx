@@ -10,7 +10,7 @@ type Props = {
 
 /**
  * Card with a soft red glow that follows the pointer (pattern popularised by
- * Aceternity / Linear). Purely decorative — content stays static.
+ * Aceternity / Linear). Purely decorative, content stays static.
  */
 export function Spotlight({ as: Tag = "div", className = "", children }: Props) {
   return (

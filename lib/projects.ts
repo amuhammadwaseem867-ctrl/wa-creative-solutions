@@ -4,10 +4,10 @@ import { liveProjects } from "./live-projects";
 /**
  * Portfolio data.
  *
- * - `kind: "live"`  — real, deployed builds (see lib/live-projects.ts). Each links
+ * - `kind: "live"` , real, deployed builds (see lib/live-projects.ts). Each links
  *   to its live site. No client relationship, testimonial or result is implied
  *   beyond what the live site itself shows.
- * - `kind: "concept"` — self-initiated design explorations, always labelled.
+ * - `kind: "concept"`, self-initiated design explorations, always labelled.
  */
 /** Work is organised by the studio's six service fields (ids match lib/services.ts). */
 export type WorkCategory = "brand-identity" | "web" | "ai" | "3d-motion" | "marketing" | "graphic";
