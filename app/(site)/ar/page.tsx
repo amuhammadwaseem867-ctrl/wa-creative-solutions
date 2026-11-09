@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
+import localFont from "next/font/local";
 import { ArrowUpLeft, Check, Clock } from "lucide-react";
 import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { projects, type Project } from "@/lib/projects";
 import { absoluteUrl, contact, site } from "@/lib/site";
 
-const arabic = IBM_Plex_Sans_Arabic({ subsets: ["arabic"], weight: ["400", "500", "700"], display: "swap" });
+const arabic = localFont({
+  src: [
+    { path: "../../fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2", weight: "400" },
+    { path: "../../fonts/ibm-plex-sans-arabic-arabic-500-normal.woff2", weight: "500" },
+    { path: "../../fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2", weight: "700" },
+  ],
+  display: "swap",
+  fallback: ["Tahoma", "sans-serif"],
+});
 
 const title = "تصميم وتطوير المواقع الإلكترونية للشركات في السعودية والإمارات";
 const description =

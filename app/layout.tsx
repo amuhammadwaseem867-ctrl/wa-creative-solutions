@@ -1,11 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import { absoluteUrl, contact, site, socials } from "@/lib/site";
 import { services } from "@/lib/services";
 import "./globals.css";
 
-const display = Montserrat({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-montserrat", display: "swap" });
-const sans = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"], variable: "--font-poppins", display: "swap" });
+// Self-hosted (latin subset from @fontsource) so builds never depend on downloading from Google Fonts.
+const display = localFont({
+  src: [
+    { path: "./fonts/montserrat-latin-500-normal.woff2", weight: "500" },
+    { path: "./fonts/montserrat-latin-600-normal.woff2", weight: "600" },
+    { path: "./fonts/montserrat-latin-700-normal.woff2", weight: "700" },
+    { path: "./fonts/montserrat-latin-800-normal.woff2", weight: "800" },
+  ],
+  variable: "--font-montserrat",
+  display: "swap",
+  fallback: ["Arial", "sans-serif"],
+});
+const sans = localFont({
+  src: [
+    { path: "./fonts/poppins-latin-300-normal.woff2", weight: "300" },
+    { path: "./fonts/poppins-latin-400-normal.woff2", weight: "400" },
+    { path: "./fonts/poppins-latin-500-normal.woff2", weight: "500" },
+    { path: "./fonts/poppins-latin-600-normal.woff2", weight: "600" },
+  ],
+  variable: "--font-poppins",
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
