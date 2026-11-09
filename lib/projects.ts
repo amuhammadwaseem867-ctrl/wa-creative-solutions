@@ -1,6 +1,7 @@
 import { fieldProjects } from "./field-projects";
 import { liveProjects } from "./live-projects";
 import { conceptProjects } from "./concept-projects";
+import { motionProjects } from "./motion-projects";
 
 /**
  * Portfolio data.
@@ -24,7 +25,8 @@ export const workCategories: { id: WorkCategory; label: string }[] = [
 
 export type ProjectKind = "live" | "concept";
 
-export type ProjectImage = { src: string; alt: string; width: number; height: number; caption?: string };
+/** `video`: an MP4 motion piece; `src` is then its poster frame. */
+export type ProjectImage = { src: string; alt: string; width: number; height: number; caption?: string; video?: string };
 
 export type Project = {
   slug: string;
@@ -52,7 +54,7 @@ export type Project = {
   liveUrl?: string;
 };
 
-export const projects: Project[] = [...liveProjects, ...fieldProjects, ...conceptProjects];
+export const projects: Project[] = [...liveProjects, ...motionProjects, ...fieldProjects, ...conceptProjects];
 
 /** Projects for one service field, live work first. */
 export const projectsForField = (field: WorkCategory) => projects.filter((p) => p.categories.includes(field));

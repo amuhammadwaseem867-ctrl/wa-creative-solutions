@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { WorkExplorer } from "@/components/work/WorkExplorer";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { projects } from "@/lib/projects";
+import { liveProjects } from "@/lib/live-projects";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-  const live = projects.filter((p) => p.kind === "live").length;
+  // Count deployed sites only; preloaders recorded from those sites are not extra builds.
+  const live = liveProjects.filter((p) => p.kind === "live").length;
   return (
     <>
       <PageHeader

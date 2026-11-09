@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="board-size" content="1280x800"><title>WA monogram, 3D reveal</title>
+<link rel="stylesheet" href="/fonts/montserrat/700.css"><link rel="stylesheet" href="/fonts/poppins/500.css">
+<style>
+html,body{margin:0;width:1280px;height:800px;overflow:hidden;background:#000}
+#bg{position:fixed;inset:0;background:radial-gradient(38% 52% at 50% 0%,rgba(255,170,110,.42),rgba(255,32,45,.2) 45%,rgba(90,8,8,.08) 70%,transparent 85%),#000}
+#grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:80px 80px;-webkit-mask:radial-gradient(55% 60% at 50% 45%,#000,transparent)}
+canvas{position:fixed;inset:0}
+#word{position:fixed;left:0;right:0;top:672px;text-align:center;color:#fff;font:700 30px/1 Montserrat;letter-spacing:.34em;padding-left:.34em}
+#sub{position:fixed;left:0;right:0;top:718px;text-align:center;color:rgba(255,255,255,.6);font:500 12px/1 Poppins;letter-spacing:.62em;padding-left:.62em}
+#word span{display:inline-block}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head><body><div id="bg"></div><div id="grid"></div><div id="word"></div><div id="sub">SOLUTION</div>
+<script type="module">
+import * as THREE from "three";
+import { SVGLoader } from "three/addons/loaders/SVGLoader.js";
+import { createStudio } from "/design/portfolio/_lib/studio.js";
+import { BODY, FRAME } from "/design/portfolio/open-after-hours/_brand.js";
+
+const s = createStudio({ background: null, lighting: "dramatic", fov: 30, exposure: 1.05, pixelRatio: 1 });
+const { scene, camera, renderer } = s;
+camera.position.set(0, 0.2, 11);
+camera.lookAt(0, 0.2, 0);
+
+const shapesOf = (d) => SVGLoader.createShapes(new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg"><path d="${d}"/></svg>`).paths[0]);
+const extrude = (d, depth) => {
+  const g = new THREE.ExtrudeGeometry(shapesOf(d), { depth, bevelEnabled: true, bevelThickness: 1.1, bevelSize: 0.7, bevelSegments: 4, curveSegments: 2 });
+  g.translate(-39.84, -46, -depth / 2);
+  return g;
+};
+const S = 0.043;
+const frameMat = new THREE.MeshPhysicalMaterial({ color: "#ff202d", metalness: 0.55, roughness: 0.24, clearcoat: 1, clearcoatRoughness: 0.12 });
+const bodyMat = new THREE.MeshPhysicalMaterial({ color: "#ffffff", metalness: 0.25, roughness: 0.28, clearcoat: 1, emissive: "#3a3330", emissiveIntensity: 0.6 });
+const frame = new THREE.Mesh(extrude(FRAME, 9), frameMat);
+const body = new THREE.Mesh(extrude(BODY, 7), bodyMat);
+[frame, body].forEach((m) => { m.scale.set(S, -S, S); m.castShadow = true; });
+const logo = new THREE.Group();
+logo.add(frame, body);
+logo.position.y = 0.95;
+scene.add(logo);
+
+// A moving light that sweeps across the metal.
+const sweep = new THREE.PointLight("#ffe2c4", 0, 14, 1.4);
+scene.add(sweep);
+const rim = new THREE.DirectionalLight("#ff5a3c", 1.6);
+rim.position.set(-4, 3, -4);
+scene.add(rim);
+
+const word = "WA CREATIVE";
+document.getElementById("word").innerHTML = [...word].map((c) => `<span>${c === " " ? "&nbsp;" : c}</span>`).join("");
+const spans = [...document.querySelectorAll("#word span")];
+const sub = document.getElementById("sub");
+
+const clamp = (x) => Math.min(1, Math.max(0, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 4);
+const inOut = (x) => { x = clamp(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+
+window.DURATION = 6;
+window.POSTER_AT = 4.2;
+window.renderAt = (t) => {
+  const a = ease(t / 2.2);
+  frame.position.set(0, 0, -7 * (1 - a));
+  frame.rotation.set(0.6 * (1 - a), -2.6 * (1 - a), 0);
+  frame.scale.set(S * (0.55 + 0.45 * a), -S * (0.55 + 0.45 * a), S);
+  const b = ease((t - 0.55) / 2.0);
+  body.position.set(1.6 * (1 - b), -0.4 * (1 - b), 5 * (1 - b));
+  body.rotation.set(1.4 * (1 - b), 0.9 * (1 - b), 0);
+  frameMat.opacity = bodyMat.opacity = 1;
+  const turn = inOut((t - 2.2) / 2.4);
+  logo.rotation.y = -0.42 + 0.72 * turn + Math.sin(t * 0.9) * 0.02;
+  logo.rotation.x = 0.05 * Math.sin(t * 0.7);
+  logo.position.y = 0.95 + Math.sin(t * 1.2) * 0.03;
+  const sw = clamp((t - 2.5) / 1.6);
+  sweep.position.set(-5 + 10 * sw, 1.6, 2.4);
+  sweep.intensity = sw > 0 && sw < 1 ? 60 * Math.sin(Math.PI * sw) : 0;
+  spans.forEach((sp, i) => {
+    const k = ease((t - 3.0 - i * 0.05) / 0.8);
+    sp.style.opacity = k;
+    sp.style.transform = `translateY(${(1 - k) * 22}px)`;
+    sp.style.filter = `blur(${(1 - k) * 8}px)`;
+  });
+  sub.style.opacity = ease((t - 3.7) / 0.8);
+  renderer.render(scene, camera);
+};
+window.renderAt(0);
+window.__MOTION_READY = true;
+</script></body></html>

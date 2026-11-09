@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { workCategories, type Project } from "@/lib/projects";
 import { EmberLight } from "@/components/ui/Atmosphere";
 import { BrowserFrame, PhoneFrame } from "./Devices";
+import { MotionVideo } from "./MotionVideo";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const hostOf = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -32,6 +33,9 @@ export function ProjectStage({ project, sizes, priority }: { project: Project; s
           </>
         ) : (
           <div className="relative aspect-[16/10]">
+            {project.cover.video ? (
+              <MotionVideo image={{ ...project.cover, video: project.cover.video }} className="absolute inset-0 h-full w-full object-cover" />
+            ) : (
             <Image
               src={project.cover.src}
               alt={project.cover.alt}
@@ -40,6 +44,7 @@ export function ProjectStage({ project, sizes, priority }: { project: Project; s
               priority={priority}
               className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03]"
             />
+            )}
           </div>
         )}
       </div>

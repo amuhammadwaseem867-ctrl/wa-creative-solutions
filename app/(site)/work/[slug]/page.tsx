@@ -10,6 +10,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { EmberLight, StarField } from "@/components/ui/Atmosphere";
 import { BrowserFrame, PhoneFrame } from "@/components/work/Devices";
 import { ProjectStage } from "@/components/work/ProjectShowcase";
+import { MotionVideo } from "@/components/work/MotionVideo";
 
 export const dynamicParams = false;
 
@@ -119,14 +120,18 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             </div>
           ) : (
             <div className={`relative overflow-hidden bg-ink-3 ${landscapeCover ? "aspect-[16/9]" : "aspect-[4/5] sm:aspect-[16/10]"}`}>
-              <Image
-                src={project.cover.src}
-                alt={project.cover.alt}
-                fill
-                priority
-                sizes="100vw"
-                className={logoCover ? "object-contain p-[12%]" : "object-cover object-top"}
-              />
+              {project.cover.video ? (
+                <MotionVideo image={{ ...project.cover, video: project.cover.video }} className="absolute inset-0 h-full w-full object-cover" />
+              ) : (
+                <Image
+                  src={project.cover.src}
+                  alt={project.cover.alt}
+                  fill
+                  priority
+                  sizes="100vw"
+                  className={logoCover ? "object-contain p-[12%]" : "object-cover object-top"}
+                />
+              )}
             </div>
           )}
         </div>
@@ -248,6 +253,9 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                       <PhoneFrame image={img} sizes="(min-width: 640px) 384px, 100vw" />
                     ) : (
                       <div className="overflow-hidden bg-ink-3">
+                        {img.video ? (
+                          <MotionVideo image={{ ...img, video: img.video }} className="block h-auto w-full" />
+                        ) : (
                         <Image
                           src={img.src}
                           alt={img.alt}
@@ -256,6 +264,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                           sizes={row.length === 1 ? "(min-width: 1280px) 1200px, 100vw" : row.length === 2 ? "(min-width: 768px) 50vw, 100vw" : "33vw"}
                           className="h-auto w-full"
                         />
+                        )}
                       </div>
                     )}
                     {img.caption && (

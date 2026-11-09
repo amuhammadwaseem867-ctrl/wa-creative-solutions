@@ -4,6 +4,7 @@ import type { Service } from "@/lib/services";
 import { EmberLight } from "@/components/ui/Atmosphere";
 import { BrowserFrame, PhoneFrame } from "@/components/work/Devices";
 import { ServiceVisual } from "./ServiceVisual";
+import { MotionVideo } from "@/components/work/MotionVideo";
 
 /**
  * Proof for each service, taken from the portfolio: live sites for the build services,
@@ -14,7 +15,7 @@ const EXAMPLES: Record<string, { sites?: string[]; board?: { slug: string; file:
   "brand-identity": { board: { slug: "corvane", file: "02-mark.jpg" } },
   web: { sites: ["spirit", "af7", "zama-zama"] },
   ai: { sites: ["restaurant-os"] },
-  "3d-motion": { sites: ["apparel-fastener", "burger-in-town"] },
+  "3d-motion": { sites: ["af7-zipper-preloader", "apparel-fastener", "burger-in-town"] },
   marketing: { board: { slug: "open-after-hours", file: "01-cover.jpg" } },
   graphic: { board: { slug: "mono", file: "stationery.webp" } },
 };
@@ -44,6 +45,9 @@ export function ServiceStage({ service, sizes, priority }: { service: Service; s
     return (
       <div className="corners relative">
         <div className="relative aspect-[16/10] overflow-hidden border border-white/10 bg-ink-3">
+          {ex.image.video ? (
+            <MotionVideo image={{ ...ex.image, video: ex.image.video }} className="absolute inset-0 h-full w-full object-cover" />
+          ) : (
           <Image
             src={ex.image.src}
             alt={ex.image.alt}
@@ -52,6 +56,7 @@ export function ServiceStage({ service, sizes, priority }: { service: Service; s
             priority={priority}
             className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.04]"
           />
+          )}
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ProjectImage } from "@/lib/projects";
+import { MotionVideo } from "./MotionVideo";
 
 const hostOf = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
@@ -32,7 +33,9 @@ export function BrowserFrame({ image, scroll, url, sizes, priority, className = 
         {url && <span className="w-[2.6rem]" />}
       </div>
       <div className="shot-viewport bg-ink-3 relative aspect-[16/10] overflow-hidden">
-        {scroll ? (
+        {image.video ? (
+          <MotionVideo image={{ ...image, video: image.video }} className="absolute inset-0 h-full w-full object-cover object-top" />
+        ) : scroll ? (
           <Image
             src={scroll.src}
             alt={image.alt}
